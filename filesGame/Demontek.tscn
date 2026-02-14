@@ -1,0 +1,44 @@
+[gd_scene load_steps=2 format=3 uid="uid://demontek_scene_001"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/DemontekAI.cs" id="1_enemy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enemy"]
+size = Vector2(28, 48)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detection"]
+radius = 150.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(45, 45)
+
+[node name="Demontek" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_enemy")
+Type = 0
+AnimatedSpritePath = NodePath("AnimatedSprite2D")
+DetectionAreaPath = NodePath("DetectionArea")
+AttackAreaPath = NodePath("AttackArea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -24)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_enemy")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+position = Vector2(0, -24)
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_detection")
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(0, -24)
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("RectangleShape2D_attack")

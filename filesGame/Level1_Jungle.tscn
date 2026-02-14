@@ -1,0 +1,139 @@
+[gd_scene load_steps=3 format=3 uid="uid://level1_jungle_001"]
+
+[ext_resource type="PackedScene" uid="uid://player_scene_001" path="res://Scenes/Characters/Player/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://demontek_scene_001" path="res://Scenes/Characters/Enemies/Demontek.tscn" id="2_demontek"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
+size = Vector2(200, 32)
+
+[node name="Level1_Jungle" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.415686, 0.105882, 0.603922, 1)
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="ParallaxBackground/ParallaxLayer"]
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 1000.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 32
+text = "Level 1 - Jungle (Placeholder Background)"
+horizontal_alignment = 1
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Ground" type="StaticBody2D" parent="Platforms"]
+position = Vector2(240, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Platforms/Ground"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.172549, 0.4, 0.196078, 1)
+
+[node name="Platform1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(480, 400)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform1"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Platforms/Platform1"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.172549, 0.4, 0.196078, 1)
+
+[node name="Platform2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(720, 350)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Platforms/Platform2"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.172549, 0.4, 0.196078, 1)
+
+[node name="Platform3" type="StaticBody2D" parent="Platforms"]
+position = Vector2(960, 300)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Platforms/Platform3"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.172549, 0.4, 0.196078, 1)
+
+[node name="Platform4" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1200, 380)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform4"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Platforms/Platform4"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.172549, 0.4, 0.196078, 1)
+
+[node name="Platform5" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1440, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform5"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Platforms/Platform5"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.172549, 0.4, 0.196078, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(240, 400)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Demontek1" parent="Enemies" instance=ExtResource("2_demontek")]
+position = Vector2(480, 330)
+
+[node name="Demontek2" parent="Enemies" instance=ExtResource("2_demontek")]
+position = Vector2(720, 280)
+
+[node name="Demontek3" parent="Enemies" instance=ExtResource("2_demontek")]
+position = Vector2(960, 230)
+
+[node name="Instructions" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Instructions"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 500.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 16
+text = "CONTROLS:
+WASD - Move
+W/Space - Jump
+E - Attack
+S - Crouch
+
+This is a placeholder level.
+Add proper backgrounds and sprites next!"

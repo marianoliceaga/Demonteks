@@ -1,0 +1,125 @@
+[gd_scene load_steps=4 format=3 uid="uid://level2_dungeon_001"]
+
+[ext_resource type="PackedScene" uid="uid://player_scene_001" path="res://Scenes/Characters/Player/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://guard_scene_001" path="res://Scenes/Characters/Enemies/Guard.tscn" id="2_guard"]
+[ext_resource type="PackedScene" uid="uid://checkpoint_scene_001" path="res://Scenes/Prefabs/Checkpoint.tscn" id="3_checkpoint"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
+size = Vector2(200, 32)
+
+[node name="Level2_Dungeon" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0.2, 0.2, 0.2, 1)
+
+[node name="BackWall" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Label" type="Label" parent="ParallaxBackground/BackWall"]
+offset_left = 400.0
+offset_top = 100.0
+offset_right = 1000.0
+offset_bottom = 150.0
+theme_override_font_sizes/font_size = 32
+text = "Level 2 - Dungeon (Placeholder Background)"
+horizontal_alignment = 1
+
+[node name="DungeonCell" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="DungeonCell"]
+position = Vector2(240, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DungeonCell/Floor"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="DungeonCell/Floor"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.3, 0.3, 0.3, 1)
+
+[node name="Tunnel" type="Node2D" parent="."]
+
+[node name="Platform1" type="StaticBody2D" parent="Tunnel"]
+position = Vector2(480, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tunnel/Platform1"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Tunnel/Platform1"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.25, 0.25, 0.25, 1)
+
+[node name="Platform2" type="StaticBody2D" parent="Tunnel"]
+position = Vector2(720, 400)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tunnel/Platform2"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Tunnel/Platform2"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.25, 0.25, 0.25, 1)
+
+[node name="Courtyard" type="Node2D" parent="."]
+
+[node name="Platform3" type="StaticBody2D" parent="Courtyard"]
+position = Vector2(960, 450)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Courtyard/Platform3"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="ColorRect" type="ColorRect" parent="Courtyard/Platform3"]
+offset_left = -100.0
+offset_top = -16.0
+offset_right = 100.0
+offset_bottom = 16.0
+color = Color(0.35, 0.35, 0.35, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_player")]
+position = Vector2(240, 420)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Guard1" parent="Enemies" instance=ExtResource("2_guard")]
+position = Vector2(480, 380)
+
+[node name="Guard2" parent="Enemies" instance=ExtResource("2_guard")]
+position = Vector2(720, 330)
+
+[node name="Guard3" parent="Enemies" instance=ExtResource("2_guard")]
+position = Vector2(960, 380)
+
+[node name="Checkpoints" type="Node2D" parent="."]
+
+[node name="Checkpoint1" parent="Checkpoints" instance=ExtResource("3_checkpoint")]
+position = Vector2(720, 350)
+
+[node name="Instructions" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Instructions"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 500.0
+offset_bottom = 180.0
+theme_override_font_sizes/font_size = 16
+text = "LEVEL 2: DUNGEON
+
+Story: You've been captured and locked in a dungeon.
+Find the ancient weapons and escape!
+
+Guards patrol with wider detection range.
+Use stealth or fight your way out.
+
+This is a placeholder level structure.
+Add proper dungeon backgrounds next!"

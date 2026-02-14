@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://player_scene_001"]
+
+[ext_resource type="Script" path="res://Scripts/Player/PlayerController.cs" id="1_player"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerStats.cs" id="2_stats"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerCombat.cs" id="3_combat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(40, 40)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_player")
+AnimatedSpritePath = NodePath("AnimatedSprite2D")
+CollisionShapePath = NodePath("CollisionShape2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_player")
+
+[node name="PlayerStats" type="Node" parent="."]
+script = ExtResource("2_stats")
+
+[node name="PlayerCombat" type="Node2D" parent="."]
+script = ExtResource("3_combat")
+HitboxPath = NodePath("Hitbox")
+
+[node name="Hitbox" type="Area2D" parent="PlayerCombat"]
+position = Vector2(30, -32)
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCombat/Hitbox"]
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -32)
+zoom = Vector2(2, 2)
