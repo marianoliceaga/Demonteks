@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bc618thjoy8ub"]
+
+[ext_resource type="Script" uid="uid://djlvgg7k6cuh" path="res://Scripts/Player/PlayerController.cs" id="1_player"]
+[ext_resource type="Script" uid="uid://qmp5rsg7x2av" path="res://Scripts/Player/PlayerStats.cs" id="2_stats"]
+[ext_resource type="Script" uid="uid://cu1lhcapq1juc" path="res://Scripts/Player/PlayerCombat.cs" id="3_combat"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
+size = Vector2(32, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(40, 40)
+
+[node name="Player" type="CharacterBody2D" unique_id=792631793 groups=["player"]]
+script = ExtResource("1_player")
+AnimatedSpritePath = NodePath("AnimatedSprite2D")
+CollisionShapePath = NodePath("CollisionShape2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2067372977]
+position = Vector2(0, -32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=574525639]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_player")
+
+[node name="PlayerStats" type="Node" parent="." unique_id=1984802412]
+script = ExtResource("2_stats")
+
+[node name="PlayerCombat" type="Node2D" parent="." unique_id=771791234]
+script = ExtResource("3_combat")
+HitboxPath = NodePath("Hitbox")
+
+[node name="Hitbox" type="Area2D" parent="PlayerCombat" unique_id=942397998]
+position = Vector2(30, -32)
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCombat/Hitbox" unique_id=915238922]
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1387610180]
+position = Vector2(0, -32)
+zoom = Vector2(2, 2)

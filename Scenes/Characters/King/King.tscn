@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://b7fsvb1a8qhbq"]
+
+[ext_resource type="Script" uid="uid://dkuqbk8cifq64" path="res://Scripts/Enemy/DemontekAI.cs" id="1_enemy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_enemy"]
+size = Vector2(52, 90)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detection"]
+radius = 300.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(90, 90)
+
+[node name="King" type="CharacterBody2D" unique_id=1135989134 groups=["bosses", "enemies", "final_boss"]]
+collision_layer = 2
+collision_mask = 13
+script = ExtResource("1_enemy")
+Type = 4
+AnimatedSpritePath = NodePath("AnimatedSprite2D")
+DetectionAreaPath = NodePath("DetectionArea")
+AttackAreaPath = NodePath("AttackArea")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1018993496]
+modulate = Color(0.8, 0.2, 0.2, 1)
+position = Vector2(0, -45)
+scale = Vector2(2.2, 2.2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=755673872]
+position = Vector2(0, -45)
+shape = SubResource("RectangleShape2D_enemy")
+
+[node name="DetectionArea" type="Area2D" parent="." unique_id=1985758560]
+position = Vector2(0, -45)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea" unique_id=1950473673]
+shape = SubResource("CircleShape2D_detection")
+
+[node name="AttackArea" type="Area2D" parent="." unique_id=518847275]
+position = Vector2(0, -45)
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=157858845]
+shape = SubResource("RectangleShape2D_attack")
+
+[node name="BossLabel" type="Label" parent="." unique_id=1254709741]
+offset_left = -60.0
+offset_top = -110.0
+offset_right = 60.0
+offset_bottom = -80.0
+theme_override_font_sizes/font_size = 24
+text = "KING DEMONTEK
+FINAL BOSS"
+horizontal_alignment = 1
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=1554506285]
+offset_left = -80.0
+offset_top = -120.0
+offset_right = 80.0
+offset_bottom = -115.0
+max_value = 500.0
+value = 500.0
+show_percentage = false
+
+[node name="Crown" type="Sprite2D" parent="." unique_id=1489426312]
+modulate = Color(1, 0.843137, 0, 1)
+position = Vector2(0, -80)
