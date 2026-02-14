@@ -15,7 +15,7 @@ config/description="A 2D action platformer where an explorer must fight through 
 run/main_scene="res://Scenes/UI/MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "C#", "Mobile")
 boot_splash/bg_color=Color(0.141176, 0.0862745, 0.133333, 1)
-boot_splash/image="res://Assets/splash.gif"
+boot_splash/image="uid://dkip7w4lpqdbr"
 config/icon="res://icon.png"
 
 [autoload]
