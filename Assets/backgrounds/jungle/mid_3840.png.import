@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6dggga35ortc"
-path="res://.godot/imported/Jungle_Layer1.png-a192c2c35daf6ba2a88bcafc5014ae87.ctex"
+uid="uid://dwa7kom3wniqq"
+path="res://.godot/imported/mid_3840.png-b3ca1438e6d4c51cd9360804e9382cac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/backgrounds/jungle/Jungle_Layer1.png"
-dest_files=["res://.godot/imported/Jungle_Layer1.png-a192c2c35daf6ba2a88bcafc5014ae87.ctex"]
+source_file="res://Assets/backgrounds/jungle/mid_3840.png"
+dest_files=["res://.godot/imported/mid_3840.png-b3ca1438e6d4c51cd9360804e9382cac.ctex"]
 
 [params]
 

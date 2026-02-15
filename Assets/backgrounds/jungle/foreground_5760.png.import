@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccv8e1plk4fl1"
-path="res://.godot/imported/Dungeon_Layer3.png-cadd8342411ad3f8d8cd84f6919d9282.ctex"
+uid="uid://caisnysr73rri"
+path="res://.godot/imported/foreground_5760.png-ef99ea3dbbdd6cdcf60deb7a07629da7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/backgrounds/dungeon/Dungeon_Layer3.png"
-dest_files=["res://.godot/imported/Dungeon_Layer3.png-cadd8342411ad3f8d8cd84f6919d9282.ctex"]
+source_file="res://Assets/backgrounds/jungle/foreground_5760.png"
+dest_files=["res://.godot/imported/foreground_5760.png-ef99ea3dbbdd6cdcf60deb7a07629da7.ctex"]
 
 [params]
 

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://tilemap_template"]
+
+[ext_resource type="TileSet" path="res://Assets/tilesets/jungle_tileset_16x16.tres" id="1_tileset"]
+
+[node name="TileMap" type="TileMap"]
+tile_set = ExtResource("1_tileset")
+format = 2

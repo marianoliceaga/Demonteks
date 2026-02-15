@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://level2_dungeon_001"]
+[gd_scene format=3]
 
-[ext_resource type="PackedScene" uid="uid://player_scene_001" path="res://Scenes/Characters/Player/Player.tscn" id="1_player"]
-[ext_resource type="PackedScene" uid="uid://guard_scene_001" path="res://Scenes/Characters/Enemies/Guard.tscn" id="2_guard"]
-[ext_resource type="PackedScene" uid="uid://checkpoint_scene_001" path="res://Scenes/Prefabs/Checkpoint.tscn" id="3_checkpoint"]
+[ext_resource type="PackedScene" uid="uid://bc618thjoy8ub" path="res://Scenes/Characters/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://dmdpm6bvg7t3" path="res://Scenes/Characters/Enemies/Guard.tscn" id="2_guard"]
+[ext_resource type="PackedScene" uid="uid://dmdsgwqrbtwfg" path="res://Scenes/Prefabs/Checkpoint.tscn" id="3_checkpoint"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
 size = Vector2(200, 32)

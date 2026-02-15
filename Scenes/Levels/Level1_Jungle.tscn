@@ -1,129 +1,55 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b73do0w2oan5i"]
 
 [ext_resource type="PackedScene" uid="uid://bc618thjoy8ub" path="res://Scenes/Characters/Player.tscn" id="1_player"]
 [ext_resource type="PackedScene" uid="uid://d0jalglj1wl2d" path="res://Scenes/Characters/Enemies/Demontek.tscn" id="2_demontek"]
+[ext_resource type="TileSet" path="res://Assets/tilesets/jungle_tileset_16x16.tres" id="3_tileset"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
-size = Vector2(200, 32)
+[node name="Level1_Jungle" type="Node2D" unique_id=1832399852]
 
-[node name="Level1_Jungle" type="Node2D"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=2139333697]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground" unique_id=581457143]
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0.415686, 0.105882, 0.603922, 1)
 
-[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=2052393479]
 motion_scale = Vector2(0.5, 0.5)
 
-[node name="Label" type="Label" parent="ParallaxBackground/ParallaxLayer"]
+[node name="Label" type="Label" parent="ParallaxBackground/ParallaxLayer" unique_id=1625206814]
 offset_left = 400.0
 offset_top = 100.0
 offset_right = 1000.0
 offset_bottom = 150.0
 theme_override_font_sizes/font_size = 32
-text = "Level 1 - Jungle (Placeholder Background)"
+text = "Level 1 - Jungle"
 horizontal_alignment = 1
 
-[node name="Platforms" type="Node2D" parent="."]
+[node name="TileMap" type="TileMap" parent="." unique_id=1119464569]
+tile_set = ExtResource("3_tileset")
+format = 2
+layer_0/tile_data = PackedInt32Array(196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 196623, 0, 0, 196624, 0, 0, 196625, 0, 0, 196626, 0, 0, 196627, 0, 0, 196628, 0, 0, 196629, 0, 0, 196630, 0, 0, 196631, 0, 0, 196632, 0, 0, 196633, 0, 0, 196634, 0, 0, 196635, 0, 0, 196636, 0, 0, 196637, 0, 0, 196638, 0, 0, 196639, 0, 0, 196640, 0, 0, 196641, 0, 0, 196642, 0, 0, 196643, 0, 0, 196644, 0, 0, 196645, 0, 0, 196646, 0, 0, 196647, 0, 0, 196648, 0, 0, 196649, 0, 0, 196650, 0, 0, 196651, 0, 0, 196652, 0, 0, 196653, 0, 0, 196654, 0, 0, 196655, 0, 0, 196656, 0, 0, 196657, 0, 0, 196658, 0, 0, 196659, 0, 0, 196660, 0, 0, 196661, 0, 0, 196662, 0, 0, 196663, 0, 0, 196664, 0, 0, 196665, 0, 0, 196666, 0, 0, 196667, 0, 0, 196668, 0, 0)
 
-[node name="Ground" type="StaticBody2D" parent="Platforms"]
-position = Vector2(240, 500)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground"]
-shape = SubResource("RectangleShape2D_platform")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/Ground"]
-offset_left = -100.0
-offset_top = -16.0
-offset_right = 100.0
-offset_bottom = 16.0
-color = Color(0.172549, 0.4, 0.196078, 1)
-
-[node name="Platform1" type="StaticBody2D" parent="Platforms"]
-position = Vector2(480, 400)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform1"]
-shape = SubResource("RectangleShape2D_platform")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/Platform1"]
-offset_left = -100.0
-offset_top = -16.0
-offset_right = 100.0
-offset_bottom = 16.0
-color = Color(0.172549, 0.4, 0.196078, 1)
-
-[node name="Platform2" type="StaticBody2D" parent="Platforms"]
-position = Vector2(720, 350)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform2"]
-shape = SubResource("RectangleShape2D_platform")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/Platform2"]
-offset_left = -100.0
-offset_top = -16.0
-offset_right = 100.0
-offset_bottom = 16.0
-color = Color(0.172549, 0.4, 0.196078, 1)
-
-[node name="Platform3" type="StaticBody2D" parent="Platforms"]
-position = Vector2(960, 300)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform3"]
-shape = SubResource("RectangleShape2D_platform")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/Platform3"]
-offset_left = -100.0
-offset_top = -16.0
-offset_right = 100.0
-offset_bottom = 16.0
-color = Color(0.172549, 0.4, 0.196078, 1)
-
-[node name="Platform4" type="StaticBody2D" parent="Platforms"]
-position = Vector2(1200, 380)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform4"]
-shape = SubResource("RectangleShape2D_platform")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/Platform4"]
-offset_left = -100.0
-offset_top = -16.0
-offset_right = 100.0
-offset_bottom = 16.0
-color = Color(0.172549, 0.4, 0.196078, 1)
-
-[node name="Platform5" type="StaticBody2D" parent="Platforms"]
-position = Vector2(1440, 450)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Platform5"]
-shape = SubResource("RectangleShape2D_platform")
-
-[node name="ColorRect" type="ColorRect" parent="Platforms/Platform5"]
-offset_left = -100.0
-offset_top = -16.0
-offset_right = 100.0
-offset_bottom = 16.0
-color = Color(0.172549, 0.4, 0.196078, 1)
-
-[node name="Player" parent="." instance=ExtResource("1_player")]
+[node name="Player" parent="." unique_id=1962164112 instance=ExtResource("1_player")]
 position = Vector2(240, 400)
 
-[node name="Enemies" type="Node2D" parent="."]
+[node name="Camera2D2" type="Camera2D" parent="Player" unique_id=844658111]
+position = Vector2(1, -6)
 
-[node name="Demontek1" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Enemies" type="Node2D" parent="." unique_id=74562044]
+
+[node name="Demontek1" parent="Enemies" unique_id=1117962694 instance=ExtResource("2_demontek")]
 position = Vector2(480, 330)
 
-[node name="Demontek2" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek2" parent="Enemies" unique_id=37724550 instance=ExtResource("2_demontek")]
 position = Vector2(720, 280)
 
-[node name="Demontek3" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek3" parent="Enemies" unique_id=2137650623 instance=ExtResource("2_demontek")]
 position = Vector2(960, 230)
 
-[node name="Instructions" type="CanvasLayer" parent="."]
+[node name="Instructions" type="CanvasLayer" parent="." unique_id=1769700009]
 
-[node name="Label" type="Label" parent="Instructions"]
+[node name="Label" type="Label" parent="Instructions" unique_id=1727252406]
 offset_left = 20.0
 offset_top = 20.0
 offset_right = 500.0
@@ -135,5 +61,4 @@ W/Space - Jump
 E - Attack
 S - Crouch
 
-This is a placeholder level.
-Add proper backgrounds and sprites next!"
+This level uses TileMap with jungle tileset."

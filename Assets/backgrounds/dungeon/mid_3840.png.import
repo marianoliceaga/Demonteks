@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cae5ounfdca53"
-path="res://.godot/imported/Castle_Layer1.png-e7ed104388b142d1676d8888c28c8e34.ctex"
+uid="uid://qno4m4b70cnj"
+path="res://.godot/imported/mid_3840.png-adba58ce5347a0339ab9ac808ef21478.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/backgrounds/castle/Castle_Layer1.png"
-dest_files=["res://.godot/imported/Castle_Layer1.png-e7ed104388b142d1676d8888c28c8e34.ctex"]
+source_file="res://Assets/backgrounds/dungeon/mid_3840.png"
+dest_files=["res://.godot/imported/mid_3840.png-adba58ce5347a0339ab9ac808ef21478.ctex"]
 
 [params]
 

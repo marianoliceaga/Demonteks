@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be3wompjlwbtp"
-path="res://.godot/imported/Jungle_Layer3.png-200aa823ad7c60a1f0943385c99ef659.ctex"
+uid="uid://dvh3lb5rhtxyl"
+path="res://.godot/imported/sky_1920.png-044ac295290ec32ed4d33baf90b31924.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/backgrounds/jungle/Jungle_Layer3.png"
-dest_files=["res://.godot/imported/Jungle_Layer3.png-200aa823ad7c60a1f0943385c99ef659.ctex"]
+source_file="res://Assets/backgrounds/castle/sky_1920.png"
+dest_files=["res://.godot/imported/sky_1920.png-044ac295290ec32ed4d33baf90b31924.ctex"]
 
 [params]
 
