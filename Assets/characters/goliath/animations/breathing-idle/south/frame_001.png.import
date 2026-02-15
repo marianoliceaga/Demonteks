@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://comkr6q1tt53u"
-path="res://.godot/imported/frame_001.png-128d6974d1c5bfeac8ec70afe9e8c16b.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/characters/goliath/animations/breathing-idle/south/frame_001.png"
-dest_files=["res://.godot/imported/frame_001.png-128d6974d1c5bfeac8ec70afe9e8c16b.ctex"]
 
 [params]
 

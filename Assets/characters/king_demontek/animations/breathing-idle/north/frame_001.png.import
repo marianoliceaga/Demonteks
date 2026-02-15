@@ -3,15 +3,11 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dq81oadvj13nl"
-path="res://.godot/imported/frame_001.png-56902be46249afb0292f249be7bc935f.ctex"
-metadata={
-"vram_texture": false
-}
+valid=false
 
 [deps]
 
 source_file="res://Assets/characters/king_demontek/animations/breathing-idle/north/frame_001.png"
-dest_files=["res://.godot/imported/frame_001.png-56902be46249afb0292f249be7bc935f.ctex"]
 
 [params]
 
