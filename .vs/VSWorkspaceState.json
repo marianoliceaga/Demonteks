@@ -1,4 +1,10 @@
 {
-  "ExpandedNodes": [],
+  "ExpandedNodes": [
+    "",
+    "\\.godot",
+    "\\Assets",
+    "\\Docs"
+  ],
+  "SelectedNode": "\\Scenes",
   "PreviewInSolutionExplorer": false
 }

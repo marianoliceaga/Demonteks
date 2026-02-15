@@ -1,7 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://level1_jungle_001"]
+[gd_scene format=3]
 
-[ext_resource type="PackedScene" uid="uid://player_scene_001" path="res://Scenes/Characters/Player/Player.tscn" id="1_player"]
-[ext_resource type="PackedScene" uid="uid://demontek_scene_001" path="res://Scenes/Characters/Enemies/Demontek.tscn" id="2_demontek"]
+[ext_resource type="PackedScene" uid="uid://bc618thjoy8ub" path="res://Scenes/Characters/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://d0jalglj1wl2d" path="res://Scenes/Characters/Enemies/Demontek.tscn" id="2_demontek"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
 size = Vector2(200, 32)
