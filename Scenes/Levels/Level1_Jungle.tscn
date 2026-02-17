@@ -1,21 +1,18 @@
-[gd_scene load_steps=18 format=3 uid="uid://b73do0w2oan5i"]
+[gd_scene format=3 uid="uid://b73do0w2oan5i"]
 
-[ext_resource type="PackedScene" uid="uid://bc618thjoy8ub" path="res://Scenes/Characters/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" path="res://Scenes/Characters/Player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://Scenes/Characters/Demontek.tscn" id="2_demontek"]
-[ext_resource type="TileSet" path="res://Assets/tilesets/jungle_tileset_16x16.tres" id="3_tileset"]
+[ext_resource type="TileSet" uid="uid://b76hyvacdj2yg" path="res://Assets/tilesets/jungle_tileset_16x16.tres" id="3_tileset"]
 [ext_resource type="PackedScene" uid="uid://cpqm8y5xvn3ks" path="res://Scenes/Prefabs/Platform.tscn" id="4_platform"]
-[ext_resource type="Texture2D" path="res://Assets/backgrounds/jungle/sky_1920.png" id="5_bg_sky"]
-[ext_resource type="Texture2D" path="res://Assets/backgrounds/jungle/mid_3840.png" id="6_bg_mid"]
-[ext_resource type="Texture2D" path="res://Assets/backgrounds/jungle/foreground_5760.png" id="7_bg_foreground"]
-[ext_resource type="PackedScene" uid="uid://hud_scene_001" path="res://Scenes/UI/HUD.tscn" id="8_hud"]
+[ext_resource type="Texture2D" uid="uid://dd8otry4vqbmp" path="res://Assets/backgrounds/jungle/sky_1920.png" id="5_bg_sky"]
+[ext_resource type="Texture2D" uid="uid://dwa7kom3wniqq" path="res://Assets/backgrounds/jungle/mid_3840.png" id="6_bg_mid"]
+[ext_resource type="Texture2D" uid="uid://caisnysr73rri" path="res://Assets/backgrounds/jungle/foreground_5760.png" id="7_bg_foreground"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/HUD.tscn" id="8_hud"]
 [ext_resource type="PackedScene" uid="uid://dttb8i783ht3m" path="res://Scenes/UI/PauseMenu.tscn" id="9_pause"]
-[ext_resource type="Script" path="res://Scripts/Utils/LevelEndTrigger.cs" id="10_levelend"]
+[ext_resource type="Script" uid="uid://7twiyd1bo8c6" path="res://Scripts/Utils/LevelEndTrigger.cs" id="10_levelend"]
 [ext_resource type="PackedScene" uid="uid://dww8aiua5yj2b" path="res://Scenes/Prefabs/WeaponPickup.tscn" id="11_weapon"]
-[ext_resource type="Script" path="res://Scripts/Utils/CameraFollow.cs" id="12_camera"]
-[ext_resource type="Script" path="res://Scripts/Utils/KillZone.cs" id="13_killzone"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_knife"]
-radius = 10.0
+[ext_resource type="Script" uid="uid://ctoegptmn0ent" path="res://Scripts/Utils/CameraFollow.cs" id="12_camera"]
+[ext_resource type="Script" uid="uid://bf8h6jfb721ho" path="res://Scripts/Utils/KillZone.cs" id="13_killzone"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_health1"]
 radius = 12.0
@@ -29,247 +26,187 @@ size = Vector2(16, 96)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_killzone"]
 size = Vector2(6400, 32)
 
-[node name="Level1_Jungle" type="Node2D"]
+[node name="Level1_Jungle" type="Node2D" unique_id=473628263]
 
-; ═══════════════════════════════════════════
-; PARALLAX BACKGROUND
-; ═══════════════════════════════════════════
+[node name="ParallaxBackground" type="ParallaxBackground" parent="." unique_id=1969785764]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="SkyLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="SkyLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=2144361868]
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(1920, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SkyLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SkyLayer" unique_id=832420133]
 texture = ExtResource("5_bg_sky")
 centered = false
 
-[node name="MidLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="MidLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1600974380]
 motion_scale = Vector2(0.4, 0.3)
 motion_mirroring = Vector2(3840, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/MidLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/MidLayer" unique_id=2135551924]
 texture = ExtResource("6_bg_mid")
 centered = false
 
-[node name="ForegroundLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+[node name="ForegroundLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=610091722]
 motion_scale = Vector2(0.7, 0.5)
 motion_mirroring = Vector2(5760, 0)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ForegroundLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ForegroundLayer" unique_id=129576658]
 texture = ExtResource("7_bg_foreground")
 centered = false
 
-; ═══════════════════════════════════════════
-; GROUND — TileMap (16×16 jungle tileset)
-; The ground is at tile row 28 (y=448px).
-; Player walks on top of tiles.
-; ═══════════════════════════════════════════
-
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." unique_id=1917339424]
 tile_set = ExtResource("3_tileset")
 format = 2
 layer_0/tile_data = PackedInt32Array(1835008, 0, 0, 1835009, 0, 0, 1835010, 0, 0, 1835011, 0, 0, 1835012, 0, 0, 1835013, 0, 0, 1835014, 0, 0, 1835015, 0, 0, 1835016, 0, 0, 1835017, 0, 0, 1835018, 0, 0, 1835019, 0, 0, 1835020, 0, 0, 1835021, 0, 0, 1835022, 0, 0, 1835023, 0, 0, 1835024, 0, 0, 1835025, 0, 0, 1835026, 0, 0, 1835027, 0, 0, 1835028, 0, 0, 1835029, 0, 0, 1835030, 0, 0, 1835031, 0, 0, 1835032, 0, 0, 1835033, 0, 0, 1835034, 0, 0, 1835035, 0, 0, 1835036, 0, 0, 1835037, 0, 0, 1835038, 0, 0, 1835039, 0, 0, 1835040, 0, 0, 1835041, 0, 0, 1835042, 0, 0, 1835043, 0, 0, 1835044, 0, 0, 1835045, 0, 0, 1835046, 0, 0, 1835047, 0, 0, 1835048, 0, 0, 1835049, 0, 0, 1835050, 0, 0, 1835051, 0, 0, 1835052, 0, 0, 1835053, 0, 0, 1835058, 0, 0, 1835059, 0, 0, 1835060, 0, 0, 1835061, 0, 0, 1835062, 0, 0, 1835063, 0, 0, 1835064, 0, 0, 1835065, 0, 0, 1835066, 0, 0, 1835067, 0, 0, 1835068, 0, 0, 1835069, 0, 0, 1835070, 0, 0, 1835071, 0, 0, 1835072, 0, 0, 1835073, 0, 0, 1835074, 0, 0, 1835075, 0, 0, 1835076, 0, 0, 1835077, 0, 0, 1835078, 0, 0, 1835079, 0, 0, 1835080, 0, 0, 1835081, 0, 0, 1835082, 0, 0, 1835083, 0, 0, 1835084, 0, 0, 1835085, 0, 0, 1835086, 0, 0, 1835087, 0, 0, 1835088, 0, 0, 1835089, 0, 0, 1835090, 0, 0, 1835091, 0, 0, 1835092, 0, 0, 1835093, 0, 0, 1835094, 0, 0, 1835095, 0, 0, 1835096, 0, 0, 1835097, 0, 0, 1835098, 0, 0, 1835099, 0, 0, 1835100, 0, 0, 1835101, 0, 0, 1835102, 0, 0, 1835103, 0, 0, 1835104, 0, 0, 1835105, 0, 0, 1835106, 0, 0, 1835107, 0, 0, 1835108, 0, 0, 1835109, 0, 0, 1835110, 0, 0, 1835111, 0, 0, 1835112, 0, 0, 1835116, 0, 0, 1835117, 0, 0, 1835118, 0, 0, 1835119, 0, 0, 1835120, 0, 0, 1835121, 0, 0, 1835122, 0, 0, 1835123, 0, 0, 1835124, 0, 0, 1835125, 0, 0, 1835126, 0, 0, 1835127, 0, 0, 1835128, 0, 0, 1835129, 0, 0, 1835130, 0, 0, 1835131, 0, 0, 1835132, 0, 0, 1835133, 0, 0, 1835134, 0, 0, 1835135, 0, 0, 1835136, 0, 0, 1835137, 0, 0, 1835138, 0, 0, 1835139, 0, 0, 1835140, 0, 0, 1835141, 0, 0, 1835142, 0, 0, 1835143, 0, 0, 1835144, 0, 0, 1835145, 0, 0, 1835146, 0, 0, 1835147, 0, 0, 1835148, 0, 0, 1835149, 0, 0, 1835150, 0, 0, 1835151, 0, 0, 1835152, 0, 0, 1835153, 0, 0, 1835154, 0, 0, 1835155, 0, 0, 1835156, 0, 0, 1835157, 0, 0, 1835158, 0, 0, 1835159, 0, 0, 1835160, 0, 0, 1835161, 0, 0, 1835162, 0, 0, 1835163, 0, 0, 1835164, 0, 0, 1835165, 0, 0, 1835166, 0, 0, 1835167, 0, 0, 1835168, 0, 0, 1835169, 0, 0, 1835170, 0, 0, 1835171, 0, 0, 1835172, 0, 0, 1835173, 0, 0, 1835174, 0, 0, 1835175, 0, 0, 1835176, 0, 0, 1835177, 0, 0, 1835178, 0, 0, 1835179, 0, 0, 1835180, 0, 0, 1835181, 0, 0, 1835182, 0, 0, 1835183, 0, 0, 1835184, 0, 0, 1835185, 0, 0, 1835186, 0, 0, 1835187, 0, 0, 1835188, 0, 0, 1835189, 0, 0, 1835190, 0, 0, 1835191, 0, 0, 1835192, 0, 0, 1835193, 0, 0, 1835194, 0, 0, 1835195, 0, 0, 1835196, 0, 0, 1835197, 0, 0, 1835198, 0, 0, 1835199, 0, 0, 1835200, 0, 0)
 
-; ═══════════════════════════════════════════
-; PLAYER — starts at left side
-; ═══════════════════════════════════════════
-
-[node name="Player" parent="." instance=ExtResource("1_player")]
+[node name="Player" parent="." unique_id=966814073 instance=ExtResource("1_player")]
 position = Vector2(64, 416)
 
-; ═══════════════════════════════════════════
-; ELEVATED PLATFORMS — treetop canopy
-; ═══════════════════════════════════════════
+[node name="Platforms" type="Node2D" parent="." unique_id=632697079]
 
-[node name="Platforms" type="Node2D" parent="."]
-
-[node name="TreePlatform1" parent="Platforms" instance=ExtResource("4_platform")]
+[node name="TreePlatform1" parent="Platforms" unique_id=1658885141 instance=ExtResource("4_platform")]
 position = Vector2(384, 368)
 
-[node name="TreePlatform2" parent="Platforms" instance=ExtResource("4_platform")]
+[node name="TreePlatform2" parent="Platforms" unique_id=607564766 instance=ExtResource("4_platform")]
 position = Vector2(640, 320)
 
-[node name="TreePlatform3" parent="Platforms" instance=ExtResource("4_platform")]
+[node name="TreePlatform3" parent="Platforms" unique_id=597100777 instance=ExtResource("4_platform")]
 position = Vector2(976, 352)
 
-[node name="TreePlatform4" parent="Platforms" instance=ExtResource("4_platform")]
+[node name="TreePlatform4" parent="Platforms" unique_id=75215958 instance=ExtResource("4_platform")]
 position = Vector2(1280, 304)
 
-[node name="TreePlatform5" parent="Platforms" instance=ExtResource("4_platform")]
+[node name="TreePlatform5" parent="Platforms" unique_id=794349549 instance=ExtResource("4_platform")]
 position = Vector2(1600, 336)
 
-[node name="TreePlatform6" parent="Platforms" instance=ExtResource("4_platform")]
+[node name="TreePlatform6" parent="Platforms" unique_id=22644015 instance=ExtResource("4_platform")]
 position = Vector2(1920, 288)
 
-[node name="TreePlatform7" parent="Platforms" instance=ExtResource("4_platform")]
+[node name="TreePlatform7" parent="Platforms" unique_id=129729866 instance=ExtResource("4_platform")]
 position = Vector2(2240, 352)
 
-[node name="TreePlatform8" parent="Platforms" instance=ExtResource("4_platform")]
+[node name="TreePlatform8" parent="Platforms" unique_id=2023648829 instance=ExtResource("4_platform")]
 position = Vector2(2560, 304)
 
-[node name="TreePlatform9" parent="Platforms" instance=ExtResource("4_platform")]
+[node name="TreePlatform9" parent="Platforms" unique_id=1664604227 instance=ExtResource("4_platform")]
 position = Vector2(2880, 368)
 
-; ═══════════════════════════════════════════
-; ENEMIES — 10 Demonteks across the level
-; Section 1 (x=0-900): 3 Demonteks (ground)
-; Section 2 (x=900-1800): 3 Demonteks (mixed)
-; Section 3 (x=1800-3200): 4 Demonteks (dense)
-; ═══════════════════════════════════════════
+[node name="Enemies" type="Node2D" parent="." unique_id=1838744542]
 
-[node name="Enemies" type="Node2D" parent="."]
-
-; --- Section 1: Entrance forest ---
-[node name="Demontek1" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek1" parent="Enemies" unique_id=919639257 instance=ExtResource("2_demontek")]
 position = Vector2(320, 416)
 
-[node name="Demontek2" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek2" parent="Enemies" unique_id=1820064818 instance=ExtResource("2_demontek")]
 position = Vector2(560, 416)
 
-[node name="Demontek3" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek3" parent="Enemies" unique_id=812793929 instance=ExtResource("2_demontek")]
 position = Vector2(640, 288)
 
-; --- Section 2: Midway canopy ---
-[node name="Demontek4" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek4" parent="Enemies" unique_id=1092796838 instance=ExtResource("2_demontek")]
 position = Vector2(1040, 416)
 
-[node name="Demontek5" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek5" parent="Enemies" unique_id=1427228942 instance=ExtResource("2_demontek")]
 position = Vector2(1280, 272)
 
-[node name="Demontek6" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek6" parent="Enemies" unique_id=437249929 instance=ExtResource("2_demontek")]
 position = Vector2(1520, 416)
 
-; --- Section 3: Deep jungle (past midpoint) ---
-[node name="Demontek7" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek7" parent="Enemies" unique_id=2086812465 instance=ExtResource("2_demontek")]
 position = Vector2(1920, 256)
 
-[node name="Demontek8" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek8" parent="Enemies" unique_id=317331094 instance=ExtResource("2_demontek")]
 position = Vector2(2100, 416)
 
-[node name="Demontek9" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek9" parent="Enemies" unique_id=2021560936 instance=ExtResource("2_demontek")]
 position = Vector2(2400, 416)
 
-[node name="Demontek10" parent="Enemies" instance=ExtResource("2_demontek")]
+[node name="Demontek10" parent="Enemies" unique_id=793990365 instance=ExtResource("2_demontek")]
 position = Vector2(2880, 336)
 
-; ═══════════════════════════════════════════
-; PICKUPS
-; ═══════════════════════════════════════════
+[node name="Pickups" type="Node2D" parent="." unique_id=1292251779]
 
-[node name="Pickups" type="Node2D" parent="."]
-
-; Knife pickup near start (x=200) — WeaponPickup.tscn with WeaponType=0 (Knife)
-[node name="KnifePickup" parent="Pickups" instance=ExtResource("11_weapon")]
+[node name="KnifePickup" parent="Pickups" unique_id=928956684 instance=ExtResource("11_weapon")]
 position = Vector2(200, 420)
 WeaponType = 0
 
-; Health pickup past midpoint (x=2000)
-[node name="HealthPickup1" type="Area2D" parent="Pickups"]
+[node name="HealthPickup1" type="Area2D" parent="Pickups" unique_id=1020187895]
 position = Vector2(2000, 410)
 collision_layer = 16
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickups/HealthPickup1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickups/HealthPickup1" unique_id=849442226]
 shape = SubResource("CircleShape2D_health1")
 
-[node name="ColorRect" type="ColorRect" parent="Pickups/HealthPickup1"]
+[node name="ColorRect" type="ColorRect" parent="Pickups/HealthPickup1" unique_id=1274792545]
 offset_left = -6.0
 offset_top = -6.0
 offset_right = 6.0
 offset_bottom = 6.0
 color = Color(0.2, 0.9, 0.3, 1)
 
-[node name="Cross" type="ColorRect" parent="Pickups/HealthPickup1"]
+[node name="Cross" type="ColorRect" parent="Pickups/HealthPickup1" unique_id=1399060781]
 offset_left = -2.0
 offset_top = -5.0
 offset_right = 2.0
 offset_bottom = 5.0
-color = Color(1, 1, 1, 1)
 
-[node name="CrossH" type="ColorRect" parent="Pickups/HealthPickup1"]
+[node name="CrossH" type="ColorRect" parent="Pickups/HealthPickup1" unique_id=1764796100]
 offset_left = -5.0
 offset_top = -2.0
 offset_right = 5.0
 offset_bottom = 2.0
-color = Color(1, 1, 1, 1)
 
-; Health pickup near end (x=2700)
-[node name="HealthPickup2" type="Area2D" parent="Pickups"]
+[node name="HealthPickup2" type="Area2D" parent="Pickups" unique_id=1648355685]
 position = Vector2(2700, 410)
 collision_layer = 16
-collision_mask = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickups/HealthPickup2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickups/HealthPickup2" unique_id=811200419]
 shape = SubResource("CircleShape2D_health2")
 
-[node name="ColorRect2" type="ColorRect" parent="Pickups/HealthPickup2"]
+[node name="ColorRect2" type="ColorRect" parent="Pickups/HealthPickup2" unique_id=403756676]
 offset_left = -6.0
 offset_top = -6.0
 offset_right = 6.0
 offset_bottom = 6.0
 color = Color(0.2, 0.9, 0.3, 1)
 
-[node name="Cross2" type="ColorRect" parent="Pickups/HealthPickup2"]
+[node name="Cross2" type="ColorRect" parent="Pickups/HealthPickup2" unique_id=1668681260]
 offset_left = -2.0
 offset_top = -5.0
 offset_right = 2.0
 offset_bottom = 5.0
-color = Color(1, 1, 1, 1)
 
-[node name="CrossH2" type="ColorRect" parent="Pickups/HealthPickup2"]
+[node name="CrossH2" type="ColorRect" parent="Pickups/HealthPickup2" unique_id=434234109]
 offset_left = -5.0
 offset_top = -2.0
 offset_right = 5.0
 offset_bottom = 2.0
-color = Color(1, 1, 1, 1)
 
-; ═══════════════════════════════════════════
-; LEVEL END — triggers level transition
-; ═══════════════════════════════════════════
-
-[node name="LevelEnd" type="Area2D" parent="."]
+[node name="LevelEnd" type="Area2D" parent="." unique_id=1930806680]
 position = Vector2(3168, 400)
 collision_layer = 0
-collision_mask = 1
 script = ExtResource("10_levelend")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd" unique_id=1974925606]
 shape = SubResource("RectangleShape2D_levelend")
 
-[node name="Marker" type="ColorRect" parent="LevelEnd"]
+[node name="Marker" type="ColorRect" parent="LevelEnd" unique_id=52621383]
 offset_left = -8.0
 offset_top = -48.0
 offset_right = 8.0
 offset_bottom = 48.0
 color = Color(1, 0.843137, 0, 0.6)
 
-; ═══════════════════════════════════════════
-; HUD & PAUSE MENU
-; ═══════════════════════════════════════════
+[node name="HUD" parent="." unique_id=1533718820 instance=ExtResource("8_hud")]
 
-[node name="HUD" parent="." instance=ExtResource("8_hud")]
+[node name="PauseMenu" parent="." unique_id=166623122 instance=ExtResource("9_pause")]
 
-[node name="PauseMenu" parent="." instance=ExtResource("9_pause")]
-
-; ═══════════════════════════════════════════
-; CAMERA — follows player, limited to level bounds
-; ═══════════════════════════════════════════
-
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Camera" type="Camera2D" parent="." unique_id=1762235020]
 script = ExtResource("12_camera")
-LimitRightValue = 3200
 
-; ═══════════════════════════════════════════
-; KILL ZONE — below the level
-; ═══════════════════════════════════════════
-
-[node name="KillZone" type="Area2D" parent="."]
+[node name="KillZone" type="Area2D" parent="." unique_id=18996988]
 position = Vector2(1600, 700)
 collision_layer = 0
-collision_mask = 1
 script = ExtResource("13_killzone")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=2011787890]
 shape = SubResource("RectangleShape2D_killzone")

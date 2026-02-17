@@ -34,6 +34,7 @@ namespace Demonteks.Player
 		private PlayerStats _stats;
 		private PlayerCombat _combat;
 		private PlayerStateMachine _stateMachine;
+		private Management.GameManager _gameManager;
 
 		// Movement tracking
 		private Vector2 _velocity = Vector2.Zero;
@@ -80,6 +81,16 @@ namespace Demonteks.Player
 
 			// Detect platform
 			DetectPlatform();
+
+			// Register with GameManager
+			_gameManager = GetNode<Management.GameManager>("/root/GameManager");
+			if (_gameManager != null)
+			{
+				_gameManager.Player = this;
+				// Set initial spawn position as checkpoint
+				_gameManager.SetCheckpoint(GlobalPosition);
+				GD.Print($"Player registered with GameManager. Spawn checkpoint set at {GlobalPosition}");
+			}
 
 			GD.Print($"PlayerController initialized. Mobile mode: {IsMobileMode}");
 		}
@@ -340,7 +351,7 @@ namespace Demonteks.Player
 
 		public bool IsMoving()
 		{
-			return Mathf.Abs(_velocity.X) > 0.1f;
+			return Mathf.Abs(_inputDirection.X) > 0.01f;
 		}
 
 		public bool IsFalling()
@@ -366,6 +377,30 @@ namespace Demonteks.Player
 		public bool WantsToCrouch()
 		{
 			return _crouchPressed;
+		}
+
+		/// <summary>
+		/// Revive the player after death (called by GameManager)
+		/// </summary>
+		public void Revive()
+		{
+			// Reset stats (health, death state, etc.)
+			if (_stats != null)
+			{
+				_stats.Revive();
+			}
+
+			// Reset velocity
+			_velocity = Vector2.Zero;
+			Velocity = Vector2.Zero;
+
+			// Reset state to idle
+			if (_stateMachine != null)
+			{
+				_stateMachine.ChangeState(new IdleState());
+			}
+
+			GD.Print("Player revived!");
 		}
 		#endregion
 
@@ -456,6 +491,8 @@ namespace Demonteks.Player
 			if (player.WantsToCrouch()) return new CrouchState();
 			if (player.IsMoving()) return new MoveState();
 
+			// Apply movement even in idle (allows player to start moving)
+			player.Move(delta);
 			return this;
 		}
 

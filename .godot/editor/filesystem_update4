@@ -1,0 +1,16 @@
+res://Scripts/Player/PlayerController.cs
+res://Scenes/Levels/Level1_Jungle.tscn
+res://Assets/tilesets/jungle_tileset_16x16.tres
+res://Assets/tilesets/jungle_tileset_16x16_metadata.json
+res://Scripts/Utils/KillZone.cs
+res://Scripts/Utils/CameraFollow.cs
+res://Scripts/Utils/WeaponPickup.cs
+res://Scripts/Utils/LevelEndTrigger.cs
+res://Scripts/UI/PauseMenuController.cs
+res://Scenes/UI/HUDController.cs
+res://Scripts/Player/PlayerCombat.cs
+res://Scripts/Player/PlayerStats.cs
+res://Scripts/Enemy/DemontekAI.cs
+res://Scripts/Management/AudioManager.cs
+res://Scripts/Management/SaveManager.cs
+res://Scripts/Management/GameManager.cs
