@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cwn8kv5s3fwma"]
 
 [ext_resource type="Script" uid="uid://trtbfqqyb2qq" path="res://Scenes/UI/MainMenuController.cs" id="1_menu"]
-[ext_resource type="PackedScene" path="res://Scenes/Levels/Level1_Jungle.tscn" id="2_mjmdf"]
 
 [node name="MainMenu" type="Control" unique_id=1376952325]
 layout_mode = 3
@@ -57,8 +56,6 @@ custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "New Game"
 
-[node name="Level1_Jungle" parent="VBoxContainer/NewGameButton" unique_id=70920367 instance=ExtResource("2_mjmdf")]
-
 [node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=1447615523]
 custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
@@ -90,7 +87,4 @@ grow_vertical = 0
 text = "v0.1.0-alpha"
 horizontal_alignment = 2
 
-[connection signal="pressed" from="VBoxContainer/NewGameButton" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="VBoxContainer/ContinueButton" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_pressed"]
+

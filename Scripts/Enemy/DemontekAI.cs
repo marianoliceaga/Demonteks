@@ -12,20 +12,20 @@ namespace Demonteks.Enemy
         #region Export Variables
         [ExportCategory("Enemy Type")]
         [Export] public EnemyType Type { get; set; } = EnemyType.Normal;
-        
+
         [ExportCategory("Movement")]
         [Export] public float PatrolSpeed { get; set; } = 50f;
         [Export] public float ChaseSpeed { get; set; } = 100f;
         [Export] public float DetectionRange { get; set; } = 150f;
         [Export] public float AttackRange { get; set; } = 40f;
         [Export] public float PatrolDistance { get; set; } = 200f;
-        
+
         [ExportCategory("Combat")]
         [Export] public int MaxHealth { get; set; } = 20;
         [Export] public int Damage { get; set; } = 5;
         [Export] public float AttackCooldown { get; set; } = 1.5f;
         [Export] public float Gravity { get; set; } = 980f;
-        
+
         [ExportCategory("References")]
         [Export] public NodePath AnimatedSpritePath { get; set; }
         [Export] public NodePath DetectionAreaPath { get; set; }
@@ -36,21 +36,21 @@ namespace Demonteks.Enemy
         private AnimatedSprite2D _animatedSprite;
         private Area2D _detectionArea;
         private Area2D _attackArea;
-        
+
         private int _currentHealth;
         private float _attackCooldownTimer = 0f;
         private bool _isDead = false;
         private bool _canAct = true;
-        
+
         // Movement
         private Vector2 _velocity = Vector2.Zero;
         private Vector2 _startPosition;
         private bool _facingRight = true;
-        
+
         // AI State Machine
         private EnemyStateMachine _stateMachine;
         private Node2D _target; // Player reference
-        
+
         // Patrol
         private float _patrolDirection = 1f;
         private float _patrolDistanceTraveled = 0f;
@@ -71,38 +71,38 @@ namespace Demonteks.Enemy
             _animatedSprite = GetNode<AnimatedSprite2D>(AnimatedSpritePath);
             _detectionArea = GetNode<Area2D>(DetectionAreaPath);
             _attackArea = GetNode<Area2D>(AttackAreaPath);
-            
+
             // Initialize stats based on type
             InitializeByType();
-            
+
             _currentHealth = MaxHealth;
             _startPosition = GlobalPosition;
-            
+
             // Setup state machine
             _stateMachine = new EnemyStateMachine(this);
             _stateMachine.ChangeState(new PatrolState());
-            
+
             // Connect detection areas
             _detectionArea.BodyEntered += OnDetectionAreaEntered;
             _detectionArea.BodyExited += OnDetectionAreaExited;
             _attackArea.BodyEntered += OnAttackAreaEntered;
-            
+
             // Add to enemies group
             AddToGroup("enemies");
-            
+
             GD.Print($"{Type} Demontek initialized. Health: {MaxHealth}, Damage: {Damage}");
         }
 
         public override void _PhysicsProcess(double delta)
         {
             if (_isDead) return;
-            
+
             float deltaF = (float)delta;
-            
+
             // Update cooldowns
             if (_attackCooldownTimer > 0)
                 _attackCooldownTimer -= deltaF;
-            
+
             // Apply gravity
             if (!IsOnFloor())
             {
@@ -112,14 +112,14 @@ namespace Demonteks.Enemy
             {
                 _velocity.Y = 0;
             }
-            
+
             // Update state machine
             _stateMachine.Update(deltaF);
-            
+
             // Apply movement
             Velocity = _velocity;
             MoveAndSlide();
-            
+
             // Update animation
             UpdateAnimation();
         }
@@ -136,7 +136,7 @@ namespace Demonteks.Enemy
                     ChaseSpeed = 100f;
                     DetectionRange = 150f;
                     break;
-                
+
                 case EnemyType.Guard:
                     MaxHealth = 25;
                     Damage = 5;
@@ -144,7 +144,7 @@ namespace Demonteks.Enemy
                     DetectionRange = 200f;
                     PatrolDistance = 150f;
                     break;
-                
+
                 case EnemyType.Mutant:
                     MaxHealth = 50;
                     Damage = 10;
@@ -152,7 +152,7 @@ namespace Demonteks.Enemy
                     DetectionRange = 180f;
                     AttackCooldown = 1.2f;
                     break;
-                
+
                 case EnemyType.Goliath:
                     MaxHealth = 200;
                     Damage = 20;
@@ -160,7 +160,7 @@ namespace Demonteks.Enemy
                     DetectionRange = 250f;
                     AttackCooldown = 2.0f;
                     break;
-                
+
                 case EnemyType.King:
                     MaxHealth = 500;
                     Damage = 30;
@@ -176,38 +176,38 @@ namespace Demonteks.Enemy
         public void Patrol(float delta)
         {
             if (!_canAct) return;
-            
+
             // Move in patrol direction
             _velocity.X = _patrolDirection * PatrolSpeed;
             _patrolDistanceTraveled += Mathf.Abs(_velocity.X * delta);
-            
+
             // Turn around at patrol distance or edges
             if (_patrolDistanceTraveled >= PatrolDistance || !IsOnFloor())
             {
                 TurnAround();
                 _patrolDistanceTraveled = 0;
             }
-            
+
             UpdateFacing();
         }
 
         public void ChaseTarget(float delta)
         {
             if (!_canAct || _target == null) return;
-            
+
             float direction = Mathf.Sign(_target.GlobalPosition.X - GlobalPosition.X);
             _velocity.X = direction * ChaseSpeed;
-            
+
             UpdateFacing();
         }
 
         public void MoveTowards(Vector2 targetPosition, float speed)
         {
             if (!_canAct) return;
-            
+
             float direction = Mathf.Sign(targetPosition.X - GlobalPosition.X);
             _velocity.X = direction * speed;
-            
+
             UpdateFacing();
         }
 
@@ -240,28 +240,28 @@ namespace Demonteks.Enemy
         public void Attack()
         {
             if (_attackCooldownTimer > 0 || _target == null) return;
-            
+
             _attackCooldownTimer = AttackCooldown;
             EmitSignal(SignalName.AttackedPlayer, Damage);
-            
+
             // Apply damage to player
             if (_target.HasMethod("TakeDamage"))
             {
                 _target.Call("TakeDamage", Damage);
             }
-            
+
             GD.Print($"{Type} Demontek attacked for {Damage} damage!");
         }
 
         public void TakeDamage(int damage)
         {
             if (_isDead) return;
-            
+
             _currentHealth -= damage;
             EmitSignal(SignalName.HealthChanged, _currentHealth, MaxHealth);
-            
+
             GD.Print($"{Type} Demontek took {damage} damage. Health: {_currentHealth}/{MaxHealth}");
-            
+
             if (_currentHealth <= 0)
             {
                 Die();
@@ -276,21 +276,21 @@ namespace Demonteks.Enemy
         private void Die()
         {
             if (_isDead) return;
-            
+
             _isDead = true;
             _canAct = false;
             _velocity = Vector2.Zero;
-            
+
             EmitSignal(SignalName.Died);
             _stateMachine.ChangeState(new DeathState());
-            
+
             // Remove collision
             SetCollisionLayerValue(1, false);
             SetCollisionMaskValue(1, false);
-            
+
             // Queue free after death animation
             GetTree().CreateTimer(2.0f).Timeout += QueueFree;
-            
+
             GD.Print($"{Type} Demontek died!");
         }
         #endregion
@@ -302,7 +302,7 @@ namespace Demonteks.Enemy
             {
                 _target = body;
                 EmitSignal(SignalName.PlayerDetected);
-                
+
                 if (_stateMachine.CurrentState is PatrolState)
                 {
                     _stateMachine.ChangeState(new ChaseState());
@@ -315,7 +315,7 @@ namespace Demonteks.Enemy
             if (body == _target)
             {
                 EmitSignal(SignalName.PlayerLost);
-                
+
                 if (_stateMachine.CurrentState is ChaseState)
                 {
                     _stateMachine.ChangeState(new ReturnState());
@@ -336,29 +336,42 @@ namespace Demonteks.Enemy
         private void UpdateAnimation()
         {
             if (_animatedSprite == null || _isDead) return;
-            
+
             string currentState = _stateMachine.CurrentState.GetType().Name;
-            
+
             switch (currentState)
             {
                 case "IdleState":
-                    _animatedSprite.Play("idle");
+                    PlaySafe("idle");
                     break;
                 case "PatrolState":
-                    _animatedSprite.Play("walk");
+                    PlaySafe("walk");
                     break;
                 case "ChaseState":
-                    _animatedSprite.Play("run");
+                    PlaySafe("run", "walk"); // fallback to walk if no run
                     break;
                 case "AttackState":
-                    _animatedSprite.Play("attack");
+                    PlaySafe("attack");
                     break;
                 case "HurtState":
-                    _animatedSprite.Play("hurt");
+                    PlaySafe("hurt");
                     break;
                 case "DeathState":
-                    _animatedSprite.Play("death");
+                    PlaySafe("death");
                     break;
+            }
+        }
+
+        private void PlaySafe(string animName, string fallback = null)
+        {
+            if (_animatedSprite.SpriteFrames == null) return;
+            if (_animatedSprite.SpriteFrames.HasAnimation(animName))
+            {
+                _animatedSprite.Play(animName);
+            }
+            else if (fallback != null && _animatedSprite.SpriteFrames.HasAnimation(fallback))
+            {
+                _animatedSprite.Play(fallback);
             }
         }
         #endregion
@@ -390,7 +403,7 @@ namespace Demonteks.Enemy
             if (_currentState != null)
             {
                 IEnemyState nextState = _currentState.Update(_enemy, delta);
-                
+
                 if (nextState != null && nextState != _currentState)
                 {
                     ChangeState(nextState);
@@ -426,7 +439,7 @@ namespace Demonteks.Enemy
         {
             if (enemy.CanSeeTarget)
                 return new ChaseState();
-            
+
             return this;
         }
 
@@ -441,7 +454,7 @@ namespace Demonteks.Enemy
         {
             if (enemy.CanSeeTarget)
                 return new ChaseState();
-            
+
             enemy.Patrol(delta);
             return this;
         }
@@ -460,13 +473,13 @@ namespace Demonteks.Enemy
         {
             if (enemy.IsDead)
                 return new DeathState();
-            
+
             if (!enemy.CanSeeTarget)
                 return new ReturnState();
-            
+
             if (enemy.IsNearTarget)
                 return new AttackState();
-            
+
             enemy.ChaseTarget(delta);
             return this;
         }
@@ -490,14 +503,14 @@ namespace Demonteks.Enemy
         public IEnemyState Update(DemontekAI enemy, float delta)
         {
             _timer += delta;
-            
+
             // Execute attack at midpoint
             if (!_hasAttacked && _timer >= _attackDuration / 2)
             {
                 enemy.Attack();
                 _hasAttacked = true;
             }
-            
+
             // Return to chase after attack completes
             if (_timer >= _attackDuration)
             {
@@ -506,7 +519,7 @@ namespace Demonteks.Enemy
                 else
                     return new ChaseState();
             }
-            
+
             return this;
         }
 
@@ -524,14 +537,14 @@ namespace Demonteks.Enemy
         {
             if (enemy.CanSeeTarget)
                 return new ChaseState();
-            
+
             float distanceToStart = enemy.GlobalPosition.DistanceTo(enemy.StartPosition);
-            
+
             if (distanceToStart < 10f)
             {
                 return new PatrolState();
             }
-            
+
             enemy.MoveTowards(enemy.StartPosition, enemy.PatrolSpeed);
             return this;
         }
@@ -553,7 +566,7 @@ namespace Demonteks.Enemy
         public IEnemyState Update(DemontekAI enemy, float delta)
         {
             _timer += delta;
-            
+
             if (_timer >= _hurtDuration)
             {
                 if (enemy.CanSeeTarget)
@@ -561,7 +574,7 @@ namespace Demonteks.Enemy
                 else
                     return new PatrolState();
             }
-            
+
             return this;
         }
 

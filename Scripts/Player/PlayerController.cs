@@ -18,12 +18,12 @@ namespace Demonteks.Player
 		[Export] public float Gravity { get; set; } = 980f;
 		[Export] public float CoyoteTime { get; set; } = 0.1f; // Time after leaving platform where jump is still valid
 		[Export] public float JumpBufferTime { get; set; } = 0.15f; // Input buffer for jump
-		
+
 		[ExportCategory("Combat")]
 		[Export] public float AttackCooldown { get; set; } = 0.5f;
 		[Export] public NodePath AnimatedSpritePath { get; set; }
 		[Export] public NodePath CollisionShapePath { get; set; }
-		
+
 		[ExportCategory("Mobile Controls")]
 		[Export] public bool IsMobileMode { get; set; } = false;
 		#endregion
@@ -34,20 +34,20 @@ namespace Demonteks.Player
 		private PlayerStats _stats;
 		private PlayerCombat _combat;
 		private PlayerStateMachine _stateMachine;
-		
+
 		// Movement tracking
 		private Vector2 _velocity = Vector2.Zero;
 		private float _coyoteTimer = 0f;
 		private float _jumpBufferTimer = 0f;
 		private bool _isRunning = false;
 		private bool _isCrouching = false;
-		
+
 		// Input tracking
 		private Vector2 _inputDirection = Vector2.Zero;
 		private bool _jumpPressed = false;
 		private bool _attackPressed = false;
 		private bool _crouchPressed = false;
-		
+
 		// Directional facing
 		private bool _facingRight = true;
 		#endregion
@@ -65,38 +65,38 @@ namespace Demonteks.Player
 			// Get node references
 			_animatedSprite = GetNode<AnimatedSprite2D>(AnimatedSpritePath);
 			_collisionShape = GetNode<CollisionShape2D>(CollisionShapePath);
-			
+
 			// Initialize components
 			_stats = GetNode<PlayerStats>("PlayerStats");
 			_combat = GetNode<PlayerCombat>("PlayerCombat");
-			
+
 			// Setup state machine
 			_stateMachine = new PlayerStateMachine(this);
-			
+
 			// Connect signals
 			_stats.HealthChanged += OnHealthChanged;
 			_stats.Died += OnPlayerDied;
 			_combat.AttackExecuted += OnAttackExecuted;
-			
+
 			// Detect platform
 			DetectPlatform();
-			
+
 			GD.Print($"PlayerController initialized. Mobile mode: {IsMobileMode}");
 		}
 
 		public override void _PhysicsProcess(double delta)
 		{
 			float deltaF = (float)delta;
-			
+
 			// Update timers
 			UpdateTimers(deltaF);
-			
+
 			// Process input
 			ProcessInput();
-			
+
 			// Update state machine
 			_stateMachine.Update(deltaF);
-			
+
 			// Apply gravity
 			if (!IsOnFloor())
 			{
@@ -107,7 +107,7 @@ namespace Demonteks.Player
 				_coyoteTimer = CoyoteTime;
 				_velocity.Y = 0;
 			}
-			
+
 			// Handle jump buffering
 			if (_jumpBufferTimer > 0 && (_coyoteTimer > 0 || IsOnFloor()))
 			{
@@ -115,11 +115,11 @@ namespace Demonteks.Player
 				_jumpBufferTimer = 0;
 				_coyoteTimer = 0;
 			}
-			
+
 			// Apply movement
 			Velocity = _velocity;
 			MoveAndSlide();
-			
+
 			// Update animation
 			UpdateAnimation();
 		}
@@ -127,23 +127,23 @@ namespace Demonteks.Player
 		public override void _Input(InputEvent @event)
 		{
 			if (IsMobileMode) return; // Mobile input handled separately
-			
+
 			// Jump input
 			if (@event.IsActionPressed("jump"))
 			{
 				_jumpPressed = true;
 				_jumpBufferTimer = JumpBufferTime;
 			}
-			
+
 			// Attack input
 			if (@event.IsActionPressed("attack"))
 			{
 				_attackPressed = true;
 			}
-			
+
 			// Crouch input
 			_crouchPressed = Input.IsActionPressed("crouch");
-			
+
 			// Run input
 			_isRunning = Input.IsActionPressed("run");
 		}
@@ -160,7 +160,7 @@ namespace Demonteks.Player
 			{
 				ProcessDesktopInput();
 			}
-			
+
 			// Reset single-frame inputs
 			_jumpPressed = false;
 			_attackPressed = false;
@@ -170,13 +170,13 @@ namespace Demonteks.Player
 		{
 			// WASD controls: A=left, D=right, W=jump, S=crouch
 			_inputDirection = Vector2.Zero;
-			
+
 			if (Input.IsActionPressed("move_left"))
 				_inputDirection.X -= 1;
-			
+
 			if (Input.IsActionPressed("move_right"))
 				_inputDirection.X += 1;
-			
+
 			_inputDirection = _inputDirection.Normalized();
 		}
 
@@ -192,7 +192,7 @@ namespace Demonteks.Player
 		public void SetMobileInput(Vector2 direction, bool jump, bool attack, bool crouch)
 		{
 			if (!IsMobileMode) return;
-			
+
 			_inputDirection = direction;
 			if (jump) _jumpBufferTimer = JumpBufferTime;
 			_attackPressed = attack;
@@ -208,12 +208,12 @@ namespace Demonteks.Player
 				_velocity.X = 0;
 				return;
 			}
-			
+
 			float targetSpeed = MoveSpeed;
 			if (_isRunning) targetSpeed *= RunMultiplier;
-			
+
 			_velocity.X = _inputDirection.X * targetSpeed;
-			
+
 			// Update facing direction
 			if (_inputDirection.X > 0)
 			{
@@ -230,10 +230,10 @@ namespace Demonteks.Player
 		public void Jump()
 		{
 			if (!_stats.CanAct) return;
-			
+
 			_velocity.Y = JumpVelocity;
 			_coyoteTimer = 0;
-			
+
 			GD.Print("Player jumped!");
 		}
 
@@ -255,7 +255,7 @@ namespace Demonteks.Player
 		public void Attack()
 		{
 			if (!_stats.CanAct || !_combat.CanAttack) return;
-			
+
 			_combat.ExecuteAttack();
 			EmitSignal(SignalName.PlayerAttack);
 		}
@@ -271,36 +271,52 @@ namespace Demonteks.Player
 		private void UpdateAnimation()
 		{
 			if (_animatedSprite == null) return;
-			
+
 			string currentState = _stateMachine.CurrentState.GetType().Name;
-			
+
 			// Map state to animation
 			switch (currentState)
 			{
 				case "IdleState":
-					_animatedSprite.Play("idle");
+					PlaySafe("idle");
 					break;
 				case "MoveState":
-					_animatedSprite.Play(_isRunning ? "run" : "walk");
+					PlaySafe(_isRunning ? "run" : "walk");
 					break;
 				case "JumpState":
-					_animatedSprite.Play("jump");
+					PlaySafe("jump");
 					break;
 				case "FallState":
-					_animatedSprite.Play("fall");
+					PlaySafe("fall", "jump"); // fall back to jump if no fall anim
 					break;
 				case "AttackState":
-					_animatedSprite.Play($"attack_{_combat.CurrentWeapon.WeaponName.ToLower()}");
+					PlaySafe("attack");
 					break;
 				case "CrouchState":
-					_animatedSprite.Play("crouch");
+					PlaySafe("crouch", "idle"); // fall back to idle if no crouch anim
 					break;
 				case "HurtState":
-					_animatedSprite.Play("hurt");
+					PlaySafe("hurt");
 					break;
 				case "DeathState":
-					_animatedSprite.Play("death");
+					PlaySafe("death");
 					break;
+			}
+		}
+
+		/// <summary>
+		/// Safely play animation with optional fallback
+		/// </summary>
+		private void PlaySafe(string animName, string fallback = null)
+		{
+			if (_animatedSprite.SpriteFrames == null) return;
+			if (_animatedSprite.SpriteFrames.HasAnimation(animName))
+			{
+				_animatedSprite.Play(animName);
+			}
+			else if (fallback != null && _animatedSprite.SpriteFrames.HasAnimation(fallback))
+			{
+				_animatedSprite.Play(fallback);
 			}
 		}
 		#endregion
@@ -310,7 +326,7 @@ namespace Demonteks.Player
 		{
 			if (_coyoteTimer > 0)
 				_coyoteTimer -= delta;
-			
+
 			if (_jumpBufferTimer > 0)
 				_jumpBufferTimer -= delta;
 		}
@@ -372,8 +388,8 @@ namespace Demonteks.Player
 		#endregion
 
 		#region Properties
-		public Vector2 GetVelocity() => _velocity;
-		public void SetVelocity(Vector2 velocity) => _velocity = velocity;
+		public new Vector2 GetVelocity() => _velocity;
+		public new void SetVelocity(Vector2 velocity) => _velocity = velocity;
 		public Vector2 InputDirection => _inputDirection;
 		public bool FacingRight => _facingRight;
 		public bool IsCrouching => _isCrouching;
@@ -402,7 +418,7 @@ namespace Demonteks.Player
 		public void Update(float delta)
 		{
 			IPlayerState nextState = _currentState.Update(_player, delta);
-			
+
 			if (nextState != null && nextState != _currentState)
 			{
 				ChangeState(nextState);
@@ -414,7 +430,7 @@ namespace Demonteks.Player
 			_currentState.Exit(_player);
 			_currentState = newState;
 			_currentState.Enter(_player);
-			
+
 			_player.EmitSignal(PlayerController.SignalName.StateChanged, newState.GetType().Name);
 		}
 
@@ -431,7 +447,7 @@ namespace Demonteks.Player
 	public class IdleState : IPlayerState
 	{
 		public void Enter(PlayerController player) { }
-		
+
 		public IPlayerState Update(PlayerController player, float delta)
 		{
 			if (!player.IsOnFloor()) return new FallState();
@@ -439,28 +455,28 @@ namespace Demonteks.Player
 			if (player.WantsToAttack()) return new AttackState();
 			if (player.WantsToCrouch()) return new CrouchState();
 			if (player.IsMoving()) return new MoveState();
-			
+
 			return this;
 		}
-		
+
 		public void Exit(PlayerController player) { }
 	}
 
 	public class MoveState : IPlayerState
 	{
 		public void Enter(PlayerController player) { }
-		
+
 		public IPlayerState Update(PlayerController player, float delta)
 		{
 			if (!player.IsOnFloor()) return new FallState();
 			if (player.WantsToJump()) return new JumpState();
 			if (player.WantsToAttack()) return new AttackState();
 			if (!player.IsMoving()) return new IdleState();
-			
+
 			player.Move(delta);
 			return this;
 		}
-		
+
 		public void Exit(PlayerController player) { }
 	}
 
@@ -470,36 +486,36 @@ namespace Demonteks.Player
 		{
 			player.Jump();
 		}
-		
+
 		public IPlayerState Update(PlayerController player, float delta)
 		{
 			player.Move(delta);
-			
+
 			if (player.IsFalling()) return new FallState();
 			if (player.IsOnFloor()) return new IdleState();
-			
+
 			return this;
 		}
-		
+
 		public void Exit(PlayerController player) { }
 	}
 
 	public class FallState : IPlayerState
 	{
 		public void Enter(PlayerController player) { }
-		
+
 		public IPlayerState Update(PlayerController player, float delta)
 		{
 			player.Move(delta);
-			
+
 			if (player.IsOnFloor())
 			{
 				return player.IsMoving() ? new MoveState() : (IPlayerState)new IdleState();
 			}
-			
+
 			return this;
 		}
-		
+
 		public void Exit(PlayerController player) { }
 	}
 
@@ -507,25 +523,25 @@ namespace Demonteks.Player
 	{
 		private float _attackDuration = 0.6f;
 		private float _timer = 0f;
-		
+
 		public void Enter(PlayerController player)
 		{
 			player.Attack();
 			_timer = 0f;
 		}
-		
+
 		public IPlayerState Update(PlayerController player, float delta)
 		{
 			_timer += delta;
-			
+
 			if (_timer >= _attackDuration)
 			{
 				return new IdleState();
 			}
-			
+
 			return this;
 		}
-		
+
 		public void Exit(PlayerController player) { }
 	}
 
@@ -535,22 +551,22 @@ namespace Demonteks.Player
 		{
 			player.Crouch();
 		}
-		
+
 		public IPlayerState Update(PlayerController player, float delta)
 		{
 			if (!player.WantsToCrouch())
 			{
 				return new IdleState();
 			}
-			
+
 			if (player.WantsToAttack())
 			{
 				return new AttackState();
 			}
-			
+
 			return this;
 		}
-		
+
 		public void Exit(PlayerController player)
 		{
 			player.StandUp();
@@ -561,24 +577,24 @@ namespace Demonteks.Player
 	{
 		private float _hurtDuration = 0.5f;
 		private float _timer = 0f;
-		
+
 		public void Enter(PlayerController player)
 		{
 			_timer = 0f;
 		}
-		
+
 		public IPlayerState Update(PlayerController player, float delta)
 		{
 			_timer += delta;
-			
+
 			if (_timer >= _hurtDuration)
 			{
 				return new IdleState();
 			}
-			
+
 			return this;
 		}
-		
+
 		public void Exit(PlayerController player) { }
 	}
 
@@ -588,13 +604,13 @@ namespace Demonteks.Player
 		{
 			player.SetVelocity(Vector2.Zero);
 		}
-		
+
 		public IPlayerState Update(PlayerController player, float delta)
 		{
 			// Stay in death state
 			return this;
 		}
-		
+
 		public void Exit(PlayerController player) { }
 	}
 	#endregion

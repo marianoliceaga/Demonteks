@@ -1,9 +1,0 @@
-res://Scripts/Utils/Checkpoint.cs
-res://Scripts/Enemy/DemontekAI.cs
-res://Scripts/Player/PlayerCombat.cs
-res://Scripts/Player/PlayerStats.cs
-res://Scripts/Player/PlayerController.cs
-res://Scripts/Management/SaveManager.cs
-res://Scripts/Management/GameManager.cs
-res://Scenes/Levels/Level1_Jungle.tscn
-res://Assets/tilesets/jungle_tileset_16x16.tres
