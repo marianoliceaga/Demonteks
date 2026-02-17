@@ -26,11 +26,14 @@ radius = 12.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_levelend"]
 size = Vector2(16, 96)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_killzone"]
+size = Vector2(8800, 32)
+
 [node name="Level3_Castle" type="Node2D"]
 
-; ═══════════════════════════════════════════
-; PARALLAX BACKGROUND — castle walls
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# PARALLAX BACKGROUND — castle walls
+# ═══════════════════════════════════════════
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -58,40 +61,40 @@ motion_mirroring = Vector2(5680, 0)
 texture = ExtResource("11_bg_fg")
 centered = false
 
-; ═══════════════════════════════════════════
-; GROUND — TileMap (castle tileset)
-; ~4400px horizontal level
-; Gatehouse (0-800) → Halls (864-1920) →
-; Armory (1984-2880) → Goliath Arena (2944-3520) →
-; Throne Room (3584-4400)
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# GROUND — TileMap (castle tileset)
+# ~4400px horizontal level
+# Gatehouse (0-800) → Halls (864-1920) →
+# Armory (1984-2880) → Goliath Arena (2944-3520) →
+# Throne Room (3584-4400)
+# ═══════════════════════════════════════════
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("6_tileset")
 format = 2
 layer_0/tile_data = PackedInt32Array(1835008, 0, 0, 1835009, 0, 0, 1835010, 0, 0, 1835011, 0, 0, 1835012, 0, 0, 1835013, 0, 0, 1835014, 0, 0, 1835015, 0, 0, 1835016, 0, 0, 1835017, 0, 0, 1835018, 0, 0, 1835019, 0, 0, 1835020, 0, 0, 1835021, 0, 0, 1835022, 0, 0, 1835023, 0, 0, 1835024, 0, 0, 1835025, 0, 0, 1835026, 0, 0, 1835027, 0, 0, 1835028, 0, 0, 1835029, 0, 0, 1835030, 0, 0, 1835031, 0, 0, 1835032, 0, 0, 1835033, 0, 0, 1835034, 0, 0, 1835035, 0, 0, 1835036, 0, 0, 1835037, 0, 0, 1835038, 0, 0, 1835039, 0, 0, 1835040, 0, 0, 1835041, 0, 0, 1835042, 0, 0, 1835043, 0, 0, 1835044, 0, 0, 1835045, 0, 0, 1835046, 0, 0, 1835047, 0, 0, 1835048, 0, 0, 1835049, 0, 0, 1835050, 0, 0, 1835054, 0, 0, 1835055, 0, 0, 1835056, 0, 0, 1835057, 0, 0, 1835058, 0, 0, 1835059, 0, 0, 1835060, 0, 0, 1835061, 0, 0, 1835062, 0, 0, 1835063, 0, 0, 1835064, 0, 0, 1835065, 0, 0, 1835066, 0, 0, 1835067, 0, 0, 1835068, 0, 0, 1835069, 0, 0, 1835070, 0, 0, 1835071, 0, 0, 1835072, 0, 0, 1835073, 0, 0, 1835074, 0, 0, 1835075, 0, 0, 1835076, 0, 0, 1835077, 0, 0, 1835078, 0, 0, 1835079, 0, 0, 1835080, 0, 0, 1835081, 0, 0, 1835082, 0, 0, 1835083, 0, 0, 1835084, 0, 0, 1835085, 0, 0, 1835086, 0, 0, 1835087, 0, 0, 1835088, 0, 0, 1835089, 0, 0, 1835090, 0, 0, 1835091, 0, 0, 1835092, 0, 0, 1835093, 0, 0, 1835094, 0, 0, 1835095, 0, 0, 1835096, 0, 0, 1835097, 0, 0, 1835098, 0, 0, 1835099, 0, 0, 1835100, 0, 0, 1835101, 0, 0, 1835102, 0, 0, 1835103, 0, 0, 1835104, 0, 0, 1835105, 0, 0, 1835106, 0, 0, 1835107, 0, 0, 1835108, 0, 0, 1835109, 0, 0, 1835110, 0, 0, 1835111, 0, 0, 1835112, 0, 0, 1835113, 0, 0, 1835114, 0, 0, 1835115, 0, 0, 1835116, 0, 0, 1835117, 0, 0, 1835118, 0, 0, 1835119, 0, 0, 1835120, 0, 0, 1835124, 0, 0, 1835125, 0, 0, 1835126, 0, 0, 1835127, 0, 0, 1835128, 0, 0, 1835129, 0, 0, 1835130, 0, 0, 1835131, 0, 0, 1835132, 0, 0, 1835133, 0, 0, 1835134, 0, 0, 1835135, 0, 0, 1835136, 0, 0, 1835137, 0, 0, 1835138, 0, 0, 1835139, 0, 0, 1835140, 0, 0, 1835141, 0, 0, 1835142, 0, 0, 1835143, 0, 0, 1835144, 0, 0, 1835145, 0, 0, 1835146, 0, 0, 1835147, 0, 0, 1835148, 0, 0, 1835149, 0, 0, 1835150, 0, 0, 1835151, 0, 0, 1835152, 0, 0, 1835153, 0, 0, 1835154, 0, 0, 1835155, 0, 0, 1835156, 0, 0, 1835157, 0, 0, 1835158, 0, 0, 1835159, 0, 0, 1835160, 0, 0, 1835161, 0, 0, 1835162, 0, 0, 1835163, 0, 0, 1835164, 0, 0, 1835165, 0, 0, 1835166, 0, 0, 1835167, 0, 0, 1835168, 0, 0, 1835169, 0, 0, 1835170, 0, 0, 1835171, 0, 0, 1835172, 0, 0, 1835173, 0, 0, 1835174, 0, 0, 1835175, 0, 0, 1835176, 0, 0, 1835177, 0, 0, 1835178, 0, 0, 1835179, 0, 0, 1835184, 0, 0, 1835185, 0, 0, 1835186, 0, 0, 1835187, 0, 0, 1835188, 0, 0, 1835189, 0, 0, 1835190, 0, 0, 1835191, 0, 0, 1835192, 0, 0, 1835193, 0, 0, 1835194, 0, 0, 1835195, 0, 0, 1835196, 0, 0, 1835197, 0, 0, 1835198, 0, 0, 1835199, 0, 0, 1835200, 0, 0, 1835201, 0, 0, 1835202, 0, 0, 1835203, 0, 0, 1835204, 0, 0, 1835205, 0, 0, 1835206, 0, 0, 1835207, 0, 0, 1835208, 0, 0, 1835209, 0, 0, 1835210, 0, 0, 1835211, 0, 0, 1835212, 0, 0, 1835213, 0, 0, 1835214, 0, 0, 1835215, 0, 0, 1835216, 0, 0, 1835217, 0, 0, 1835218, 0, 0, 1835219, 0, 0, 1835220, 0, 0, 1835221, 0, 0, 1835222, 0, 0, 1835223, 0, 0, 1835224, 0, 0, 1835225, 0, 0, 1835226, 0, 0, 1835227, 0, 0, 1835228, 0, 0, 1835229, 0, 0, 1835230, 0, 0, 1835231, 0, 0, 1835232, 0, 0, 1835233, 0, 0, 1835234, 0, 0, 1835235, 0, 0, 1835236, 0, 0, 1835237, 0, 0, 1835238, 0, 0, 1835239, 0, 0, 1835240, 0, 0, 1835241, 0, 0, 1835242, 0, 0, 1835243, 0, 0, 1835244, 0, 0, 1835245, 0, 0, 1835246, 0, 0, 1835247, 0, 0, 1835248, 0, 0, 1835249, 0, 0, 1835250, 0, 0, 1835251, 0, 0, 1835252, 0, 0, 1835253, 0, 0, 1835254, 0, 0, 1835255, 0, 0, 1835256, 0, 0, 1835257, 0, 0, 1835258, 0, 0, 1835259, 0, 0, 1835260, 0, 0, 1835261, 0, 0, 1835262, 0, 0, 1835263, 0, 0, 1835264, 0, 0, 1835265, 0, 0, 1835266, 0, 0, 1835267, 0, 0, 1835268, 0, 0, 1835269, 0, 0, 1835270, 0, 0, 1835271, 0, 0, 1835272, 0, 0, 1835273, 0, 0, 1835274, 0, 0, 1835275, 0, 0)
 
-; ═══════════════════════════════════════════
-; PLAYER — starts at gatehouse entrance
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# PLAYER — starts at gatehouse entrance
+# ═══════════════════════════════════════════
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector2(64, 416)
 
-; ═══════════════════════════════════════════
-; PLATFORMS — battlements, balconies, stairs
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# PLATFORMS — battlements, balconies, stairs
+# ═══════════════════════════════════════════
 
 [node name="Platforms" type="Node2D" parent="."]
 
-; Gatehouse
+# Gatehouse
 [node name="GateLedge1" parent="Platforms" instance=ExtResource("7_platform")]
 position = Vector2(320, 368)
 
 [node name="GateLedge2" parent="Platforms" instance=ExtResource("7_platform")]
 position = Vector2(640, 320)
 
-; Halls
+# Halls
 [node name="HallPlatform1" parent="Platforms" instance=ExtResource("7_platform")]
 position = Vector2(1040, 352)
 
@@ -101,7 +104,7 @@ position = Vector2(1360, 304)
 [node name="HallPlatform3" parent="Platforms" instance=ExtResource("7_platform")]
 position = Vector2(1680, 352)
 
-; Armory
+# Armory
 [node name="ArmoryPlatform1" parent="Platforms" instance=ExtResource("7_platform")]
 position = Vector2(2080, 336)
 
@@ -111,36 +114,36 @@ position = Vector2(2400, 288)
 [node name="ArmoryPlatform3" parent="Platforms" instance=ExtResource("7_platform")]
 position = Vector2(2720, 352)
 
-; Goliath Arena — wide open, fewer platforms
+# Goliath Arena — wide open, fewer platforms
 [node name="ArenaLedge" parent="Platforms" instance=ExtResource("7_platform")]
 position = Vector2(3200, 336)
 
-; Throne Room
+# Throne Room
 [node name="ThroneStair1" parent="Platforms" instance=ExtResource("7_platform")]
 position = Vector2(3840, 352)
 
 [node name="ThroneStair2" parent="Platforms" instance=ExtResource("7_platform")]
 position = Vector2(4080, 304)
 
-; ═══════════════════════════════════════════
-; ENEMIES
-; Gatehouse: 2 Demonteks
-; Halls: 3 Mutants
-; Armory: 3 Mutants
-; Goliath Arena: 1 Goliath (boss)
-; Throne Room: 1 King (final boss)
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# ENEMIES
+# Gatehouse: 2 Demonteks
+# Halls: 3 Mutants
+# Armory: 3 Mutants
+# Goliath Arena: 1 Goliath (boss)
+# Throne Room: 1 King (final boss)
+# ═══════════════════════════════════════════
 
 [node name="Enemies" type="Node2D" parent="."]
 
-; --- Gatehouse (2 Demonteks) ---
+# --- Gatehouse (2 Demonteks) ---
 [node name="Demontek1" parent="Enemies" instance=ExtResource("2_demontek")]
 position = Vector2(400, 416)
 
 [node name="Demontek2" parent="Enemies" instance=ExtResource("2_demontek")]
 position = Vector2(700, 416)
 
-; --- Halls (3 Mutants) ---
+# --- Halls (3 Mutants) ---
 [node name="Mutant1" parent="Enemies" instance=ExtResource("3_mutant")]
 position = Vector2(1040, 416)
 
@@ -150,7 +153,7 @@ position = Vector2(1360, 272)
 [node name="Mutant3" parent="Enemies" instance=ExtResource("3_mutant")]
 position = Vector2(1760, 416)
 
-; --- Armory (3 Mutants) ---
+# --- Armory (3 Mutants) ---
 [node name="Mutant4" parent="Enemies" instance=ExtResource("3_mutant")]
 position = Vector2(2150, 416)
 
@@ -160,17 +163,17 @@ position = Vector2(2480, 416)
 [node name="Mutant6" parent="Enemies" instance=ExtResource("3_mutant")]
 position = Vector2(2800, 416)
 
-; --- Goliath Arena (BOSS) ---
+# --- Goliath Arena (BOSS) ---
 [node name="Goliath" parent="Enemies" instance=ExtResource("4_goliath")]
 position = Vector2(3200, 400)
 
-; --- Throne Room (FINAL BOSS) ---
+# --- Throne Room (FINAL BOSS) ---
 [node name="King" parent="Enemies" instance=ExtResource("5_king")]
 position = Vector2(4080, 400)
 
-; ═══════════════════════════════════════════
-; CHECKPOINTS
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# CHECKPOINTS
+# ═══════════════════════════════════════════
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
@@ -183,13 +186,13 @@ position = Vector2(2944, 416)
 [node name="Checkpoint3" parent="Checkpoints" instance=ExtResource("8_checkpoint")]
 position = Vector2(3584, 416)
 
-; ═══════════════════════════════════════════
-; PICKUPS — health past midpoint
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# PICKUPS — health past midpoint
+# ═══════════════════════════════════════════
 
 [node name="Pickups" type="Node2D" parent="."]
 
-; Health before Goliath Arena
+# Health before Goliath Arena
 [node name="HealthPickup1" type="Area2D" parent="Pickups"]
 position = Vector2(2900, 410)
 collision_layer = 16
@@ -219,7 +222,7 @@ offset_right = 5.0
 offset_bottom = 2.0
 color = Color(1, 1, 1, 1)
 
-; Health before King
+# Health before King
 [node name="HealthPickup2" type="Area2D" parent="Pickups"]
 position = Vector2(3700, 410)
 collision_layer = 16
@@ -249,9 +252,9 @@ offset_right = 5.0
 offset_bottom = 2.0
 color = Color(1, 1, 1, 1)
 
-; ═══════════════════════════════════════════
-; LEVEL END — victory trigger
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# LEVEL END — victory trigger
+# ═══════════════════════════════════════════
 
 [node name="LevelEnd" type="Area2D" parent="."]
 position = Vector2(4384, 400)
@@ -269,28 +272,25 @@ offset_right = 8.0
 offset_bottom = 48.0
 color = Color(1, 0.843137, 0, 0.6)
 
-; ═══════════════════════════════════════════
-; HUD & PAUSE MENU
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# HUD & PAUSE MENU
+# ═══════════════════════════════════════════
 
 [node name="HUD" parent="." instance=ExtResource("12_hud")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("13_pause")]
 
-; ═══════════════════════════════════════════
-; CAMERA
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# CAMERA
+# ═══════════════════════════════════════════
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("15_camera")
 LimitRightValue = 4400
 
-; ═══════════════════════════════════════════
-; KILL ZONE
-; ═══════════════════════════════════════════
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_killzone"]
-size = Vector2(8800, 32)
+# ═══════════════════════════════════════════
+# KILL ZONE
+# ═══════════════════════════════════════════
 
 [node name="KillZone" type="Area2D" parent="."]
 position = Vector2(2200, 700)

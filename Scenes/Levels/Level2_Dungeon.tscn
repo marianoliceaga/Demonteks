@@ -23,11 +23,14 @@ radius = 12.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_levelend"]
 size = Vector2(16, 96)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_killzone"]
+size = Vector2(7040, 32)
+
 [node name="Level2_Dungeon" type="Node2D"]
 
-; ═══════════════════════════════════════════
-; PARALLAX BACKGROUND — dark dungeon walls
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# PARALLAX BACKGROUND — dark dungeon walls
+# ═══════════════════════════════════════════
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -55,36 +58,36 @@ motion_mirroring = Vector2(5760, 0)
 texture = ExtResource("8_bg_fg")
 centered = false
 
-; ═══════════════════════════════════════════
-; GROUND — TileMap (16×16 dungeon tileset)
-; Ground at tile row 28 (y=448). Layout:
-; Cell (x=0-640) → Tunnel (x=704-1600) → 
-; Courtyard (x=1664-2560) → Ruins (x=2624-3520)
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# GROUND — TileMap (16×16 dungeon tileset)
+# Ground at tile row 28 (y=448). Layout:
+# Cell (x=0-640) → Tunnel (x=704-1600) → 
+# Courtyard (x=1664-2560) → Ruins (x=2624-3520)
+# ═══════════════════════════════════════════
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("4_tileset")
 format = 2
 layer_0/tile_data = PackedInt32Array(1835008, 0, 0, 1835009, 0, 0, 1835010, 0, 0, 1835011, 0, 0, 1835012, 0, 0, 1835013, 0, 0, 1835014, 0, 0, 1835015, 0, 0, 1835016, 0, 0, 1835017, 0, 0, 1835018, 0, 0, 1835019, 0, 0, 1835020, 0, 0, 1835021, 0, 0, 1835022, 0, 0, 1835023, 0, 0, 1835024, 0, 0, 1835025, 0, 0, 1835026, 0, 0, 1835027, 0, 0, 1835028, 0, 0, 1835029, 0, 0, 1835030, 0, 0, 1835031, 0, 0, 1835032, 0, 0, 1835033, 0, 0, 1835034, 0, 0, 1835035, 0, 0, 1835036, 0, 0, 1835037, 0, 0, 1835038, 0, 0, 1835039, 0, 0, 1835040, 0, 0, 1835044, 0, 0, 1835045, 0, 0, 1835046, 0, 0, 1835047, 0, 0, 1835048, 0, 0, 1835049, 0, 0, 1835050, 0, 0, 1835051, 0, 0, 1835052, 0, 0, 1835053, 0, 0, 1835054, 0, 0, 1835055, 0, 0, 1835056, 0, 0, 1835057, 0, 0, 1835058, 0, 0, 1835059, 0, 0, 1835060, 0, 0, 1835061, 0, 0, 1835062, 0, 0, 1835063, 0, 0, 1835064, 0, 0, 1835065, 0, 0, 1835066, 0, 0, 1835067, 0, 0, 1835068, 0, 0, 1835069, 0, 0, 1835070, 0, 0, 1835071, 0, 0, 1835072, 0, 0, 1835073, 0, 0, 1835074, 0, 0, 1835075, 0, 0, 1835076, 0, 0, 1835077, 0, 0, 1835078, 0, 0, 1835079, 0, 0, 1835080, 0, 0, 1835081, 0, 0, 1835082, 0, 0, 1835083, 0, 0, 1835084, 0, 0, 1835085, 0, 0, 1835086, 0, 0, 1835087, 0, 0, 1835088, 0, 0, 1835089, 0, 0, 1835090, 0, 0, 1835091, 0, 0, 1835092, 0, 0, 1835093, 0, 0, 1835094, 0, 0, 1835095, 0, 0, 1835096, 0, 0, 1835097, 0, 0, 1835098, 0, 0, 1835099, 0, 0, 1835100, 0, 0, 1835104, 0, 0, 1835105, 0, 0, 1835106, 0, 0, 1835107, 0, 0, 1835108, 0, 0, 1835109, 0, 0, 1835110, 0, 0, 1835111, 0, 0, 1835112, 0, 0, 1835113, 0, 0, 1835114, 0, 0, 1835115, 0, 0, 1835116, 0, 0, 1835117, 0, 0, 1835118, 0, 0, 1835119, 0, 0, 1835120, 0, 0, 1835121, 0, 0, 1835122, 0, 0, 1835123, 0, 0, 1835124, 0, 0, 1835125, 0, 0, 1835126, 0, 0, 1835127, 0, 0, 1835128, 0, 0, 1835129, 0, 0, 1835130, 0, 0, 1835131, 0, 0, 1835132, 0, 0, 1835133, 0, 0, 1835134, 0, 0, 1835135, 0, 0, 1835136, 0, 0, 1835137, 0, 0, 1835138, 0, 0, 1835139, 0, 0, 1835140, 0, 0, 1835141, 0, 0, 1835142, 0, 0, 1835143, 0, 0, 1835144, 0, 0, 1835145, 0, 0, 1835146, 0, 0, 1835147, 0, 0, 1835148, 0, 0, 1835149, 0, 0, 1835150, 0, 0, 1835151, 0, 0, 1835152, 0, 0, 1835153, 0, 0, 1835154, 0, 0, 1835155, 0, 0, 1835156, 0, 0, 1835157, 0, 0, 1835158, 0, 0, 1835159, 0, 0, 1835160, 0, 0, 1835164, 0, 0, 1835165, 0, 0, 1835166, 0, 0, 1835167, 0, 0, 1835168, 0, 0, 1835169, 0, 0, 1835170, 0, 0, 1835171, 0, 0, 1835172, 0, 0, 1835173, 0, 0, 1835174, 0, 0, 1835175, 0, 0, 1835176, 0, 0, 1835177, 0, 0, 1835178, 0, 0, 1835179, 0, 0, 1835180, 0, 0, 1835181, 0, 0, 1835182, 0, 0, 1835183, 0, 0, 1835184, 0, 0, 1835185, 0, 0, 1835186, 0, 0, 1835187, 0, 0, 1835188, 0, 0, 1835189, 0, 0, 1835190, 0, 0, 1835191, 0, 0, 1835192, 0, 0, 1835193, 0, 0, 1835194, 0, 0, 1835195, 0, 0, 1835196, 0, 0, 1835197, 0, 0, 1835198, 0, 0, 1835199, 0, 0, 1835200, 0, 0, 1835201, 0, 0, 1835202, 0, 0, 1835203, 0, 0, 1835204, 0, 0, 1835205, 0, 0, 1835206, 0, 0, 1835207, 0, 0, 1835208, 0, 0, 1835209, 0, 0, 1835210, 0, 0, 1835211, 0, 0, 1835212, 0, 0, 1835213, 0, 0, 1835214, 0, 0, 1835215, 0, 0, 1835216, 0, 0, 1835217, 0, 0, 1835218, 0, 0, 1835219, 0, 0, 1835220, 0, 0)
 
-; ═══════════════════════════════════════════
-; PLAYER — starts in dungeon cell
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# PLAYER — starts in dungeon cell
+# ═══════════════════════════════════════════
 
 [node name="Player" parent="." instance=ExtResource("1_player")]
 position = Vector2(64, 416)
 
-; ═══════════════════════════════════════════
-; ELEVATED PLATFORMS — dungeon walkways
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# ELEVATED PLATFORMS — dungeon walkways
+# ═══════════════════════════════════════════
 
 [node name="Platforms" type="Node2D" parent="."]
 
-; Cell upper platforms
+# Cell upper platforms
 [node name="CellLedge" parent="Platforms" instance=ExtResource("5_platform")]
 position = Vector2(320, 368)
 
-; Tunnel platforms (staggered heights)
+# Tunnel platforms (staggered heights)
 [node name="TunnelPlatform1" parent="Platforms" instance=ExtResource("5_platform")]
 position = Vector2(800, 352)
 
@@ -94,14 +97,14 @@ position = Vector2(1120, 320)
 [node name="TunnelPlatform3" parent="Platforms" instance=ExtResource("5_platform")]
 position = Vector2(1440, 368)
 
-; Courtyard platforms
+# Courtyard platforms
 [node name="CourtPlatform1" parent="Platforms" instance=ExtResource("5_platform")]
 position = Vector2(1920, 336)
 
 [node name="CourtPlatform2" parent="Platforms" instance=ExtResource("5_platform")]
 position = Vector2(2240, 304)
 
-; Ruins platforms (vertical challenge)
+# Ruins platforms (vertical challenge)
 [node name="RuinsPlatform1" parent="Platforms" instance=ExtResource("5_platform")]
 position = Vector2(2720, 352)
 
@@ -111,44 +114,44 @@ position = Vector2(3040, 288)
 [node name="RuinsPlatform3" parent="Platforms" instance=ExtResource("5_platform")]
 position = Vector2(3360, 336)
 
-; ═══════════════════════════════════════════
-; ENEMIES — 8 Guards across 4 zones
-; Guards have wider detection (200px)
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# ENEMIES — 8 Guards across 4 zones
+# Guards have wider detection (200px)
+# ═══════════════════════════════════════════
 
 [node name="Enemies" type="Node2D" parent="."]
 
-; --- Cell area (2 guards) ---
+# --- Cell area (2 guards) ---
 [node name="Guard1" parent="Enemies" instance=ExtResource("2_guard")]
 position = Vector2(400, 416)
 
 [node name="Guard2" parent="Enemies" instance=ExtResource("2_guard")]
 position = Vector2(320, 336)
 
-; --- Tunnel (2 guards) ---
+# --- Tunnel (2 guards) ---
 [node name="Guard3" parent="Enemies" instance=ExtResource("2_guard")]
 position = Vector2(880, 416)
 
 [node name="Guard4" parent="Enemies" instance=ExtResource("2_guard")]
 position = Vector2(1280, 416)
 
-; --- Courtyard (2 guards) ---
+# --- Courtyard (2 guards) ---
 [node name="Guard5" parent="Enemies" instance=ExtResource("2_guard")]
 position = Vector2(1840, 416)
 
 [node name="Guard6" parent="Enemies" instance=ExtResource("2_guard")]
 position = Vector2(2240, 272)
 
-; --- Ruins (2 guards) ---
+# --- Ruins (2 guards) ---
 [node name="Guard7" parent="Enemies" instance=ExtResource("2_guard")]
 position = Vector2(2900, 416)
 
 [node name="Guard8" parent="Enemies" instance=ExtResource("2_guard")]
 position = Vector2(3200, 416)
 
-; ═══════════════════════════════════════════
-; CHECKPOINTS
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# CHECKPOINTS
+# ═══════════════════════════════════════════
 
 [node name="Checkpoints" type="Node2D" parent="."]
 
@@ -158,13 +161,13 @@ position = Vector2(1600, 416)
 [node name="Checkpoint2" parent="Checkpoints" instance=ExtResource("3_checkpoint")]
 position = Vector2(2640, 416)
 
-; ═══════════════════════════════════════════
-; PICKUPS — health past midpoint
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# PICKUPS — health past midpoint
+# ═══════════════════════════════════════════
 
 [node name="Pickups" type="Node2D" parent="."]
 
-; Health pickup 1 — courtyard area
+# Health pickup 1 — courtyard area
 [node name="HealthPickup1" type="Area2D" parent="Pickups"]
 position = Vector2(2080, 410)
 collision_layer = 16
@@ -194,7 +197,7 @@ offset_right = 5.0
 offset_bottom = 2.0
 color = Color(1, 1, 1, 1)
 
-; Health pickup 2 — ruins area
+# Health pickup 2 — ruins area
 [node name="HealthPickup2" type="Area2D" parent="Pickups"]
 position = Vector2(3100, 410)
 collision_layer = 16
@@ -224,9 +227,9 @@ offset_right = 5.0
 offset_bottom = 2.0
 color = Color(1, 1, 1, 1)
 
-; ═══════════════════════════════════════════
-; LEVEL END
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# LEVEL END
+# ═══════════════════════════════════════════
 
 [node name="LevelEnd" type="Area2D" parent="."]
 position = Vector2(3488, 400)
@@ -244,28 +247,25 @@ offset_right = 8.0
 offset_bottom = 48.0
 color = Color(1, 0.843137, 0, 0.6)
 
-; ═══════════════════════════════════════════
-; HUD & PAUSE MENU
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# HUD & PAUSE MENU
+# ═══════════════════════════════════════════
 
 [node name="HUD" parent="." instance=ExtResource("9_hud")]
 
 [node name="PauseMenu" parent="." instance=ExtResource("10_pause")]
 
-; ═══════════════════════════════════════════
-; CAMERA
-; ═══════════════════════════════════════════
+# ═══════════════════════════════════════════
+# CAMERA
+# ═══════════════════════════════════════════
 
 [node name="Camera" type="Camera2D" parent="."]
 script = ExtResource("12_camera")
 LimitRightValue = 3520
 
-; ═══════════════════════════════════════════
-; KILL ZONE
-; ═══════════════════════════════════════════
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_killzone"]
-size = Vector2(7040, 32)
+# ═══════════════════════════════════════════
+# KILL ZONE
+# ═══════════════════════════════════════════
 
 [node name="KillZone" type="Area2D" parent="."]
 position = Vector2(1760, 700)
