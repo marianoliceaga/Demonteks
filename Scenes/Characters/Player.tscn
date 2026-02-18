@@ -233,7 +233,7 @@ size = Vector2(16, 32)
 size = Vector2(20, 16)
 
 [node name="Player" type="CharacterBody2D" unique_id=2066639339 groups=["player"]]
-collision_mask = 4
+collision_mask = 7
 script = ExtResource("1_player")
 AnimatedSpritePath = NodePath("AnimatedSprite2D")
 CollisionShapePath = NodePath("CollisionShape2D")
