@@ -1,61 +1,54 @@
-[gd_scene format=3 uid="uid://bc618thjoy8ub"]
+[gd_scene format=3 uid="uid://x5pm7vvasqky"]
 
 [ext_resource type="Script" uid="uid://djlvgg7k6cuh" path="res://Scripts/Player/PlayerController.cs" id="1_player"]
 [ext_resource type="Script" uid="uid://qmp5rsg7x2av" path="res://Scripts/Player/PlayerStats.cs" id="2_stats"]
 [ext_resource type="Script" uid="uid://cu1lhcapq1juc" path="res://Scripts/Player/PlayerCombat.cs" id="3_combat"]
-
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_000.png" id="idle_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_001.png" id="idle_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_002.png" id="idle_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_003.png" id="idle_3"]
-
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_000.png" id="walk_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_001.png" id="walk_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_002.png" id="walk_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_003.png" id="walk_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_004.png" id="walk_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_005.png" id="walk_5"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_006.png" id="walk_6"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_007.png" id="walk_7"]
-
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_000.png" id="run_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_001.png" id="run_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_002.png" id="run_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_003.png" id="run_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_004.png" id="run_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_005.png" id="run_5"]
-
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_000.png" id="jump_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_001.png" id="jump_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_002.png" id="jump_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_003.png" id="jump_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_004.png" id="jump_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_005.png" id="jump_5"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_006.png" id="jump_6"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_007.png" id="jump_7"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_008.png" id="jump_8"]
-
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_000.png" id="attack_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_001.png" id="attack_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_002.png" id="attack_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_003.png" id="attack_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_004.png" id="attack_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_005.png" id="attack_5"]
-
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_000.png" id="hurt_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_001.png" id="hurt_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_002.png" id="hurt_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_003.png" id="hurt_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_004.png" id="hurt_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_005.png" id="hurt_5"]
-
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_000.png" id="death_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_001.png" id="death_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_002.png" id="death_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_003.png" id="death_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_004.png" id="death_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_005.png" id="death_5"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_006.png" id="death_6"]
+[ext_resource type="Texture2D" uid="uid://ggu3qdletjl1" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_000.png" id="attack_0"]
+[ext_resource type="Texture2D" uid="uid://b1u7mdh6wy7rp" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_001.png" id="attack_1"]
+[ext_resource type="Texture2D" uid="uid://bwdc0enird4qn" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_002.png" id="attack_2"]
+[ext_resource type="Texture2D" uid="uid://c4d6cdqqdvbvm" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_003.png" id="attack_3"]
+[ext_resource type="Texture2D" uid="uid://bpjeyndcnl7wg" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_004.png" id="attack_4"]
+[ext_resource type="Texture2D" uid="uid://rlnkjfxet66y" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_005.png" id="attack_5"]
+[ext_resource type="Texture2D" uid="uid://nyhl8qh5elbr" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_000.png" id="death_0"]
+[ext_resource type="Texture2D" uid="uid://baaeqipgfne7q" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_001.png" id="death_1"]
+[ext_resource type="Texture2D" uid="uid://bg1m17qcb13gd" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_002.png" id="death_2"]
+[ext_resource type="Texture2D" uid="uid://ya673l226vh0" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_003.png" id="death_3"]
+[ext_resource type="Texture2D" uid="uid://dtrx3sgo8t1s5" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_004.png" id="death_4"]
+[ext_resource type="Texture2D" uid="uid://m2gh6ko5ddpv" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_005.png" id="death_5"]
+[ext_resource type="Texture2D" uid="uid://cdo4mp6kdfc5u" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_006.png" id="death_6"]
+[ext_resource type="Texture2D" uid="uid://dkb1igu7odoo2" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_000.png" id="hurt_0"]
+[ext_resource type="Texture2D" uid="uid://c7vakv4dc1ymd" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_001.png" id="hurt_1"]
+[ext_resource type="Texture2D" uid="uid://bvr1ncmudn8ow" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_002.png" id="hurt_2"]
+[ext_resource type="Texture2D" uid="uid://jk7fxf5k43mh" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_003.png" id="hurt_3"]
+[ext_resource type="Texture2D" uid="uid://dcwgwplywyhxo" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_004.png" id="hurt_4"]
+[ext_resource type="Texture2D" uid="uid://by8huhw2ilogy" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_005.png" id="hurt_5"]
+[ext_resource type="Texture2D" uid="uid://ddaup6tylc46f" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_000.png" id="idle_0"]
+[ext_resource type="Texture2D" uid="uid://c2dq7kq3oep31" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_001.png" id="idle_1"]
+[ext_resource type="Texture2D" uid="uid://dlh8gcyqvdumf" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_002.png" id="idle_2"]
+[ext_resource type="Texture2D" uid="uid://ch4bbv8ce0pss" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_003.png" id="idle_3"]
+[ext_resource type="Texture2D" uid="uid://xm6wvdba36g3" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_000.png" id="jump_0"]
+[ext_resource type="Texture2D" uid="uid://q7txjsf38x6i" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_001.png" id="jump_1"]
+[ext_resource type="Texture2D" uid="uid://cvc17rqva5gj" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_002.png" id="jump_2"]
+[ext_resource type="Texture2D" uid="uid://de1hhjq8f022g" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_003.png" id="jump_3"]
+[ext_resource type="Texture2D" uid="uid://tgb4hwssukg" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_004.png" id="jump_4"]
+[ext_resource type="Texture2D" uid="uid://b3fbx4kjccldu" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_005.png" id="jump_5"]
+[ext_resource type="Texture2D" uid="uid://daqd77rqnccr5" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_006.png" id="jump_6"]
+[ext_resource type="Texture2D" uid="uid://cel2qrjle601d" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_007.png" id="jump_7"]
+[ext_resource type="Texture2D" uid="uid://p0vsdm22g6vx" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_008.png" id="jump_8"]
+[ext_resource type="Texture2D" uid="uid://ba2u5tg4gca1x" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_000.png" id="run_0"]
+[ext_resource type="Texture2D" uid="uid://dmdyw5qb3hc37" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_001.png" id="run_1"]
+[ext_resource type="Texture2D" uid="uid://bnjbim4ko5c5w" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_002.png" id="run_2"]
+[ext_resource type="Texture2D" uid="uid://bw032ptekb1d0" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_003.png" id="run_3"]
+[ext_resource type="Texture2D" uid="uid://duhfn4qkiowq2" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_004.png" id="run_4"]
+[ext_resource type="Texture2D" uid="uid://ci0s8pxp1r04y" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_005.png" id="run_5"]
+[ext_resource type="Texture2D" uid="uid://dypgkx1yido13" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_000.png" id="walk_0"]
+[ext_resource type="Texture2D" uid="uid://6524cghe4h0g" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_001.png" id="walk_1"]
+[ext_resource type="Texture2D" uid="uid://cahivhmimc5ss" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_002.png" id="walk_2"]
+[ext_resource type="Texture2D" uid="uid://cxkgn42mih706" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_003.png" id="walk_3"]
+[ext_resource type="Texture2D" uid="uid://cx0kb7lgwi0fw" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_004.png" id="walk_4"]
+[ext_resource type="Texture2D" uid="uid://b1yv0tk4xi26w" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_005.png" id="walk_5"]
+[ext_resource type="Texture2D" uid="uid://cc1hb2qwjiavv" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_006.png" id="walk_6"]
+[ext_resource type="Texture2D" uid="uid://bdfqfto1ditvv" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_007.png" id="walk_7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
@@ -239,37 +232,36 @@ size = Vector2(16, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
 size = Vector2(20, 16)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
-collision_layer = 1
+[node name="Player" type="CharacterBody2D" unique_id=2066639339 groups=["player"]]
 collision_mask = 4
 script = ExtResource("1_player")
 AnimatedSpritePath = NodePath("AnimatedSprite2D")
 CollisionShapePath = NodePath("CollisionShape2D")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=525423757]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"idle"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1154734011]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_body")
 
-[node name="PlayerStats" type="Node" parent="."]
+[node name="PlayerStats" type="Node" parent="." unique_id=1519165181]
 script = ExtResource("2_stats")
 
-[node name="PlayerCombat" type="Node2D" parent="."]
+[node name="PlayerCombat" type="Node2D" parent="." unique_id=774713060]
 script = ExtResource("3_combat")
 HitboxPath = NodePath("Hitbox")
 
-[node name="Hitbox" type="Area2D" parent="PlayerCombat"]
+[node name="Hitbox" type="Area2D" parent="PlayerCombat" unique_id=1534915021]
 position = Vector2(20, -16)
 collision_layer = 64
 collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCombat/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCombat/Hitbox" unique_id=831375667]
 shape = SubResource("RectangleShape2D_hitbox")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2077133519]
 position = Vector2(0, -16)
 position_smoothing_enabled = true

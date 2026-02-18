@@ -230,11 +230,15 @@ namespace Demonteks.Player
 			{
 				_facingRight = true;
 				_animatedSprite.FlipH = false;
+				// Ensure combat hitbox faces right
+				if (_combat != null) _combat.Scale = new Vector2(1, 1);
 			}
 			else if (_inputDirection.X < 0)
 			{
 				_facingRight = false;
 				_animatedSprite.FlipH = true;
+				// Ensure combat hitbox faces left
+				if (_combat != null) _combat.Scale = new Vector2(-1, 1);
 			}
 		}
 

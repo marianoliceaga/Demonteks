@@ -262,6 +262,14 @@ namespace Demonteks.Enemy
 
             GD.Print($"{Type} Demontek took {damage} damage. Health: {_currentHealth}/{MaxHealth}");
 
+            // Visual feedback - Flash Red
+            if (_animatedSprite != null)
+            {
+                var tween = CreateTween();
+                tween.TweenProperty(_animatedSprite, "modulate", Colors.Red, 0.1f);
+                tween.TweenProperty(_animatedSprite, "modulate", Colors.White, 0.1f);
+            }
+
             if (_currentHealth <= 0)
             {
                 Die();
@@ -285,8 +293,8 @@ namespace Demonteks.Enemy
             _stateMachine.ChangeState(new DeathState());
 
             // Remove collision
-            SetCollisionLayerValue(1, false);
-            SetCollisionMaskValue(1, false);
+            SetCollisionLayerValue(2, false); // Disable Enemy layer
+            SetCollisionMaskValue(1, false); // Disable World collision
 
             // Queue free after death animation
             GetTree().CreateTimer(2.0f).Timeout += QueueFree;

@@ -15,7 +15,7 @@ namespace Demonteks.Player
         [Export] public float AttackRange { get; set; } = 50f;
         [Export] public float AttackCooldown { get; set; } = 0.5f;
         [Export] public NodePath HitboxPath { get; set; }
-        
+
         [ExportCategory("Starting Weapon")]
         [Export] public WeaponType StartingWeapon { get; set; } = WeaponType.Knife;
         #endregion
@@ -25,7 +25,7 @@ namespace Demonteks.Player
         private CollisionShape2D _hitboxShape;
         private float _attackCooldownTimer = 0f;
         private bool _isAttacking = false;
-        
+
         private Dictionary<WeaponType, Weapon> _weapons = new();
         private Weapon _currentWeapon;
         private PlayerStats _playerStats;
@@ -45,19 +45,19 @@ namespace Demonteks.Player
             _hitbox = GetNode<Area2D>(HitboxPath);
             _hitboxShape = _hitbox.GetNode<CollisionShape2D>("CollisionShape2D");
             _playerStats = GetParent().GetNode<PlayerStats>("PlayerStats");
-            
+
             // Initialize weapons
             InitializeWeapons();
-            
-            // Set starting weapon
-            EquipWeapon(StartingWeapon);
-            
+
+            // Set starting weapon and unlock it
+            EquipWeapon(StartingWeapon, unlockIfLocked: true);
+
             // Connect signals
             _hitbox.BodyEntered += OnHitboxBodyEntered;
-            
+
             // Disable hitbox initially
             _hitbox.Monitoring = false;
-            
+
             GD.Print($"PlayerCombat initialized. Starting weapon: {_currentWeapon.WeaponName}");
         }
 
@@ -85,7 +85,7 @@ namespace Demonteks.Player
                 Cooldown = 0.4f,
                 Description = "A simple combat knife. Fast but weak."
             };
-            
+
             // Machete - Found in Part 2
             _weapons[WeaponType.Machete] = new Weapon
             {
@@ -97,7 +97,7 @@ namespace Demonteks.Player
                 Cooldown = 0.55f,
                 Description = "A heavy jungle blade. Slower but more powerful."
             };
-            
+
             // Sword - Ancient weapon from ruins (Part 2)
             _weapons[WeaponType.Sword] = new Weapon
             {
@@ -109,7 +109,7 @@ namespace Demonteks.Player
                 Cooldown = 0.5f,
                 Description = "An ancient blade with mysterious power."
             };
-            
+
             // Demontek Saber - Taken from enemies (Part 3)
             _weapons[WeaponType.DemontekSaber] = new Weapon
             {
@@ -121,7 +121,7 @@ namespace Demonteks.Player
                 Cooldown = 0.45f,
                 Description = "A curved blade from the Demontek arsenal."
             };
-            
+
             // Sawtooth - Brutal Demontek weapon (Part 3)
             _weapons[WeaponType.Sawtooth] = new Weapon
             {
@@ -133,7 +133,7 @@ namespace Demonteks.Player
                 Cooldown = 0.6f,
                 Description = "A serrated weapon designed for maximum carnage."
             };
-            
+
             // Alien Sword - Elite Demontek weapon (Part 3)
             _weapons[WeaponType.AlienSword] = new Weapon
             {
@@ -152,20 +152,27 @@ namespace Demonteks.Player
         /// <summary>
         /// Equip a weapon by type
         /// </summary>
-        public void EquipWeapon(WeaponType type)
+        public void EquipWeapon(WeaponType type, bool unlockIfLocked = false)
         {
             if (!_weapons.ContainsKey(type))
             {
                 GD.PushWarning($"Weapon type {type} not found!");
                 return;
             }
-            
+
             _currentWeapon = _weapons[type];
+
+            // Unlock the weapon if requested (for starting weapon)
+            if (unlockIfLocked && !_currentWeapon.IsUnlocked)
+            {
+                _currentWeapon.IsUnlocked = true;
+            }
+
             AttackRange = _currentWeapon.Range;
             AttackCooldown = _currentWeapon.Cooldown;
-            
+
             EmitSignal(SignalName.WeaponChanged, _currentWeapon.WeaponName);
-            GD.Print($"Equipped weapon: {_currentWeapon.WeaponName}");
+            GD.Print($"Equipped weapon: {_currentWeapon.WeaponName} (Unlocked: {_currentWeapon.IsUnlocked})");
         }
 
         /// <summary>
@@ -178,13 +185,13 @@ namespace Demonteks.Player
                 GD.PushWarning($"Weapon type {type} not found!");
                 return;
             }
-            
+
             Weapon weapon = _weapons[type];
             weapon.IsUnlocked = true;
-            
+
             EmitSignal(SignalName.WeaponPickedUp, weapon.WeaponName);
             EquipWeapon(type);
-            
+
             GD.Print($"Picked up new weapon: {weapon.WeaponName}");
         }
 
@@ -194,19 +201,19 @@ namespace Demonteks.Player
         public void CycleWeapon(bool forward = true)
         {
             List<WeaponType> unlockedWeapons = new List<WeaponType>();
-            
+
             foreach (var kvp in _weapons)
             {
                 if (kvp.Value.IsUnlocked)
                     unlockedWeapons.Add(kvp.Key);
             }
-            
+
             if (unlockedWeapons.Count <= 1) return;
-            
+
             int currentIndex = unlockedWeapons.IndexOf(_currentWeapon.Type);
             int nextIndex = forward ? (currentIndex + 1) % unlockedWeapons.Count
                                    : (currentIndex - 1 + unlockedWeapons.Count) % unlockedWeapons.Count;
-            
+
             EquipWeapon(unlockedWeapons[nextIndex]);
         }
         #endregion
@@ -217,26 +224,32 @@ namespace Demonteks.Player
         /// </summary>
         public void ExecuteAttack()
         {
-            if (!CanAttack) return;
-            
+            if (!CanAttack)
+            {
+                GD.Print($"Cannot attack - CanAttack: {CanAttack}, IsAttacking: {_isAttacking}, Cooldown: {_attackCooldownTimer}, CanAct: {_playerStats.CanAct}, WeaponUnlocked: {(_currentWeapon != null ? _currentWeapon.IsUnlocked : false)}");
+                return;
+            }
+
             _isAttacking = true;
             _attackCooldownTimer = AttackCooldown;
-            
+
             // Calculate damage with player stats
             int finalDamage = _playerStats.CalculateDamage(_currentWeapon.BaseDamage);
-            
+
             // Enable hitbox for brief moment
             _hitbox.Monitoring = true;
-            
+            GD.Print($"Hitbox enabled - Position: {_hitbox.GlobalPosition}, Monitoring: {_hitbox.Monitoring}");
+
             EmitSignal(SignalName.AttackExecuted, _currentWeapon.WeaponName, finalDamage);
-            
+
             // Disable hitbox after attack duration
-            GetTree().CreateTimer(0.2f).Timeout += () => 
+            GetTree().CreateTimer(0.4f).Timeout += () =>
             {
                 _hitbox.Monitoring = false;
                 _isAttacking = false;
+                GD.Print("Hitbox disabled");
             };
-            
+
             GD.Print($"Attack executed: {_currentWeapon.WeaponName} ({finalDamage} damage)");
         }
 
@@ -245,21 +258,32 @@ namespace Demonteks.Player
         /// </summary>
         private void OnHitboxBodyEntered(Node2D body)
         {
+            GD.Print($"Hitbox detected body: {body.Name}, IsAttacking: {_isAttacking}, IsEnemy: {body.IsInGroup("enemies")}");
+
             if (!_isAttacking) return;
-            
+
             // Check if it's an enemy
             if (body.IsInGroup("enemies"))
             {
                 int damage = _playerStats.CalculateDamage(_currentWeapon.BaseDamage);
                 EmitSignal(SignalName.EnemyHit, body, damage);
-                
-                // Apply damage to enemy
-                if (body.HasMethod("TakeDamage"))
+
+                // Try to damage DemontekAI specifically
+                if (body is Demonteks.Enemy.DemontekAI demontek)
+                {
+                    demontek.TakeDamage(damage);
+                    GD.Print($"Hit Demontek: {body.Name} for {damage} damage");
+                }
+                // Fallback for other objects with TakeDamage method
+                else if (body.HasMethod("TakeDamage"))
                 {
                     body.Call("TakeDamage", damage);
+                    GD.Print($"Hit generic enemy: {body.Name} for {damage} damage");
                 }
-                
-                GD.Print($"Hit enemy: {body.Name} for {damage} damage");
+                else
+                {
+                    GD.PushWarning($"Enemy {body.Name} has no supported damage method!");
+                }
             }
         }
         #endregion
@@ -271,7 +295,7 @@ namespace Demonteks.Player
         public Godot.Collections.Dictionary<string, Variant> GetSaveData()
         {
             var weaponData = new Godot.Collections.Array();
-            
+
             foreach (var weapon in _weapons.Values)
             {
                 if (weapon.IsUnlocked)
@@ -279,7 +303,7 @@ namespace Demonteks.Player
                     weaponData.Add((int)weapon.Type);
                 }
             }
-            
+
             return new Godot.Collections.Dictionary<string, Variant>
             {
                 { "unlocked_weapons", weaponData },
@@ -304,7 +328,7 @@ namespace Demonteks.Player
                     }
                 }
             }
-            
+
             if (data.ContainsKey("current_weapon"))
             {
                 WeaponType type = (WeaponType)data["current_weapon"].AsInt32();
