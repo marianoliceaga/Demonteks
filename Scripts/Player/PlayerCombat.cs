@@ -57,6 +57,7 @@ namespace Demonteks.Player
 
             // Disable hitbox initially
             _hitbox.Monitoring = false;
+            _hitbox.Monitorable = false;
 
             GD.Print($"PlayerCombat initialized. Starting weapon: {_currentWeapon.WeaponName}");
         }
@@ -238,14 +239,20 @@ namespace Demonteks.Player
 
             // Enable hitbox for brief moment
             _hitbox.Monitoring = true;
+            _hitbox.Monitorable = true;
             GD.Print($"Hitbox enabled - Position: {_hitbox.GlobalPosition}, Monitoring: {_hitbox.Monitoring}");
 
             EmitSignal(SignalName.AttackExecuted, _currentWeapon.WeaponName, finalDamage);
+
+            // Check bodies already overlapping the hitbox (BodyEntered won't fire for these)
+            // We use CallDeferred to allow physics to sync after enabling Monitoring
+            CallDeferred(nameof(CheckOverlappingBodies));
 
             // Disable hitbox after attack duration
             GetTree().CreateTimer(0.4f).Timeout += () =>
             {
                 _hitbox.Monitoring = false;
+                _hitbox.Monitorable = false;
                 _isAttacking = false;
                 GD.Print("Hitbox disabled");
             };
@@ -254,36 +261,57 @@ namespace Demonteks.Player
         }
 
         /// <summary>
-        /// Called when hitbox detects an enemy
+        /// Checks bodies already overlapping the hitbox at the moment of attack.
+        /// BodyEntered does NOT fire for bodies already inside when Monitoring is enabled.
+        /// </summary>
+        private void CheckOverlappingBodies()
+        {
+            if (!_isAttacking) return;
+
+            foreach (Node2D body in _hitbox.GetOverlappingBodies())
+            {
+                GD.Print($"Overlapping body found: {body.Name}, IsEnemy: {body.IsInGroup("enemies")}");
+                ApplyDamageToBody(body);
+            }
+        }
+
+        /// <summary>
+        /// Called when a body enters the hitbox during the attack swing.
         /// </summary>
         private void OnHitboxBodyEntered(Node2D body)
         {
-            GD.Print($"Hitbox detected body: {body.Name}, IsAttacking: {_isAttacking}, IsEnemy: {body.IsInGroup("enemies")}");
+            GD.Print($"Hitbox BodyEntered: {body.Name}, IsAttacking: {_isAttacking}, IsEnemy: {body.IsInGroup("enemies")}");
 
             if (!_isAttacking) return;
 
-            // Check if it's an enemy
-            if (body.IsInGroup("enemies"))
-            {
-                int damage = _playerStats.CalculateDamage(_currentWeapon.BaseDamage);
-                EmitSignal(SignalName.EnemyHit, body, damage);
+            ApplyDamageToBody(body);
+        }
 
-                // Try to damage DemontekAI specifically
-                if (body is Demonteks.Enemy.DemontekAI demontek)
-                {
-                    demontek.TakeDamage(damage);
-                    GD.Print($"Hit Demontek: {body.Name} for {damage} damage");
-                }
-                // Fallback for other objects with TakeDamage method
-                else if (body.HasMethod("TakeDamage"))
-                {
-                    body.Call("TakeDamage", damage);
-                    GD.Print($"Hit generic enemy: {body.Name} for {damage} damage");
-                }
-                else
-                {
-                    GD.PushWarning($"Enemy {body.Name} has no supported damage method!");
-                }
+        /// <summary>
+        /// Applies damage to a body if it is an enemy.
+        /// </summary>
+        private void ApplyDamageToBody(Node2D body)
+        {
+            if (!body.IsInGroup("enemies")) return;
+
+            int damage = _playerStats.CalculateDamage(_currentWeapon.BaseDamage);
+            EmitSignal(SignalName.EnemyHit, body, damage);
+
+            // Try to damage DemontekAI specifically
+            if (body is Demonteks.Enemy.DemontekAI demontek)
+            {
+                demontek.TakeDamage(damage);
+                GD.Print($"Hit Demontek: {body.Name} for {damage} damage");
+            }
+            // Fallback for other objects with TakeDamage method
+            else if (body.HasMethod("TakeDamage"))
+            {
+                body.Call("TakeDamage", damage);
+                GD.Print($"Hit generic enemy: {body.Name} for {damage} damage");
+            }
+            else
+            {
+                GD.PushWarning($"Enemy {body.Name} has no supported damage method!");
             }
         }
         #endregion

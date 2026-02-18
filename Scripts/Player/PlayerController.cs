@@ -99,14 +99,36 @@ namespace Demonteks.Player
 		{
 			float deltaF = (float)delta;
 
+			// When dead: only apply gravity so the body falls to the floor, then freeze
+			if (_stats != null && _stats.IsDead)
+			{
+				if (!IsOnFloor())
+				{
+					_velocity.Y += Gravity * deltaF;
+				}
+				else
+				{
+					_velocity.Y = 0;
+					_velocity.X = 0;
+				}
+				Velocity = _velocity;
+				MoveAndSlide();
+				UpdateAnimation();
+				return;
+			}
+
 			// Update timers
 			UpdateTimers(deltaF);
 
-			// Process input
+			// Process input (reads current input state, does NOT reset single-frame flags)
 			ProcessInput();
 
-			// Update state machine
+			// Update state machine (reads _attackPressed / _jumpPressed here)
 			_stateMachine.Update(deltaF);
+
+			// Reset single-frame inputs AFTER the state machine has had a chance to read them
+			_jumpPressed = false;
+			_attackPressed = false;
 
 			// Apply gravity
 			if (!IsOnFloor())
@@ -171,10 +193,8 @@ namespace Demonteks.Player
 			{
 				ProcessDesktopInput();
 			}
-
-			// Reset single-frame inputs
-			_jumpPressed = false;
-			_attackPressed = false;
+			// Note: single-frame resets (_jumpPressed, _attackPressed) happen in _PhysicsProcess
+			// AFTER _stateMachine.Update(), so the state machine can read them.
 		}
 
 		private void ProcessDesktopInput()
@@ -187,6 +207,12 @@ namespace Demonteks.Player
 
 			if (Input.IsActionPressed("move_right"))
 				_inputDirection.X += 1;
+
+			if (Input.IsActionPressed("attack"))
+				_attackPressed = true;
+
+			if (Input.IsActionPressed("crouch"))
+				_crouchPressed = true;
 
 			_inputDirection = _inputDirection.Normalized();
 		}
@@ -314,7 +340,9 @@ namespace Demonteks.Player
 					PlaySafe("hurt");
 					break;
 				case "DeathState":
-					PlaySafe("death");
+					// Only start the death animation once — never restart it once it's playing/finished
+					if (_animatedSprite.Animation != "death")
+						PlaySafe("death");
 					break;
 			}
 		}
@@ -418,6 +446,10 @@ namespace Demonteks.Player
 		{
 			EmitSignal(SignalName.PlayerDeath);
 			_stateMachine.ChangeState(new DeathState());
+
+			// Tell GameManager to start the respawn timer
+			if (_gameManager != null)
+				_gameManager.OnPlayerDied();
 		}
 
 		private void OnAttackExecuted(string weaponName, int damage)
