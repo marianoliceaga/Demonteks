@@ -301,6 +301,25 @@ namespace Demonteks.Enemy
 
             GD.Print($"{Type} Demontek died!");
         }
+
+        /// <summary>
+        /// Respawn enemy at starting position with health intact (called when falling into void)
+        /// </summary>
+        public void Respawn()
+        {
+            if (_isDead) return;
+
+            GlobalPosition = _startPosition;
+            _velocity = Vector2.Zero;
+
+            _patrolDirection = 1f;
+            _patrolDistanceTraveled = 0f;
+            _target = null;
+
+            _stateMachine.ChangeState(new PatrolState());
+
+            GD.Print($"{Type} Demontek respawned at {_startPosition}. Health: {_currentHealth}/{MaxHealth}");
+        }
         #endregion
 
         #region Detection

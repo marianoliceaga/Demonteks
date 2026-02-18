@@ -15,12 +15,22 @@ namespace Demonteks.Utils
 
         private void OnBodyEntered(Node2D body)
         {
-            if (!body.IsInGroup("player")) return;
+            if (body.IsInGroup("player"))
+            {
+                GD.Print("Player fell into kill zone!");
 
-            GD.Print("Player fell into kill zone!");
+                var gameManager = GetNode<Management.GameManager>("/root/GameManager");
+                gameManager?.OnPlayerDied();
+            }
+            else if (body.IsInGroup("enemies"))
+            {
+                GD.Print($"Enemy {body.Name} fell into kill zone, respawning...");
 
-            var gameManager = GetNode<Management.GameManager>("/root/GameManager");
-            gameManager?.OnPlayerDied();
+                if (body.HasMethod("Respawn"))
+                {
+                    body.Call("Respawn");
+                }
+            }
         }
     }
 }

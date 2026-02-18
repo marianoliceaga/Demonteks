@@ -125,10 +125,6 @@ position = Vector2(2880, 336)
 
 [node name="Pickups" type="Node2D" parent="." unique_id=1292251779]
 
-[node name="KnifePickup" parent="Pickups" unique_id=928956684 instance=ExtResource("11_weapon")]
-position = Vector2(200, 420)
-WeaponType = 0
-
 [node name="HealthPickup1" type="Area2D" parent="Pickups" unique_id=1020187895]
 position = Vector2(2000, 410)
 collision_layer = 16

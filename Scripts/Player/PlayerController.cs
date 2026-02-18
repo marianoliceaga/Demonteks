@@ -18,6 +18,7 @@ namespace Demonteks.Player
 		[Export] public float Gravity { get; set; } = 980f;
 		[Export] public float CoyoteTime { get; set; } = 0.1f; // Time after leaving platform where jump is still valid
 		[Export] public float JumpBufferTime { get; set; } = 0.15f; // Input buffer for jump
+		[Export] public int MaxJumps { get; set; } = 2; // Number of jumps allowed (1 = single jump, 2 = double jump)
 
 		[ExportCategory("Combat")]
 		[Export] public float AttackCooldown { get; set; } = 0.5f;
@@ -42,6 +43,7 @@ namespace Demonteks.Player
 		private float _jumpBufferTimer = 0f;
 		private bool _isRunning = false;
 		private bool _isCrouching = false;
+		private int _jumpsRemaining;
 
 		// Input tracking
 		private Vector2 _inputDirection = Vector2.Zero;
@@ -51,6 +53,9 @@ namespace Demonteks.Player
 
 		// Directional facing
 		private bool _facingRight = true;
+
+		// Death animation tracking
+		private bool _deathAnimationPlayed = false;
 		#endregion
 
 		#region Signals
@@ -91,6 +96,9 @@ namespace Demonteks.Player
 				_gameManager.SetCheckpoint(GlobalPosition);
 				GD.Print($"Player registered with GameManager. Spawn checkpoint set at {GlobalPosition}");
 			}
+
+			// Initialize jumps
+			_jumpsRemaining = MaxJumps;
 
 			GD.Print($"PlayerController initialized. Mobile mode: {IsMobileMode}");
 		}
@@ -139,6 +147,8 @@ namespace Demonteks.Player
 			{
 				_coyoteTimer = CoyoteTime;
 				_velocity.Y = 0;
+				// Reset jumps when landing
+				_jumpsRemaining = MaxJumps;
 			}
 
 			// Handle jump buffering
@@ -270,12 +280,13 @@ namespace Demonteks.Player
 
 		public void Jump()
 		{
-			if (!_stats.CanAct) return;
+			if (!_stats.CanAct || _jumpsRemaining <= 0) return;
 
 			_velocity.Y = JumpVelocity;
+			_jumpsRemaining--;
 			_coyoteTimer = 0;
 
-			GD.Print("Player jumped!");
+			GD.Print($"Player jumped! Jumps remaining: {_jumpsRemaining}");
 		}
 
 		public void Crouch()
@@ -340,9 +351,12 @@ namespace Demonteks.Player
 					PlaySafe("hurt");
 					break;
 				case "DeathState":
-					// Only start the death animation once — never restart it once it's playing/finished
-					if (_animatedSprite.Animation != "death")
+					// Only play the death animation once and never restart it
+					if (!_deathAnimationPlayed)
+					{
 						PlaySafe("death");
+						_deathAnimationPlayed = true;
+					}
 					break;
 			}
 		}
@@ -401,6 +415,11 @@ namespace Demonteks.Player
 			return _jumpBufferTimer > 0;
 		}
 
+		public bool CanDoubleJump()
+		{
+			return _jumpsRemaining > 0;
+		}
+
 		public bool WantsToAttack()
 		{
 			return _attackPressed;
@@ -431,6 +450,12 @@ namespace Demonteks.Player
 			{
 				_stateMachine.ChangeState(new IdleState());
 			}
+
+			// Reset death animation flag so death can be played again
+			_deathAnimationPlayed = false;
+
+			// Reset jumps
+			_jumpsRemaining = MaxJumps;
 
 			GD.Print("Player revived!");
 		}
@@ -580,6 +605,9 @@ namespace Demonteks.Player
 		public IPlayerState Update(PlayerController player, float delta)
 		{
 			player.Move(delta);
+
+			// Allow double jumping while falling
+			if (player.WantsToJump() && player.CanDoubleJump()) return new JumpState();
 
 			if (player.IsOnFloor())
 			{

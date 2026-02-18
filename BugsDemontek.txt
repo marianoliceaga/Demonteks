@@ -1,8 +1,9 @@
--When the Player dies it's still in a falling animation loop instead of falling backwards once and staying on the floor.
--The Player should be able to do a "double jump".
--The platforms are unreacheable, too high.
+-Demonteks should not be pushable by the Player.
+-Demonteks should not jump to the void.
 -If a Demontek is pushed to the void, it should respawn with his health intact, like the Player.
+-The Demonteks attacks are lame, they don't go all the way to try to kill me
+-Las plataformas tendrían que tener tiles como si fueran copas de arboles
 -The Demontek attacks look bad, make sure they are using the cross punch attack animations.
-
-
+-The HUD is too big, make it 1/4 its size
+-Make the camera 
 -Levels XYZ are too small, they should be larger, double their size.
