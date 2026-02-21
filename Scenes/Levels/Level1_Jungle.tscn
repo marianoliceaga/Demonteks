@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b73do0w2oan5i"]
 
-[ext_resource type="PackedScene" path="res://Scenes/Characters/Player.tscn" id="1_player"]
+[ext_resource type="PackedScene" uid="uid://x5pm7vvasqky" path="res://Scenes/Characters/Player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://Scenes/Characters/Demontek.tscn" id="2_demontek"]
 [ext_resource type="TileSet" uid="uid://b76hyvacdj2yg" path="res://Assets/tilesets/jungle_tileset_16x16.tres" id="3_tileset"]
 [ext_resource type="PackedScene" uid="uid://cpqm8y5xvn3ks" path="res://Scenes/Prefabs/Platform.tscn" id="4_platform"]
@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" path="res://Scenes/UI/HUD.tscn" id="8_hud"]
 [ext_resource type="PackedScene" uid="uid://dttb8i783ht3m" path="res://Scenes/UI/PauseMenu.tscn" id="9_pause"]
 [ext_resource type="Script" uid="uid://7twiyd1bo8c6" path="res://Scripts/Utils/LevelEndTrigger.cs" id="10_levelend"]
-[ext_resource type="PackedScene" uid="uid://dww8aiua5yj2b" path="res://Scenes/Prefabs/WeaponPickup.tscn" id="11_weapon"]
 [ext_resource type="Script" uid="uid://ctoegptmn0ent" path="res://Scripts/Utils/CameraFollow.cs" id="12_camera"]
 [ext_resource type="Script" uid="uid://bf8h6jfb721ho" path="res://Scripts/Utils/KillZone.cs" id="13_killzone"]
 

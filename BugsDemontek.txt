@@ -3,12 +3,12 @@ X-If a Demontek is pushed to the void, it should respawn with his health intact,
 X-The HUD is too big, make it 1/4 its size
 X-The enemy counter in the HUD is not counting killed enemies
 X-Make the camera zoom out a little
-X-The Demontek attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly
+X-The Demontek attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly and they attack facing the Player
 X-The Demontek attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
 
 Las plataformas tendrían que tener tiles como si fueran copas de arboles
 
 Nice to haves (difficult):
 -------------------------
--The Demontek attacks look bad, make sure they attack facing the enemy
+
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.

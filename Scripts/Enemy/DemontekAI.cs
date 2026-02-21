@@ -275,6 +275,9 @@ namespace Demonteks.Enemy
 
         private void UpdateFacing()
         {
+            // If attacking, do not override the left-right sprite flipping. Let the attack animation face naturally
+            if (_stateMachine.CurrentState is AttackState) return;
+
             if (_velocity.X > 0 && !_facingRight)
             {
                 _facingRight = true;
@@ -293,17 +296,17 @@ namespace Demonteks.Enemy
         {
             if (_attackCooldownTimer > 0 || _target == null) return;
 
-            // Face the target before attacking
+            // Face the target before attacking (update direction flag only, let animation handle visuals)
             float direction = Mathf.Sign(_target.GlobalPosition.X - GlobalPosition.X);
             if (direction > 0)
             {
                 _facingRight = true;
-                _animatedSprite.FlipH = false;
+                _animatedSprite.FlipH = false; // reset flip for directional anims
             }
             else if (direction < 0)
             {
                 _facingRight = false;
-                _animatedSprite.FlipH = true;
+                _animatedSprite.FlipH = false; // reset flip for directional anims
             }
 
             _attackCooldownTimer = AttackCooldown;
@@ -447,7 +450,9 @@ namespace Demonteks.Enemy
                     PlaySafe("run", "walk"); // fallback to walk if no run
                     break;
                 case "AttackState":
-                    // Use directional cross-punch animations
+                    // Use directional cross-punch animations and disable horizontal flipping
+                    _animatedSprite.FlipH = false;
+
                     if (_facingRight)
                         PlaySafe("attack_east");
                     else
