@@ -18,8 +18,8 @@ namespace Demonteks.Utils
         [ExportCategory("Limits")]
         [Export] public int LimitLeftValue { get; set; } = 0;
         [Export] public int LimitRightValue { get; set; } = 3200;
-        [Export] public int LimitTopValue { get; set; } = -200;
-        [Export] public int LimitBottomValue { get; set; } = 600;
+        [Export] public int LimitTopValue { get; set; } = -600;
+        [Export] public int LimitBottomValue { get; set; } = 1500;
 
         private Node2D _target;
 
