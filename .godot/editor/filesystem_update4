@@ -1,13 +1,6 @@
-res://Scripts/Player/PlayerController.cs
+res://Scenes/UI/MainMenu.tscn
+res://Scenes/UI/MainMenuController.cs
 res://Scripts/Management/AudioManager.cs
 res://Scripts/Management/SaveManager.cs
 res://Scripts/Management/GameManager.cs
-res://Scripts/Utils/LevelEndTrigger.cs
-res://Scripts/Utils/KillZone.cs
-res://Scripts/Utils/CameraFollow.cs
-res://Scripts/Utils/WeaponPickup.cs
-res://Scripts/UI/PauseMenuController.cs
-res://Scenes/UI/HUDController.cs
-res://Scripts/Enemy/DemontekAI.cs
-res://Scripts/Player/PlayerCombat.cs
-res://Scripts/Player/PlayerStats.cs
+res://BugsDemontek.txt

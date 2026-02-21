@@ -37,37 +37,26 @@ theme_override_constants/separation = 20
 
 [node name="Title" type="Label" parent="VBoxContainer" unique_id=1876363272]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme_override_font_sizes/font_size = 40
 text = "DEMONTEKS"
 horizontal_alignment = 1
 
-[node name="Subtitle" type="Label" parent="VBoxContainer" unique_id=1906621937]
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Fight. Survive. Escape."
-horizontal_alignment = 1
-
-[node name="Spacer" type="Control" parent="VBoxContainer" unique_id=1343424055]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
 [node name="NewGameButton" type="Button" parent="VBoxContainer" unique_id=671445447]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "New Game"
 
 [node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=1447615523]
-custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Continue"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=670989069]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Options"
 
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1869244273]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Quit"
 
@@ -86,5 +75,3 @@ grow_horizontal = 0
 grow_vertical = 0
 text = "v0.1.0-alpha"
 horizontal_alignment = 2
-
-

@@ -23,12 +23,18 @@
 [ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/running-6-frames/east/frame_004.png" id="run_4"]
 [ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/running-6-frames/east/frame_005.png" id="run_5"]
 
-[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/south/frame_000.png" id="attack_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/south/frame_001.png" id="attack_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/south/frame_002.png" id="attack_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/south/frame_003.png" id="attack_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/south/frame_004.png" id="attack_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/south/frame_005.png" id="attack_5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_000.png" id="attack_west_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_001.png" id="attack_west_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_002.png" id="attack_west_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_003.png" id="attack_west_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_004.png" id="attack_west_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_005.png" id="attack_west_5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_000.png" id="attack_east_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_001.png" id="attack_east_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_002.png" id="attack_east_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_003.png" id="attack_east_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_004.png" id="attack_east_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_005.png" id="attack_east_5"]
 
 [ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/taking-punch/west/frame_000.png" id="hurt_0"]
 [ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/taking-punch/west/frame_001.png" id="hurt_1"]
@@ -49,25 +55,48 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("attack_0")
+"texture": ExtResource("attack_west_0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_1")
+"texture": ExtResource("attack_west_1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_2")
+"texture": ExtResource("attack_west_2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_3")
+"texture": ExtResource("attack_west_3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_4")
+"texture": ExtResource("attack_west_4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_5")
+"texture": ExtResource("attack_west_5")
 }],
 "loop": false,
-"name": &"attack",
+"name": &"attack_west",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("attack_east_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_5")
+}],
+"loop": false,
+"name": &"attack_east",
 "speed": 10.0
 }, {
 "frames": [{
@@ -196,7 +225,7 @@ size = Vector2(16, 32)
 radius = 150.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
-size = Vector2(20, 16)
+size = Vector2(40, 24)
 
 [node name="Demontek" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
@@ -208,7 +237,7 @@ DetectionAreaPath = NodePath("DetectionArea")
 AttackAreaPath = NodePath("AttackArea")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -16)
+position = Vector2(0, 0)
 sprite_frames = SubResource("SpriteFrames_enemy")
 animation = &"idle"
 
@@ -224,7 +253,7 @@ collision_mask = 1
 shape = SubResource("CircleShape2D_detection")
 
 [node name="AttackArea" type="Area2D" parent="."]
-position = Vector2(20, -16)
+position = Vector2(10, -8)
 collision_layer = 128
 collision_mask = 1
 

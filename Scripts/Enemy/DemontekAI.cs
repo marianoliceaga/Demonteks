@@ -15,27 +15,32 @@ namespace Demonteks.Enemy
 
         [ExportCategory("Movement")]
         [Export] public float PatrolSpeed { get; set; } = 50f;
-        [Export] public float ChaseSpeed { get; set; } = 100f;
-        [Export] public float DetectionRange { get; set; } = 150f;
-        [Export] public float AttackRange { get; set; } = 40f;
+        [Export] public float ChaseSpeed { get; set; } = 150f;
+        [Export] public float DetectionRange { get; set; } = 200f;
+        [Export] public float AttackRange { get; set; } = 70f;
         [Export] public float PatrolDistance { get; set; } = 200f;
 
         [ExportCategory("Combat")]
         [Export] public int MaxHealth { get; set; } = 20;
-        [Export] public int Damage { get; set; } = 5;
-        [Export] public float AttackCooldown { get; set; } = 1.5f;
+        [Export] public int Damage { get; set; } = 10;
+        [Export] public float AttackCooldown { get; set; } = 0.6f;
         [Export] public float Gravity { get; set; } = 980f;
 
         [ExportCategory("References")]
         [Export] public NodePath AnimatedSpritePath { get; set; }
         [Export] public NodePath DetectionAreaPath { get; set; }
         [Export] public NodePath AttackAreaPath { get; set; }
+        [Export] public NodePath FloorRayPath { get; set; }
+
+        [ExportCategory("Void Detection")]
+        [Export] public float VoidThreshold { get; set; } = 1000f; // Y position below which to respawn
         #endregion
 
         #region Private Variables
         private AnimatedSprite2D _animatedSprite;
         private Area2D _detectionArea;
         private Area2D _attackArea;
+        private RayCast2D _floorRay;
 
         private int _currentHealth;
         private float _attackCooldownTimer = 0f;
@@ -71,6 +76,14 @@ namespace Demonteks.Enemy
             _animatedSprite = GetNode<AnimatedSprite2D>(AnimatedSpritePath);
             _detectionArea = GetNode<Area2D>(DetectionAreaPath);
             _attackArea = GetNode<Area2D>(AttackAreaPath);
+
+            // Setup floor ray for edge detection
+            if (FloorRayPath != null)
+            {
+                _floorRay = GetNode<RayCast2D>(FloorRayPath);
+                _floorRay.Enabled = true;
+                _floorRay.CollisionMask = 1; // World layer
+            }
 
             // Initialize stats based on type
             InitializeByType();
@@ -113,6 +126,13 @@ namespace Demonteks.Enemy
                 _velocity.Y = 0;
             }
 
+            // Check for void - respawn if fallen too far
+            if (GlobalPosition.Y > VoidThreshold)
+            {
+                Respawn();
+                return; // Skip rest of physics frame
+            }
+
             // Update state machine
             _stateMachine.Update(deltaF);
 
@@ -132,41 +152,41 @@ namespace Demonteks.Enemy
             {
                 case EnemyType.Normal:
                     MaxHealth = 20;
-                    Damage = 5;
-                    ChaseSpeed = 100f;
-                    DetectionRange = 150f;
+                    Damage = 10;
+                    ChaseSpeed = 140f;
+                    DetectionRange = 200f;
                     break;
 
                 case EnemyType.Guard:
                     MaxHealth = 25;
-                    Damage = 5;
-                    ChaseSpeed = 80f;
-                    DetectionRange = 200f;
+                    Damage = 10;
+                    ChaseSpeed = 120f;
+                    DetectionRange = 250f;
                     PatrolDistance = 150f;
                     break;
 
                 case EnemyType.Mutant:
                     MaxHealth = 50;
-                    Damage = 10;
-                    ChaseSpeed = 120f;
-                    DetectionRange = 180f;
-                    AttackCooldown = 1.2f;
+                    Damage = 15;
+                    ChaseSpeed = 160f;
+                    DetectionRange = 220f;
+                    AttackCooldown = 0.6f;
                     break;
 
                 case EnemyType.Goliath:
                     MaxHealth = 200;
-                    Damage = 20;
-                    ChaseSpeed = 70f;
-                    DetectionRange = 250f;
-                    AttackCooldown = 2.0f;
+                    Damage = 25;
+                    ChaseSpeed = 100f;
+                    DetectionRange = 300f;
+                    AttackCooldown = 0.8f;
                     break;
 
                 case EnemyType.King:
                     MaxHealth = 500;
-                    Damage = 30;
-                    ChaseSpeed = 90f;
-                    DetectionRange = 300f;
-                    AttackCooldown = 1.5f;
+                    Damage = 35;
+                    ChaseSpeed = 130f;
+                    DetectionRange = 350f;
+                    AttackCooldown = 0.5f;
                     break;
             }
         }
@@ -181,8 +201,16 @@ namespace Demonteks.Enemy
             _velocity.X = _patrolDirection * PatrolSpeed;
             _patrolDistanceTraveled += Mathf.Abs(_velocity.X * delta);
 
+            // Check for edge using raycast
+            bool edgeAhead = false;
+            if (_floorRay != null)
+            {
+                _floorRay.ForceRaycastUpdate();
+                edgeAhead = !_floorRay.IsColliding();
+            }
+
             // Turn around at patrol distance or edges
-            if (_patrolDistanceTraveled >= PatrolDistance || !IsOnFloor())
+            if (_patrolDistanceTraveled >= PatrolDistance || edgeAhead)
             {
                 TurnAround();
                 _patrolDistanceTraveled = 0;
@@ -241,6 +269,19 @@ namespace Demonteks.Enemy
         {
             if (_attackCooldownTimer > 0 || _target == null) return;
 
+            // Face the target before attacking
+            float direction = Mathf.Sign(_target.GlobalPosition.X - GlobalPosition.X);
+            if (direction > 0)
+            {
+                _facingRight = true;
+                _animatedSprite.FlipH = false;
+            }
+            else if (direction < 0)
+            {
+                _facingRight = false;
+                _animatedSprite.FlipH = true;
+            }
+
             _attackCooldownTimer = AttackCooldown;
             EmitSignal(SignalName.AttackedPlayer, Damage);
 
@@ -291,6 +332,10 @@ namespace Demonteks.Enemy
 
             EmitSignal(SignalName.Died);
             _stateMachine.ChangeState(new DeathState());
+
+            // Record enemy kill in GameManager
+            var gameManager = GetNode<Management.GameManager>("/root/GameManager");
+            gameManager?.RecordEnemyKilled();
 
             // Remove collision
             SetCollisionLayerValue(2, false); // Disable Enemy layer
@@ -378,7 +423,11 @@ namespace Demonteks.Enemy
                     PlaySafe("run", "walk"); // fallback to walk if no run
                     break;
                 case "AttackState":
-                    PlaySafe("attack");
+                    // Use directional cross-punch animations
+                    if (_facingRight)
+                        PlaySafe("attack_east");
+                    else
+                        PlaySafe("attack_west");
                     break;
                 case "HurtState":
                     PlaySafe("hurt");
@@ -501,9 +550,12 @@ namespace Demonteks.Enemy
             if (enemy.IsDead)
                 return new DeathState();
 
-            if (!enemy.CanSeeTarget)
+            // Don't give up easily - keep chasing even if slightly out of detection range
+            float distanceToTarget = enemy.DistanceToTarget;
+            if (distanceToTarget > enemy.DetectionRange * 1.5f)
                 return new ReturnState();
 
+            // Attack aggressively when close
             if (enemy.IsNearTarget)
                 return new AttackState();
 
@@ -516,13 +568,12 @@ namespace Demonteks.Enemy
 
     public class AttackState : IEnemyState
     {
-        private float _attackDuration = 0.8f;
+        private float _attackDuration = 0.5f;
         private float _timer = 0f;
         private bool _hasAttacked = false;
 
         public void Enter(DemontekAI enemy)
         {
-            enemy.StopMoving();
             _timer = 0f;
             _hasAttacked = false;
         }
@@ -531,8 +582,15 @@ namespace Demonteks.Enemy
         {
             _timer += delta;
 
-            // Execute attack at midpoint
-            if (!_hasAttacked && _timer >= _attackDuration / 2)
+            // Keep moving toward player during attack
+            if (enemy.Target != null)
+            {
+                float direction = Mathf.Sign(enemy.Target.GlobalPosition.X - enemy.GlobalPosition.X);
+                enemy.Velocity = new Vector2(direction * enemy.ChaseSpeed * 0.5f, enemy.Velocity.Y);
+            }
+
+            // Execute attack quickly
+            if (!_hasAttacked && _timer >= _attackDuration * 0.3f)
             {
                 enemy.Attack();
                 _hasAttacked = true;
@@ -541,8 +599,9 @@ namespace Demonteks.Enemy
             // Return to chase after attack completes
             if (_timer >= _attackDuration)
             {
+                // Continue attacking if still in range
                 if (enemy.IsNearTarget)
-                    return this; // Continue attacking
+                    return this;
                 else
                     return new ChaseState();
             }

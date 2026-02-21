@@ -1,9 +1,14 @@
--Demonteks should not be pushable by the Player.
--Demonteks should not jump to the void.
--If a Demontek is pushed to the void, it should respawn with his health intact, like the Player.
--The Demonteks attacks are lame, they don't go all the way to try to kill me
--Las plataformas tendrían que tener tiles como si fueran copas de arboles
--The Demontek attacks look bad, make sure they are using the cross punch attack animations.
--The HUD is too big, make it 1/4 its size
--Make the camera 
--Levels XYZ are too small, they should be larger, double their size.
+X-The Demonteks shouldn't fall to the void
+X-If a Demontek is pushed to the void, it should respawn with his health intact, like the Player.
+X-The HUD is too big, make it 1/4 its size
+X-The enemy counter in the HUD is not counting killed enemies
+X-Make the camera zoom out a little
+X-The Demontek attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly
+X-The Demontek attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
+
+Las plataformas tendrían que tener tiles como si fueran copas de arboles
+
+Nice to haves (difficult):
+-------------------------
+-The Demontek attacks look bad, make sure they attack facing the enemy
+-The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.

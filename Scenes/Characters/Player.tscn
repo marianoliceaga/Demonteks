@@ -239,7 +239,7 @@ AnimatedSpritePath = NodePath("AnimatedSprite2D")
 CollisionShapePath = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=525423757]
-position = Vector2(0, -16)
+position = Vector2(0, 0)
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"idle"
 
@@ -264,4 +264,5 @@ shape = SubResource("RectangleShape2D_hitbox")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2077133519]
 position = Vector2(0, -16)
+zoom = Vector2(0.4, 0.4)
 position_smoothing_enabled = true
