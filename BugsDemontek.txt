@@ -4,11 +4,10 @@ X-The HUD is too big, make it 1/4 its size
 X-The enemy counter in the HUD is not counting killed enemies
 X-Make the camera zoom out a little
 X-The Demontek attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly and they attack facing the Player
-X-The Demontek attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
-
-Las plataformas tendrían que tener tiles como si fueran copas de arboles
+-The floor should have all existing tile contiguiys have ground tiles below it, 3 
 
 Nice to haves (difficult):
 -------------------------
-
+-Las plataformas tendrían que tener tiles como si fueran copas de arboles
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
+-The Demontek attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
