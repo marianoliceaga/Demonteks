@@ -138,7 +138,31 @@ namespace Demonteks.Enemy
 
             // Apply movement
             Velocity = _velocity;
+
+            // Check for collision with player specifically to apply a small pushback
+            bool hitPlayer = false;
+            Vector2 pushDir = Vector2.Zero;
+
             MoveAndSlide();
+
+            // Post-move collision check to gently push enemies away from the player
+            for (int i = 0; i < GetSlideCollisionCount(); i++)
+            {
+                var collision = GetSlideCollision(i);
+                if (collision.GetCollider() is Node2D collider && collider.IsInGroup("player"))
+                {
+                    hitPlayer = true;
+                    // Push direction is from collider to this enemy
+                    pushDir = (GlobalPosition - collider.GlobalPosition).Normalized();
+                    break;
+                }
+            }
+
+            if (hitPlayer)
+            {
+                // Push the enemy back slightly to create space for the player
+                GlobalPosition += new Vector2(pushDir.X * 1.5f, 0);
+            }
 
             // Update animation
             UpdateAnimation();
