@@ -85,6 +85,61 @@ position = Vector2(2560, 304)
 [node name="TreePlatform9" parent="Platforms" unique_id=1664604227 instance=ExtResource("4_platform")]
 position = Vector2(2880, 368)
 
+
+[node name="SafetyFloor_1_L" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(288, 680)
+
+[node name="SafetyFloor_1_R" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(480, 680)
+
+[node name="SafetyFloor_2_L" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(544, 680)
+
+[node name="SafetyFloor_2_R" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(736, 680)
+
+[node name="SafetyFloor_3_L" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(880, 680)
+
+[node name="SafetyFloor_3_R" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(1072, 680)
+
+[node name="SafetyFloor_4_L" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(1184, 680)
+
+[node name="SafetyFloor_4_R" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(1376, 680)
+
+[node name="SafetyFloor_5_L" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(1504, 680)
+
+[node name="SafetyFloor_5_R" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(1696, 680)
+
+[node name="SafetyFloor_6_L" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(1824, 680)
+
+[node name="SafetyFloor_6_R" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(2016, 680)
+
+[node name="SafetyFloor_7_L" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(2144, 680)
+
+[node name="SafetyFloor_7_R" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(2336, 680)
+
+[node name="SafetyFloor_8_L" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(2464, 680)
+
+[node name="SafetyFloor_8_R" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(2656, 680)
+
+[node name="SafetyFloor_9_L" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(2784, 680)
+
+[node name="SafetyFloor_9_R" parent="Platforms" instance=ExtResource("4_platform")]
+position = Vector2(2976, 680)
+
 [node name="Enemies" type="Node2D" parent="." unique_id=1838744542]
 
 [node name="Demontek1" parent="Enemies" unique_id=919639257 instance=ExtResource("2_demontek")]
