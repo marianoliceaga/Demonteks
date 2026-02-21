@@ -936,90 +936,90 @@ namespace Demonteks.Environment
         private void ConfigureTilePhysics(TileSetAtlasSource atlasSource, int sourceId)
         {
             // Configure collision for common tile types
-            // In production, you'd iterate through all tiles and configure each
-            
-            // Example: Grass top tile at (0,0)
-            var tileData = atlasSource.GetTileData(new Vector2I(0, 0), 0);
-            if (tileData != null)
-            {
-                // Full tile collision
-                var polygon = new Vector2[]
-                {
-                    new Vector2(0, 0),
-                    new Vector2(TileSize, 0),
-                    new Vector2(TileSize, TileSize),
-                    new Vector2(0, TileSize)
-                };
-                
-                tileData.SetCollisionPolygonsCount(0, 1);
-                tileData.SetCollisionPolygonPoints(0, 0, polygon);
-            }
-        }
+			// In production, you'd iterate through all tiles and configure each
+			
+			// Example: Grass top tile at (0,0)
+			var tileData = atlasSource.GetTileData(new Vector2I(0, 0), 0);
+			if (tileData != null)
+			{
+				// Full tile collision
+				var polygon = new Vector2[]
+				{
+					new Vector2(0, 0),
+					new Vector2(TileSize, 0),
+					new Vector2(TileSize, TileSize),
+					new Vector2(0, TileSize)
+				};
+				
+				tileData.SetCollisionPolygonsCount(0, 1);
+				tileData.SetCollisionPolygonPoints(0, 0, polygon);
+			}
+		}
 
-        private void BuildExampleLevel()
-        {
-            // Ground platform
-            PaintHorizontalPlatform(new Vector2I(0, 30), 60);
-            
-            // Floating platforms
-            PaintHorizontalPlatform(new Vector2I(10, 27), 8);
-            PaintHorizontalPlatform(new Vector2I(22, 24), 10);
-            PaintHorizontalPlatform(new Vector2I(38, 21), 8);
-            PaintHorizontalPlatform(new Vector2I(52, 18), 12);
-            
-            GD.Print("Example level generated");
-        }
+		private void BuildExampleLevel()
+		{
+			// Ground platform
+			PaintHorizontalPlatform(new Vector2I(0, 30), 60);
+			
+			// Floating platforms
+			PaintHorizontalPlatform(new Vector2I(10, 27), 8);
+			PaintHorizontalPlatform(new Vector2I(22, 24), 10);
+			PaintHorizontalPlatform(new Vector2I(38, 21), 8);
+			PaintHorizontalPlatform(new Vector2I(52, 18), 12);
+			
+			GD.Print("Example level generated");
+		}
 
-        public void PaintHorizontalPlatform(Vector2I startPos, int width)
-        {
-            for (int i = 0; i < width; i++)
-            {
-                Vector2I tilePos = new Vector2I(startPos.X + i, startPos.Y);
-                
-                // Use appropriate tile based on position
-                Vector2I atlasCoords;
-                if (i == 0)
-                    atlasCoords = new Vector2I(0, 0); // Left edge
-                else if (i == width - 1)
-                    atlasCoords = new Vector2I(2, 0); // Right edge
-                else
-                    atlasCoords = new Vector2I(1, 0); // Middle
+		public void PaintHorizontalPlatform(Vector2I startPos, int width)
+		{
+			for (int i = 0; i < width; i++)
+			{
+				Vector2I tilePos = new Vector2I(startPos.X + i, startPos.Y);
+				
+				// Use appropriate tile based on position
+				Vector2I atlasCoords;
+				if (i == 0)
+					atlasCoords = new Vector2I(0, 0); // Left edge
+				else if (i == width - 1)
+					atlasCoords = new Vector2I(2, 0); // Right edge
+				else
+					atlasCoords = new Vector2I(1, 0); // Middle
 
-                _tileMap.SetCell(0, tilePos, 0, atlasCoords);
-            }
-        }
+				_tileMap.SetCell(0, tilePos, 0, atlasCoords);
+			}
+		}
 
-        public void PaintVerticalWall(Vector2I startPos, int height)
-        {
-            for (int i = 0; i < height; i++)
-            {
-                Vector2I tilePos = new Vector2I(startPos.X, startPos.Y - i);
-                _tileMap.SetCell(0, tilePos, 0, new Vector2I(1, 1)); // Wall tile
-            }
-        }
+		public void PaintVerticalWall(Vector2I startPos, int height)
+		{
+			for (int i = 0; i < height; i++)
+			{
+				Vector2I tilePos = new Vector2I(startPos.X, startPos.Y - i);
+				_tileMap.SetCell(0, tilePos, 0, new Vector2I(1, 1)); // Wall tile
+			}
+		}
 
-        public void ClearArea(Vector2I topLeft, Vector2I bottomRight)
-        {
-            for (int x = topLeft.X; x <= bottomRight.X; x++)
-            {
-                for (int y = topLeft.Y; y <= bottomRight.Y; y++)
-                {
-                    _tileMap.EraseCell(0, new Vector2I(x, y));
-                }
-            }
-        }
-    }
+		public void ClearArea(Vector2I topLeft, Vector2I bottomRight)
+		{
+			for (int x = topLeft.X; x <= bottomRight.X; x++)
+			{
+				for (int y = topLeft.Y; y <= bottomRight.Y; y++)
+				{
+					_tileMap.EraseCell(0, new Vector2I(x, y));
+				}
+			}
+		}
+	}
 
-    /// <summary>
-    /// Configuration for tileset creation.
-    /// </summary>
-    public class TileSetConfiguration
-    {
-        public string TexturePath { get; set; }
-        public Vector2I TileSize { get; set; }
-        public bool HasPhysics { get; set; }
-        public bool HasNavigation { get; set; }
-    }
+	/// <summary>
+	/// Configuration for tileset creation.
+	/// </summary>
+	public class TileSetConfiguration
+	{
+		public string TexturePath { get; set; }
+		public Vector2I TileSize { get; set; }
+		public bool HasPhysics { get; set; }
+		public bool HasNavigation { get; set; }
+	}
 }
 ```
 

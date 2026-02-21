@@ -14,3 +14,5 @@ res://Scripts/Player/PlayerController.cs
 res://Scenes/Levels/Level1_Jungle.tscn
 res://Assets/tilesets/jungle_tileset_16x16.tres
 res://BugsDemontek.txt
+res://BACKGROUND_GENERATION_GUIDE.md
+res://LEVEL_DESIGN_GUIDE.md

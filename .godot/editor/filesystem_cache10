@@ -20,9 +20,9 @@ Castle_Layer3-2.png::CompressedTexture2D::6349869697576398608::1771156370::17711
 foreground_5680.png::CompressedTexture2D::8339044285670509145::1771156346::1771171431::1::::<><><>0<>0<>428f01e76d57bac144eb54c84f66ab2d<>res://.godot/imported/foreground_5680.png-c0b018fbef3eccf02a491a25fde0ad44.ctex::
 mid_3840.png::CompressedTexture2D::3464901774092794826::1771155586::1771171431::1::::<><><>0<>0<>5d7fd69c6d5c762664602adade56344d<>res://.godot/imported/mid_3840.png-1accfee1e22ead2dcee371280f270594.ctex::
 sky_1920.png::CompressedTexture2D::8649398230936829887::1771155322::1771171431::1::::<><><>0<>0<>550581068259f0ba98e8c9877fbc26c7<>res://.godot/imported/sky_1920.png-044ac295290ec32ed4d33baf90b31924.ctex::
-::res://Assets/backgrounds/dungeon/::1771665036
-foreground_5760.png::CompressedTexture2D::7949176290130318931::1771154997::1771166426::1::::<><><>0<>0<>cb2a9333ccd2feb0274a1b0a1351181f<>res://.godot/imported/foreground_5760.png-fee97eb23d304b94c1377f5f9f9d2f24.ctex::
-mid_3840.png::CompressedTexture2D::1150760910101981043::1771302137::1771302822::1::::<><><>0<>0<>9b3b507c202524bf616ea9d815ebf59a<>res://.godot/imported/mid_3840.png-adba58ce5347a0339ab9ac808ef21478.ctex::
+::res://Assets/backgrounds/dungeon/::1771667321
+foreground_5760.png::CompressedTexture2D::7949176290130318931::1771667321::1771667513::1::::<><><>0<>0<>cb2a9333ccd2feb0274a1b0a1351181f<>res://.godot/imported/foreground_5760.png-fee97eb23d304b94c1377f5f9f9d2f24.ctex::
+mid_3840.png::CompressedTexture2D::1150760910101981043::1771666498::1771667513::1::::<><><>0<>0<>9b3b507c202524bf616ea9d815ebf59a<>res://.godot/imported/mid_3840.png-adba58ce5347a0339ab9ac808ef21478.ctex::
 sky_1920.png::CompressedTexture2D::7651717209005804285::1771665036::1771665081::1::::<><><>0<>0<>b254fc6efb226716288ba3f38dfb1b45<>res://.godot/imported/sky_1920.png-88471119144ee6da796806e081f51c58.ctex::
 ::res://Assets/backgrounds/jungle/::1771166428
 foreground_5760.png::CompressedTexture2D::4790473799792408974::1771161883::1771166428::1::::<><><>0<>0<>f12faf21866cea0e4e68e687830e7219<>res://.godot/imported/foreground_5760.png-ef99ea3dbbdd6cdcf60deb7a07629da7.ctex::

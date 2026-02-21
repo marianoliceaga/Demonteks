@@ -74,9 +74,9 @@ Assets/backgrounds/
 │   ├── pillars_3840x1080.png
 │   └── chains_3840x1080.png
 └── castle/
-    ├── walls_1920x1080.png
-    ├── interior_3840x1080.png
-    └── pillars_3840x1080.png
+	├── walls_1920x1080.png
+	├── interior_3840x1080.png
+	└── pillars_3840x1080.png
 ```
 
 ## ⚡ Pro Tips
