@@ -1,6 +1,4 @@
-res://Scenes/UI/MainMenu.tscn
 res://Scenes/UI/MainMenuController.cs
 res://Scripts/Management/AudioManager.cs
 res://Scripts/Management/SaveManager.cs
 res://Scripts/Management/GameManager.cs
-res://BugsDemontek.txt

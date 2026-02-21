@@ -240,6 +240,7 @@ AttackAreaPath = NodePath("AttackArea")
 position = Vector2(0, 0)
 sprite_frames = SubResource("SpriteFrames_enemy")
 animation = &"idle"
+offset = Vector2(0, -48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
