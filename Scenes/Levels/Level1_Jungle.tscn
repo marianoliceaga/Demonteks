@@ -248,7 +248,7 @@ color = Color(1, 0.843137, 0, 0.6)
 script = ExtResource("12_camera")
 
 [node name="KillZone" type="Area2D" parent="." unique_id=18996988]
-position = Vector2(1600, 700)
+position = Vector2(3200, 700)
 collision_layer = 0
 script = ExtResource("13_killzone")
 
