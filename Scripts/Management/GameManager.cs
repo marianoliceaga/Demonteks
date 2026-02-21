@@ -21,7 +21,7 @@ namespace Demonteks.Management
 		[Export] public string Level2Scene { get; set; } = "res://Scenes/Levels/Level2_Dungeon.tscn";
 		[Export] public string Level3Scene { get; set; } = "res://Scenes/Levels/Level3_Castle.tscn";
 		[Export] public string MainMenuScene { get; set; } = "res://Scenes/UI/MainMenu.tscn";
-		
+
 		[ExportCategory("Player Spawn")]
 		[Export] public NodePath PlayerSpawnPath { get; set; }
 		#endregion
@@ -30,14 +30,14 @@ namespace Demonteks.Management
 		private Node2D _currentLevel;
 		private Node2D _player;
 		private SaveManager _saveManager;
-		
+
 		// Game State
 		private GameState _gameState = GameState.MainMenu;
-		private int _currentLevelIndex = 0;
+		private int _currentLevelIndex = 1;
 		private Vector2 _currentCheckpoint = Vector2.Zero;
 		private int _playerDeaths = 0;
 		private float _totalPlayTime = 0f;
-		
+
 		// Level Progress
 		private Dictionary<int, bool> _levelsCompleted = new Dictionary<int, bool>
 		{
@@ -45,7 +45,7 @@ namespace Demonteks.Management
 			{ 2, false },
 			{ 3, false }
 		};
-		
+
 		// Statistics
 		private int _enemiesKilled = 0;
 		private int _totalDamageTaken = 0;
@@ -71,14 +71,23 @@ namespace Demonteks.Management
 				return;
 			}
 			_instance = this;
-			
+
 			// Get SaveManager
 			_saveManager = GetNode<SaveManager>("/root/SaveManager");
-			
+
 			// Process mode to persist through scene changes
 			ProcessMode = ProcessModeEnum.Always;
-			
-			GD.Print("GameManager initialized");
+
+			// Auto-detect current level if running a scene directly
+			if (GetTree().CurrentScene != null)
+			{
+				string path = GetTree().CurrentScene.SceneFilePath;
+				if (path == Level1Scene) _currentLevelIndex = 1;
+				else if (path == Level2Scene) _currentLevelIndex = 2;
+				else if (path == Level3Scene) _currentLevelIndex = 3;
+			}
+
+			GD.Print($"GameManager initialized. Current level: {_currentLevelIndex}");
 		}
 
 		public override void _Process(double delta)
@@ -125,7 +134,7 @@ namespace Demonteks.Management
 		public void LoadLevel(int levelIndex)
 		{
 			_currentLevelIndex = levelIndex;
-			
+
 			string scenePath = levelIndex switch
 			{
 				1 => Level1Scene,
@@ -133,9 +142,9 @@ namespace Demonteks.Management
 				3 => Level3Scene,
 				_ => Level1Scene
 			};
-			
+
 			GetTree().ChangeSceneToFile(scenePath);
-			
+
 			GD.Print($"Loading Level {levelIndex}: {scenePath}");
 		}
 
@@ -146,9 +155,9 @@ namespace Demonteks.Management
 		{
 			_levelsCompleted[_currentLevelIndex] = true;
 			EmitSignal(SignalName.LevelCompleted, _currentLevelIndex);
-			
+
 			_saveManager.SaveGame();
-			
+
 			if (_currentLevelIndex < 3)
 			{
 				LoadLevel(_currentLevelIndex + 1);
@@ -187,7 +196,7 @@ namespace Demonteks.Management
 			_currentCheckpoint = position;
 			EmitSignal(SignalName.CheckpointReached, position);
 			_saveManager.SaveGame();
-			
+
 			GD.Print($"Checkpoint set at {position}");
 		}
 
@@ -199,7 +208,7 @@ namespace Demonteks.Management
 			if (_player != null && _currentCheckpoint != Vector2.Zero)
 			{
 				_player.GlobalPosition = _currentCheckpoint;
-				
+
 				// Reset player stats
 				if (_player.HasMethod("Revive"))
 				{
@@ -217,7 +226,7 @@ namespace Demonteks.Management
 		{
 			_gameState = newState;
 			EmitSignal(SignalName.GameStateChanged, newState.ToString());
-			
+
 			GD.Print($"Game state changed to: {newState}");
 		}
 
@@ -228,9 +237,9 @@ namespace Demonteks.Management
 		{
 			_playerDeaths++;
 			EmitSignal(SignalName.PlayerDied, _playerDeaths);
-			
+
 			GD.Print($"Player died. Total deaths: {_playerDeaths}");
-			
+
 			// Respawn after delay
 			GetTree().CreateTimer(2.0f).Timeout += RespawnPlayer;
 		}
@@ -243,7 +252,7 @@ namespace Demonteks.Management
 		//{
 		//	ChangeGameState(GameState.GameOver);
 		//	EmitSignal(SignalName.GameOver);
-			
+
 		//	GD.Print("Game Over!");
 		//}
 
@@ -254,7 +263,7 @@ namespace Demonteks.Management
 		{
 			ChangeGameState(GameState.Won);
 			EmitSignal(SignalName.GameWon, _mercyRouteActive);
-			
+
 			GD.Print($"Game Won! Mercy Route: {_mercyRouteActive}");
 		}
 
@@ -270,7 +279,7 @@ namespace Demonteks.Management
 			_enemiesKilled = 0;
 			_totalDamageTaken = 0;
 			_mercyRouteActive = true;
-			
+
 			foreach (int level in _levelsCompleted.Keys)
 			{
 				_levelsCompleted[level] = false;
@@ -286,7 +295,7 @@ namespace Demonteks.Management
 		{
 			_enemiesKilled++;
 			_mercyRouteActive = false;
-			
+
 			GD.Print($"Enemy killed. Total: {_enemiesKilled}. Mercy route: {_mercyRouteActive}");
 		}
 
@@ -344,34 +353,34 @@ namespace Demonteks.Management
 		{
 			if (data.ContainsKey("current_level"))
 				_currentLevelIndex = data["current_level"].AsInt32();
-			
+
 			if (data.ContainsKey("checkpoint_x") && data.ContainsKey("checkpoint_y"))
 				_currentCheckpoint = new Vector2(
 					data["checkpoint_x"].AsSingle(),
 					data["checkpoint_y"].AsSingle()
 				);
-			
+
 			if (data.ContainsKey("player_deaths"))
 				_playerDeaths = data["player_deaths"].AsInt32();
-			
+
 			if (data.ContainsKey("total_play_time"))
 				_totalPlayTime = data["total_play_time"].AsSingle();
-			
+
 			if (data.ContainsKey("enemies_killed"))
 				_enemiesKilled = data["enemies_killed"].AsInt32();
-			
+
 			if (data.ContainsKey("total_damage_taken"))
 				_totalDamageTaken = data["total_damage_taken"].AsInt32();
-			
+
 			if (data.ContainsKey("mercy_route_active"))
 				_mercyRouteActive = data["mercy_route_active"].AsBool();
-			
+
 			if (data.ContainsKey("level_1_complete"))
 				_levelsCompleted[1] = data["level_1_complete"].AsBool();
-			
+
 			if (data.ContainsKey("level_2_complete"))
 				_levelsCompleted[2] = data["level_2_complete"].AsBool();
-			
+
 			if (data.ContainsKey("level_3_complete"))
 				_levelsCompleted[3] = data["level_3_complete"].AsBool();
 		}
