@@ -7,7 +7,7 @@ X-The Demontek attacks look bad, make sure they are using the cross punch attack
 X-Platforms should look like the floor but thinner, just the top tiles
 X-Crea un piso casi en el fondo antes del KillZone justo abajo a la izquierda y a la derecha de los agujeros del piso principal
 X-Make the camera follow the Player vertically also
--
+-Make the Player transition to Level 2 when it recahes the LevelEnd
 
 Nice to haves (difficult):
 -------------------------
