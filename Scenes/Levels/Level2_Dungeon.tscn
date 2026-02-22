@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cy84w8nx" path="res://Scenes/Prefabs/StoneButton.tscn" id="13_button"]
 [ext_resource type="PackedScene" uid="uid://b8h344xweqqj" path="res://Scenes/Prefabs/WeaponPickup.tscn" id="14_weapon"]
 [ext_resource type="Texture2D" path="res://Assets/tilesets/dungeon_tileset_16x16.png" id="15_dungeon_tex"]
-
+[ext_resource type="AudioStream" path="res://Assets/audio/music/Level 2 (The Dungeon).mp3" id="bgm_level2"]
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_door"]
 size = Vector2(32, 48)
 
@@ -163,3 +163,7 @@ script = ExtResource("12_killzone")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("RectangleShape2D_killzone")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("bgm_level2")
+autoplay = true

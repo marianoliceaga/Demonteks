@@ -227,7 +227,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
-size = Vector2(16, 32)
+size = Vector2(16, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
 size = Vector2(20, 16)
@@ -239,13 +239,12 @@ AnimatedSpritePath = NodePath("AnimatedSprite2D")
 CollisionShapePath = NodePath("CollisionShape2D")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=525423757]
-position = Vector2(0, 0)
+position = Vector2(0, -48)
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"idle"
-offset = Vector2(0, -48)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1154734011]
-position = Vector2(0, -16)
+position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_body")
 
 [node name="PlayerStats" type="Node" parent="." unique_id=1519165181]
@@ -256,7 +255,7 @@ script = ExtResource("3_combat")
 HitboxPath = NodePath("Hitbox")
 
 [node name="Hitbox" type="Area2D" parent="PlayerCombat" unique_id=1534915021]
-position = Vector2(20, -16)
+position = Vector2(20, -48)
 collision_layer = 64
 collision_mask = 2
 
@@ -264,6 +263,6 @@ collision_mask = 2
 shape = SubResource("RectangleShape2D_hitbox")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=2077133519]
-position = Vector2(0, -16)
+position = Vector2(0, -48)
 zoom = Vector2(0.4, 0.4)
 position_smoothing_enabled = true

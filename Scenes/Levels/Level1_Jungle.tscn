@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://7twiyd1bo8c6" path="res://Scripts/Utils/LevelEndTrigger.cs" id="10_levelend"]
 [ext_resource type="Script" uid="uid://ctoegptmn0ent" path="res://Scripts/Utils/CameraFollow.cs" id="12_camera"]
 [ext_resource type="Script" uid="uid://bf8h6jfb721ho" path="res://Scripts/Utils/KillZone.cs" id="13_killzone"]
+[ext_resource type="AudioStream" path="res://Assets/audio/music/Level1 (The Jungle).mp3" id="bgm_level1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_health1"]
 radius = 12.0
@@ -254,3 +255,7 @@ script = ExtResource("13_killzone")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone" unique_id=2011787890]
 shape = SubResource("RectangleShape2D_killzone")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=987018335]
+stream = ExtResource("bgm_level1")
+autoplay = true

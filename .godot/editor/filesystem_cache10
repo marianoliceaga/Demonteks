@@ -1,5 +1,5 @@
 72322a848ab928aa5c89f0cb78209805
-::res://::1771668999
+::res://::1771771999
 AI_BACKGROUND_PROMPTS.md::TextFile::-1::1771138777::0::1::::<><><>0<>0<><>::
 ASSET_SETUP_COMPLETE.md::TextFile::-1::1771168896::0::1::::<><><>0<>0<><>::
 BACKGROUND_GENERATION_GUIDE.md::TextFile::-1::1771668679::0::1::::<><><>0<>0<><>::
@@ -13,8 +13,10 @@ TILEMAP_SETUP_GUIDE.md::TextFile::-1::1771168868::0::1::::<><><>0<>0<><>::
 ::res://Assets/::1771146062
 splash.png::CompressedTexture2D::7878634610622057167::1771115992::1771109378::1::::<><><>0<>0<>b02a3bea64d0f68002c3147324d53a4b<>res://.godot/imported/splash.png-3a3aab2e3410d4942ca79c9050695a1b.ctex::
 ::res://Assets/audio/::1771302578
-::res://Assets/audio/music/::1771302578
-::res://Assets/audio/sfx/::1771302578
+::res://Assets/audio/music/::1771776030
+Level1 (The Jungle).mp3::AudioStreamMP3::3384200552637575924::1771725720::1771726110::1::::<><><>0<>0<>d7b4ad772a6be72810abc0d918732269<>res://.godot/imported/Level1 (The Jungle).mp3-8cbf6efeededb57fe01dd66abb16c181.mp3str::
+Level 2 (The Dungeon).mp3::AudioStreamMP3::7154524754973056765::1771775932::1771777852::1::::<><><>0<>0<>83a01709eb561708b595edce8e852b5c<>res://.godot/imported/Level 2 (The Dungeon).mp3-ebe8fbd3df9fd970476e9340a9cfe81c.mp3str::
+::res://Assets/audio/sfx/::1771777578
 ::res://Assets/backgrounds/::1771662524
 ::res://Assets/backgrounds/castle/::1771171431
 Castle_Layer2-2.png::CompressedTexture2D::4569403219188370371::1771155838::1771171431::1::::<><><>0<>0<>dd886c1923d99a08230cbc7960fd5c1d<>res://.godot/imported/Castle_Layer2-2.png-e6783e4c2a6a6e96a2502c3e6ba12154.ctex::
@@ -1406,8 +1408,8 @@ Player.tscn::PackedScene::1677208634857861404::1771653066::0::1::::<><><>0<>0<><
 HealthPickup.tscn::PackedScene::-1::1771299755::0::1::::<><><>0<>0<><>::res://Scripts/Items/HealthPickup.cs
 ::res://Scenes/Levels/::1771662004
 AdvancedTileMapSystem.cs::CSharpScript::3868944779730172397::1771165494::0::1::::<>Node2D<><>0<>0<><>::
-Level1_Jungle.tscn::PackedScene::4690474757631710968::1771662004::0::1::::<><><>0<>0<><>::uid://x5pm7vvasqky::::res://Scenes/Characters/Player.tscn<>res://Scenes/Characters/Demontek.tscn<>uid://b76hyvacdj2yg::::res://Assets/tilesets/jungle_tileset_16x16.tres<>uid://cpqm8y5xvn3ks::::res://Scenes/Prefabs/Platform.tscn<>uid://dwa7kom3wniqq::::res://Assets/backgrounds/jungle/mid_3840.png<>uid://caisnysr73rri::::res://Assets/backgrounds/jungle/foreground_5760.png<>res://Scenes/UI/HUD.tscn<>uid://dttb8i783ht3m::::res://Scenes/UI/PauseMenu.tscn<>uid://7twiyd1bo8c6::::res://Scripts/Utils/LevelEndTrigger.cs<>uid://ctoegptmn0ent::::res://Scripts/Utils/CameraFollow.cs<>uid://bf8h6jfb721ho::::res://Scripts/Utils/KillZone.cs
-Level2_Dungeon.tscn::PackedScene::-1::1771668370::0::1::::<><><>0<>0<><>::uid://x5pm7vvasqky::::res://Scenes/Characters/Player.tscn<>uid://c6s75q5i6n123::::res://Scenes/Characters/Guard.tscn<>uid://dmdsgwqrbtwfg::::res://Scenes/Prefabs/Checkpoint.tscn<>res://Assets/tilesets/dungeon_tileset_16x16.tres<>res://Assets/backgrounds/dungeon/sky_1920.png<>res://Assets/backgrounds/dungeon/mid_3840.png<>res://Assets/backgrounds/dungeon/foreground_5760.png<>res://Scenes/UI/HUD.tscn<>uid://dttb8i783ht3m::::res://Scenes/UI/PauseMenu.tscn<>res://Scripts/Utils/LevelEndTrigger.cs<>res://Scripts/Utils/CameraFollow.cs<>res://Scripts/Utils/KillZone.cs<>uid://cy84w8nx::::res://Scenes/Prefabs/StoneButton.tscn<>uid://b8h344xweqqj::::res://Scenes/Prefabs/WeaponPickup.tscn<>res://Assets/tilesets/dungeon_tileset_16x16.png
+Level1_Jungle.tscn::PackedScene::4690474757631710968::1771725952::0::1::::<><><>0<>0<><>::uid://x5pm7vvasqky::::res://Scenes/Characters/Player.tscn<>res://Scenes/Characters/Demontek.tscn<>uid://b76hyvacdj2yg::::res://Assets/tilesets/jungle_tileset_16x16.tres<>uid://cpqm8y5xvn3ks::::res://Scenes/Prefabs/Platform.tscn<>uid://dwa7kom3wniqq::::res://Assets/backgrounds/jungle/mid_3840.png<>uid://caisnysr73rri::::res://Assets/backgrounds/jungle/foreground_5760.png<>res://Scenes/UI/HUD.tscn<>uid://dttb8i783ht3m::::res://Scenes/UI/PauseMenu.tscn<>uid://7twiyd1bo8c6::::res://Scripts/Utils/LevelEndTrigger.cs<>uid://ctoegptmn0ent::::res://Scripts/Utils/CameraFollow.cs<>uid://bf8h6jfb721ho::::res://Scripts/Utils/KillZone.cs
+Level2_Dungeon.tscn::PackedScene::-1::1771776305::0::1::::<><><>0<>0<><>::uid://x5pm7vvasqky::::res://Scenes/Characters/Player.tscn<>uid://c6s75q5i6n123::::res://Scenes/Characters/Guard.tscn<>uid://dmdsgwqrbtwfg::::res://Scenes/Prefabs/Checkpoint.tscn<>res://Assets/tilesets/dungeon_tileset_16x16.tres<>res://Assets/backgrounds/dungeon/sky_1920.png<>res://Assets/backgrounds/dungeon/mid_3840.png<>res://Assets/backgrounds/dungeon/foreground_5760.png<>res://Scenes/UI/HUD.tscn<>uid://dttb8i783ht3m::::res://Scenes/UI/PauseMenu.tscn<>res://Scripts/Utils/LevelEndTrigger.cs<>res://Scripts/Utils/CameraFollow.cs<>res://Scripts/Utils/KillZone.cs<>uid://cy84w8nx::::res://Scenes/Prefabs/StoneButton.tscn<>uid://b8h344xweqqj::::res://Scenes/Prefabs/WeaponPickup.tscn<>res://Assets/tilesets/dungeon_tileset_16x16.png
 Level3_Castle.tscn::PackedScene::-1::1771323462::0::1::::<><><>0<>0<><>::uid://bc618thjoy8ub::::res://Scenes/Characters/Player.tscn<>res://Scenes/Characters/Demontek.tscn<>res://Scenes/Characters/Mutant.tscn<>res://Scenes/Characters/Goliath.tscn<>res://Scenes/Characters/King.tscn<>res://Assets/tilesets/castle_tileset_16x16.tres<>uid://cpqm8y5xvn3ks::::res://Scenes/Prefabs/Platform.tscn<>uid://dmdsgwqrbtwfg::::res://Scenes/Prefabs/Checkpoint.tscn<>res://Assets/backgrounds/castle/sky_1920.png<>res://Assets/backgrounds/castle/mid_3840.png<>res://Assets/backgrounds/castle/foreground_5680.png<>res://Scenes/UI/HUD.tscn<>uid://dttb8i783ht3m::::res://Scenes/UI/PauseMenu.tscn<>res://Scripts/Utils/LevelEndTrigger.cs<>res://Scripts/Utils/CameraFollow.cs<>res://Scripts/Utils/KillZone.cs
 ParallaxBackgroundSystem.cs::CSharpScript::2170151002849221040::1771170897::0::1::::<>Node2D<><>0<>0<><>::
 ::res://Scenes/Prefabs/::1771668241
