@@ -630,7 +630,7 @@ namespace Demonteks.Enemy
             {
                 // Continue attacking if still in range
                 if (enemy.IsNearTarget)
-                    return this;
+                    return new AttackState();
                 else
                     return new ChaseState();
             }

@@ -230,7 +230,7 @@ animations = [{
 size = Vector2(16, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
-size = Vector2(20, 16)
+size = Vector2(40, 48)
 
 [node name="Player" type="CharacterBody2D" unique_id=2066639339 groups=["player"]]
 collision_mask = 7
@@ -255,7 +255,7 @@ script = ExtResource("3_combat")
 HitboxPath = NodePath("Hitbox")
 
 [node name="Hitbox" type="Area2D" parent="PlayerCombat" unique_id=1534915021]
-position = Vector2(20, -48)
+position = Vector2(10, -48)
 collision_layer = 64
 collision_mask = 2
 
