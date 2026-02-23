@@ -1,4 +1,3 @@
-X-The Demonteks shouldn't fall to the void
 X-If a Demontek is pushed to the void, it should respawn with his health intact, like the Player.
 X-The HUD is too big, make it 1/4 its size
 X-The enemy counter in the HUD is not counting killed enemies
@@ -7,10 +6,15 @@ X-The Demontek attacks look bad, make sure they are using the cross punch attack
 X-Platforms should look like the floor but thinner, just the top tiles
 X-Crea un piso casi en el fondo antes del KillZone justo abajo a la izquierda y a la derecha de los agujeros del piso principal
 X-Make the camera follow the Player vertically also
-X-Make the Player transition to Level 2 when it recahes the LevelEnd
+X-Make the Player transition to Level 2 when it reaches the LevelEnd
 
+-F key is not picking up HealthPickup
+-S key is not crouching
+-Guard character attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly and they attack facing the Player
+-Level2 Foreground looks like shit (Mariano)
 
 Nice to haves (difficult):
 -------------------------
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
 -The Demontek attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
+-The Demonteks shouldn't fall to the void

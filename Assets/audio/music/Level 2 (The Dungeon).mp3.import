@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Level 2 (The Dungeon).mp3-ebe8fbd3df9fd970476
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

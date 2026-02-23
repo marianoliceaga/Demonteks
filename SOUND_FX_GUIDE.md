@@ -468,292 +468,292 @@ using System.Collections.Generic;
 
 public partial class AudioManager : Node
 {
-    // Singleton pattern
-    public static AudioManager Instance { get; private set; }
-    
-    // Audio players
-    private AudioStreamPlayer _musicPlayer;
-    private AudioStreamPlayer _ambiencePlayer;
-    private List<AudioStreamPlayer> _sfxPlayers;
-    private const int MAX_SFX_PLAYERS = 16;
-    
-    // Audio libraries
-    private Dictionary<string, AudioStream> _soundEffects;
-    private Dictionary<string, AudioStream> _musicTracks;
-    private Dictionary<string, AudioStream> _ambientSounds;
-    
-    // Volume settings
-    [Export] public float MasterVolume { get; set; } = 1.0f;
-    [Export] public float MusicVolume { get; set; } = 0.7f;
-    [Export] public float SFXVolume { get; set; } = 0.9f;
-    [Export] public float AmbienceVolume { get; set; } = 0.5f;
-    
-    public override void _Ready()
-    {
-        if (Instance != null)
-        {
-            QueueFree();
-            return;
-        }
-        
-        Instance = this;
-        
-        SetupAudioPlayers();
-        LoadAudioResources();
-        
-        GD.Print("AudioManager initialized");
-    }
-    
-    private void SetupAudioPlayers()
-    {
-        // Music player
-        _musicPlayer = new AudioStreamPlayer();
-        _musicPlayer.Name = "MusicPlayer";
-        _musicPlayer.Bus = "Music";
-        AddChild(_musicPlayer);
-        
-        // Ambience player
-        _ambiencePlayer = new AudioStreamPlayer();
-        _ambiencePlayer.Name = "AmbiencePlayer";
-        _ambiencePlayer.Bus = "Ambience";
-        AddChild(_ambiencePlayer);
-        
-        // SFX players pool
-        _sfxPlayers = new List<AudioStreamPlayer>();
-        for (int i = 0; i < MAX_SFX_PLAYERS; i++)
-        {
-            var sfxPlayer = new AudioStreamPlayer();
-            sfxPlayer.Name = $"SFXPlayer_{i}";
-            sfxPlayer.Bus = "SFX";
-            AddChild(sfxPlayer);
-            _sfxPlayers.Add(sfxPlayer);
-        }
-        
-        GD.Print($"Created {MAX_SFX_PLAYERS} SFX players");
-    }
-    
-    private void LoadAudioResources()
-    {
-        _soundEffects = new Dictionary<string, AudioStream>();
-        _musicTracks = new Dictionary<string, AudioStream>();
-        _ambientSounds = new Dictionary<string, AudioStream>();
-        
-        // Load all audio files from directories
-        LoadAudioFromDirectory("res://Audio/SFX/", _soundEffects);
-        LoadAudioFromDirectory("res://Audio/Music/", _musicTracks);
-        LoadAudioFromDirectory("res://Audio/Ambient/", _ambientSounds);
-        
-        GD.Print($"Loaded {_soundEffects.Count} sound effects");
-        GD.Print($"Loaded {_musicTracks.Count} music tracks");
-        GD.Print($"Loaded {_ambientSounds.Count} ambient sounds");
-    }
-    
-    private void LoadAudioFromDirectory(string path, Dictionary<string, AudioStream> library)
-    {
-        var dir = DirAccess.Open(path);
-        if (dir == null)
-        {
-            GD.PrintErr($"Failed to open directory: {path}");
-            return;
-        }
-        
-        dir.ListDirBegin();
-        string fileName = dir.GetNext();
-        
-        while (fileName != "")
-        {
-            if (!dir.CurrentIsDir() && (fileName.EndsWith(".wav") || fileName.EndsWith(".ogg")))
-            {
-                string fullPath = path + fileName;
-                var audioStream = GD.Load<AudioStream>(fullPath);
-                
-                if (audioStream != null)
-                {
-                    string key = fileName.Replace(".wav", "").Replace(".ogg", "");
-                    library[key] = audioStream;
-                }
-            }
-            fileName = dir.GetNext();
-        }
-        
-        dir.ListDirEnd();
-    }
-    
-    // Play sound effect
-    public void PlaySFX(string sfxName, float volumeDb = 0f, float pitch = 1.0f)
-    {
-        if (!_soundEffects.ContainsKey(sfxName))
-        {
-            GD.PrintErr($"Sound effect not found: {sfxName}");
-            return;
-        }
-        
-        // Find available player
-        AudioStreamPlayer player = GetAvailableSFXPlayer();
-        if (player == null)
-        {
-            GD.PrintErr("No available SFX players!");
-            return;
-        }
-        
-        player.Stream = _soundEffects[sfxName];
-        player.VolumeDb = volumeDb + LinearToDb(SFXVolume * MasterVolume);
-        player.PitchScale = pitch;
-        player.Play();
-    }
-    
-    // Play with random pitch variation
-    public void PlaySFXVaried(string sfxName, float pitchVariation = 0.1f)
-    {
-        float randomPitch = 1.0f + (float)GD.RandRange(-pitchVariation, pitchVariation);
-        PlaySFX(sfxName, 0f, randomPitch);
-    }
-    
-    // Play one of multiple variations
-    public void PlaySFXRandom(params string[] sfxNames)
-    {
-        if (sfxNames.Length == 0) return;
-        
-        int randomIndex = GD.RandRange(0, sfxNames.Length - 1);
-        PlaySFX(sfxNames[randomIndex]);
-    }
-    
-    // Play music track
-    public void PlayMusic(string trackName, bool loop = true, float fadeTime = 1.0f)
-    {
-        if (!_musicTracks.ContainsKey(trackName))
-        {
-            GD.PrintErr($"Music track not found: {trackName}");
-            return;
-        }
-        
-        // Fade out current music
-        if (_musicPlayer.Playing)
-        {
-            FadeOutMusic(fadeTime);
-        }
-        
-        // Play new track after fade
-        GetTree().CreateTimer(fadeTime).Timeout += () =>
-        {
-            _musicPlayer.Stream = _musicTracks[trackName];
-            _musicPlayer.VolumeDb = LinearToDb(MusicVolume * MasterVolume);
-            
-            if (_musicPlayer.Stream is AudioStreamOggVorbis oggStream)
-            {
-                oggStream.Loop = loop;
-            }
-            else if (_musicPlayer.Stream is AudioStreamWav wavStream)
-            {
-                wavStream.LoopMode = loop ? AudioStreamWav.LoopModeEnum.Forward : AudioStreamWav.LoopModeEnum.Disabled;
-            }
-            
-            _musicPlayer.Play();
-            FadeInMusic(fadeTime);
-        };
-    }
-    
-    // Play ambient sound
-    public void PlayAmbience(string ambientName, bool loop = true)
-    {
-        if (!_ambientSounds.ContainsKey(ambientName))
-        {
-            GD.PrintErr($"Ambient sound not found: {ambientName}");
-            return;
-        }
-        
-        _ambiencePlayer.Stream = _ambientSounds[ambientName];
-        _ambiencePlayer.VolumeDb = LinearToDb(AmbienceVolume * MasterVolume);
-        
-        if (_ambiencePlayer.Stream is AudioStreamOggVorbis oggStream)
-        {
-            oggStream.Loop = loop;
-        }
-        else if (_ambiencePlayer.Stream is AudioStreamWav wavStream)
-        {
-            wavStream.LoopMode = loop ? AudioStreamWav.LoopModeEnum.Forward : AudioStreamWav.LoopModeEnum.Disabled;
-        }
-        
-        _ambiencePlayer.Play();
-    }
-    
-    // Stop music
-    public void StopMusic(float fadeTime = 1.0f)
-    {
-        FadeOutMusic(fadeTime);
-    }
-    
-    // Stop ambience
-    public void StopAmbience()
-    {
-        _ambiencePlayer.Stop();
-    }
-    
-    // Helper methods
-    private AudioStreamPlayer GetAvailableSFXPlayer()
-    {
-        foreach (var player in _sfxPlayers)
-        {
-            if (!player.Playing)
-                return player;
-        }
-        
-        // If all busy, use oldest one
-        return _sfxPlayers[0];
-    }
-    
-    private void FadeInMusic(float duration)
-    {
-        var tween = CreateTween();
-        float targetVolume = LinearToDb(MusicVolume * MasterVolume);
-        
-        _musicPlayer.VolumeDb = -80f;
-        tween.TweenProperty(_musicPlayer, "volume_db", targetVolume, duration);
-    }
-    
-    private void FadeOutMusic(float duration)
-    {
-        var tween = CreateTween();
-        tween.TweenProperty(_musicPlayer, "volume_db", -80f, duration);
-        tween.TweenCallback(Callable.From(() => _musicPlayer.Stop()));
-    }
-    
-    private float LinearToDb(float linear)
-    {
-        if (linear <= 0f)
-            return -80f;
-        return Mathf.LinearToDb(linear);
-    }
-    
-    // Volume controls
-    public void SetMasterVolume(float volume)
-    {
-        MasterVolume = Mathf.Clamp(volume, 0f, 1f);
-        UpdateAllVolumes();
-    }
-    
-    public void SetMusicVolume(float volume)
-    {
-        MusicVolume = Mathf.Clamp(volume, 0f, 1f);
-        _musicPlayer.VolumeDb = LinearToDb(MusicVolume * MasterVolume);
-    }
-    
-    public void SetSFXVolume(float volume)
-    {
-        SFXVolume = Mathf.Clamp(volume, 0f, 1f);
-    }
-    
-    public void SetAmbienceVolume(float volume)
-    {
-        AmbienceVolume = Mathf.Clamp(volume, 0f, 1f);
-        _ambiencePlayer.VolumeDb = LinearToDb(AmbienceVolume * MasterVolume);
-    }
-    
-    private void UpdateAllVolumes()
-    {
-        _musicPlayer.VolumeDb = LinearToDb(MusicVolume * MasterVolume);
-        _ambiencePlayer.VolumeDb = LinearToDb(AmbienceVolume * MasterVolume);
-    }
+	// Singleton pattern
+	public static AudioManager Instance { get; private set; }
+	
+	// Audio players
+	private AudioStreamPlayer _musicPlayer;
+	private AudioStreamPlayer _ambiencePlayer;
+	private List<AudioStreamPlayer> _sfxPlayers;
+	private const int MAX_SFX_PLAYERS = 16;
+	
+	// Audio libraries
+	private Dictionary<string, AudioStream> _soundEffects;
+	private Dictionary<string, AudioStream> _musicTracks;
+	private Dictionary<string, AudioStream> _ambientSounds;
+	
+	// Volume settings
+	[Export] public float MasterVolume { get; set; } = 1.0f;
+	[Export] public float MusicVolume { get; set; } = 0.7f;
+	[Export] public float SFXVolume { get; set; } = 0.9f;
+	[Export] public float AmbienceVolume { get; set; } = 0.5f;
+	
+	public override void _Ready()
+	{
+		if (Instance != null)
+		{
+			QueueFree();
+			return;
+		}
+		
+		Instance = this;
+		
+		SetupAudioPlayers();
+		LoadAudioResources();
+		
+		GD.Print("AudioManager initialized");
+	}
+	
+	private void SetupAudioPlayers()
+	{
+		// Music player
+		_musicPlayer = new AudioStreamPlayer();
+		_musicPlayer.Name = "MusicPlayer";
+		_musicPlayer.Bus = "Music";
+		AddChild(_musicPlayer);
+		
+		// Ambience player
+		_ambiencePlayer = new AudioStreamPlayer();
+		_ambiencePlayer.Name = "AmbiencePlayer";
+		_ambiencePlayer.Bus = "Ambience";
+		AddChild(_ambiencePlayer);
+		
+		// SFX players pool
+		_sfxPlayers = new List<AudioStreamPlayer>();
+		for (int i = 0; i < MAX_SFX_PLAYERS; i++)
+		{
+			var sfxPlayer = new AudioStreamPlayer();
+			sfxPlayer.Name = $"SFXPlayer_{i}";
+			sfxPlayer.Bus = "SFX";
+			AddChild(sfxPlayer);
+			_sfxPlayers.Add(sfxPlayer);
+		}
+		
+		GD.Print($"Created {MAX_SFX_PLAYERS} SFX players");
+	}
+	
+	private void LoadAudioResources()
+	{
+		_soundEffects = new Dictionary<string, AudioStream>();
+		_musicTracks = new Dictionary<string, AudioStream>();
+		_ambientSounds = new Dictionary<string, AudioStream>();
+		
+		// Load all audio files from directories
+		LoadAudioFromDirectory("res://Audio/SFX/", _soundEffects);
+		LoadAudioFromDirectory("res://Audio/Music/", _musicTracks);
+		LoadAudioFromDirectory("res://Audio/Ambient/", _ambientSounds);
+		
+		GD.Print($"Loaded {_soundEffects.Count} sound effects");
+		GD.Print($"Loaded {_musicTracks.Count} music tracks");
+		GD.Print($"Loaded {_ambientSounds.Count} ambient sounds");
+	}
+	
+	private void LoadAudioFromDirectory(string path, Dictionary<string, AudioStream> library)
+	{
+		var dir = DirAccess.Open(path);
+		if (dir == null)
+		{
+			GD.PrintErr($"Failed to open directory: {path}");
+			return;
+		}
+		
+		dir.ListDirBegin();
+		string fileName = dir.GetNext();
+		
+		while (fileName != "")
+		{
+			if (!dir.CurrentIsDir() && (fileName.EndsWith(".wav") || fileName.EndsWith(".ogg")))
+			{
+				string fullPath = path + fileName;
+				var audioStream = GD.Load<AudioStream>(fullPath);
+				
+				if (audioStream != null)
+				{
+					string key = fileName.Replace(".wav", "").Replace(".ogg", "");
+					library[key] = audioStream;
+				}
+			}
+			fileName = dir.GetNext();
+		}
+		
+		dir.ListDirEnd();
+	}
+	
+	// Play sound effect
+	public void PlaySFX(string sfxName, float volumeDb = 0f, float pitch = 1.0f)
+	{
+		if (!_soundEffects.ContainsKey(sfxName))
+		{
+			GD.PrintErr($"Sound effect not found: {sfxName}");
+			return;
+		}
+		
+		// Find available player
+		AudioStreamPlayer player = GetAvailableSFXPlayer();
+		if (player == null)
+		{
+			GD.PrintErr("No available SFX players!");
+			return;
+		}
+		
+		player.Stream = _soundEffects[sfxName];
+		player.VolumeDb = volumeDb + LinearToDb(SFXVolume * MasterVolume);
+		player.PitchScale = pitch;
+		player.Play();
+	}
+	
+	// Play with random pitch variation
+	public void PlaySFXVaried(string sfxName, float pitchVariation = 0.1f)
+	{
+		float randomPitch = 1.0f + (float)GD.RandRange(-pitchVariation, pitchVariation);
+		PlaySFX(sfxName, 0f, randomPitch);
+	}
+	
+	// Play one of multiple variations
+	public void PlaySFXRandom(params string[] sfxNames)
+	{
+		if (sfxNames.Length == 0) return;
+		
+		int randomIndex = GD.RandRange(0, sfxNames.Length - 1);
+		PlaySFX(sfxNames[randomIndex]);
+	}
+	
+	// Play music track
+	public void PlayMusic(string trackName, bool loop = true, float fadeTime = 1.0f)
+	{
+		if (!_musicTracks.ContainsKey(trackName))
+		{
+			GD.PrintErr($"Music track not found: {trackName}");
+			return;
+		}
+		
+		// Fade out current music
+		if (_musicPlayer.Playing)
+		{
+			FadeOutMusic(fadeTime);
+		}
+		
+		// Play new track after fade
+		GetTree().CreateTimer(fadeTime).Timeout += () =>
+		{
+			_musicPlayer.Stream = _musicTracks[trackName];
+			_musicPlayer.VolumeDb = LinearToDb(MusicVolume * MasterVolume);
+			
+			if (_musicPlayer.Stream is AudioStreamOggVorbis oggStream)
+			{
+				oggStream.Loop = loop;
+			}
+			else if (_musicPlayer.Stream is AudioStreamWav wavStream)
+			{
+				wavStream.LoopMode = loop ? AudioStreamWav.LoopModeEnum.Forward : AudioStreamWav.LoopModeEnum.Disabled;
+			}
+			
+			_musicPlayer.Play();
+			FadeInMusic(fadeTime);
+		};
+	}
+	
+	// Play ambient sound
+	public void PlayAmbience(string ambientName, bool loop = true)
+	{
+		if (!_ambientSounds.ContainsKey(ambientName))
+		{
+			GD.PrintErr($"Ambient sound not found: {ambientName}");
+			return;
+		}
+		
+		_ambiencePlayer.Stream = _ambientSounds[ambientName];
+		_ambiencePlayer.VolumeDb = LinearToDb(AmbienceVolume * MasterVolume);
+		
+		if (_ambiencePlayer.Stream is AudioStreamOggVorbis oggStream)
+		{
+			oggStream.Loop = loop;
+		}
+		else if (_ambiencePlayer.Stream is AudioStreamWav wavStream)
+		{
+			wavStream.LoopMode = loop ? AudioStreamWav.LoopModeEnum.Forward : AudioStreamWav.LoopModeEnum.Disabled;
+		}
+		
+		_ambiencePlayer.Play();
+	}
+	
+	// Stop music
+	public void StopMusic(float fadeTime = 1.0f)
+	{
+		FadeOutMusic(fadeTime);
+	}
+	
+	// Stop ambience
+	public void StopAmbience()
+	{
+		_ambiencePlayer.Stop();
+	}
+	
+	// Helper methods
+	private AudioStreamPlayer GetAvailableSFXPlayer()
+	{
+		foreach (var player in _sfxPlayers)
+		{
+			if (!player.Playing)
+				return player;
+		}
+		
+		// If all busy, use oldest one
+		return _sfxPlayers[0];
+	}
+	
+	private void FadeInMusic(float duration)
+	{
+		var tween = CreateTween();
+		float targetVolume = LinearToDb(MusicVolume * MasterVolume);
+		
+		_musicPlayer.VolumeDb = -80f;
+		tween.TweenProperty(_musicPlayer, "volume_db", targetVolume, duration);
+	}
+	
+	private void FadeOutMusic(float duration)
+	{
+		var tween = CreateTween();
+		tween.TweenProperty(_musicPlayer, "volume_db", -80f, duration);
+		tween.TweenCallback(Callable.From(() => _musicPlayer.Stop()));
+	}
+	
+	private float LinearToDb(float linear)
+	{
+		if (linear <= 0f)
+			return -80f;
+		return Mathf.LinearToDb(linear);
+	}
+	
+	// Volume controls
+	public void SetMasterVolume(float volume)
+	{
+		MasterVolume = Mathf.Clamp(volume, 0f, 1f);
+		UpdateAllVolumes();
+	}
+	
+	public void SetMusicVolume(float volume)
+	{
+		MusicVolume = Mathf.Clamp(volume, 0f, 1f);
+		_musicPlayer.VolumeDb = LinearToDb(MusicVolume * MasterVolume);
+	}
+	
+	public void SetSFXVolume(float volume)
+	{
+		SFXVolume = Mathf.Clamp(volume, 0f, 1f);
+	}
+	
+	public void SetAmbienceVolume(float volume)
+	{
+		AmbienceVolume = Mathf.Clamp(volume, 0f, 1f);
+		_ambiencePlayer.VolumeDb = LinearToDb(AmbienceVolume * MasterVolume);
+	}
+	
+	private void UpdateAllVolumes()
+	{
+		_musicPlayer.VolumeDb = LinearToDb(MusicVolume * MasterVolume);
+		_ambiencePlayer.VolumeDb = LinearToDb(AmbienceVolume * MasterVolume);
+	}
 }
 ```
 
@@ -766,79 +766,79 @@ using Godot;
 
 public partial class PlayerController : CharacterBody2D
 {
-    private AudioManager _audio;
-    
-    public override void _Ready()
-    {
-        _audio = AudioManager.Instance;
-    }
-    
-    private void HandleJump()
-    {
-        if (Input.IsActionJustPressed("jump") && IsOnFloor())
-        {
-            // Play jump sound with slight pitch variation
-            _audio.PlaySFXVaried("Jump", 0.15f);
-            
-            Velocity = new Vector2(Velocity.X, -JumpVelocity);
-        }
-    }
-    
-    private void HandleAttack()
-    {
-        if (Input.IsActionJustPressed("attack"))
-        {
-            // Play weapon sound based on current weapon
-            switch (_currentWeapon)
-            {
-                case WeaponType.Knife:
-                    _audio.PlaySFX("Knife_Slash");
-                    break;
-                case WeaponType.Machete:
-                    _audio.PlaySFX("Machete_Slash");
-                    break;
-                case WeaponType.Sword:
-                    _audio.PlaySFX("Sword_Swing");
-                    break;
-                case WeaponType.AlienSword:
-                    _audio.PlaySFX("Alien_Sword_Slash");
-                    break;
-            }
-        }
-    }
-    
-    private void PlayFootsteps()
-    {
-        if (IsOnFloor() && Velocity.X != 0)
-        {
-            // Play different footstep sounds based on terrain
-            string surfaceType = DetectSurfaceType();
-            
-            if (surfaceType == "grass")
-                _audio.PlaySFXVaried("Footstep_Grass", 0.2f);
-            else
-                _audio.PlaySFXVaried("Footstep_Stone", 0.2f);
-        }
-    }
-    
-    public void TakeDamage(int amount)
-    {
-        Health -= amount;
-        
-        // Play appropriate hurt sound based on damage
-        if (amount < 10)
-            _audio.PlaySFXRandom("Player_Hurt_Light");
-        else if (amount < 20)
-            _audio.PlaySFXRandom("Player_Hurt_Medium");
-        else
-            _audio.PlaySFXRandom("Player_Hurt_Heavy");
-        
-        if (Health <= 0)
-        {
-            _audio.PlaySFX("Player_Death");
-            Die();
-        }
-    }
+	private AudioManager _audio;
+	
+	public override void _Ready()
+	{
+		_audio = AudioManager.Instance;
+	}
+	
+	private void HandleJump()
+	{
+		if (Input.IsActionJustPressed("jump") && IsOnFloor())
+		{
+			// Play jump sound with slight pitch variation
+			_audio.PlaySFXVaried("Jump", 0.15f);
+			
+			Velocity = new Vector2(Velocity.X, -JumpVelocity);
+		}
+	}
+	
+	private void HandleAttack()
+	{
+		if (Input.IsActionJustPressed("attack"))
+		{
+			// Play weapon sound based on current weapon
+			switch (_currentWeapon)
+			{
+				case WeaponType.Knife:
+					_audio.PlaySFX("Knife_Slash");
+					break;
+				case WeaponType.Machete:
+					_audio.PlaySFX("Machete_Slash");
+					break;
+				case WeaponType.Sword:
+					_audio.PlaySFX("Sword_Swing");
+					break;
+				case WeaponType.AlienSword:
+					_audio.PlaySFX("Alien_Sword_Slash");
+					break;
+			}
+		}
+	}
+	
+	private void PlayFootsteps()
+	{
+		if (IsOnFloor() && Velocity.X != 0)
+		{
+			// Play different footstep sounds based on terrain
+			string surfaceType = DetectSurfaceType();
+			
+			if (surfaceType == "grass")
+				_audio.PlaySFXVaried("Footstep_Grass", 0.2f);
+			else
+				_audio.PlaySFXVaried("Footstep_Stone", 0.2f);
+		}
+	}
+	
+	public void TakeDamage(int amount)
+	{
+		Health -= amount;
+		
+		// Play appropriate hurt sound based on damage
+		if (amount < 10)
+			_audio.PlaySFXRandom("Player_Hurt_Light");
+		else if (amount < 20)
+			_audio.PlaySFXRandom("Player_Hurt_Medium");
+		else
+			_audio.PlaySFXRandom("Player_Hurt_Heavy");
+		
+		if (Health <= 0)
+		{
+			_audio.PlaySFX("Player_Death");
+			Die();
+		}
+	}
 }
 ```
 
@@ -851,46 +851,46 @@ using Godot;
 
 public partial class LevelAudioSetup : Node
 {
-    [Export] public string LevelName = "Jungle";
-    
-    private AudioManager _audio;
-    
-    public override void _Ready()
-    {
-        _audio = AudioManager.Instance;
-        
-        SetupLevelAudio();
-    }
-    
-    private void SetupLevelAudio()
-    {
-        switch (LevelName.ToLower())
-        {
-            case "jungle":
-                _audio.PlayMusic("Jungle_Theme", loop: true, fadeTime: 2.0f);
-                _audio.PlayAmbience("Jungle_Ambient_Loop", loop: true);
-                break;
-                
-            case "dungeon":
-                _audio.PlayMusic("Dungeon_Theme", loop: true, fadeTime: 2.0f);
-                _audio.PlayAmbience("Dungeon_Ambient_Loop", loop: true);
-                break;
-                
-            case "castle":
-                _audio.PlayMusic("Castle_Theme", loop: true, fadeTime: 2.0f);
-                _audio.PlayAmbience("Castle_Ambient_Loop", loop: true);
-                break;
-        }
-        
-        GD.Print($"Started audio for {LevelName}");
-    }
-    
-    public override void _ExitTree()
-    {
-        // Cleanup when leaving level
-        _audio.StopMusic(fadeTime: 1.0f);
-        _audio.StopAmbience();
-    }
+	[Export] public string LevelName = "Jungle";
+	
+	private AudioManager _audio;
+	
+	public override void _Ready()
+	{
+		_audio = AudioManager.Instance;
+		
+		SetupLevelAudio();
+	}
+	
+	private void SetupLevelAudio()
+	{
+		switch (LevelName.ToLower())
+		{
+			case "jungle":
+				_audio.PlayMusic("Jungle_Theme", loop: true, fadeTime: 2.0f);
+				_audio.PlayAmbience("Jungle_Ambient_Loop", loop: true);
+				break;
+				
+			case "dungeon":
+				_audio.PlayMusic("Dungeon_Theme", loop: true, fadeTime: 2.0f);
+				_audio.PlayAmbience("Dungeon_Ambient_Loop", loop: true);
+				break;
+				
+			case "castle":
+				_audio.PlayMusic("Castle_Theme", loop: true, fadeTime: 2.0f);
+				_audio.PlayAmbience("Castle_Ambient_Loop", loop: true);
+				break;
+		}
+		
+		GD.Print($"Started audio for {LevelName}");
+	}
+	
+	public override void _ExitTree()
+	{
+		// Cleanup when leaving level
+		_audio.StopMusic(fadeTime: 1.0f);
+		_audio.StopAmbience();
+	}
 }
 ```
 
@@ -903,69 +903,69 @@ using Godot;
 
 public partial class BossAudioController : Node
 {
-    [Export] public string BossName = "Goliath";
-    
-    private AudioManager _audio;
-    private bool _phase2Started = false;
-    private bool _phase3Started = false;
-    
-    public override void _Ready()
-    {
-        _audio = AudioManager.Instance;
-    }
-    
-    public void StartBossBattle()
-    {
-        // Stop level music
-        _audio.StopMusic(fadeTime: 1.0f);
-        
-        // Wait for fade, then start boss music
-        GetTree().CreateTimer(1.0f).Timeout += () =>
-        {
-            _audio.PlayMusic($"{BossName}_Boss_Battle", loop: true, fadeTime: 0.5f);
-        };
-        
-        // Play boss entrance sound
-        _audio.PlaySFX($"{BossName}_Intro_Roar");
-        
-        GD.Print($"{BossName} boss battle started");
-    }
-    
-    public void OnPhaseChange(int phase)
-    {
-        switch (phase)
-        {
-            case 2:
-                if (!_phase2Started)
-                {
-                    _audio.PlaySFX($"{BossName}_Phase_2_Transition");
-                    _phase2Started = true;
-                }
-                break;
-                
-            case 3:
-                if (!_phase3Started)
-                {
-                    _audio.PlaySFX($"{BossName}_Phase_3_Transition");
-                    _phase3Started = true;
-                }
-                break;
-        }
-    }
-    
-    public void OnBossDefeat()
-    {
-        _audio.PlaySFX($"{BossName}_Death_Cry");
-        
-        // Fade out boss music
-        _audio.StopMusic(fadeTime: 3.0f);
-        
-        // Play victory fanfare after death sound
-        GetTree().CreateTimer(2.0f).Timeout += () =>
-        {
-            _audio.PlayMusic("Victory_Theme", loop: false);
-        };
-    }
+	[Export] public string BossName = "Goliath";
+	
+	private AudioManager _audio;
+	private bool _phase2Started = false;
+	private bool _phase3Started = false;
+	
+	public override void _Ready()
+	{
+		_audio = AudioManager.Instance;
+	}
+	
+	public void StartBossBattle()
+	{
+		// Stop level music
+		_audio.StopMusic(fadeTime: 1.0f);
+		
+		// Wait for fade, then start boss music
+		GetTree().CreateTimer(1.0f).Timeout += () =>
+		{
+			_audio.PlayMusic($"{BossName}_Boss_Battle", loop: true, fadeTime: 0.5f);
+		};
+		
+		// Play boss entrance sound
+		_audio.PlaySFX($"{BossName}_Intro_Roar");
+		
+		GD.Print($"{BossName} boss battle started");
+	}
+	
+	public void OnPhaseChange(int phase)
+	{
+		switch (phase)
+		{
+			case 2:
+				if (!_phase2Started)
+				{
+					_audio.PlaySFX($"{BossName}_Phase_2_Transition");
+					_phase2Started = true;
+				}
+				break;
+				
+			case 3:
+				if (!_phase3Started)
+				{
+					_audio.PlaySFX($"{BossName}_Phase_3_Transition");
+					_phase3Started = true;
+				}
+				break;
+		}
+	}
+	
+	public void OnBossDefeat()
+	{
+		_audio.PlaySFX($"{BossName}_Death_Cry");
+		
+		// Fade out boss music
+		_audio.StopMusic(fadeTime: 3.0f);
+		
+		// Play victory fanfare after death sound
+		GetTree().CreateTimer(2.0f).Timeout += () =>
+		{
+			_audio.PlayMusic("Victory_Theme", loop: false);
+		};
+	}
 }
 ```
 
