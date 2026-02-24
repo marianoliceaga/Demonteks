@@ -22,21 +22,11 @@ Create a **complete audio experience** for Demonteks with:
 ### 🎮 PLAYER SOUNDS (Explorer)
 
 #### Movement Sounds (8 sounds)
-- **Footstep_Grass** - Walking on jungle terrain (loop-able)
-- **Footstep_Stone** - Walking on dungeon/castle floors (loop-able)
-- **Jump** - Jumping launch sound
-- **Land_Soft** - Landing on grass/soft surface
-- **Land_Hard** - Landing on stone/hard surface
 - **Crouch_Down** - Crouching movement
 - **Dash** - Quick dash/run boost (optional)
 - **Slide** - Sliding movement (optional)
 
 #### Combat Sounds (15 sounds)
-- **Knife_Slash** - Basic knife attack swipe
-- **Knife_Hit_Enemy** - Knife connecting with enemy
-- **Machete_Slash** - Heavier machete swing
-- **Machete_Hit_Enemy** - Machete impact on enemy
-- **Sword_Swing** - Metal sword swing
 - **Sword_Hit_Enemy** - Sword hitting enemy
 - **Alien_Sword_Charge** - Charged alien weapon hum
 - **Alien_Sword_Slash** - Alien sword energy swipe
@@ -49,20 +39,13 @@ Create a **complete audio experience** for Demonteks with:
 - **Charge_Attack** - Charging up special attack
 
 #### Damage & Status Sounds (8 sounds)
-- **Player_Hurt_Light** - Taking light damage (5-10 HP)
-- **Player_Hurt_Medium** - Taking medium damage (10-20 HP)
-- **Player_Hurt_Heavy** - Taking heavy damage (20+ HP)
-- **Player_Death** - Death sound effect
-- **Player_Heal** - Healing/recovery sound
 - **Shield_Break** - Invincibility ending (optional)
 - **Low_Health_Heartbeat** - Warning loop when < 30 HP
-- **Respawn** - Coming back at checkpoint
+
 
 #### Interaction Sounds (5 sounds)
-- **Checkpoint_Activate** - Checkpoint save sound
 - **Item_Pickup** - Generic item collection
 - **Door_Open** - Opening doors/passages
-- **Lever_Pull** - Activating switches
 - **Climb_Ladder** - Ladder climbing (loop)
 
 ---
