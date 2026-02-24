@@ -1,0 +1,203 @@
+Use the following list of prompts to generate sounds using the ElevenLabs MCP Server and download the sounds to the locations specified in each section. If the destination folder don't exist, create them.
+Use rety logic and fail recovery if there are any errors until you have generated and downloaded all of them.
+
+First download this in this folder /d/Assets/audio/sfx/demontek :
+
+```
+eleven_text_to_speech(
+  text="Tek tek. Tek tek. Tek tek!",
+  voice_description="A small sinister demon creature, high-pitched but gravelly and wet voice, like a tiny monster with sharp teeth, raspy and chittering, fast and erratic speech pattern, sinister and predatory, slightly echoing as if from a dark cave",
+  stability=0.20,
+  similarity_boost=0.85,
+  style=0.90,
+  speed=1.4
+)
+```
+----------
+Then download these this under /d/Assets/audio/sfx/player :
+
+generate_sound_effect("Rhythmic footsteps on soft jungle grass and wet earth, loopable, natural outdoor ambience", duration_seconds=3)
+
+generate_sound_effect("Echoing footsteps on cold stone dungeon floor, steady pace, loopable", duration_seconds=3)
+
+generate_sound_effect("Fast whoosh dash movement burst, aerodynamic swoosh with slight wind impact", duration_seconds=0.6)
+
+generate_sound_effect("Cartoon-style jump launch, upward spring leap with slight grunt exertion", duration_seconds=0.5)
+
+generate_sound_effect("Soft landing thud on grass or dirt, gentle impact with light compression", duration_seconds=0.4)
+
+generate_sound_effect("Hard landing impact on stone floor, heavy thud with slight reverb echo", duration_seconds=0.5)
+
+generate_sound_effect("Human fist punch impact, sharp knuckle crack on contact, action game style", duration_seconds=0.4)
+
+generate_sound_effect("Fast knife slash swipe through air, sharp blade whoosh", duration_seconds=0.4)
+
+generate_sound_effect("Knife blade connecting with enemy flesh, wet impact thud with metal ring", duration_seconds=0.4)
+
+generate_sound_effect("Heavy machete swing through air, thick blade whoosh with weight", duration_seconds=0.5)
+
+generate_sound_effect("Machete hitting enemy, heavy wet impact with thick blade thud", duration_seconds=0.5)
+
+generate_sound_effect("Metal sword swing through air, clean sharp blade swoosh with metallic ring", duration_seconds=0.6)
+
+----------
+Then download these this under /d/Assets/audio/sfx/player :
+
+generate_sound_effect("Player grunt of light pain, small hit reaction, short exhale of discomfort", duration_seconds=0.5)
+
+generate_sound_effect("Player medium damage grunt, sharp hit reaction, audible pain vocalization", duration_seconds=0.6)
+
+generate_sound_effect("Player taking heavy damage, loud painful groan with impact sound", duration_seconds=0.7)
+
+generate_sound_effect("Player death sound, dramatic collapsing breath with fading exhale, game over tone", duration_seconds=1.5)
+
+generate_sound_effect("Health healing sound, warm glowing chime with soft magical shimmer, restorative tone", duration_seconds=1.2)
+
+generate_sound_effect("Respawn at checkpoint, rising digital tone with energy surge, coming back to life sound", duration_seconds=1.5)
+
+----------
+Then download these this under /d/Assets/audio/sfx/player :
+
+generate_sound_effect("Checkpoint activation, satisfying crystalline chime with energy pulse save sound", duration_seconds=1.0)
+
+generate_sound_effect("Mechanical lever pull, heavy metal clunk with gear click, dungeon switch activation", duration_seconds=0.8)
+
+----------
+
+Then download these this under /d/Assets/audio/sfx/enemies/demontek
+
+generate_sound_effect("Demonic creature idle breathing with low guttural growl, ambient monster sound loop", duration_seconds=3)
+
+generate_sound_effect("Demon creature swipe or bite attack, fast aggressive slash with growl burst", duration_seconds=0.6)
+
+generate_sound_effect("Demon creature taking damage, short pained snarl and recoil grunt", duration_seconds=0.5)
+
+generate_sound_effect("Demon creature death cry, pained screech fading into silence", duration_seconds=1.2)
+
+generate_sound_effect("Demon creature footstep, clawed scratching on stone floor", duration_seconds=0.4)
+
+----------
+
+Then download these this under /d/Assets/audio/sfx/enemies/Guard
+
+generate_sound_effect("Armored demonic guard idle stance, low mechanical hum with subtle breath, alert posture sound", duration_seconds=3)
+
+generate_sound_effect("Armored baton swing attack, heavy dense rod whoosh through air", duration_seconds=0.5)
+
+generate_sound_effect("Armored guard taking hit, metallic clang impact with muffled grunt", duration_seconds=0.5)
+
+generate_sound_effect("Armored guard death sound, clanging armor collapse with death rattle", duration_seconds=1.2)
+
+generate_sound_effect("Heavy armored march footstep, thick metal boot on stone floor", duration_seconds=0.5)
+
+----------
+
+Then download these this under /d/Assets/audio/sfx/enemies/Mutant 
+
+generate_sound_effect("Mutant creature heavy labored breathing, deep raspy wet breath loop, disturbing idle sound", duration_seconds=3)
+
+generate_sound_effect("Mutant powerful melee attack, massive heavy impact smash with grunt force", duration_seconds=0.7)
+
+generate_sound_effect("Tough mutant creature taking damage, deep pained grunt with thick body impact", duration_seconds=0.6)
+
+generate_sound_effect("Mutant death, loud roaring scream fading into gurgle, powerful creature dying", duration_seconds=1.8)
+
+generate_sound_effect("Mutant thunderous heavy footstep, massive creature step shaking the ground", duration_seconds=0.6)
+
+----------
+
+Then download these this under /d/Assets/audio/sfx/enemies/Goliath
+
+generate_sound_effect("Giant boss creature heavy breathing loop, massive deep respiratory cycle, ominous idle", duration_seconds=4)
+
+generate_sound_effect("Four-armed giant boss multi-arm swipe, rapid successive swooshes overlapping, devastating attack", duration_seconds=0.9)
+
+generate_sound_effect("Giant boss ground pound, enormous impact explosion with shockwave rumble and debris", duration_seconds=1.2)
+
+generate_sound_effect("Boss creature sonic roar attack, powerful bellowing blast wave, concussive sound burst", duration_seconds=1.5)
+
+generate_sound_effect("Giant boss heavy stomp, enormous foot impact on stone causing tremor rumble", duration_seconds=0.7)
+
+generate_sound_effect("Armored giant boss taking damage, heavy metallic clang with deep pained grunt", duration_seconds=0.6)
+
+generate_sound_effect("Boss armor breaking stagger moment, cracking metal shatter with creature stumble grunt", duration_seconds=1.0)
+
+generate_sound_effect("Giant boss death cry begins, long agonized bellow starting defeat sequence", duration_seconds=2.0)
+
+generate_sound_effect("Massive boss body collapsing to ground, enormous thunderous impact with debris and dust", duration_seconds=2.5)
+
+----------
+
+Then download these this under /d/Assets/audio/sfx/enemies/King 
+
+generate_sound_effect("Heavy demonic king charged sword slam, powerful metallic crash with dark energy resonance", duration_seconds=0.9)
+
+generate_sound_effect("Demonic king launching fire magic projectile, whooshing flame burst with dark magical charge", duration_seconds=0.8)
+
+generate_sound_effect("Fire projectile explosion impact, fiery blast with dark demonic energy shockwave", duration_seconds=1.2)
+
+generate_sound_effect("Demonic king taking damage, regal pained grunt with echo of dark power", duration_seconds=0.6)
+
+generate_sound_effect("Demonic king entering stagger state, disoriented stumble sound with crackling dark energy faltering", duration_seconds=1.0)
+
+generate_sound_effect("Final boss death explosion, massive cataclysmic blast with dark energy implosion and echo", duration_seconds=3.0)
+
+----------
+
+Then download these this under /d/Assets/audio/sfx/Level1_Jungle
+
+generate_sound_effect("Alien jungle bird chirping calls, exotic otherworldly avian sounds layered ambient loop", duration_seconds=5)
+
+generate_sound_effect("Moving through dense jungle foliage, leaves and branches rustling, brushing sound", duration_seconds=0.8)
+
+----------
+
+Then download these this under /d/Assets/audio/sfx/Level2_Dungeon
+
+generate_sound_effect("Heavy dungeon chains rattling and swaying, metallic clanking links, ominous ambient sound", duration_seconds=2)
+
+generate_sound_effect("Distant muffled prisoner screams in dungeon, far-off tortured cries, subtle and eerie", duration_seconds=4)
+
+generate_sound_effect("Heavy rusted prison door creaking open, slow grinding metal hinge scrape", duration_seconds=1.5)
+
+----------
+
+Then download these this under /d/Assets/audio/sfx/Level3_Castle
+
+generate_sound_effect("Multiple large torches roaring, crackling fire ambience, intense flame sound loop", duration_seconds=5)
+
+generate_sound_effect("Distant demonic ritual chanting, dark cultist voices echoing through stone halls", duration_seconds=5)
+
+generate_sound_effect("Subtle whispering demon voices, barely audible sinister murmurs, unsettling atmosphere", duration_seconds=5)
+
+generate_sound_effect("Hell portal energy hum, deep resonant dimensional rift vibration with dark magical oscillation loop", duration_seconds=5)
+
+----------
+
+Then download these this under /d/Assets/audio/sfx/UI_Sounds
+
+generate_sound_effect("Soft UI hover sound, gentle mouse-over chime, clean interface feedback tone", duration_seconds=0.3)
+
+generate_sound_effect("UI button click select, satisfying crisp tap confirmation sound", duration_seconds=0.3)
+
+generate_sound_effect("Pause menu opening whoosh, quick interface slide-in with soft chime", duration_seconds=0.5)
+
+generate_sound_effect("Menu closing swoosh, quick interface slide-out dismissal sound", duration_seconds=0.4)
+
+generate_sound_effect("Menu navigation tick, subtle directional move between UI options", duration_seconds=0.2)
+
+generate_sound_effect("Error buzz, sharp negative feedback tone, invalid action denied sound", duration_seconds=0.5)
+
+generate_sound_effect("Success chime, pleasant ascending ding tone, positive action completion sound", duration_seconds=0.7)
+
+generate_sound_effect("Level complete fanfare, triumphant short musical sting with celebration energy", duration_seconds=3.0)
+
+generate_sound_effect("Achievement unlock sound, bright rewarding chime with rising flourish", duration_seconds=1.5)
+
+generate_sound_effect("Stat increase level up sound, positive ascending tone with power growth feeling", duration_seconds=1.0)
+
+generate_sound_effect("Low health warning alert, urgent pulsing heartbeat tone, under 30 HP danger signal", duration_seconds=1.0)
+
+generate_sound_effect("New weapon unlocked notification, exciting discovery chime with metallic ring accent", duration_seconds=1.2)
+
+generate_sound_effect("Auto-save indicator sound, quick soft data-writing click with subtle confirmation chime", duration_seconds=0.8)

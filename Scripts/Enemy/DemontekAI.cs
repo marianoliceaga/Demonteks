@@ -275,18 +275,15 @@ namespace Demonteks.Enemy
 
         private void UpdateFacing()
         {
-            // If attacking, do not override the left-right sprite flipping. Let the attack animation face naturally
-            if (_stateMachine.CurrentState is AttackState) return;
-
+            // Do not override with horizontal flipping since we have dynamic directional animations now
+            // We just track facing direction internally
             if (_velocity.X > 0 && !_facingRight)
             {
                 _facingRight = true;
-                _animatedSprite.FlipH = false;
             }
             else if (_velocity.X < 0 && _facingRight)
             {
                 _facingRight = false;
-                _animatedSprite.FlipH = true;
             }
         }
         #endregion
@@ -438,45 +435,45 @@ namespace Demonteks.Enemy
 
             string currentState = _stateMachine.CurrentState.GetType().Name;
 
+            // Always disable FlipH to prevent glitchy weapon swapping / light flipping on isometric / 3/4 characters
+            _animatedSprite.FlipH = false;
+
+            string suffix = _facingRight ? "east" : "west";
+
             switch (currentState)
             {
                 case "IdleState":
-                    PlaySafe("idle");
+                    PlaySafe($"idle_{suffix}", "idle");
                     break;
                 case "PatrolState":
-                    PlaySafe("walk");
+                    PlaySafe($"walk_{suffix}", "walk");
                     break;
                 case "ChaseState":
-                    PlaySafe("run", "walk"); // fallback to walk if no run
+                    PlaySafe($"run_{suffix}", $"walk_{suffix}", "run", "walk"); // fallback chain
                     break;
                 case "AttackState":
-                    // Use directional cross-punch animations and disable horizontal flipping
-                    _animatedSprite.FlipH = false;
-
-                    if (_facingRight)
-                        PlaySafe("attack_east");
-                    else
-                        PlaySafe("attack_west");
+                    PlaySafe($"attack_{suffix}", "attack");
                     break;
                 case "HurtState":
-                    PlaySafe("hurt");
+                    PlaySafe($"hurt_{suffix}", "hurt");
                     break;
                 case "DeathState":
-                    PlaySafe("death");
+                    PlaySafe($"death_{suffix}", "death");
                     break;
             }
         }
 
-        private void PlaySafe(string animName, string fallback = null)
+        private void PlaySafe(params string[] animNames)
         {
             if (_animatedSprite.SpriteFrames == null) return;
-            if (_animatedSprite.SpriteFrames.HasAnimation(animName))
+
+            foreach (var animName in animNames)
             {
-                _animatedSprite.Play(animName);
-            }
-            else if (fallback != null && _animatedSprite.SpriteFrames.HasAnimation(fallback))
-            {
-                _animatedSprite.Play(fallback);
+                if (animName != null && _animatedSprite.SpriteFrames.HasAnimation(animName))
+                {
+                    _animatedSprite.Play(animName);
+                    return;
+                }
             }
         }
         #endregion

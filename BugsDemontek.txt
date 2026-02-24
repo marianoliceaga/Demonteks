@@ -7,14 +7,18 @@ X-Platforms should look like the floor but thinner, just the top tiles
 X-Crea un piso casi en el fondo antes del KillZone justo abajo a la izquierda y a la derecha de los agujeros del piso principal
 X-Make the camera follow the Player vertically also
 X-Make the Player transition to Level 2 when it reaches the LevelEnd
-
--F key is not picking up HealthPickup
--S key is not crouching
--Guard character attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly and they attack facing the Player
--Level2 Foreground looks like shit (Mariano)
-
-Nice to haves (difficult):
--------------------------
+---------------------------------------------------------------------------------
+Check all these
+X-Guard character attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly and they attack facing the Player
+X-Mutant character animations look bad, make sure they are using the right animations
+X-Goliath character animations look bad, make sure they are using the right animations 
+X-King character animations look bad, make sure they are using the right animations 
+---------------------------------------------------------------------------------
+//TODO
+-Level1 and Level2 Foreground looks like shit
+-Sound FX Basic for all game
+-Music Level 3 (Castle): Mateo to send something.
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
--The Demontek attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
--The Demonteks shouldn't fall to the void
+-All the enemies attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
+-None of the enemies shouldn fall to the pits and fall to the void
+-F key is not picking up HealthPickup

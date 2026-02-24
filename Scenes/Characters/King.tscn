@@ -1,70 +1,154 @@
 [gd_scene load_steps=30 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/DemontekAI.cs" id="1_ai"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/east/frame_000.png" id="tex_5149806e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/east/frame_001.png" id="tex_044d42c3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/east/frame_002.png" id="tex_7be71a72"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/east/frame_003.png" id="tex_175f7a03"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/north/frame_000.png" id="tex_24be80d4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/north/frame_001.png" id="tex_56902be4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/north/frame_002.png" id="tex_162a2ba0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/north/frame_003.png" id="tex_ade050f1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/south/frame_000.png" id="tex_da90a016"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/south/frame_001.png" id="tex_b85945d0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/south/frame_002.png" id="tex_d25bc2b7"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/south/frame_003.png" id="tex_fb2f748d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/west/frame_000.png" id="tex_ec74d952"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/west/frame_001.png" id="tex_fbd7a6f8"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/west/frame_002.png" id="tex_b3c6b9e6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/west/frame_003.png" id="tex_1fbe8588"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_000.png" id="tex_7131d698"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_001.png" id="tex_343733f9"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_002.png" id="tex_a4791e1e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_003.png" id="tex_3490ac24"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_004.png" id="tex_d04826b9"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_005.png" id="tex_c7e39381"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_000.png" id="tex_c29a6498"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_001.png" id="tex_a44f3645"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_002.png" id="tex_ad3c7add"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_003.png" id="tex_5c025008"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_004.png" id="tex_e6b7ae3a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_005.png" id="tex_5bb327b3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_006.png" id="tex_6a1a6ceb"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/east/frame_000.png" id="tex_1fd2852f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/east/frame_001.png" id="tex_dc454c3b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/east/frame_002.png" id="tex_117a79d7"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/east/frame_003.png" id="tex_f09d0edf"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/east/frame_004.png" id="tex_52eeccb9"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/east/frame_005.png" id="tex_1cabb96e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/west/frame_000.png" id="tex_8a28cd94"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/west/frame_001.png" id="tex_fcf39888"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/west/frame_002.png" id="tex_1590b069"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/west/frame_003.png" id="tex_c41efc23"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/west/frame_004.png" id="tex_000385f1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/fireball/west/frame_005.png" id="tex_960dbb1b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/east/frame_000.png" id="tex_9ef3cf04"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/east/frame_001.png" id="tex_6be3ce23"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/east/frame_002.png" id="tex_9c53ed1a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/east/frame_003.png" id="tex_9c95d2a2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/east/frame_004.png" id="tex_462bcff1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/east/frame_005.png" id="tex_62af807c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/east/frame_006.png" id="tex_99d44cc1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/east/frame_007.png" id="tex_3e5b70fb"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/east/frame_008.png" id="tex_02280f07"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/south/frame_000.png" id="tex_698f6ca0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/south/frame_001.png" id="tex_ab432473"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/south/frame_002.png" id="tex_47b0389a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/south/frame_003.png" id="tex_a081d028"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/south/frame_004.png" id="tex_bcb6b0b5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/south/frame_005.png" id="tex_2df2c5fa"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/south/frame_006.png" id="tex_6cf9061e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/south/frame_007.png" id="tex_2e4ad235"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/jumping-1/south/frame_008.png" id="tex_9a456973"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_000.png" id="tex_ecc73b1e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_001.png" id="tex_8aaf7f67"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_002.png" id="tex_fe43f97d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_003.png" id="tex_9aa70cf3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_004.png" id="tex_ecaa898f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_005.png" id="tex_5e02db71"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/south/frame_000.png" id="tex_8d771f8d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/south/frame_001.png" id="tex_290dfc13"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/south/frame_002.png" id="tex_0b2cd61d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/south/frame_003.png" id="tex_f92c74e0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/south/frame_004.png" id="tex_e6e22b9f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/south/frame_005.png" id="tex_70fc3fd8"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/east/frame_000.png" id="tex_507f6216"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/east/frame_001.png" id="tex_09645fa0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/east/frame_002.png" id="tex_cc3f7671"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/east/frame_003.png" id="tex_52e023f7"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/east/frame_004.png" id="tex_4f584e35"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/east/frame_005.png" id="tex_337910f6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/south/frame_000.png" id="tex_5ee39274"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/south/frame_001.png" id="tex_c16f5719"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/south/frame_002.png" id="tex_6add9651"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/south/frame_003.png" id="tex_49a4ff04"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/south/frame_004.png" id="tex_f33c2fbe"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/south/frame_005.png" id="tex_7e8778a3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_000.png" id="tex_822ded0a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_001.png" id="tex_38ce124b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_002.png" id="tex_a4528d62"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_003.png" id="tex_6869304b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_004.png" id="tex_970dad43"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_005.png" id="tex_6a7a18bb"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_000.png" id="tex_74f88d43"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_001.png" id="tex_c7fd77e6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_002.png" id="tex_00ed2c55"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_003.png" id="tex_bdb6b628"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_004.png" id="tex_431c3f16"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_005.png" id="tex_7fb05c39"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_006.png" id="tex_886e7a59"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_007.png" id="tex_76ddc01c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/north/frame_000.png" id="tex_3b574db2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/north/frame_001.png" id="tex_ec55de0c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/north/frame_002.png" id="tex_aaf376a5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/north/frame_003.png" id="tex_f821f748"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/north/frame_004.png" id="tex_72b0190c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/north/frame_005.png" id="tex_dcc54fef"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/north/frame_006.png" id="tex_ee31e81f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/north/frame_007.png" id="tex_96c59f16"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/south/frame_000.png" id="tex_1f0d786e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/south/frame_001.png" id="tex_7dd11ad4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/south/frame_002.png" id="tex_5d430319"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/south/frame_003.png" id="tex_0a9cb4a6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/south/frame_004.png" id="tex_d428dca6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/south/frame_005.png" id="tex_66549785"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/south/frame_006.png" id="tex_25cd16f9"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/south/frame_007.png" id="tex_21622e06"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/west/frame_000.png" id="tex_a2dc06f8"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/west/frame_001.png" id="tex_4ce7c421"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/west/frame_002.png" id="tex_d22fdd9b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/west/frame_003.png" id="tex_8ca1fe4b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/west/frame_004.png" id="tex_e94a6f2d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/west/frame_005.png" id="tex_68b4c0e8"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/west/frame_006.png" id="tex_ec2a8514"]
+[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/west/frame_007.png" id="tex_3f1440a9"]
 
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/east/frame_000.png" id="idle_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/east/frame_001.png" id="idle_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/east/frame_002.png" id="idle_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/breathing-idle/east/frame_003.png" id="idle_3"]
 
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_000.png" id="walk_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_001.png" id="walk_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_002.png" id="walk_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_003.png" id="walk_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_004.png" id="walk_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_005.png" id="walk_5"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_006.png" id="walk_6"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/walking-8-frames/east/frame_007.png" id="walk_7"]
 
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_000.png" id="run_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_001.png" id="run_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_002.png" id="run_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_003.png" id="run_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_004.png" id="run_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/running-6-frames/east/frame_005.png" id="run_5"]
 
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_000.png" id="attack_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_001.png" id="attack_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_002.png" id="attack_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_003.png" id="attack_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_004.png" id="attack_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/cross-punch/east/frame_005.png" id="attack_5"]
 
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_000.png" id="hurt_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_001.png" id="hurt_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_002.png" id="hurt_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_003.png" id="hurt_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_004.png" id="hurt_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/taking-punch/west/frame_005.png" id="hurt_5"]
 
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_000.png" id="death_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_001.png" id="death_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_002.png" id="death_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_003.png" id="death_3"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_004.png" id="death_4"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_005.png" id="death_5"]
-[ext_resource type="Texture2D" path="res://Assets/characters/king_demontek/animations/falling-back-death/south/frame_006.png" id="death_6"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_enemy"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("attack_0")
+"texture": ExtResource("tex_7131d698")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_1")
+"texture": ExtResource("tex_343733f9")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_2")
+"texture": ExtResource("tex_a4791e1e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_3")
+"texture": ExtResource("tex_3490ac24")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_4")
+"texture": ExtResource("tex_d04826b9")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_5")
+"texture": ExtResource("tex_c7e39381")
 }],
 "loop": false,
 "name": &"attack",
@@ -72,88 +156,384 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("death_0")
+"texture": ExtResource("tex_7131d698")
 }, {
 "duration": 1.0,
-"texture": ExtResource("death_1")
+"texture": ExtResource("tex_343733f9")
 }, {
 "duration": 1.0,
-"texture": ExtResource("death_2")
+"texture": ExtResource("tex_a4791e1e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("death_3")
+"texture": ExtResource("tex_3490ac24")
 }, {
 "duration": 1.0,
-"texture": ExtResource("death_4")
+"texture": ExtResource("tex_d04826b9")
 }, {
 "duration": 1.0,
-"texture": ExtResource("death_5")
+"texture": ExtResource("tex_c7e39381")
+}],
+"loop": false,
+"name": &"attack_east",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_c29a6498")
 }, {
 "duration": 1.0,
-"texture": ExtResource("death_6")
+"texture": ExtResource("tex_a44f3645")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ad3c7add")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_5c025008")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_e6b7ae3a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_5bb327b3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_6a1a6ceb")
 }],
 "loop": false,
 "name": &"death",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("hurt_0")
+"texture": ExtResource("tex_c29a6498")
 }, {
 "duration": 1.0,
-"texture": ExtResource("hurt_1")
+"texture": ExtResource("tex_a44f3645")
 }, {
 "duration": 1.0,
-"texture": ExtResource("hurt_2")
+"texture": ExtResource("tex_ad3c7add")
 }, {
 "duration": 1.0,
-"texture": ExtResource("hurt_3")
+"texture": ExtResource("tex_5c025008")
 }, {
 "duration": 1.0,
-"texture": ExtResource("hurt_4")
+"texture": ExtResource("tex_e6b7ae3a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("hurt_5")
+"texture": ExtResource("tex_5bb327b3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_6a1a6ceb")
+}],
+"loop": false,
+"name": &"death_south",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_1fd2852f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_dc454c3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_117a79d7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_f09d0edf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_52eeccb9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_1cabb96e")
+}],
+"loop": false,
+"name": &"fireball_east",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_8a28cd94")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_fcf39888")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_1590b069")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_c41efc23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_000385f1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_960dbb1b")
+}],
+"loop": false,
+"name": &"fireball_west",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_507f6216")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_09645fa0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_cc3f7671")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_52e023f7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_4f584e35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_337910f6")
 }],
 "loop": false,
 "name": &"hurt",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("idle_0")
+"texture": ExtResource("tex_507f6216")
 }, {
 "duration": 1.0,
-"texture": ExtResource("idle_1")
+"texture": ExtResource("tex_09645fa0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("idle_2")
+"texture": ExtResource("tex_cc3f7671")
 }, {
 "duration": 1.0,
-"texture": ExtResource("idle_3")
+"texture": ExtResource("tex_52e023f7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_4f584e35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_337910f6")
+}],
+"loop": false,
+"name": &"hurt_east",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_5ee39274")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_c16f5719")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_6add9651")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_49a4ff04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_f33c2fbe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_7e8778a3")
+}],
+"loop": false,
+"name": &"hurt_south",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_822ded0a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_38ce124b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_a4528d62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_6869304b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_970dad43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_6a7a18bb")
+}],
+"loop": false,
+"name": &"hurt_west",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_5149806e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_044d42c3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_7be71a72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_175f7a03")
 }],
 "loop": true,
 "name": &"idle",
-"speed": 6.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("run_0")
+"texture": ExtResource("tex_5149806e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("run_1")
+"texture": ExtResource("tex_044d42c3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("run_2")
+"texture": ExtResource("tex_7be71a72")
 }, {
 "duration": 1.0,
-"texture": ExtResource("run_3")
+"texture": ExtResource("tex_175f7a03")
+}],
+"loop": true,
+"name": &"idle_east",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_24be80d4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("run_4")
+"texture": ExtResource("tex_56902be4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("run_5")
+"texture": ExtResource("tex_162a2ba0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ade050f1")
+}],
+"loop": true,
+"name": &"idle_north",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_da90a016")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_b85945d0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_d25bc2b7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_fb2f748d")
+}],
+"loop": true,
+"name": &"idle_south",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_ec74d952")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_fbd7a6f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_b3c6b9e6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_1fbe8588")
+}],
+"loop": true,
+"name": &"idle_west",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_9ef3cf04")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_6be3ce23")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_9c53ed1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_9c95d2a2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_462bcff1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_62af807c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_99d44cc1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_3e5b70fb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_02280f07")
+}],
+"loop": false,
+"name": &"jump_east",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_698f6ca0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ab432473")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_47b0389a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_a081d028")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_bcb6b0b5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_2df2c5fa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_6cf9061e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_2e4ad235")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_9a456973")
+}],
+"loop": false,
+"name": &"jump_south",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_ecc73b1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_8aaf7f67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_fe43f97d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_9aa70cf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ecaa898f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_5e02db71")
 }],
 "loop": true,
 "name": &"run",
@@ -161,32 +541,252 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("walk_0")
+"texture": ExtResource("tex_ecc73b1e")
 }, {
 "duration": 1.0,
-"texture": ExtResource("walk_1")
+"texture": ExtResource("tex_8aaf7f67")
 }, {
 "duration": 1.0,
-"texture": ExtResource("walk_2")
+"texture": ExtResource("tex_fe43f97d")
 }, {
 "duration": 1.0,
-"texture": ExtResource("walk_3")
+"texture": ExtResource("tex_9aa70cf3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("walk_4")
+"texture": ExtResource("tex_ecaa898f")
 }, {
 "duration": 1.0,
-"texture": ExtResource("walk_5")
+"texture": ExtResource("tex_5e02db71")
+}],
+"loop": true,
+"name": &"run_east",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_3b574db2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("walk_6")
+"texture": ExtResource("tex_ec55de0c")
 }, {
 "duration": 1.0,
-"texture": ExtResource("walk_7")
+"texture": ExtResource("tex_aaf376a5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_f821f748")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_72b0190c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_dcc54fef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ee31e81f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_96c59f16")
+}],
+"loop": true,
+"name": &"run_north",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_8d771f8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_290dfc13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_0b2cd61d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_f92c74e0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_e6e22b9f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_70fc3fd8")
+}],
+"loop": true,
+"name": &"run_south",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_a2dc06f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_4ce7c421")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_d22fdd9b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_8ca1fe4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_e94a6f2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_68b4c0e8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ec2a8514")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_3f1440a9")
+}],
+"loop": true,
+"name": &"run_west",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_74f88d43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_c7fd77e6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_00ed2c55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_bdb6b628")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_431c3f16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_7fb05c39")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_886e7a59")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_76ddc01c")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 8.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_74f88d43")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_c7fd77e6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_00ed2c55")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_bdb6b628")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_431c3f16")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_7fb05c39")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_886e7a59")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_76ddc01c")
+}],
+"loop": true,
+"name": &"walk_east",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_3b574db2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ec55de0c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_aaf376a5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_f821f748")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_72b0190c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_dcc54fef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ee31e81f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_96c59f16")
+}],
+"loop": true,
+"name": &"walk_north",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_1f0d786e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_7dd11ad4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_5d430319")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_0a9cb4a6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_d428dca6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_66549785")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_25cd16f9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_21622e06")
+}],
+"loop": true,
+"name": &"walk_south",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_a2dc06f8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_4ce7c421")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_d22fdd9b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_8ca1fe4b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_e94a6f2d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_68b4c0e8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ec2a8514")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_3f1440a9")
+}],
+"loop": true,
+"name": &"walk_west",
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]

@@ -3,6 +3,10 @@ import re
 import hashlib
 
 def process_character(char_name, tscn_path, anim_root):
+    if not os.path.exists(tscn_path):
+        print(f"File not found: {tscn_path}")
+        return
+        
     print(f"Processing {char_name} in {tscn_path}")
     prefix_map = {
         "breathing-idle": "idle",
@@ -79,6 +83,15 @@ def process_character(char_name, tscn_path, anim_root):
     add_alias('hurt')
     add_alias('death')
     
+    # Generate all directional fallbacks if missing (e.g. if run_east is missing, try walk_east)
+    directions = ['east', 'south', 'north', 'west']
+    if 'run' in animations and 'walk' in animations:
+        for d in directions:
+            run_d = f"run_{d}"
+            walk_d = f"walk_{d}"
+            if run_d not in animations and walk_d in animations:
+                animations[run_d] = list(animations[walk_d])
+                
     # Read original
     with open(tscn_path, 'r', encoding='utf-8') as f:
         content = f.read()
@@ -138,6 +151,7 @@ def process_character(char_name, tscn_path, anim_root):
     with open(tscn_path, 'w', encoding='utf-8') as f:
         f.write(content)
 
-process_character("guard_demontek", "d:/Demonteks/Scenes/Characters/Guard.tscn", "d:/Demonteks/assets/characters/guard_demontek/animations")
 process_character("goliath", "d:/Demonteks/Scenes/Characters/Goliath.tscn", "d:/Demonteks/assets/characters/goliath/animations")
+process_character("mutant_demontek", "d:/Demonteks/Scenes/Characters/Mutant.tscn", "d:/Demonteks/assets/characters/mutant_demontek/animations")
+process_character("king_demontek", "d:/Demonteks/Scenes/Characters/King.tscn", "d:/Demonteks/assets/characters/king_demontek/animations")
 print("Done")

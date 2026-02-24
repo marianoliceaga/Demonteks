@@ -1,182 +1,182 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" uid="uid://dkuqbk8cifq64" path="res://Scripts/Enemy/DemontekAI.cs" id="1_ai"]
-[ext_resource type="Texture2D" uid="uid://bui8bffvx04pi" path="res://Assets/characters/goliath/animations/breathing-idle/east/frame_000.png" id="tex_43b70e00"]
-[ext_resource type="Texture2D" uid="uid://b3gh4sysynwic" path="res://Assets/characters/goliath/animations/breathing-idle/east/frame_001.png" id="tex_8677b095"]
-[ext_resource type="Texture2D" uid="uid://bcw81r36rjecw" path="res://Assets/characters/goliath/animations/breathing-idle/east/frame_002.png" id="tex_79dba026"]
-[ext_resource type="Texture2D" uid="uid://c4dfc052et8n7" path="res://Assets/characters/goliath/animations/breathing-idle/east/frame_003.png" id="tex_0aba913e"]
-[ext_resource type="Texture2D" uid="uid://dnnxmvk7b4jxu" path="res://Assets/characters/goliath/animations/breathing-idle/north/frame_000.png" id="tex_ef0a81b3"]
-[ext_resource type="Texture2D" uid="uid://dngujv40tqprs" path="res://Assets/characters/goliath/animations/breathing-idle/north/frame_001.png" id="tex_011466b2"]
-[ext_resource type="Texture2D" uid="uid://c83ah5s70gnei" path="res://Assets/characters/goliath/animations/breathing-idle/north/frame_002.png" id="tex_3dd069a5"]
-[ext_resource type="Texture2D" uid="uid://decbfobby1tgp" path="res://Assets/characters/goliath/animations/breathing-idle/north/frame_003.png" id="tex_155fc547"]
-[ext_resource type="Texture2D" uid="uid://df8e2uil82k13" path="res://Assets/characters/goliath/animations/breathing-idle/south/frame_000.png" id="tex_6d7040fe"]
-[ext_resource type="Texture2D" uid="uid://diutkuar17dbh" path="res://Assets/characters/goliath/animations/breathing-idle/south/frame_002.png" id="tex_128d6974"]
-[ext_resource type="Texture2D" uid="uid://diutkuar17dbh" path="res://Assets/characters/goliath/animations/breathing-idle/south/frame_002.png" id="tex_c1616ba5"]
-[ext_resource type="Texture2D" uid="uid://cmmj3ghkyvn7t" path="res://Assets/characters/goliath/animations/breathing-idle/south/frame_003.png" id="tex_570ca144"]
-[ext_resource type="Texture2D" uid="uid://dmsdu72ayyr6j" path="res://Assets/characters/goliath/animations/breathing-idle/west/frame_000.png" id="tex_81838ab2"]
-[ext_resource type="Texture2D" uid="uid://b5f5ks3u2un7m" path="res://Assets/characters/goliath/animations/breathing-idle/west/frame_001.png" id="tex_093b0106"]
-[ext_resource type="Texture2D" uid="uid://cb53x0uvpyp03" path="res://Assets/characters/goliath/animations/breathing-idle/west/frame_002.png" id="tex_a3bc40b8"]
-[ext_resource type="Texture2D" uid="uid://d0halxxxpeh4l" path="res://Assets/characters/goliath/animations/breathing-idle/west/frame_003.png" id="tex_74f1bb80"]
-[ext_resource type="Texture2D" uid="uid://cmtfptv1rsfn8" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_000.png" id="tex_65709490"]
-[ext_resource type="Texture2D" uid="uid://d1xu753dyyuj1" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_001.png" id="tex_a102f416"]
-[ext_resource type="Texture2D" uid="uid://dkk73uox2g4wi" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_002.png" id="tex_b2e08c1b"]
-[ext_resource type="Texture2D" uid="uid://pbot4rlqvr1a" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_003.png" id="tex_52487410"]
-[ext_resource type="Texture2D" uid="uid://5gv6un0c3h54" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_004.png" id="tex_64f09e5f"]
-[ext_resource type="Texture2D" uid="uid://bkbdgll3s2fvf" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_005.png" id="tex_96fc4555"]
-[ext_resource type="Texture2D" uid="uid://c57ncq4g1887b" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_000.png" id="tex_3aeee57c"]
-[ext_resource type="Texture2D" uid="uid://b187qfjqf3idj" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_001.png" id="tex_8d47bfea"]
-[ext_resource type="Texture2D" uid="uid://cne1rdr740cp" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_002.png" id="tex_6bf07b67"]
-[ext_resource type="Texture2D" uid="uid://bfc87bmxs3kmi" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_003.png" id="tex_55c3ad77"]
-[ext_resource type="Texture2D" uid="uid://dxil1q4ufmsxb" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_004.png" id="tex_6b08b734"]
-[ext_resource type="Texture2D" uid="uid://c1b3bywikfeql" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_005.png" id="tex_bd24afe0"]
-[ext_resource type="Texture2D" uid="uid://nyuebb5d113" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_000.png" id="tex_2b797974"]
-[ext_resource type="Texture2D" uid="uid://104nsxxqdlqg" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_001.png" id="tex_225b4ebb"]
-[ext_resource type="Texture2D" uid="uid://dagnvym3qsqxh" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_002.png" id="tex_ad23b838"]
-[ext_resource type="Texture2D" uid="uid://bpp24oxep5b5t" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_003.png" id="tex_063ecebc"]
-[ext_resource type="Texture2D" uid="uid://p0qfab3nndqo" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_004.png" id="tex_eb2b73a0"]
-[ext_resource type="Texture2D" uid="uid://b48sd2pxdc0oa" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_005.png" id="tex_5541d449"]
-[ext_resource type="Texture2D" uid="uid://btwu64abqxhey" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_000.png" id="tex_dda0a611"]
-[ext_resource type="Texture2D" uid="uid://wgvpuloc87pi" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_001.png" id="tex_78928479"]
-[ext_resource type="Texture2D" uid="uid://dfyq8rsdwoys4" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_002.png" id="tex_31c76fa6"]
-[ext_resource type="Texture2D" uid="uid://dlkuxgp1onnu4" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_003.png" id="tex_85f4356e"]
-[ext_resource type="Texture2D" uid="uid://c2mo02s5q7j6p" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_004.png" id="tex_4ea1bd0a"]
-[ext_resource type="Texture2D" uid="uid://dp4nrc8n8wwkd" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_005.png" id="tex_237284be"]
-[ext_resource type="Texture2D" uid="uid://2sdet0gdfnhf" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_000.png" id="tex_9a21647c"]
-[ext_resource type="Texture2D" uid="uid://botkr1wg52uuo" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_001.png" id="tex_904ee44d"]
-[ext_resource type="Texture2D" uid="uid://dvt5age1jfxjv" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_002.png" id="tex_025d2dc5"]
-[ext_resource type="Texture2D" uid="uid://n2r1gugu54ga" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_003.png" id="tex_e139594c"]
-[ext_resource type="Texture2D" uid="uid://cgihqtpxr0pyp" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_004.png" id="tex_8e3fe26b"]
-[ext_resource type="Texture2D" uid="uid://da52np7fvamdj" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_005.png" id="tex_77a34d8d"]
-[ext_resource type="Texture2D" uid="uid://dcbtxq6crpqpj" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_006.png" id="tex_75dff43b"]
-[ext_resource type="Texture2D" uid="uid://csobrdetcvxjf" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_000.png" id="tex_ae618690"]
-[ext_resource type="Texture2D" uid="uid://dnjt3nt6dmxbq" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_001.png" id="tex_9843b730"]
-[ext_resource type="Texture2D" uid="uid://xebgj8akhmwo" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_002.png" id="tex_039a5a85"]
-[ext_resource type="Texture2D" uid="uid://dw0ccabydafok" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_003.png" id="tex_4d011789"]
-[ext_resource type="Texture2D" uid="uid://dpbprwnqo5g5d" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_004.png" id="tex_52850a2f"]
-[ext_resource type="Texture2D" uid="uid://dwbrxffum6dx" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_005.png" id="tex_ba73ba7c"]
-[ext_resource type="Texture2D" uid="uid://d0lsnujyiqohd" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_006.png" id="tex_a8047149"]
-[ext_resource type="Texture2D" uid="uid://dij6btwu6si4n" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_000.png" id="tex_6838c55f"]
-[ext_resource type="Texture2D" uid="uid://cjraw33n70aqe" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_001.png" id="tex_dcec87f6"]
-[ext_resource type="Texture2D" uid="uid://b6x1jun64h0nt" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_002.png" id="tex_eff36928"]
-[ext_resource type="Texture2D" uid="uid://bjr82hrhn2nxx" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_003.png" id="tex_64a2baae"]
-[ext_resource type="Texture2D" uid="uid://c3f0wbddmohqm" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_004.png" id="tex_f5f79fcd"]
-[ext_resource type="Texture2D" uid="uid://ci1efsqrlewy0" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_005.png" id="tex_a32bde9f"]
-[ext_resource type="Texture2D" uid="uid://dtncrora3n3wn" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_006.png" id="tex_1f9b1c1d"]
-[ext_resource type="Texture2D" uid="uid://djpspviresiam" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_000.png" id="tex_ce409ae1"]
-[ext_resource type="Texture2D" uid="uid://cs5rgqqju6vb" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_001.png" id="tex_bcc17a24"]
-[ext_resource type="Texture2D" uid="uid://b2odbgk7s8pxo" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_002.png" id="tex_514b1e05"]
-[ext_resource type="Texture2D" uid="uid://dqgvjejb5s688" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_003.png" id="tex_9ca80ea7"]
-[ext_resource type="Texture2D" uid="uid://bgeqy3nnvs3jc" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_004.png" id="tex_b6a8e8c0"]
-[ext_resource type="Texture2D" uid="uid://bsh86kumm5sxs" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_005.png" id="tex_839e509d"]
-[ext_resource type="Texture2D" uid="uid://beeqc6yc65yab" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_006.png" id="tex_159a0d1f"]
-[ext_resource type="Texture2D" uid="uid://bhohpjhoj8dxa" path="res://Assets/characters/goliath/animations/fireball/east/frame_000.png" id="tex_13e1f196"]
-[ext_resource type="Texture2D" uid="uid://dv4da2lska8x5" path="res://Assets/characters/goliath/animations/fireball/east/frame_001.png" id="tex_b54fad47"]
-[ext_resource type="Texture2D" uid="uid://ba7wsfailhypo" path="res://Assets/characters/goliath/animations/fireball/east/frame_002.png" id="tex_e619ed9b"]
-[ext_resource type="Texture2D" uid="uid://djn467nqewbcx" path="res://Assets/characters/goliath/animations/fireball/east/frame_003.png" id="tex_d1474af6"]
-[ext_resource type="Texture2D" uid="uid://doicmssqpryj3" path="res://Assets/characters/goliath/animations/fireball/east/frame_004.png" id="tex_89470def"]
-[ext_resource type="Texture2D" uid="uid://dlu7adlwqqst" path="res://Assets/characters/goliath/animations/fireball/east/frame_005.png" id="tex_3b4f0939"]
-[ext_resource type="Texture2D" uid="uid://egq41501v5ey" path="res://Assets/characters/goliath/animations/fireball/north/frame_000.png" id="tex_c442217e"]
-[ext_resource type="Texture2D" uid="uid://t61darmt6fc" path="res://Assets/characters/goliath/animations/fireball/north/frame_001.png" id="tex_49e45279"]
-[ext_resource type="Texture2D" uid="uid://ceor7p3iqyltg" path="res://Assets/characters/goliath/animations/fireball/north/frame_002.png" id="tex_d796e818"]
-[ext_resource type="Texture2D" uid="uid://con6kmbd4gpnj" path="res://Assets/characters/goliath/animations/fireball/north/frame_003.png" id="tex_99e86e10"]
-[ext_resource type="Texture2D" uid="uid://xgojn1q6cenc" path="res://Assets/characters/goliath/animations/fireball/north/frame_004.png" id="tex_7084fb93"]
-[ext_resource type="Texture2D" uid="uid://b4hxw2nls7wa2" path="res://Assets/characters/goliath/animations/fireball/north/frame_005.png" id="tex_abd59e6d"]
-[ext_resource type="Texture2D" uid="uid://xar4h66sbcx8" path="res://Assets/characters/goliath/animations/fireball/south/frame_000.png" id="tex_8c17b3c7"]
-[ext_resource type="Texture2D" uid="uid://b04nmdure6rmd" path="res://Assets/characters/goliath/animations/fireball/south/frame_001.png" id="tex_8e21b824"]
-[ext_resource type="Texture2D" uid="uid://b3vyjhr677rko" path="res://Assets/characters/goliath/animations/fireball/south/frame_002.png" id="tex_9e01e4a4"]
-[ext_resource type="Texture2D" uid="uid://dqnl55qbxkpd6" path="res://Assets/characters/goliath/animations/fireball/south/frame_003.png" id="tex_5730ad22"]
-[ext_resource type="Texture2D" uid="uid://d3w1haud3lfe0" path="res://Assets/characters/goliath/animations/fireball/south/frame_004.png" id="tex_d12b8735"]
-[ext_resource type="Texture2D" uid="uid://coei6bwfn2rkp" path="res://Assets/characters/goliath/animations/fireball/south/frame_005.png" id="tex_a03605a1"]
-[ext_resource type="Texture2D" uid="uid://dghnho1a1vxuc" path="res://Assets/characters/goliath/animations/fireball/west/frame_000.png" id="tex_d18b754b"]
-[ext_resource type="Texture2D" uid="uid://c28bewcbmw7q7" path="res://Assets/characters/goliath/animations/fireball/west/frame_001.png" id="tex_34a92449"]
-[ext_resource type="Texture2D" uid="uid://t4icw66o23g1" path="res://Assets/characters/goliath/animations/fireball/west/frame_002.png" id="tex_d695f9e0"]
-[ext_resource type="Texture2D" uid="uid://c6gj4jqqtbnfc" path="res://Assets/characters/goliath/animations/fireball/west/frame_003.png" id="tex_ff36736b"]
-[ext_resource type="Texture2D" uid="uid://dff78dyo41ixt" path="res://Assets/characters/goliath/animations/fireball/west/frame_004.png" id="tex_ee0d5726"]
-[ext_resource type="Texture2D" uid="uid://cuof3yb3tsta7" path="res://Assets/characters/goliath/animations/fireball/west/frame_005.png" id="tex_db0dbaf4"]
-[ext_resource type="Texture2D" uid="uid://c74fq4akvw22m" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_000.png" id="tex_573e9f5b"]
-[ext_resource type="Texture2D" uid="uid://bx7pnum0h3tu2" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_001.png" id="tex_02d9f5ef"]
-[ext_resource type="Texture2D" uid="uid://bxd004v0ge0yn" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_002.png" id="tex_c1743122"]
-[ext_resource type="Texture2D" uid="uid://c6t6c0b22ma3o" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_003.png" id="tex_39ef2867"]
-[ext_resource type="Texture2D" uid="uid://c77t02pf4aa6t" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_004.png" id="tex_5c13632e"]
-[ext_resource type="Texture2D" uid="uid://qyk45recy7gy" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_005.png" id="tex_1773bca9"]
-[ext_resource type="Texture2D" uid="uid://bjdh4snxerdc7" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_006.png" id="tex_efa9738f"]
-[ext_resource type="Texture2D" uid="uid://bidvko7tenrg6" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_007.png" id="tex_6776dc55"]
-[ext_resource type="Texture2D" uid="uid://xluycfw2mr2n" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_008.png" id="tex_ea8c8dd2"]
-[ext_resource type="Texture2D" uid="uid://o8eaoxpt20q1" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_000.png" id="tex_04a7bcc5"]
-[ext_resource type="Texture2D" uid="uid://ebgefmny71xn" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_001.png" id="tex_e48588ed"]
-[ext_resource type="Texture2D" uid="uid://rxwpc1egakv0" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_002.png" id="tex_f61b8619"]
-[ext_resource type="Texture2D" uid="uid://blbc4gd0bbfvo" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_003.png" id="tex_3503cef6"]
-[ext_resource type="Texture2D" uid="uid://de4bf21bt4fyk" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_004.png" id="tex_ea37a68d"]
-[ext_resource type="Texture2D" uid="uid://fbpuhjjrvdsg" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_005.png" id="tex_4d13a132"]
-[ext_resource type="Texture2D" uid="uid://hqlvfjo7u1uf" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_006.png" id="tex_68f1f1f7"]
-[ext_resource type="Texture2D" uid="uid://8o1632al7r6d" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_007.png" id="tex_3f46511e"]
-[ext_resource type="Texture2D" uid="uid://cwx1slswt1t3g" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_008.png" id="tex_6f539a8d"]
-[ext_resource type="Texture2D" uid="uid://mp4jb18y3un3" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_000.png" id="tex_674c6d0a"]
-[ext_resource type="Texture2D" uid="uid://cimmit6er7rwx" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_001.png" id="tex_fec2e3a9"]
-[ext_resource type="Texture2D" uid="uid://cs38fodtadwp5" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_002.png" id="tex_862900ef"]
-[ext_resource type="Texture2D" uid="uid://dcg81ch2atd7j" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_003.png" id="tex_cbb49d61"]
-[ext_resource type="Texture2D" uid="uid://demp24u3lbefn" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_004.png" id="tex_d2e66c43"]
-[ext_resource type="Texture2D" uid="uid://cjnd1o4uwku7w" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_005.png" id="tex_41af3640"]
-[ext_resource type="Texture2D" uid="uid://mdp7urg2hvpm" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_006.png" id="tex_d3fb495e"]
-[ext_resource type="Texture2D" uid="uid://c346c4c7yp2wr" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_007.png" id="tex_9d1c4802"]
-[ext_resource type="Texture2D" uid="uid://c416g7gekyu8p" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_008.png" id="tex_3daab10c"]
-[ext_resource type="Texture2D" uid="uid://cynvopts4ltif" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_000.png" id="tex_451b8721"]
-[ext_resource type="Texture2D" uid="uid://bxfmbgmw7ho3" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_001.png" id="tex_9d15f473"]
-[ext_resource type="Texture2D" uid="uid://p3416m71dhh5" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_002.png" id="tex_f1f378b5"]
-[ext_resource type="Texture2D" uid="uid://c134gtvm7dv01" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_003.png" id="tex_990d04fd"]
-[ext_resource type="Texture2D" uid="uid://o77h5lqgft8g" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_004.png" id="tex_10074d0e"]
-[ext_resource type="Texture2D" uid="uid://xsc1h4d1txjg" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_005.png" id="tex_892be198"]
-[ext_resource type="Texture2D" uid="uid://dxm66flocq7mx" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_006.png" id="tex_0661d8b0"]
-[ext_resource type="Texture2D" uid="uid://bdsgm2tk4qwlo" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_007.png" id="tex_a3618c44"]
-[ext_resource type="Texture2D" uid="uid://cwerwo6mgg48q" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_008.png" id="tex_31eb5bd1"]
-[ext_resource type="Texture2D" uid="uid://jumlhmlkl6h2" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_000.png" id="tex_6b35dce9"]
-[ext_resource type="Texture2D" uid="uid://brtqwtppedmuu" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_001.png" id="tex_e730798c"]
-[ext_resource type="Texture2D" uid="uid://f7fefolgbfly" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_002.png" id="tex_dd1165f6"]
-[ext_resource type="Texture2D" uid="uid://bdmwl57cav85v" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_003.png" id="tex_ae7f116b"]
-[ext_resource type="Texture2D" uid="uid://dc13optmhttvg" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_004.png" id="tex_87f52457"]
-[ext_resource type="Texture2D" uid="uid://bvklkg16guul4" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_005.png" id="tex_6f0378c2"]
-[ext_resource type="Texture2D" uid="uid://duht18w3twm0j" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_000.png" id="tex_5625e373"]
-[ext_resource type="Texture2D" uid="uid://bi282basbirfr" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_001.png" id="tex_5538e342"]
-[ext_resource type="Texture2D" uid="uid://sox6vj20equw" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_002.png" id="tex_32dc66e0"]
-[ext_resource type="Texture2D" uid="uid://qtwub0y6od3n" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_003.png" id="tex_26035a14"]
-[ext_resource type="Texture2D" uid="uid://bn3bxloos1cw8" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_004.png" id="tex_f04f0d55"]
-[ext_resource type="Texture2D" uid="uid://6vypqw655kaj" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_005.png" id="tex_268c1f5a"]
-[ext_resource type="Texture2D" uid="uid://h4n5di7j1hka" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_000.png" id="tex_ba115f3d"]
-[ext_resource type="Texture2D" uid="uid://gtwkr72skrao" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_001.png" id="tex_3da6fa9a"]
-[ext_resource type="Texture2D" uid="uid://cm8hvths0ry1u" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_002.png" id="tex_65a7e4d7"]
-[ext_resource type="Texture2D" uid="uid://bk8466iqdwege" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_003.png" id="tex_70fa9c6e"]
-[ext_resource type="Texture2D" uid="uid://geh2ejgb46ty" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_004.png" id="tex_cf02b339"]
-[ext_resource type="Texture2D" uid="uid://d2bl0wricu1ms" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_005.png" id="tex_8974a814"]
-[ext_resource type="Texture2D" uid="uid://fpars4bts8an" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_000.png" id="tex_aa5aba8a"]
-[ext_resource type="Texture2D" uid="uid://badcyqjlyc80u" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_001.png" id="tex_3d1fa817"]
-[ext_resource type="Texture2D" uid="uid://cqw6tem8knme1" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_002.png" id="tex_65dd5b9b"]
-[ext_resource type="Texture2D" uid="uid://3gmlh8eu71ym" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_003.png" id="tex_979a0bbd"]
-[ext_resource type="Texture2D" uid="uid://qkubww0yypxy" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_004.png" id="tex_18fcea0c"]
-[ext_resource type="Texture2D" uid="uid://co0ue81jwubrd" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_005.png" id="tex_9cdbdb64"]
-[ext_resource type="Texture2D" uid="uid://dnonyid7xm2qd" path="res://Assets/characters/goliath/animations/walk/east/frame_000.png" id="tex_6dfcb463"]
-[ext_resource type="Texture2D" uid="uid://cwjvhfs2iwoc8" path="res://Assets/characters/goliath/animations/walk/east/frame_001.png" id="tex_4d033821"]
-[ext_resource type="Texture2D" uid="uid://cfyugohybw1pi" path="res://Assets/characters/goliath/animations/walk/east/frame_002.png" id="tex_36355031"]
-[ext_resource type="Texture2D" uid="uid://ddeaji04ehrr4" path="res://Assets/characters/goliath/animations/walk/east/frame_003.png" id="tex_477edf15"]
-[ext_resource type="Texture2D" uid="uid://b3h3r4rruvxrd" path="res://Assets/characters/goliath/animations/walk/east/frame_004.png" id="tex_36494d06"]
-[ext_resource type="Texture2D" uid="uid://b0p2wk27nh6ff" path="res://Assets/characters/goliath/animations/walk/east/frame_005.png" id="tex_2851aab9"]
-[ext_resource type="Texture2D" uid="uid://bqseanev5hb5m" path="res://Assets/characters/goliath/animations/walk/north/frame_000.png" id="tex_f651516d"]
-[ext_resource type="Texture2D" uid="uid://dfiqaoa6gc77q" path="res://Assets/characters/goliath/animations/walk/north/frame_001.png" id="tex_e9a88d06"]
-[ext_resource type="Texture2D" uid="uid://diw4dt24bym3w" path="res://Assets/characters/goliath/animations/walk/north/frame_002.png" id="tex_1deb49e7"]
-[ext_resource type="Texture2D" uid="uid://ve76p3hi3yxn" path="res://Assets/characters/goliath/animations/walk/north/frame_003.png" id="tex_a47bfcd8"]
-[ext_resource type="Texture2D" uid="uid://qm65keoqcyyt" path="res://Assets/characters/goliath/animations/walk/north/frame_004.png" id="tex_cc42ce6a"]
-[ext_resource type="Texture2D" uid="uid://djmt2h3uafp5y" path="res://Assets/characters/goliath/animations/walk/north/frame_005.png" id="tex_4ccf6c53"]
-[ext_resource type="Texture2D" uid="uid://dwput6cc3ki3e" path="res://Assets/characters/goliath/animations/walk/south/frame_000.png" id="tex_33445bed"]
-[ext_resource type="Texture2D" uid="uid://bryofyrk0ue6t" path="res://Assets/characters/goliath/animations/walk/south/frame_001.png" id="tex_8204bf48"]
-[ext_resource type="Texture2D" uid="uid://cahdbma7kdgjf" path="res://Assets/characters/goliath/animations/walk/south/frame_002.png" id="tex_c25e4794"]
-[ext_resource type="Texture2D" uid="uid://c4o3nbm8day8n" path="res://Assets/characters/goliath/animations/walk/south/frame_003.png" id="tex_bf93b4c1"]
-[ext_resource type="Texture2D" uid="uid://h661k7psq8jr" path="res://Assets/characters/goliath/animations/walk/south/frame_004.png" id="tex_52ca98ee"]
-[ext_resource type="Texture2D" uid="uid://ttg1cppukit8" path="res://Assets/characters/goliath/animations/walk/south/frame_005.png" id="tex_9a41f223"]
-[ext_resource type="Texture2D" uid="uid://c07baoc0ig68k" path="res://Assets/characters/goliath/animations/walk/west/frame_000.png" id="tex_5cde5f72"]
-[ext_resource type="Texture2D" uid="uid://cpik0ep4igtvf" path="res://Assets/characters/goliath/animations/walk/west/frame_001.png" id="tex_cf6445fd"]
-[ext_resource type="Texture2D" uid="uid://b3lutghb6vyuh" path="res://Assets/characters/goliath/animations/walk/west/frame_002.png" id="tex_ecc8d65e"]
-[ext_resource type="Texture2D" uid="uid://s6poykvp0g5q" path="res://Assets/characters/goliath/animations/walk/west/frame_003.png" id="tex_f29a573b"]
-[ext_resource type="Texture2D" uid="uid://dlwpyyfx0kmlw" path="res://Assets/characters/goliath/animations/walk/west/frame_004.png" id="tex_8dfd7367"]
-[ext_resource type="Texture2D" uid="uid://2u813sswdin4" path="res://Assets/characters/goliath/animations/walk/west/frame_005.png" id="tex_acfaa8e7"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/east/frame_000.png" id="tex_43b70e00"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/east/frame_001.png" id="tex_8677b095"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/east/frame_002.png" id="tex_79dba026"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/east/frame_003.png" id="tex_0aba913e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/north/frame_000.png" id="tex_ef0a81b3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/north/frame_001.png" id="tex_011466b2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/north/frame_002.png" id="tex_3dd069a5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/north/frame_003.png" id="tex_155fc547"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/south/frame_000.png" id="tex_6d7040fe"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/south/frame_001.png" id="tex_128d6974"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/south/frame_002.png" id="tex_c1616ba5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/south/frame_003.png" id="tex_570ca144"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/west/frame_000.png" id="tex_81838ab2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/west/frame_001.png" id="tex_093b0106"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/west/frame_002.png" id="tex_a3bc40b8"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/breathing-idle/west/frame_003.png" id="tex_74f1bb80"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_000.png" id="tex_65709490"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_001.png" id="tex_a102f416"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_002.png" id="tex_b2e08c1b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_003.png" id="tex_52487410"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_004.png" id="tex_64f09e5f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/east/frame_005.png" id="tex_96fc4555"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_000.png" id="tex_3aeee57c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_001.png" id="tex_8d47bfea"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_002.png" id="tex_6bf07b67"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_003.png" id="tex_55c3ad77"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_004.png" id="tex_6b08b734"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/north/frame_005.png" id="tex_bd24afe0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_000.png" id="tex_2b797974"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_001.png" id="tex_225b4ebb"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_002.png" id="tex_ad23b838"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_003.png" id="tex_063ecebc"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_004.png" id="tex_eb2b73a0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/south/frame_005.png" id="tex_5541d449"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_000.png" id="tex_dda0a611"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_001.png" id="tex_78928479"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_002.png" id="tex_31c76fa6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_003.png" id="tex_85f4356e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_004.png" id="tex_4ea1bd0a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/cross-punch/west/frame_005.png" id="tex_237284be"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_000.png" id="tex_9a21647c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_001.png" id="tex_904ee44d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_002.png" id="tex_025d2dc5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_003.png" id="tex_e139594c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_004.png" id="tex_8e3fe26b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_005.png" id="tex_77a34d8d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/east/frame_006.png" id="tex_75dff43b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_000.png" id="tex_ae618690"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_001.png" id="tex_9843b730"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_002.png" id="tex_039a5a85"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_003.png" id="tex_4d011789"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_004.png" id="tex_52850a2f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_005.png" id="tex_ba73ba7c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/north/frame_006.png" id="tex_a8047149"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_000.png" id="tex_6838c55f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_001.png" id="tex_dcec87f6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_002.png" id="tex_eff36928"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_003.png" id="tex_64a2baae"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_004.png" id="tex_f5f79fcd"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_005.png" id="tex_a32bde9f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_006.png" id="tex_1f9b1c1d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_000.png" id="tex_ce409ae1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_001.png" id="tex_bcc17a24"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_002.png" id="tex_514b1e05"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_003.png" id="tex_9ca80ea7"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_004.png" id="tex_b6a8e8c0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_005.png" id="tex_839e509d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/falling-back-death/west/frame_006.png" id="tex_159a0d1f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/east/frame_000.png" id="tex_13e1f196"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/east/frame_001.png" id="tex_b54fad47"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/east/frame_002.png" id="tex_e619ed9b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/east/frame_003.png" id="tex_d1474af6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/east/frame_004.png" id="tex_89470def"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/east/frame_005.png" id="tex_3b4f0939"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/north/frame_000.png" id="tex_c442217e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/north/frame_001.png" id="tex_49e45279"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/north/frame_002.png" id="tex_d796e818"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/north/frame_003.png" id="tex_99e86e10"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/north/frame_004.png" id="tex_7084fb93"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/north/frame_005.png" id="tex_abd59e6d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/south/frame_000.png" id="tex_8c17b3c7"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/south/frame_001.png" id="tex_8e21b824"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/south/frame_002.png" id="tex_9e01e4a4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/south/frame_003.png" id="tex_5730ad22"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/south/frame_004.png" id="tex_d12b8735"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/south/frame_005.png" id="tex_a03605a1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/west/frame_000.png" id="tex_d18b754b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/west/frame_001.png" id="tex_34a92449"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/west/frame_002.png" id="tex_d695f9e0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/west/frame_003.png" id="tex_ff36736b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/west/frame_004.png" id="tex_ee0d5726"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/fireball/west/frame_005.png" id="tex_db0dbaf4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_000.png" id="tex_573e9f5b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_001.png" id="tex_02d9f5ef"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_002.png" id="tex_c1743122"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_003.png" id="tex_39ef2867"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_004.png" id="tex_5c13632e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_005.png" id="tex_1773bca9"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_006.png" id="tex_efa9738f"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_007.png" id="tex_6776dc55"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/east/frame_008.png" id="tex_ea8c8dd2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_000.png" id="tex_04a7bcc5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_001.png" id="tex_e48588ed"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_002.png" id="tex_f61b8619"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_003.png" id="tex_3503cef6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_004.png" id="tex_ea37a68d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_005.png" id="tex_4d13a132"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_006.png" id="tex_68f1f1f7"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_007.png" id="tex_3f46511e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/north/frame_008.png" id="tex_6f539a8d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_000.png" id="tex_674c6d0a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_001.png" id="tex_fec2e3a9"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_002.png" id="tex_862900ef"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_003.png" id="tex_cbb49d61"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_004.png" id="tex_d2e66c43"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_005.png" id="tex_41af3640"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_006.png" id="tex_d3fb495e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_007.png" id="tex_9d1c4802"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/south/frame_008.png" id="tex_3daab10c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_000.png" id="tex_451b8721"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_001.png" id="tex_9d15f473"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_002.png" id="tex_f1f378b5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_003.png" id="tex_990d04fd"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_004.png" id="tex_10074d0e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_005.png" id="tex_892be198"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_006.png" id="tex_0661d8b0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_007.png" id="tex_a3618c44"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/jumping-1/west/frame_008.png" id="tex_31eb5bd1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_000.png" id="tex_6b35dce9"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_001.png" id="tex_e730798c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_002.png" id="tex_dd1165f6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_003.png" id="tex_ae7f116b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_004.png" id="tex_87f52457"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/east/frame_005.png" id="tex_6f0378c2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_000.png" id="tex_5625e373"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_001.png" id="tex_5538e342"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_002.png" id="tex_32dc66e0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_003.png" id="tex_26035a14"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_004.png" id="tex_f04f0d55"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/north/frame_005.png" id="tex_268c1f5a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_000.png" id="tex_ba115f3d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_001.png" id="tex_3da6fa9a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_002.png" id="tex_65a7e4d7"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_003.png" id="tex_70fa9c6e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_004.png" id="tex_cf02b339"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/south/frame_005.png" id="tex_8974a814"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_000.png" id="tex_aa5aba8a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_001.png" id="tex_3d1fa817"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_002.png" id="tex_65dd5b9b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_003.png" id="tex_979a0bbd"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_004.png" id="tex_18fcea0c"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/taking-punch/west/frame_005.png" id="tex_9cdbdb64"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/east/frame_000.png" id="tex_6dfcb463"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/east/frame_001.png" id="tex_4d033821"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/east/frame_002.png" id="tex_36355031"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/east/frame_003.png" id="tex_477edf15"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/east/frame_004.png" id="tex_36494d06"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/east/frame_005.png" id="tex_2851aab9"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/north/frame_000.png" id="tex_f651516d"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/north/frame_001.png" id="tex_e9a88d06"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/north/frame_002.png" id="tex_1deb49e7"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/north/frame_003.png" id="tex_a47bfcd8"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/north/frame_004.png" id="tex_cc42ce6a"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/north/frame_005.png" id="tex_4ccf6c53"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/south/frame_000.png" id="tex_33445bed"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/south/frame_001.png" id="tex_8204bf48"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/south/frame_002.png" id="tex_c25e4794"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/south/frame_003.png" id="tex_bf93b4c1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/south/frame_004.png" id="tex_52ca98ee"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/south/frame_005.png" id="tex_9a41f223"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/west/frame_000.png" id="tex_5cde5f72"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/west/frame_001.png" id="tex_cf6445fd"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/west/frame_002.png" id="tex_ecc8d65e"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/west/frame_003.png" id="tex_f29a573b"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/west/frame_004.png" id="tex_8dfd7367"]
+[ext_resource type="Texture2D" path="res://Assets/characters/goliath/animations/walk/west/frame_005.png" id="tex_acfaa8e7"]
 
 
 
@@ -325,7 +325,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -351,7 +351,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death_east",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -377,7 +377,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death_north",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -403,7 +403,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death_south",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -429,7 +429,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death_west",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -653,7 +653,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -670,7 +670,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_east",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -687,7 +687,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_north",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -704,7 +704,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_south",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -721,7 +721,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle_west",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -872,7 +872,99 @@ animations = [{
 }],
 "loop": true,
 "name": &"run",
-"speed": 12.0
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_6dfcb463")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_4d033821")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_36355031")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_477edf15")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_36494d06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_2851aab9")
+}],
+"loop": true,
+"name": &"run_east",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_f651516d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_e9a88d06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_1deb49e7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_a47bfcd8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_cc42ce6a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_4ccf6c53")
+}],
+"loop": true,
+"name": &"run_north",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_33445bed")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_8204bf48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_c25e4794")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_bf93b4c1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_52ca98ee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_9a41f223")
+}],
+"loop": true,
+"name": &"run_south",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("tex_5cde5f72")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_cf6445fd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_ecc8d65e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_f29a573b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_8dfd7367")
+}, {
+"duration": 1.0,
+"texture": ExtResource("tex_acfaa8e7")
+}],
+"loop": true,
+"name": &"run_west",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
