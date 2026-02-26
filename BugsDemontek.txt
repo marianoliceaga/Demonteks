@@ -1,3 +1,4 @@
+Done/Fixed
 X-If a Demontek is pushed to the void, it should respawn with his health intact, like the Player.
 X-The HUD is too big, make it 1/4 its size
 X-The enemy counter in the HUD is not counting killed enemies
@@ -15,9 +16,9 @@ X-Goliath character animations look bad, make sure they are using the right anim
 X-King character animations look bad, make sure they are using the right animations 
 ---------------------------------------------------------------------------------
 //TODO
--Level1 and Level2 Foreground looks like shit
+-Level1 and Level2 Foreground look like shit
 -Sound FX Basic for all game
--Music Level 3 (Castle): Mateo to send something.
+-Music Level 3 (Castle)
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
 -All the enemies attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
 -None of the enemies shouldn fall to the pits and fall to the void
