@@ -16,10 +16,11 @@ X-Mutant character animations look bad, make sure they are using the right anima
 X-Goliath character animations look bad, make sure they are using the right animations 
 X-King character animations look bad, make sure they are using the right animations 
 X-Music Level 3 (Castle)
+-The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
 ---------------------------------------------------------------------------------
 //TODO
--Sound FX Basic for all game
--The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
+-Redo the backgrounds for level 3
+-Sound FX for all the game
 -All the enemies attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
 -None of the enemies shouldn fall to the pits and fall to the void
--F key is not picking up HealthPickup
+-F key is not picking up HealthPickup or executing actions

@@ -1,4 +1,3 @@
-res://Scenes/UI/MainMenuController.cs
-res://Scripts/Management/AudioManager.cs
-res://Scripts/Management/SaveManager.cs
-res://Scripts/Management/GameManager.cs
+res://Scenes/Levels/Level3_Castle.tscn
+res://Assets/tilesets/castle_tileset_16x16.tres
+res://BugsDemontek.txt

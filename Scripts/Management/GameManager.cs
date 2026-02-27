@@ -257,14 +257,17 @@ namespace Demonteks.Management
 		//}
 
 		/// <summary>
-		/// Handle game win
+		/// Handle game win — transition to Victory screen
 		/// </summary>
-		private void WinGame()
+		public void WinGame()
 		{
 			ChangeGameState(GameState.Won);
 			EmitSignal(SignalName.GameWon, _mercyRouteActive);
+			_saveManager?.SaveGame();
 
 			GD.Print($"Game Won! Mercy Route: {_mercyRouteActive}");
+
+			GetTree().ChangeSceneToFile("res://Scenes/UI/Victory.tscn");
 		}
 
 		/// <summary>
