@@ -1,4 +1,5 @@
-[gd_scene load_steps=20 format=3]
+[gd_scene load_steps=21 format=3]
+
 
 [ext_resource type="PackedScene" uid="uid://bc618thjoy8ub" path="res://Scenes/Characters/Player.tscn" id="1_player"]
 [ext_resource type="PackedScene" path="res://Scenes/Characters/Demontek.tscn" id="2_demontek"]
@@ -16,6 +17,8 @@
 [ext_resource type="Script" path="res://Scripts/Utils/LevelEndTrigger.cs" id="14_levelend"]
 [ext_resource type="Script" path="res://Scripts/Utils/CameraFollow.cs" id="15_camera"]
 [ext_resource type="Script" path="res://Scripts/Utils/KillZone.cs" id="16_killzone"]
+[ext_resource type="AudioStream" path="res://Assets/audio/music/Level 3 (The Castle).mp3" id="bgm_level3"]
+
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_health1"]
 radius = 12.0
@@ -300,3 +303,8 @@ script = ExtResource("16_killzone")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("RectangleShape2D_killzone")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("bgm_level3")
+autoplay = true
+

@@ -1,5 +1,5 @@
-res://SOUND_FX_GUIDE.md
+res://Scenes/UI/MainMenu.tscn
+res://BugsDemontek.txt
 res://Scripts/Management/AudioManager.cs
 res://Scripts/Management/SaveManager.cs
 res://Scripts/Management/GameManager.cs
-res://BugsDemontek.txt
