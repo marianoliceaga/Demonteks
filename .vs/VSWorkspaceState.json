@@ -3,9 +3,8 @@
     "",
     "\\Assets",
     "\\Assets\\audio",
-    "\\Assets\\audio\\sfx",
-    "\\Scenes\\Prefabs"
+    "\\Assets\\audio\\sfx"
   ],
-  "SelectedNode": "\\BugsDemontek.txt",
+  "SelectedNode": "\\Scripts",
   "PreviewInSolutionExplorer": false
 }

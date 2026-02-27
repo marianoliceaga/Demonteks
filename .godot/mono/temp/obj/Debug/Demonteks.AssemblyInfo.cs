@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Demonteks")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9b53edc6b6a47c85f6f2789df1eaec0c71afdfe6")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d7168323b5c4a73956c7e4ef62af1be45ed67f3")]
 [assembly: System.Reflection.AssemblyProductAttribute("Demonteks")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Demonteks")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

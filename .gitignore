@@ -2,7 +2,6 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
-/Assets/splash.png
 /.godot/mono/temp/obj/Debug/Demonteks.dll
 /.godot/mono/temp/obj/Debug/ref/Demonteks.dll
 /.godot/mono/temp/obj/Debug/refint/Demonteks.dll
@@ -14,3 +13,5 @@
 /.vs/Demonteks/CopilotIndices/18.4.79.19992/SemanticSymbols.db
 /.vs/Demonteks/CopilotIndices/18.4.79.19992/CodeChunks.db
 /.vs/Demonteks.slnx/FileContentIndex
+/.godot/mono/temp/obj/*
+/.godot/mono/temp/bin/*
