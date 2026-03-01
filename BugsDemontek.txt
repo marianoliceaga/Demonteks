@@ -16,14 +16,16 @@ X-Mutant character animations look bad, make sure they are using the right anima
 X-Goliath character animations look bad, make sure they are using the right animations 
 X-King character animations look bad, make sure they are using the right animations 
 X-Music Level 3 (Castle)
-
+X-Fix when Demontek is on top of the Player, it should be pushed to the side
+X-Demonteks keep looking and running right after the previous change
 
 ---------------------------------------------------------------------------------
 //TODO
+-Fix Level3 to be able to finish the game (platforms)
+-
 -Finish assigning sound FX for all the game
--Fix when Demontek is on top of the Player, it should be pushed to the side
--Fix Level3 to be able to finish the game
--All the enemies have movements that are unrealistic and should be fixed, to make them not lock the player in a corner
+
+-All the enemies should have more realistic movements and avoid making themm lock the player in a corner or between them
 -Make the platforms more random and not so close to each other
 =Make the platforms easily climbable between each other
 -None of the enemies shouldn fall to the pits or fall to the void but they should keep their current behavior when they are on a platform as well as when they are in the ground.

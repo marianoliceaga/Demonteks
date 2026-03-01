@@ -153,7 +153,17 @@ namespace Demonteks.Enemy
                 {
                     hitPlayer = true;
                     // Push direction is from collider to this enemy
-                    pushDir = (GlobalPosition - collider.GlobalPosition).Normalized();
+                    pushDir = GlobalPosition - collider.GlobalPosition;
+
+                    // If they are stacked perfectly on top of each other
+                    if (pushDir.LengthSquared() < 0.1f)
+                    {
+                        pushDir = new Vector2(_facingRight ? 1f : -1f, 0);
+                    }
+                    else
+                    {
+                        pushDir = pushDir.Normalized();
+                    }
                     break;
                 }
             }
