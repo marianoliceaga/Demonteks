@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Demonteks")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+736c37f35393ef7ef3ae4a84d2867f9652cb9be0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1f78062a533ba9dbc4fba2d740e4f8b015263da8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Demonteks")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Demonteks")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

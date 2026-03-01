@@ -25,12 +25,12 @@ namespace Demonteks.Management
         {
             // Create SFX player
             _sfxPlayer = new AudioStreamPlayer();
-            _sfxPlayer.Bus = "Master";
+            _sfxPlayer.Bus = "SFX";
             AddChild(_sfxPlayer);
 
             // Create Music player
             _musicPlayer = new AudioStreamPlayer();
-            _musicPlayer.Bus = "Master";
+            _musicPlayer.Bus = "Music";
             AddChild(_musicPlayer);
 
             ProcessMode = ProcessModeEnum.Always;

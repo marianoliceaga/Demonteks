@@ -22,6 +22,7 @@ namespace Demonteks.Environment
         public override void _Ready()
         {
             _audioPlayer = new AudioStreamPlayer2D();
+            _audioPlayer.Bus = "SFX";
             AddChild(_audioPlayer);
             _rng.Randomize();
 

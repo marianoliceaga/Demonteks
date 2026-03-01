@@ -9,25 +9,25 @@ X-Crea un piso casi en el fondo antes del KillZone justo abajo a la izquierda y 
 X-Make the camera follow the Player vertically also
 X-Make the Player transition to Level 2 when it reaches the LevelEnd
 X-Level1 and Level2 Foreground can be improved
+X-Guard character attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly and they attack facing the Player
+X-Music Level 3 (Castle)
+X-Make the platforms easily climbable between each other
+X-Make the platforms more random and not so close to each other
 ---------------------------------------------------------------------------------
 Check all these
-X-Guard character attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly and they attack facing the Player
 X-Mutant character animations look bad, make sure they are using the right animations
 X-Goliath character animations look bad, make sure they are using the right animations 
 X-King character animations look bad, make sure they are using the right animations 
-X-Music Level 3 (Castle)
 X-Fix when Demontek is on top of the Player, it should be pushed to the side
 X-Demonteks keep looking and running right after the previous change
-
+X-When the Demonteks walk left they are facing right and walking backwards
+-The Options Menu Should have the features for: Enable Music, Enable Sound FX, Enable Vibrations  ???
+-All the enemies should have more realistic movements and avoid making themm lock the player in a corner or between them
 ---------------------------------------------------------------------------------
 //TODO
--Fix Level3 to be able to finish the game (platforms)
--
+-Complete Level 2 and Level 3 tilesets in scene (change tilesets)
+-Test Level3 to see if it is possible to finish the game
 -Finish assigning sound FX for all the game
-
--All the enemies should have more realistic movements and avoid making themm lock the player in a corner or between them
--Make the platforms more random and not so close to each other
-=Make the platforms easily climbable between each other
 -None of the enemies shouldn fall to the pits or fall to the void but they should keep their current behavior when they are on a platform as well as when they are in the ground.
--The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
 -F key is not picking up HealthPickup or executing actions
+-The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.

@@ -26,6 +26,7 @@ namespace Demonteks.Environment
         public override void _Ready()
         {
             _audioPlayer = new AudioStreamPlayer();
+            _audioPlayer.Bus = "SFX";
             AddChild(_audioPlayer);
 
             _timer = new Timer();

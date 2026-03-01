@@ -451,46 +451,54 @@ namespace Demonteks.Enemy
 
             string currentState = _stateMachine.CurrentState.GetType().Name;
 
-            // Always disable FlipH to prevent glitchy weapon swapping / light flipping on isometric / 3/4 characters
+            // Start by assuming no flip, we will apply it if a generic animation is used
             _animatedSprite.FlipH = false;
 
             string suffix = _facingRight ? "east" : "west";
+            string animPlayed = "";
 
             switch (currentState)
             {
                 case "IdleState":
-                    PlaySafe($"idle_{suffix}", "idle");
+                    animPlayed = PlaySafe($"idle_{suffix}", "idle");
                     break;
                 case "PatrolState":
-                    PlaySafe($"walk_{suffix}", "walk");
+                    animPlayed = PlaySafe($"walk_{suffix}", "walk");
                     break;
                 case "ChaseState":
-                    PlaySafe($"run_{suffix}", $"walk_{suffix}", "run", "walk"); // fallback chain
+                    animPlayed = PlaySafe($"run_{suffix}", $"walk_{suffix}", "run", "walk"); // fallback chain
                     break;
                 case "AttackState":
-                    PlaySafe($"attack_{suffix}", "attack");
+                    animPlayed = PlaySafe($"attack_{suffix}", "attack");
                     break;
                 case "HurtState":
-                    PlaySafe($"hurt_{suffix}", "hurt");
+                    animPlayed = PlaySafe($"hurt_{suffix}", "hurt");
                     break;
                 case "DeathState":
-                    PlaySafe($"death_{suffix}", "death");
+                    animPlayed = PlaySafe($"death_{suffix}", "death");
                     break;
+            }
+
+            // If a generic animation was played (no direct suffix match), flip the sprite manually
+            if (!string.IsNullOrEmpty(animPlayed) && !animPlayed.EndsWith($"_{suffix}"))
+            {
+                _animatedSprite.FlipH = !_facingRight;
             }
         }
 
-        private void PlaySafe(params string[] animNames)
+        private string PlaySafe(params string[] animNames)
         {
-            if (_animatedSprite.SpriteFrames == null) return;
+            if (_animatedSprite.SpriteFrames == null) return string.Empty;
 
             foreach (var animName in animNames)
             {
                 if (animName != null && _animatedSprite.SpriteFrames.HasAnimation(animName))
                 {
                     _animatedSprite.Play(animName);
-                    return;
+                    return animName;
                 }
             }
+            return string.Empty;
         }
         #endregion
 

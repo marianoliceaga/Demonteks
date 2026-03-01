@@ -13,6 +13,12 @@ namespace Demonteks.UI
         private Button _optionsButton;
         private Button _quitButton;
 
+        private Control _optionsPanel;
+        private CheckButton _musicCheck;
+        private CheckButton _sfxCheck;
+        private CheckButton _vibrationCheck;
+        private Button _optionsBackButton;
+
         private Management.GameManager _gameManager;
         private Management.SaveManager _saveManager;
 
@@ -32,6 +38,13 @@ namespace Demonteks.UI
                 _optionsButton.Pressed += OnOptionsPressed;
                 _quitButton.Pressed += OnQuitPressed;
 
+                // Options references
+                _optionsPanel = GetNode<Control>("OptionsPanel");
+                _musicCheck = GetNode<CheckButton>("OptionsPanel/VBoxContainer/MusicCheck");
+                _sfxCheck = GetNode<CheckButton>("OptionsPanel/VBoxContainer/SfxCheck");
+                _vibrationCheck = GetNode<CheckButton>("OptionsPanel/VBoxContainer/VibrationCheck");
+                _optionsBackButton = GetNode<Button>("OptionsPanel/VBoxContainer/OptionsBackButton");
+
                 // Get managers
                 _gameManager = GetNode<Management.GameManager>("/root/GameManager");
                 _saveManager = GetNode<Management.SaveManager>("/root/SaveManager");
@@ -47,6 +60,17 @@ namespace Demonteks.UI
                     GD.PrintErr("MainMenu: SaveManager not found at /root/SaveManager!");
                     return;
                 }
+
+                // Initialize Options UI states
+                _musicCheck.ButtonPressed = _saveManager.GameOptions.MusicEnabled;
+                _sfxCheck.ButtonPressed = _saveManager.GameOptions.SfxEnabled;
+                _vibrationCheck.ButtonPressed = _saveManager.GameOptions.VibrationEnabled;
+
+                // Connect Options signals
+                _musicCheck.Toggled += OnMusicToggled;
+                _sfxCheck.Toggled += OnSfxToggled;
+                _vibrationCheck.Toggled += OnVibrationToggled;
+                _optionsBackButton.Pressed += OnOptionsBackPressed;
 
                 // Check if save file exists
                 if (!_saveManager.HasSaveFile())
@@ -86,8 +110,30 @@ namespace Demonteks.UI
 
         private void OnOptionsPressed()
         {
-            GD.Print("Options not implemented yet");
-            // TODO: Create options menu
+            _optionsPanel.Visible = true;
+        }
+
+        private void OnOptionsBackPressed()
+        {
+            _optionsPanel.Visible = false;
+        }
+
+        private void OnMusicToggled(bool toggledOn)
+        {
+            _saveManager.GameOptions.MusicEnabled = toggledOn;
+            _saveManager.SaveOptions();
+        }
+
+        private void OnSfxToggled(bool toggledOn)
+        {
+            _saveManager.GameOptions.SfxEnabled = toggledOn;
+            _saveManager.SaveOptions();
+        }
+
+        private void OnVibrationToggled(bool toggledOn)
+        {
+            _saveManager.GameOptions.VibrationEnabled = toggledOn;
+            _saveManager.SaveOptions();
         }
 
         private void OnQuitPressed()
@@ -103,6 +149,11 @@ namespace Demonteks.UI
             if (_continueButton != null) _continueButton.Pressed -= OnContinuePressed;
             if (_optionsButton != null) _optionsButton.Pressed -= OnOptionsPressed;
             if (_quitButton != null) _quitButton.Pressed -= OnQuitPressed;
+
+            if (_musicCheck != null) _musicCheck.Toggled -= OnMusicToggled;
+            if (_sfxCheck != null) _sfxCheck.Toggled -= OnSfxToggled;
+            if (_vibrationCheck != null) _vibrationCheck.Toggled -= OnVibrationToggled;
+            if (_optionsBackButton != null) _optionsBackButton.Pressed -= OnOptionsBackPressed;
         }
     }
 }

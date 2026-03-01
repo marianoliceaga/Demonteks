@@ -12,15 +12,22 @@ namespace Demonteks.Management
     {
         #region Constants
         private const string SAVE_FILE_PATH = "user://demonteks_save.json";
+        private const string OPTIONS_FILE_PATH = "user://demonteks_options.json";
         private const int SAVE_VERSION = 1;
         #endregion
 
         #region Godot Lifecycle
+
+        public OptionsData GameOptions { get; private set; } = new OptionsData();
+
         public override void _Ready()
         {
             // Process mode to persist through scene changes
             ProcessMode = ProcessModeEnum.Always;
-            
+
+            LoadOptions();
+            ApplyOptions();
+
             GD.Print($"SaveManager initialized. Save file path: {SAVE_FILE_PATH}");
         }
         #endregion
@@ -38,7 +45,7 @@ namespace Demonteks.Management
                     { "version", SAVE_VERSION },
                     { "timestamp", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") }
                 };
-                
+
                 // Get GameManager data
                 GameManager gameManager = GetNode<GameManager>("/root/GameManager");
                 if (gameManager != null)
@@ -49,7 +56,7 @@ namespace Demonteks.Management
                         saveData[$"gm_{kvp.Key}"] = kvp.Value;
                     }
                 }
-                
+
                 // Get Player data (if player exists in scene)
                 var player = gameManager?.Player;
                 if (player != null)
@@ -66,7 +73,7 @@ namespace Demonteks.Management
                             }
                         }
                     }
-                    
+
                     if (player.HasNode("PlayerCombat"))
                     {
                         var combat = player.GetNode("PlayerCombat");
@@ -80,10 +87,10 @@ namespace Demonteks.Management
                         }
                     }
                 }
-                
+
                 // Convert to JSON
                 string jsonString = Json.Stringify(saveData, "\t");
-                
+
                 // Write to file
                 using var file = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Write);
                 if (file == null)
@@ -91,10 +98,10 @@ namespace Demonteks.Management
                     GD.PrintErr($"Failed to open save file for writing: {FileAccess.GetOpenError()}");
                     return false;
                 }
-                
+
                 file.StoreString(jsonString);
                 file.Close();
-                
+
                 GD.Print($"Game saved successfully to {SAVE_FILE_PATH}");
                 return true;
             }
@@ -115,7 +122,7 @@ namespace Demonteks.Management
                 GD.Print("No save file found.");
                 return false;
             }
-            
+
             try
             {
                 // Read file
@@ -125,22 +132,22 @@ namespace Demonteks.Management
                     GD.PrintErr($"Failed to open save file for reading: {FileAccess.GetOpenError()}");
                     return false;
                 }
-                
+
                 string jsonString = file.GetAsText();
                 file.Close();
-                
+
                 // Parse JSON
                 var json = new Json();
                 var parseResult = json.Parse(jsonString);
-                
+
                 if (parseResult != Error.Ok)
                 {
                     GD.PrintErr($"JSON parse error: {json.GetErrorMessage()} at line {json.GetErrorLine()}");
                     return false;
                 }
-                
+
                 var saveData = json.Data.AsGodotDictionary();
-                
+
                 // Check version
                 if (saveData.ContainsKey("version"))
                 {
@@ -151,7 +158,7 @@ namespace Demonteks.Management
                         // Could implement migration logic here
                     }
                 }
-                
+
                 // Load GameManager data
                 GameManager gameManager = GetNode<GameManager>("/root/GameManager");
                 if (gameManager != null)
@@ -167,7 +174,7 @@ namespace Demonteks.Management
                     }
                     gameManager.LoadSaveData(gmData);
                 }
-                
+
                 // Note: Player data will be loaded when player spawns in scene
                 // Store it temporarily for later retrieval
                 _pendingPlayerData = new Godot.Collections.Dictionary<string, Godot.Collections.Dictionary<string, Variant>>
@@ -175,7 +182,7 @@ namespace Demonteks.Management
                     { "stats", new Godot.Collections.Dictionary<string, Variant>() },
                     { "combat", new Godot.Collections.Dictionary<string, Variant>() }
                 };
-                
+
                 foreach (var kvp in saveData)
                 {
                     string key = kvp.Key.ToString();
@@ -188,7 +195,7 @@ namespace Demonteks.Management
                         _pendingPlayerData["combat"][key.Substring(3)] = kvp.Value;
                     }
                 }
-                
+
                 GD.Print("Game loaded successfully");
                 return true;
             }
@@ -207,7 +214,7 @@ namespace Demonteks.Management
         public void LoadPlayerData(Node player)
         {
             if (_pendingPlayerData == null) return;
-            
+
             try
             {
                 if (player.HasNode("PlayerStats") && _pendingPlayerData.ContainsKey("stats"))
@@ -218,7 +225,7 @@ namespace Demonteks.Management
                         stats.Call("LoadSaveData", _pendingPlayerData["stats"]);
                     }
                 }
-                
+
                 if (player.HasNode("PlayerCombat") && _pendingPlayerData.ContainsKey("combat"))
                 {
                     var combat = player.GetNode("PlayerCombat");
@@ -227,7 +234,7 @@ namespace Demonteks.Management
                         combat.Call("LoadSaveData", _pendingPlayerData["combat"]);
                     }
                 }
-                
+
                 _pendingPlayerData = null;
                 GD.Print("Player data loaded successfully");
             }
@@ -257,10 +264,10 @@ namespace Demonteks.Management
                 GD.Print("No save file to delete.");
                 return false;
             }
-            
+
             var dir = DirAccess.Open("user://");
             Error err = dir.Remove(SAVE_FILE_PATH);
-            
+
             if (err == Error.Ok)
             {
                 GD.Print("Save file deleted successfully");
@@ -280,20 +287,20 @@ namespace Demonteks.Management
         {
             if (!HasSaveFile())
                 return null;
-            
+
             try
             {
                 using var file = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Read);
                 if (file == null)
                     return null;
-                
+
                 string jsonString = file.GetAsText();
                 file.Close();
-                
+
                 var json = new Json();
                 json.Parse(jsonString);
                 var data = json.Data.AsGodotDictionary();
-                
+
                 var info = new SaveFileInfo
                 {
                     Timestamp = data.ContainsKey("timestamp") ? data["timestamp"].AsString() : "Unknown",
@@ -301,7 +308,7 @@ namespace Demonteks.Management
                     PlayTime = data.ContainsKey("gm_total_play_time") ? data["gm_total_play_time"].AsSingle() : 0f,
                     Deaths = data.ContainsKey("gm_player_deaths") ? data["gm_player_deaths"].AsInt32() : 0
                 };
-                
+
                 return info;
             }
             catch (Exception ex)
@@ -320,13 +327,13 @@ namespace Demonteks.Management
         public override void _Process(double delta)
         {
             if (!_autoSaveEnabled) return;
-            
+
             _autoSaveTimer += (float)delta;
-            
+
             if (_autoSaveTimer >= _autoSaveInterval)
             {
                 _autoSaveTimer = 0f;
-                
+
                 // Only auto-save if in playing state
                 GameManager gameManager = GetNode<GameManager>("/root/GameManager");
                 if (gameManager?.CurrentState == GameState.Playing)
@@ -347,6 +354,88 @@ namespace Demonteks.Management
             _autoSaveInterval = Mathf.Max(30f, seconds);
         }
         #endregion
+
+        #region Global Options Settings
+        public void SaveOptions()
+        {
+            try
+            {
+                var dict = new Godot.Collections.Dictionary<string, Variant>
+                {
+                    { "MusicEnabled", GameOptions.MusicEnabled },
+                    { "SfxEnabled", GameOptions.SfxEnabled },
+                    { "VibrationEnabled", GameOptions.VibrationEnabled }
+                };
+
+                string jsonString = Json.Stringify(dict, "\t");
+
+                using var file = FileAccess.Open(OPTIONS_FILE_PATH, FileAccess.ModeFlags.Write);
+                if (file != null)
+                {
+                    file.StoreString(jsonString);
+                    file.Close();
+                }
+
+                ApplyOptions();
+                GD.Print("Options saved.");
+            }
+            catch (Exception ex)
+            {
+                GD.PrintErr($"Failed to save options: {ex.Message}");
+            }
+        }
+
+        public void LoadOptions()
+        {
+            if (!FileAccess.FileExists(OPTIONS_FILE_PATH)) return;
+
+            try
+            {
+                using var file = FileAccess.Open(OPTIONS_FILE_PATH, FileAccess.ModeFlags.Read);
+                if (file == null) return;
+
+                string jsonString = file.GetAsText();
+                file.Close();
+
+                var json = new Json();
+                if (json.Parse(jsonString) == Error.Ok)
+                {
+                    var data = json.Data.AsGodotDictionary();
+                    if (data.ContainsKey("MusicEnabled")) GameOptions.MusicEnabled = data["MusicEnabled"].AsBool();
+                    if (data.ContainsKey("SfxEnabled")) GameOptions.SfxEnabled = data["SfxEnabled"].AsBool();
+                    if (data.ContainsKey("VibrationEnabled")) GameOptions.VibrationEnabled = data["VibrationEnabled"].AsBool();
+                }
+            }
+            catch (Exception ex)
+            {
+                GD.PrintErr($"Failed to load options: {ex.Message}");
+            }
+        }
+
+        public void ApplyOptions()
+        {
+            // Adjust Godot audio server by seeking out the Music and SFX buses.
+            int musicBusIdx = AudioServer.GetBusIndex("Music");
+            if (musicBusIdx != -1)
+            {
+                AudioServer.SetBusMute(musicBusIdx, !GameOptions.MusicEnabled);
+            }
+
+            int sfxBusIdx = AudioServer.GetBusIndex("SFX");
+            if (sfxBusIdx != -1)
+            {
+                AudioServer.SetBusMute(sfxBusIdx, !GameOptions.SfxEnabled);
+            }
+        }
+
+        public void Vibrate(int durationMs = 200)
+        {
+            if (GameOptions.VibrationEnabled)
+            {
+                Input.VibrateHandheld(durationMs);
+            }
+        }
+        #endregion
     }
 
     #region Save File Info
@@ -363,6 +452,15 @@ namespace Demonteks.Management
             int seconds = (int)(PlayTime % 60);
             return $"{minutes:D2}:{seconds:D2}";
         }
+    }
+    #endregion
+
+    #region Options Data
+    public class OptionsData
+    {
+        public bool MusicEnabled { get; set; } = true;
+        public bool SfxEnabled { get; set; } = true;
+        public bool VibrationEnabled { get; set; } = true;
     }
     #endregion
 }
