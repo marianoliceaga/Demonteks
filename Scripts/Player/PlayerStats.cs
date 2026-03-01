@@ -14,11 +14,11 @@ namespace Demonteks.Player
         [Export] public int MaxHealth { get; set; } = 100;
         [Export] public int CurrentHealth { get; private set; } = 100;
         [Export] public float InvincibilityTime { get; set; } = 1.0f; // Time after hit where player can't be damaged
-        
+
         [ExportCategory("Combat")]
         [Export] public float DamageMultiplier { get; set; } = 1.0f;
         [Export] public int BaseMeleeDamage { get; set; } = 10;
-        
+
         [ExportCategory("Status")]
         [Export] public bool IsDead { get; private set; } = false;
         [Export] public bool IsInvincible { get; private set; } = false;
@@ -64,17 +64,17 @@ namespace Demonteks.Player
         public void TakeDamage(int damage)
         {
             if (IsDead || IsInvincible) return;
-            
+
             CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
             EmitSignal(SignalName.HealthChanged, CurrentHealth, MaxHealth);
             EmitSignal(SignalName.DamageTaken, damage);
-            
+
             // Start invincibility frames
             IsInvincible = true;
             _invincibilityTimer = InvincibilityTime;
-            
+
             GD.Print($"Player took {damage} damage. Health: {CurrentHealth}/{MaxHealth}");
-            
+
             if (CurrentHealth <= 0)
             {
                 Die();
@@ -87,11 +87,11 @@ namespace Demonteks.Player
         public void Heal(int amount)
         {
             if (IsDead) return;
-            
+
             int oldHealth = CurrentHealth;
             CurrentHealth = Mathf.Min(MaxHealth, CurrentHealth + amount);
             int actualHealing = CurrentHealth - oldHealth;
-            
+
             if (actualHealing > 0)
             {
                 EmitSignal(SignalName.HealthChanged, CurrentHealth, MaxHealth);
@@ -124,11 +124,12 @@ namespace Demonteks.Player
         private void Die()
         {
             if (IsDead) return;
-            
+
             IsDead = true;
             _canAct = false;
             EmitSignal(SignalName.Died);
-            
+
+            GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("../CharacterAudioController")?.PlayAction("Death");
             GD.Print("Player died!");
         }
 
@@ -140,7 +141,8 @@ namespace Demonteks.Player
             IsDead = false;
             _canAct = true;
             FullHeal();
-            
+
+            GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("../CharacterAudioController")?.PlayAction("WakeUp");
             GD.Print("Player revived!");
         }
         #endregion
@@ -160,7 +162,7 @@ namespace Demonteks.Player
         public void ApplyDamageBuff(float multiplier, float duration)
         {
             DamageMultiplier *= multiplier;
-            
+
             // Create timer to remove buff
             var timer = GetTree().CreateTimer(duration);
             timer.Timeout += () => DamageMultiplier /= multiplier;
@@ -188,13 +190,13 @@ namespace Demonteks.Player
         {
             if (data.ContainsKey("max_health"))
                 MaxHealth = data["max_health"].AsInt32();
-            
+
             if (data.ContainsKey("current_health"))
                 CurrentHealth = data["current_health"].AsInt32();
-            
+
             if (data.ContainsKey("damage_multiplier"))
                 DamageMultiplier = data["damage_multiplier"].AsSingle();
-            
+
             EmitSignal(SignalName.HealthChanged, CurrentHealth, MaxHealth);
         }
         #endregion

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bn0fkaovc8dv3"]
 
 [ext_resource type="Script" uid="uid://dkuqbk8cifq64" path="res://Scripts/Enemy/DemontekAI.cs" id="1_ai"]
+[ext_resource type="Script" path="res://Scripts/Environment/CharacterAudioController.cs" id="2_audio"]
 [ext_resource type="Texture2D" uid="uid://c4dfc052et8n7" path="res://Assets/characters/goliath/animations/breathing-idle/east/frame_003.png" id="tex_0aba913e"]
 [ext_resource type="Texture2D" uid="uid://diw4dt24bym3w" path="res://Assets/characters/goliath/animations/walk/north/frame_002.png" id="tex_1deb49e7"]
 [ext_resource type="Texture2D" uid="uid://dtncrora3n3wn" path="res://Assets/characters/goliath/animations/falling-back-death/south/frame_006.png" id="tex_1f9b1c1d"]
@@ -1114,3 +1115,7 @@ collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1237518509]
 shape = SubResource("RectangleShape2D_attack")
+
+[node name="CharacterAudioController" type="Node2D" parent="."]
+script = ExtResource("2_audio")
+AudioDirectory = "res://Assets/audio/sfx/Enemies/Goliath"

@@ -1,6 +1,7 @@
 [gd_scene load_steps=30 format=3]
 
 [ext_resource type="Script" path="res://Scripts/Enemy/DemontekAI.cs" id="1_ai"]
+[ext_resource type="Script" path="res://Scripts/Environment/CharacterAudioController.cs" id="2_audio"]
 
 [ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/breathing-idle/east/frame_000.png" id="idle_0"]
 [ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/breathing-idle/east/frame_001.png" id="idle_1"]
@@ -260,3 +261,7 @@ collision_mask = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 shape = SubResource("RectangleShape2D_attack")
+
+[node name="CharacterAudioController" type="Node2D" parent="."]
+script = ExtResource("2_audio")
+AudioDirectory = "res://Assets/audio/sfx/Enemies/Demontek"

@@ -315,6 +315,8 @@ namespace Demonteks.Enemy
                 _target.Call("TakeDamage", Damage);
             }
 
+            GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Attack");
+
             GD.Print($"{Type} Demontek attacked for {Damage} damage!");
         }
 
@@ -324,6 +326,8 @@ namespace Demonteks.Enemy
 
             _currentHealth -= damage;
             EmitSignal(SignalName.HealthChanged, _currentHealth, MaxHealth);
+
+            GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Hurt");
 
             GD.Print($"{Type} Demontek took {damage} damage. Health: {_currentHealth}/{MaxHealth}");
 
@@ -367,6 +371,8 @@ namespace Demonteks.Enemy
 
             // Queue free after death animation
             GetTree().CreateTimer(2.0f).Timeout += QueueFree;
+
+            GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Death");
 
             GD.Print($"{Type} Demontek died!");
         }

@@ -257,6 +257,8 @@ namespace Demonteks.Player
                 GD.Print("Hitbox disabled");
             };
 
+            GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("../CharacterAudioController")?.PlayAction("Attack");
+
             GD.Print($"Attack executed: {_currentWeapon.WeaponName} ({finalDamage} damage)");
         }
 

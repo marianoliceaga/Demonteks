@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c45vbvbyuvalg"]
 
 [ext_resource type="Script" uid="uid://dkuqbk8cifq64" path="res://Scripts/Enemy/DemontekAI.cs" id="1_ai"]
+[ext_resource type="Script" path="res://Scripts/Environment/CharacterAudioController.cs" id="2_audio"]
 [ext_resource type="Texture2D" uid="uid://ci754c1e5b2qg" path="res://Assets/characters/mutant_demontek/animations/breathing-idle/south/frame_003.png" id="tex_0c65f8db"]
 [ext_resource type="Texture2D" uid="uid://dxe8uxjl8vnpp" path="res://Assets/characters/mutant_demontek/animations/taking-punch/east/frame_002.png" id="tex_0cc64d8c"]
 [ext_resource type="Texture2D" uid="uid://c66qn58pn6t6l" path="res://Assets/characters/mutant_demontek/animations/breathing-idle/north/frame_002.png" id="tex_1b50fa37"]
@@ -688,3 +689,7 @@ collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea" unique_id=1667782907]
 shape = SubResource("RectangleShape2D_attack")
+
+[node name="CharacterAudioController" type="Node2D" parent="."]
+script = ExtResource("2_audio")
+AudioDirectory = "res://Assets/audio/sfx/Enemies/Mutant"

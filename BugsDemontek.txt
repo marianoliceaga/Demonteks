@@ -16,11 +16,16 @@ X-Mutant character animations look bad, make sure they are using the right anima
 X-Goliath character animations look bad, make sure they are using the right animations 
 X-King character animations look bad, make sure they are using the right animations 
 X-Music Level 3 (Castle)
+
+
 ---------------------------------------------------------------------------------
 //TODO
--Redo the backgrounds for level 3
+-Finish assigning sound FX for all the game
+-Fix when Demontek is on top of the Player, it should be pushed to the side
+-Fix Level3 to be able to finish the game
+-All the enemies have movements that are unrealistic and should be fixed, to make them not lock the player in a corner
+-Make the platforms more random and not so close to each other
+=Make the platforms easily climbable between each other
+-None of the enemies shouldn fall to the pits or fall to the void but they should keep their current behavior when they are on a platform as well as when they are in the ground.
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
--Sound FX for all the game
--All the enemies attacks are lame, make sure their attacks are harder than now and they go try hard to kill the Player
--None of the enemies shouldn fall to the pits and fall to the void
 -F key is not picking up HealthPickup or executing actions

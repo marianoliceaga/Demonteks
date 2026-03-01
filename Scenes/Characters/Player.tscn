@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://djlvgg7k6cuh" path="res://Scripts/Player/PlayerController.cs" id="1_player"]
 [ext_resource type="Script" uid="uid://qmp5rsg7x2av" path="res://Scripts/Player/PlayerStats.cs" id="2_stats"]
 [ext_resource type="Script" uid="uid://cu1lhcapq1juc" path="res://Scripts/Player/PlayerCombat.cs" id="3_combat"]
+[ext_resource type="Script" path="res://Scripts/Environment/CharacterAudioController.cs" id="4_audio"]
 [ext_resource type="Texture2D" uid="uid://ggu3qdletjl1" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_000.png" id="attack_0"]
 [ext_resource type="Texture2D" uid="uid://b1u7mdh6wy7rp" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_001.png" id="attack_1"]
 [ext_resource type="Texture2D" uid="uid://bwdc0enird4qn" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_002.png" id="attack_2"]
@@ -266,3 +267,7 @@ shape = SubResource("RectangleShape2D_hitbox")
 position = Vector2(0, -48)
 zoom = Vector2(0.4, 0.4)
 position_smoothing_enabled = true
+
+[node name="CharacterAudioController" type="Node2D" parent="." unique_id=9876543210]
+script = ExtResource("4_audio")
+AudioDirectory = "res://Assets/audio/sfx/Player"

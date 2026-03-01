@@ -286,6 +286,7 @@ namespace Demonteks.Player
 			_jumpsRemaining--;
 			_coyoteTimer = 0;
 
+			GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Jump");
 			GD.Print($"Player jumped! Jumps remaining: {_jumpsRemaining}");
 		}
 
