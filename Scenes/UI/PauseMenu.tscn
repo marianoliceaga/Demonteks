@@ -20,41 +20,37 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -150.0
-offset_right = 150.0
-offset_bottom = 150.0
+offset_left = -100.0
+offset_top = -120.0
+offset_right = 100.0
+offset_bottom = 120.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 8
 
 [node name="Title" type="Label" parent="VBoxContainer" unique_id=1474732647]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 22
 text = "PAUSED"
 horizontal_alignment = 1
 
-[node name="Spacer" type="Control" parent="VBoxContainer" unique_id=932057459]
-custom_minimum_size = Vector2(0, 20)
-layout_mode = 2
-
 [node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=283248789]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 32)
 layout_mode = 2
 text = "Resume"
 
 [node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=1577535977]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 32)
 layout_mode = 2
 text = "Restart Level"
 
 [node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=1497138681]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 32)
 layout_mode = 2
 text = "Options"
 
 [node name="MainMenuButton" type="Button" parent="VBoxContainer" unique_id=93837782]
-custom_minimum_size = Vector2(200, 50)
+custom_minimum_size = Vector2(200, 32)
 layout_mode = 2
 text = "Main Menu"
 
@@ -79,17 +75,17 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -100.0
-offset_right = 150.0
-offset_bottom = 100.0
+offset_left = -130.0
+offset_top = -80.0
+offset_right = 130.0
+offset_bottom = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 10
 
 [node name="Title" type="Label" parent="OptionsPanel/VBoxContainer" unique_id=198034013]
 layout_mode = 2
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 18
 text = "OPTIONS"
 horizontal_alignment = 1
 

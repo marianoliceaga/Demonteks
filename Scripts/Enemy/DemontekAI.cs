@@ -59,6 +59,10 @@ namespace Demonteks.Enemy
         // Patrol
         private float _patrolDirection = 1f;
         private float _patrolDistanceTraveled = 0f;
+
+        // Enemy separation
+        private float _separationCooldown = 0f;
+        private const float SeparationCooldownDuration = 0.4f;
         #endregion
 
         #region Signals
@@ -115,6 +119,8 @@ namespace Demonteks.Enemy
             // Update cooldowns
             if (_attackCooldownTimer > 0)
                 _attackCooldownTimer -= deltaF;
+            if (_separationCooldown > 0)
+                _separationCooldown -= deltaF;
 
             // Apply gravity
             if (!IsOnFloor())
@@ -172,6 +178,28 @@ namespace Demonteks.Enemy
             {
                 // Push the enemy back slightly to create space for the player
                 GlobalPosition += new Vector2(pushDir.X * 1.5f, 0);
+            }
+
+            // Enemy-to-enemy separation: avoid head-on deadlock flickering
+            if (_separationCooldown <= 0f)
+            {
+                for (int i = 0; i < GetSlideCollisionCount(); i++)
+                {
+                    var col = GetSlideCollision(i);
+                    if (col.GetCollider() is DemontekAI otherEnemy && !otherEnemy.IsDead)
+                    {
+                        // Only the enemy with the larger ID yields, avoiding mutual reaction
+                        if (GetInstanceId() > otherEnemy.GetInstanceId())
+                        {
+                            // Step to the side of the other enemy (opposite direction they are pushing us)
+                            float sideDir = Mathf.Sign(GlobalPosition.X - otherEnemy.GlobalPosition.X);
+                            if (sideDir == 0f) sideDir = 1f;
+                            GlobalPosition += new Vector2(sideDir * 3f, 0f);
+                            _separationCooldown = SeparationCooldownDuration;
+                        }
+                        break;
+                    }
+                }
             }
 
             // Update animation
