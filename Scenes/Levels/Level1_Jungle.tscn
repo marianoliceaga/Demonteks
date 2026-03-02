@@ -260,6 +260,7 @@ shape = SubResource("RectangleShape2D_killzone")
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="." unique_id=987018335]
 stream = ExtResource("bgm_level1")
 autoplay = true
+bus = &"Music"
 
 [node name="AmbientSoundController" type="Node2D" parent="."]
 script = ExtResource("ambient_audio_script")

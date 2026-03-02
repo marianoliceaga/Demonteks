@@ -62,3 +62,51 @@ text = "Main Menu"
 [connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_pressed"]
 [connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_pressed"]
+
+[node name="OptionsPanel" type="ColorRect" parent="." unique_id=209823902]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel" unique_id=89234892]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_top = -100.0
+offset_right = 150.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Title" type="Label" parent="OptionsPanel/VBoxContainer" unique_id=198034013]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="MusicCheck" type="CheckButton" parent="OptionsPanel/VBoxContainer" unique_id=40283012]
+layout_mode = 2
+text = "Enable Music"
+
+[node name="SfxCheck" type="CheckButton" parent="OptionsPanel/VBoxContainer" unique_id=59203913]
+layout_mode = 2
+text = "Enable Sound FX"
+
+[node name="VibrationCheck" type="CheckButton" parent="OptionsPanel/VBoxContainer" unique_id=749201993]
+layout_mode = 2
+text = "Enable Vibrations"
+
+[node name="OptionsBackButton" type="Button" parent="OptionsPanel/VBoxContainer" unique_id=992830102]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="OptionsPanel/VBoxContainer/OptionsBackButton" to="." method="_on_options_back_pressed"]

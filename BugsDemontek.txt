@@ -22,21 +22,19 @@ X-Fix when Demontek is on top of the Player, it should be pushed to the side
 X-Demonteks keep looking and running right after the previous change
 X-When the Demonteks walk left they are facing right and walking backwards
 X-Fondo (foreground) de Level3 tiene manchas blancas
+X-Los checkpoints solo funcionan si al Player lo matan los enemigos, no si cae en la Killzone
+X-The Options Menu Should have the features for: Enable Music, Enable Sound FX, Enable Vibrations, but when I click the Options button, nothing happens
+-Las plataformas del nivel 3 no permiten ser escaladas, debe ajustarse su altura y distancia entre ellas
 -Mutant, Goliath y King should do less damage
--The Options Menu Should have the features for: Enable Music, Enable Sound FX, Enable Vibrations  ???
 -All the enemies should have more realistic movements and avoid making themm lock the player in a corner or between them
--Los checkpoints solo funcionan si al Player lo matan los enemigos, no si cae en la Killzone
 ---------------------------------------------------------------------------------
 //TODO
--What are those orange bars near the start of level 3?
+-Orange bars at Level 3 are floor traps, place them wisely and use tiles to make them look like the floor but with a different color
 -The enemies should not fall accidentally to the void, they should keep their current behavior, patrol and chase the Player when they are on the same platform or ground, this change should not break their current behaviour.
--Las plataformas del nivel 3 no permiten ser escaladas, debe ajustarse su altura y distancia entre ellas
 -Rediseñar tiles de Level2 y Level3 / Complete Level 2 and Level 3 tilesets in scene (change tilesets)
 -Se siguen subiendo Demonteks arriba del Player 
 -Llevar ascension de Level3 hacia la derecha
-
 -Test Level3 to see if it is possible to finish the game
 -Finish assigning sound FX for all the game
-
 -F key is not picking up HealthPickup or executing actions
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
