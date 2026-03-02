@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Demonteks\\Demonteks.csproj": {}
+    "D:\\Demonteks\\Demonteks.csproj": {}
   },
   "projects": {
-    "d:\\Demonteks\\Demonteks.csproj": {
+    "D:\\Demonteks\\Demonteks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Demonteks\\Demonteks.csproj",
+        "projectUniqueName": "D:\\Demonteks\\Demonteks.csproj",
         "projectName": "Demonteks",
-        "projectPath": "d:\\Demonteks\\Demonteks.csproj",
+        "projectPath": "D:\\Demonteks\\Demonteks.csproj",
         "packagesPath": "C:\\Users\\mlice\\.nuget\\packages\\",
-        "outputPath": "d:\\Demonteks\\.godot\\mono\\temp\\obj\\",
+        "outputPath": "D:\\Demonteks\\.godot\\mono\\temp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

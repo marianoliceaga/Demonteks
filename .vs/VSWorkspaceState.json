@@ -1,11 +1,12 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Assets\\audio",
-    "\\Assets\\audio\\sfx",
     "\\Scenes",
-    "\\Scenes\\Levels"
+    "\\Scenes\\Characters",
+    "\\Scenes\\Levels",
+    "\\Scripts",
+    "\\Scripts\\Enemy"
   ],
-  "SelectedNode": "\\Scenes\\Levels\\Level1_Jungle.tscn",
+  "SelectedNode": "\\Scenes\\Characters\\Goliath.tscn",
   "PreviewInSolutionExplorer": false
 }

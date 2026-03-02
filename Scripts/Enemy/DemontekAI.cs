@@ -200,24 +200,24 @@ namespace Demonteks.Enemy
                     break;
 
                 case EnemyType.Mutant:
-                    MaxHealth = 50;
-                    Damage = 15;
+                    MaxHealth = 40;
+                    Damage = 12;
                     ChaseSpeed = 160f;
                     DetectionRange = 220f;
                     AttackCooldown = 0.6f;
                     break;
 
                 case EnemyType.Goliath:
-                    MaxHealth = 200;
-                    Damage = 25;
+                    MaxHealth = 100;
+                    Damage = 18;
                     ChaseSpeed = 100f;
                     DetectionRange = 300f;
                     AttackCooldown = 0.8f;
                     break;
 
                 case EnemyType.King:
-                    MaxHealth = 500;
-                    Damage = 35;
+                    MaxHealth = 200;
+                    Damage = 25;
                     ChaseSpeed = 130f;
                     DetectionRange = 350f;
                     AttackCooldown = 0.5f;

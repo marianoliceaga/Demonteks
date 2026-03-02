@@ -19,8 +19,15 @@ namespace Demonteks.Utils
             {
                 GD.Print("Player fell into kill zone!");
 
-                var gameManager = GetNode<Management.GameManager>("/root/GameManager");
-                gameManager?.OnPlayerDied();
+                if (body.HasMethod("TakeDamage"))
+                {
+                    body.Call("TakeDamage", 9999);
+                }
+                else
+                {
+                    var gameManager = GetNode<Management.GameManager>("/root/GameManager");
+                    gameManager?.OnPlayerDied();
+                }
             }
             else if (body.IsInGroup("enemies"))
             {
