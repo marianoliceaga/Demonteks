@@ -118,7 +118,7 @@ position = Vector2(2107, 328)
 position = Vector2(2278, 263)
 
 [node name="Stair1_D" parent="Platforms" unique_id=684068169 instance=ExtResource("7_platform")]
-position = Vector2(2073, 215)
+position = Vector2(2074, 200)
 
 [node name="F2_Plat1" parent="Platforms" unique_id=719951299 instance=ExtResource("7_platform")]
 position = Vector2(960, 96)

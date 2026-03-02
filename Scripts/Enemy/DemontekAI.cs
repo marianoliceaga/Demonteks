@@ -63,6 +63,9 @@ namespace Demonteks.Enemy
         // Enemy separation
         private float _separationCooldown = 0f;
         private const float SeparationCooldownDuration = 0.4f;
+
+        // Floor collision mask for direct space state rays
+        private uint _floorCollisionMask = 5; // Layer 1 (1) + Layer 3 (4) = 5
         #endregion
 
         #region Signals
@@ -81,13 +84,13 @@ namespace Demonteks.Enemy
             _detectionArea = GetNode<Area2D>(DetectionAreaPath);
             _attackArea = GetNode<Area2D>(AttackAreaPath);
 
-            // Setup floor ray for edge detection
-            if (FloorRayPath != null)
-            {
-                _floorRay = GetNode<RayCast2D>(FloorRayPath);
-                _floorRay.Enabled = true;
-                _floorRay.CollisionMask = 1; // World layer
-            }
+            // Setup floor ray for edge detection (Legacy nodes retained for layout compat, managed via code now)
+            // if (FloorRayPath != null)
+            // {
+            //     _floorRay = GetNode<RayCast2D>(FloorRayPath);
+            //     _floorRay.Enabled = true;
+            //     _floorRay.CollisionMask = 1; // World layer
+            // }
 
             // Initialize stats based on type
             InitializeByType();
@@ -259,16 +262,19 @@ namespace Demonteks.Enemy
         {
             if (!_canAct) return;
 
-            // Move in patrol direction
-            _velocity.X = _patrolDirection * PatrolSpeed;
-            _patrolDistanceTraveled += Mathf.Abs(_velocity.X * delta);
-
-            // Check for edge using raycast
+            // Check for edge using direct space state raycast before moving
             bool edgeAhead = false;
-            if (_floorRay != null)
+            if (IsOnFloor())
             {
-                _floorRay.ForceRaycastUpdate();
-                edgeAhead = !_floorRay.IsColliding();
+                var spaceState = GetWorld2D().DirectSpaceState;
+                Vector2 rayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 rayEnd = GlobalPosition + new Vector2(_patrolDirection * 20f, 30f);
+
+                var query = PhysicsRayQueryParameters2D.Create(rayStart, rayEnd, _floorCollisionMask);
+                query.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+
+                var result = spaceState.IntersectRay(query);
+                edgeAhead = result.Count == 0;
             }
 
             // Turn around at patrol distance or edges
@@ -278,6 +284,10 @@ namespace Demonteks.Enemy
                 _patrolDistanceTraveled = 0;
             }
 
+            // Move in patrol direction
+            _velocity.X = _patrolDirection * PatrolSpeed;
+            _patrolDistanceTraveled += Mathf.Abs(_velocity.X * delta);
+
             UpdateFacing();
         }
 
@@ -286,7 +296,31 @@ namespace Demonteks.Enemy
             if (!_canAct || _target == null) return;
 
             float direction = Mathf.Sign(_target.GlobalPosition.X - GlobalPosition.X);
-            _velocity.X = direction * ChaseSpeed;
+
+            // Check for edge using direct space state raycast before moving
+            bool edgeAhead = false;
+            if (IsOnFloor())
+            {
+                var spaceState = GetWorld2D().DirectSpaceState;
+                Vector2 rayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 rayEnd = GlobalPosition + new Vector2(direction * 20f, 30f);
+
+                var query = PhysicsRayQueryParameters2D.Create(rayStart, rayEnd, _floorCollisionMask);
+                query.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+
+                var result = spaceState.IntersectRay(query);
+                edgeAhead = result.Count == 0;
+            }
+
+            if (edgeAhead)
+            {
+                // Stand near the edge, refusing to fall off
+                _velocity.X = 0;
+            }
+            else
+            {
+                _velocity.X = direction * ChaseSpeed;
+            }
 
             UpdateFacing();
         }
@@ -296,7 +330,29 @@ namespace Demonteks.Enemy
             if (!_canAct) return;
 
             float direction = Mathf.Sign(targetPosition.X - GlobalPosition.X);
-            _velocity.X = direction * speed;
+
+            bool edgeAhead = false;
+            if (IsOnFloor())
+            {
+                var spaceState = GetWorld2D().DirectSpaceState;
+                Vector2 rayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 rayEnd = GlobalPosition + new Vector2(direction * 20f, 30f);
+
+                var query = PhysicsRayQueryParameters2D.Create(rayStart, rayEnd, _floorCollisionMask);
+                query.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+
+                var result = spaceState.IntersectRay(query);
+                edgeAhead = result.Count == 0;
+            }
+
+            if (edgeAhead)
+            {
+                _velocity.X = 0;
+            }
+            else
+            {
+                _velocity.X = direction * speed;
+            }
 
             UpdateFacing();
         }

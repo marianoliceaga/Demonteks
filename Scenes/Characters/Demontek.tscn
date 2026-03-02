@@ -236,6 +236,7 @@ Type = 0
 AnimatedSpritePath = NodePath("AnimatedSprite2D")
 DetectionAreaPath = NodePath("DetectionArea")
 AttackAreaPath = NodePath("AttackArea")
+FloorRayPath = NodePath("FloorRay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 0)
@@ -265,3 +266,8 @@ shape = SubResource("RectangleShape2D_attack")
 [node name="CharacterAudioController" type="Node2D" parent="."]
 script = ExtResource("2_audio")
 AudioDirectory = "res://Assets/audio/sfx/Enemies/Demontek"
+
+[node name="FloorRay" type="RayCast2D" parent="."]
+position = Vector2(0, -10)
+target_position = Vector2(0, 40)
+collision_mask = 5
