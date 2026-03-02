@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Prefabs/FloorTrap.tscn" id="18_floortrap"]
 [ext_resource type="Script" uid="uid://jle36yq00nc1" path="res://Scripts/Environment/BossArena.cs" id="19_bossarena"]
 [ext_resource type="PackedScene" uid="uid://dww8aiua5yj2b" path="res://Scenes/Prefabs/WeaponPickup.tscn" id="20_weapon"]
+[ext_resource type="Script" uid="uid://cd6wpk82k038j" path="res://Scripts/Environment/AmbientSoundController.cs" id="21_ambient"]
 
 [sub_resource type="RectangleShape2D" id="Shape_goliath_arena"]
 size = Vector2(560, 128)
@@ -361,3 +362,9 @@ shape = SubResource("Shape_killzone")
 stream = ExtResource("17_bgm")
 autoplay = true
 bus = &"Music"
+
+[node name="AmbientSoundController" type="Node2D" parent="." unique_id=992837461]
+script = ExtResource("21_ambient")
+AudioDirectory = "res://Assets/audio/sfx/Level3_Castle"
+MinWaitTime = 8.0
+MaxWaitTime = 20.0

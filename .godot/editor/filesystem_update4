@@ -19,3 +19,4 @@ res://Scripts/Environment/CharacterAudioController.cs
 res://Scripts/Management/AudioManager.cs
 res://Scripts/Management/SaveManager.cs
 res://Scripts/Management/GameManager.cs
+res://Scripts/Environment/AmbientSoundController.cs

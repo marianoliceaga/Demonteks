@@ -67,21 +67,39 @@ namespace Demonteks.Environment
 
         private void CategorizeStream(string fileName, AudioStream stream)
         {
-            // We define standard actions we want to match.
-            // This is a minimal set, add more standard actions here as needed.
-            string[] standardActions = { "Attack", "Slash", "Hit", "Hurt", "Death", "Jump", "Dash", "Footstep", "SeeEnemies" };
+            var semanticMap = new Dictionary<string, string[]>
+            {
+                { "Attack", new[] { "attack", "combat", "punch", "pound", "projectile", "explosion" } },
+                { "Slash", new[] { "slash", "swing" } },
+                { "Hit", new[] { "hit", "stagger" } },
+                { "Hurt", new[] { "hurt" } },
+                { "Death", new[] { "death", "collapse", "cry" } },
+                { "Jump", new[] { "jump", "land" } },
+                { "Dash", new[] { "dash", "escape" } },
+                { "Footstep", new[] { "footstep", "march", "stomp" } },
+                { "SeeEnemies", new[] { "seeenemies", "seeportal", "wakeup", "entrance" } },
+                { "Idle", new[] { "idle", "breathing" } },
+                { "Roar", new[] { "roar", "taunt", "mercy", "enrage", "phase", "whispers", "chanting" } },
+                { "Interact", new[] { "checkpoint", "lever", "heal" } },
+                { "Victory", new[] { "victory", "respawn" } }
+            };
 
             string lowerFileName = fileName.ToLower();
 
-            foreach (var action in standardActions)
+            foreach (var kvp in semanticMap)
             {
-                if (lowerFileName.Contains(action.ToLower()))
+                string actionName = kvp.Key;
+                foreach (var keyword in kvp.Value)
                 {
-                    if (!_actionCache.ContainsKey(action))
+                    if (lowerFileName.Contains(keyword))
                     {
-                        _actionCache[action] = new List<AudioStream>();
+                        if (!_actionCache.ContainsKey(actionName))
+                        {
+                            _actionCache[actionName] = new List<AudioStream>();
+                        }
+                        _actionCache[actionName].Add(stream);
+                        break; // Only categorize once per action property
                     }
-                    _actionCache[action].Add(stream);
                 }
             }
         }
