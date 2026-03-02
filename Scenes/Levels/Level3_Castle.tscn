@@ -133,7 +133,7 @@ position = Vector2(1440, 96)
 position = Vector2(1680, 56)
 
 [node name="Stair2_A" parent="Platforms" unique_id=979270791 instance=ExtResource("7_platform")]
-position = Vector2(2002, 52)
+position = Vector2(2004, 40)
 
 [node name="Stair2_B" parent="Platforms" unique_id=413746704 instance=ExtResource("7_platform")]
 position = Vector2(2143, -29)

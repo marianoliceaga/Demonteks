@@ -35,9 +35,15 @@ namespace Demonteks.Environment
             Monitoring = false;
             Monitorable = false;
 
-            // Flash the marker red briefly
-            if (GetNodeOrNull("TrapMarker") is ColorRect marker)
-                marker.Color = new Color(1f, 0.1f, 0.1f, 0.9f);
+            // Swap tilesets to reveal trap
+            if (GetNodeOrNull<TileMap>("FakeFloorTiles") is TileMap fakeTiles)
+            {
+                fakeTiles.Visible = false;
+            }
+            if (GetNodeOrNull<TileMap>("RevealedTrapTiles") is TileMap revealedTiles)
+            {
+                revealedTiles.Visible = true;
+            }
 
             // Spawn enemies
             if (DemontekScene == null)
