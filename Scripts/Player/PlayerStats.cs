@@ -33,6 +33,7 @@ namespace Demonteks.Player
         #region Signals
         [Signal] public delegate void HealthChangedEventHandler(int currentHealth, int maxHealth);
         [Signal] public delegate void DiedEventHandler();
+        [Signal] public delegate void RevivedEventHandler();
         [Signal] public delegate void DamageTakenEventHandler(int damage);
         [Signal] public delegate void HealedEventHandler(int amount);
         [Signal] public delegate void MaxHealthChangedEventHandler(int newMaxHealth);
@@ -158,6 +159,8 @@ namespace Demonteks.Player
 
             GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("../CharacterAudioController")?.PlayAction("WakeUp");
             GD.Print("Player revived!");
+
+            EmitSignal(SignalName.Revived);
         }
         #endregion
 

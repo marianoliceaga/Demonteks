@@ -82,6 +82,7 @@ namespace Demonteks.Player
 			// Connect signals
 			_stats.HealthChanged += OnHealthChanged;
 			_stats.Died += OnPlayerDied;
+			_stats.Revived += OnPlayerRevived;
 			_combat.AttackExecuted += OnAttackExecuted;
 
 			// Detect platform
@@ -493,6 +494,12 @@ namespace Demonteks.Player
 			// Tell GameManager to start the respawn timer
 			if (_gameManager != null)
 				_gameManager.OnPlayerDied();
+		}
+
+		private void OnPlayerRevived()
+		{
+			// Player was respawned, restore their ability to move
+			_stateMachine.ChangeState(new IdleState());
 		}
 
 		private void OnAttackExecuted(string weaponName, int damage)

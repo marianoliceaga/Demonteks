@@ -29,16 +29,16 @@ X-All enemies should do a bit more damage and have a bit more health so the game
 X-Finish assigning sound FX for all the game
 X-Player is not picking up HealthPickup or Weapons
 X-Remove the walking sound from the Demonteks
-X-Add weapons and make them useful (and change sprites to match the weapons)
+X-Make the character use the other weapons when they are picked up, for this it's needed to generate them using PixelLab MCP and change the sprites to match the weapons being used at the time, and programmatically the damage inflicted.
 X-Verify why Machete attack of Player looks backwards
 X-Sometimes Demonteks try to run both left and right at the same time and they get stuck
+X-The Guard character traspases the Player when they are close to each other 
+X-When the Player falls dead to the KillZone it should respawn at the last checkpoint
 ---------------------------------------------------------------------------------
 //TODO
--The Guard character traspases the Player when they are close to each other 
--Make the character use the other weapons when they are picked up, for this it's needed to generate them using PixelLab MCP and change the sprites to match the weapons being used at the time, and programmatically the damage inflicted.
 -Paint floor traps with tiles instead of colorrects and place them in strategic places
--Complete Level 2 and Level 3 tilesets in scene (change tilesets)
+-Complete all levels tilesets in scene (change tilesets)
 -Remove some sounds from the Demonteks, add steps and fall to the Player
 -Llevar ascension a la arena del rey de Level3 hacia la derecha
--Play cinematic cutscenes at the beginning of Level 1 and end of Levels 1, 2 and 3 when the Player enters the LevelEnd
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
+-Play cinematic cutscenes at the beginning of Level 1 and end of Levels 1, 2 and 3 when the Player enters the LevelEnd

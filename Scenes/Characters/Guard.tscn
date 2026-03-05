@@ -1035,7 +1035,7 @@ size = Vector2(20, 16)
 
 [node name="Guard" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 2
-collision_mask = 6
+collision_mask = 7
 script = ExtResource("1_ai")
 Type = 1
 AnimatedSpritePath = NodePath("AnimatedSprite2D")
