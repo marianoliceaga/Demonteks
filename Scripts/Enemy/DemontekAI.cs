@@ -217,14 +217,14 @@ namespace Demonteks.Enemy
             {
                 case EnemyType.Normal:
                     MaxHealth = 30;
-                    Damage = 15;
+                    Damage = 8;
                     ChaseSpeed = 140f;
                     DetectionRange = 200f;
                     break;
 
                 case EnemyType.Guard:
                     MaxHealth = 40;
-                    Damage = 15;
+                    Damage = 12;
                     ChaseSpeed = 120f;
                     DetectionRange = 250f;
                     PatrolDistance = 150f;
@@ -232,7 +232,7 @@ namespace Demonteks.Enemy
 
                 case EnemyType.Mutant:
                     MaxHealth = 60;
-                    Damage = 18;
+                    Damage = 15;
                     ChaseSpeed = 160f;
                     DetectionRange = 220f;
                     AttackCooldown = 0.6f;
@@ -240,7 +240,7 @@ namespace Demonteks.Enemy
 
                 case EnemyType.Goliath:
                     MaxHealth = 150;
-                    Damage = 25;
+                    Damage = 20;
                     ChaseSpeed = 100f;
                     DetectionRange = 300f;
                     AttackCooldown = 0.8f;
@@ -248,7 +248,7 @@ namespace Demonteks.Enemy
 
                 case EnemyType.King:
                     MaxHealth = 300;
-                    Damage = 35;
+                    Damage = 30;
                     ChaseSpeed = 130f;
                     DetectionRange = 350f;
                     AttackCooldown = 0.5f;
@@ -691,7 +691,7 @@ namespace Demonteks.Enemy
             _footstepTimer += delta;
             if (_footstepTimer >= _footstepInterval)
             {
-                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
+                // enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
                 _footstepTimer = 0f;
             }
 
@@ -734,7 +734,7 @@ namespace Demonteks.Enemy
             _footstepTimer += delta;
             if (_footstepTimer >= _footstepInterval)
             {
-                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
+                // enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
                 _footstepTimer = 0f;
             }
 

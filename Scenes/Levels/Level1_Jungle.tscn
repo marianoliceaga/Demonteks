@@ -11,8 +11,9 @@
 [ext_resource type="Script" uid="uid://7twiyd1bo8c6" path="res://Scripts/Utils/LevelEndTrigger.cs" id="10_levelend"]
 [ext_resource type="Script" uid="uid://ctoegptmn0ent" path="res://Scripts/Utils/CameraFollow.cs" id="12_camera"]
 [ext_resource type="Script" uid="uid://bf8h6jfb721ho" path="res://Scripts/Utils/KillZone.cs" id="13_killzone"]
-[ext_resource type="AudioStream" path="res://Assets/audio/music/Level1 (The Jungle).mp3" id="bgm_level1"]
-[ext_resource type="Script" path="res://Scripts/Environment/AmbientSoundController.cs" id="ambient_audio_script"]
+[ext_resource type="PackedScene" path="res://Scenes/Items/WeaponPickup.tscn" id="14_q118p"]
+[ext_resource type="Script" uid="uid://cd6wpk82k038j" path="res://Scripts/Environment/AmbientSoundController.cs" id="ambient_audio_script"]
+[ext_resource type="AudioStream" uid="uid://bohlj2xwfuv6s" path="res://Assets/audio/music/Level1 (The Jungle).mp3" id="bgm_level1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_health1"]
 radius = 12.0
@@ -262,6 +263,8 @@ stream = ExtResource("bgm_level1")
 autoplay = true
 bus = &"Music"
 
-[node name="AmbientSoundController" type="Node2D" parent="."]
+[node name="AmbientSoundController" type="Node2D" parent="." unique_id=632184382]
 script = ExtResource("ambient_audio_script")
-AudioDirectory = "res://Assets/audio/sfx/Level1_Jungle"
+
+[node name="WeaponPickup" parent="." unique_id=1510664551 instance=ExtResource("14_q118p")]
+position = Vector2(100, 400)

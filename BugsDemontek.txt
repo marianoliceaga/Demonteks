@@ -31,6 +31,8 @@ X-Player is not picking up HealthPickup or Weapons
 -Remove other weapons or make them useful (and change sprites to match the weapons)
 ---------------------------------------------------------------------------------
 //TODO
+-Remove the walking sound from the Demonteks
+-Verify why Machete attack of Player looks backwards
 -Make the character use the other weapons when they are picked up, for this it's needed to generate them using PixelLab MCP and change the sprites to match the weapons being used at the time, and programmatically the damage inflicted.
 -Paint floor traps with tiles instead of colorrects and place them in strategic places
 -Complete Level 2 and Level 3 tilesets in scene (change tilesets)
