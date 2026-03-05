@@ -24,10 +24,10 @@ X-Los checkpoints solo funcionan si al Player lo matan los enemigos, no si cae e
 X-The Options Menu Should have the features for: Enable Music, Enable Sound FX, Enable Vibrations, but when I click the Options button, nothing happens
 X-The enemies should not fall accidentally to the holes that lead to the killzone, but they should keep their current behavior, patrol and chase the Player when they are on the same platform or ground, this change should not break their current behaviour.
 X-Demonteks are still falling on top of the Player effectively stopping the Player from jumping or killing the demontek
+X-Check if the funcionality exists for when the Player falls on the killzone, it dies and respawns at the last checkpoint
+X-All enemies should do a bit more damage and have a bit more health so the game is a bit more challenging
 ---------------------------------------------------------------------------------
 //TODO
--When the Player falls in the killzone, it should die and respawn at the last checkpoint
--All enemies should do a bit more damage and have more health
 -Paint floor traps with tiles instead of colorrects and place them in strategic places
 -Rediseñar tiles de Level2 y Level3 / Complete Level 2 and Level 3 tilesets in scene (change tilesets)
 -F key is not picking up HealthPickup

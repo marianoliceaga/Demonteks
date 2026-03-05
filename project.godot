@@ -22,7 +22,6 @@ config/icon="res://icon.png"
 [autoload]
 
 UIAudioController="*res://Scenes/UI/UIAudioController.cs"
-
 GameManager="*res://Scripts/Management/GameManager.cs"
 SaveManager="*res://Scripts/Management/SaveManager.cs"
 MobileControls="*res://Scenes/UI/MobileControls.tscn"

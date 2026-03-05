@@ -21,8 +21,8 @@ namespace Demonteks.Enemy
         [Export] public float PatrolDistance { get; set; } = 200f;
 
         [ExportCategory("Combat")]
-        [Export] public int MaxHealth { get; set; } = 20;
-        [Export] public int Damage { get; set; } = 10;
+        [Export] public int MaxHealth { get; set; } = 30;
+        [Export] public int Damage { get; set; } = 15;
         [Export] public float AttackCooldown { get; set; } = 0.6f;
         [Export] public float Gravity { get; set; } = 980f;
 
@@ -216,39 +216,39 @@ namespace Demonteks.Enemy
             switch (Type)
             {
                 case EnemyType.Normal:
-                    MaxHealth = 20;
-                    Damage = 10;
+                    MaxHealth = 30;
+                    Damage = 15;
                     ChaseSpeed = 140f;
                     DetectionRange = 200f;
                     break;
 
                 case EnemyType.Guard:
-                    MaxHealth = 25;
-                    Damage = 10;
+                    MaxHealth = 40;
+                    Damage = 15;
                     ChaseSpeed = 120f;
                     DetectionRange = 250f;
                     PatrolDistance = 150f;
                     break;
 
                 case EnemyType.Mutant:
-                    MaxHealth = 40;
-                    Damage = 12;
+                    MaxHealth = 60;
+                    Damage = 18;
                     ChaseSpeed = 160f;
                     DetectionRange = 220f;
                     AttackCooldown = 0.6f;
                     break;
 
                 case EnemyType.Goliath:
-                    MaxHealth = 100;
-                    Damage = 18;
+                    MaxHealth = 150;
+                    Damage = 25;
                     ChaseSpeed = 100f;
                     DetectionRange = 300f;
                     AttackCooldown = 0.8f;
                     break;
 
                 case EnemyType.King:
-                    MaxHealth = 200;
-                    Damage = 25;
+                    MaxHealth = 300;
+                    Damage = 35;
                     ChaseSpeed = 130f;
                     DetectionRange = 350f;
                     AttackCooldown = 0.5f;

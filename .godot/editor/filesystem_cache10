@@ -1,9 +1,9 @@
 72322a848ab928aa5c89f0cb78209805
-::res://::1772431346
+::res://::1772677618
 AI_BACKGROUND_PROMPTS.md::TextFile::-1::1771138777::0::1::::<><><>0<>0<><>::
 ASSET_SETUP_COMPLETE.md::TextFile::-1::1771168896::0::1::::<><><>0<>0<><>::
 BACKGROUND_GENERATION_GUIDE.md::TextFile::-1::1771668679::0::1::::<><><>0<>0<><>::
-BugsDemontek.txt::TextFile::-1::1772430941::0::1::::<><><>0<>0<><>::
+BugsDemontek.txt::TextFile::-1::1772480859::0::1::::<><><>0<>0<><>::
 build_output.txt::TextFile::-1::1772356890::0::1::::<><><>0<>0<><>::
 default_bus_layout.tres::AudioBusLayout::4821987621209090164::1772356123::0::1::::<><><>0<>0<><>::
 LEVEL_DESIGN_GUIDE.md::TextFile::-1::1771668679::0::1::::<><><>0<>0<><>::
@@ -20,6 +20,7 @@ temp_sfx_usage.txt::TextFile::-1::1772431346::0::1::::<><><>0<>0<><>::
 tilemap.txt::TextFile::-1::1771668303::0::1::::<><><>0<>0<><>::
 tilemap_data.txt::TextFile::-1::1771668326::0::1::::<><><>0<>0<><>::
 TILEMAP_SETUP_GUIDE.md::TextFile::-1::1771168868::0::1::::<><><>0<>0<><>::
+unused_sfx_output.txt::TextFile::-1::1772481053::0::1::::<><><>0<>0<><>::
 ::res://Assets/::1771146062
 splash.png::CompressedTexture2D::7878634610622057167::1771115992::1771109378::1::::<><><>0<>0<>b02a3bea64d0f68002c3147324d53a4b<>res://.godot/imported/splash.png-3a3aab2e3410d4942ca79c9050695a1b.ctex::
 ::res://Assets/audio/::1771302578
@@ -29,7 +30,7 @@ Level 2 (The Dungeon).mp3::AudioStreamMP3::7154524754973056765::1771775932::1771
 Level 3 (The Castle).mp3::AudioStreamMP3::4116078173288149556::1772150492::1772151354::1::::<><><>0<>0<>674d06fb42c8f850109b880ebd372520<>res://.godot/imported/Level 3 (The Castle).mp3-d283625b639dc52e0a49b6edff99cea0.mp3str::
 ::res://Assets/audio/sfx/::1772432103
 ::res://Assets/audio/sfx/Enemies/::1772158024
-::res://Assets/audio/sfx/Enemies/Demontek/::1772431986
+::res://Assets/audio/sfx/Enemies/Demontek/::1772432698
 Demontek_Attack.mp3::AudioStreamMP3::1560317752438760342::1772158047::1772159649::1::::<><><>0<>0<>260de0d2ef7c030082d68b9e1a264671<>res://.godot/imported/Demontek_Attack.mp3-41c21c116316e1fdf0afb096d9d47808.mp3str::
 Demontek_Death.mp3::AudioStreamMP3::1096202821129067150::1772158051::1772159649::1::::<><><>0<>0<>85cc70067d9b556851ce971ec410d507<>res://.godot/imported/Demontek_Death.mp3-d8a5140c4282b262c1c93a6ff62b6cf3.mp3str::
 Demontek_Footstep.mp3::AudioStreamMP3::7566694894513197661::1772158053::1772159649::1::::<><><>0<>0<>919a850b5911c82fcd605997d44f94f1<>res://.godot/imported/Demontek_Footstep.mp3-b9b576a6f3cf341f797e11f63a1eadf1.mp3str::
@@ -58,7 +59,7 @@ Guard_Death.mp3::AudioStreamMP3::1007984385351022542::1772158062::1772159649::1:
 Guard_Hit.mp3::AudioStreamMP3::5523223567494815061::1772158060::1772159649::1::::<><><>0<>0<>276948bacc0abbfaa46db644180fe74f<>res://.godot/imported/Guard_Hit.mp3-45d1436ff78b81aa22e83f10c20805f0.mp3str::
 Guard_Idle.mp3::AudioStreamMP3::6593103799649568890::1771903093::1772337924::1::::<><><>0<>0<>f6d3c97cb5328453b7bb5379f65b1721<>res://.godot/imported/Guard_Idle.mp3-090e37697d4e51a6c048e5642169c790.mp3str::
 Guard_March.mp3::AudioStreamMP3::5442011704427303640::1772158064::1772159649::1::::<><><>0<>0<>a97fe74ef15abbfa57456c6a61948d75<>res://.godot/imported/Guard_March.mp3-7d44431f8435967b15a0722967c95bee.mp3str::
-::res://Assets/audio/sfx/Enemies/King/::1772432049
+::res://Assets/audio/sfx/Enemies/King/::1772432698
 King_Combat_01.mp3::AudioStreamMP3::9143362184471926509::1772158384::1772159649::1::::<><><>0<>0<>bdf5ff77d5495f4abbf4658027087b39<>res://.godot/imported/King_Combat_01.mp3-b74a92ad175850b20935deb85300617c.mp3str::
 King_Combat_02.mp3::AudioStreamMP3::5331600876836576933::1772158386::1772159649::1::::<><><>0<>0<>3cbf415355f6bef2544032016e925bf9<>res://.godot/imported/King_Combat_02.mp3-102c4f7e7b39469b5cb81ca766d4e9f2.mp3str::
 King_Death_Explosion.mp3::AudioStreamMP3::7146583220743112203::1772158155::1772159650::1::::<><><>0<>0<>d45e6b427129149f6928ab8f79f4cbc2<>res://.godot/imported/King_Death_Explosion.mp3-732591919a10016fe039ba02dcd4aa16.mp3str::
@@ -80,7 +81,7 @@ King_Taunt_02.mp3::AudioStreamMP3::2399747930629276331::1772158366::1772159649::
 King_Taunt_03.mp3::AudioStreamMP3::374503917303565322::1772158368::1772159649::1::::<><><>0<>0<>57712ab4462b430f5747ce136be92084<>res://.godot/imported/King_Taunt_03.mp3-f5d696095564292b7cb412170c7cb4c2.mp3str::
 Knife_Hit_Enemy.mp3::AudioStreamMP3::3631785926772949627::1771903058::1772432698::1::::<><><>0<>0<>c9a28fcb8b48038a6dc0d73b5ba295c9<>res://.godot/imported/Knife_Hit_Enemy.mp3-827ab7191979170e0418078f066412ab.mp3str::
 Knife_Slash.mp3::AudioStreamMP3::7799284583352883630::1771903055::1772432698::1::::<><><>0<>0<>9e56534f5b93fbdf5b402d8096d1209a<>res://.godot/imported/Knife_Slash.mp3-c1c8ad3bda71c183b0d76f499916ae5c.mp3str::
-::res://Assets/audio/sfx/Enemies/Mutant/::1772432066
+::res://Assets/audio/sfx/Enemies/Mutant/::1772432698
 Mutant_Attack_Heavy.mp3::AudioStreamMP3::5550450959797188830::1772158079::1772159649::1::::<><><>0<>0<>278b19fb02eed61b1e9c9db16f061555<>res://.godot/imported/Mutant_Attack_Heavy.mp3-36fd6d29a77f3bc70edfdbf01594026d.mp3str::
 Mutant_Death.mp3::AudioStreamMP3::8054352759325935620::1772158086::1772159649::1::::<><><>0<>0<>a2fc7646ae4195c0ee60230ef0643c54<>res://.godot/imported/Mutant_Death.mp3-d3c24763fd799fc60b943ad63049e8b6.mp3str::
 Mutant_Death_Roar.mp3::AudioStreamMP3::5573052963016066394::1771903112::1772432698::1::::<><><>0<>0<>1804d446c60f075dcb97772bb1e7bb47<>res://.godot/imported/Mutant_Death_Roar.mp3-7fde5ea3144cef1efa955ce978ab4033.mp3str::
@@ -1979,7 +1980,7 @@ HealthPickup.tscn::PackedScene::-1::1771805341::0::1::::<><><>0<>0<><>::res://Sc
 AdvancedTileMapSystem.cs::CSharpScript::3868944779730172397::1771165494::0::1::::<>Node2D<><>0<>0<><>::
 Level1_Jungle.tscn::PackedScene::4690474757631710968::1772425018::0::1::::<><><>0<>0<><>::uid://x5pm7vvasqky::::res://Scenes/Characters/Player.tscn<>res://Scenes/Characters/Demontek.tscn<>uid://b76hyvacdj2yg::::res://Assets/tilesets/jungle_tileset_16x16.tres<>uid://caisnysr73rri::::res://Assets/backgrounds/jungle/foreground_5760.png<>uid://dd8otry4vqbmp::::res://Assets/backgrounds/jungle/sky_1920.png<>res://Scenes/UI/HUD.tscn<>uid://dttb8i783ht3m::::res://Scenes/UI/PauseMenu.tscn<>uid://7twiyd1bo8c6::::res://Scripts/Utils/LevelEndTrigger.cs<>uid://ctoegptmn0ent::::res://Scripts/Utils/CameraFollow.cs<>uid://bf8h6jfb721ho::::res://Scripts/Utils/KillZone.cs<>uid://c2lpw1lcwuqn1::::res://Scripts/Environment/FloorTrap.cs<>res://Scenes/Items/HealthPickup.tscn<>uid://bohlj2xwfuv6s::::res://Assets/audio/music/Level1 (The Jungle).mp3
 Level2_Dungeon.tscn::PackedScene::937260544446567705::1772425020::0::1::::<><><>0<>0<><>::uid://x5pm7vvasqky::::res://Scenes/Characters/Player.tscn<>res://Scenes/Characters/Guard.tscn<>res://Scenes/Characters/Demontek.tscn<>uid://dmdsgwqrbtwfg::::res://Scenes/Prefabs/Checkpoint.tscn<>uid://b3p7vau4bfr1s::::res://Assets/tilesets/dungeon_tileset_16x16.tres<>uid://dhaswufust6h2::::res://Assets/backgrounds/dungeon/sky_1920.png<>uid://qno4m4b70cnj::::res://Assets/backgrounds/dungeon/mid_3840.png<>uid://dliv1is8nnv6j::::res://Assets/backgrounds/dungeon/foreground_5760.png<>res://Scenes/UI/HUD.tscn<>uid://dttb8i783ht3m::::res://Scenes/UI/PauseMenu.tscn<>uid://7twiyd1bo8c6::::res://Scripts/Utils/LevelEndTrigger.cs<>uid://ctoegptmn0ent::::res://Scripts/Utils/CameraFollow.cs<>uid://bf8h6jfb721ho::::res://Scripts/Utils/KillZone.cs<>res://Scenes/Prefabs/StoneButton.tscn<>uid://dww8aiua5yj2b::::res://Scenes/Prefabs/WeaponPickup.tscn<>uid://c86x8h5ytaqef::::res://Assets/audio/music/Level 2 (The Dungeon).mp3<>uid://cd6wpk82k038j::::res://Scripts/Environment/AmbientSoundController.cs
-Level3_Castle.tscn::PackedScene::19435098021447392::1772432340::0::1::::<><><>0<>0<><>::uid://x5pm7vvasqky::::res://Scenes/Characters/Player.tscn<>res://Scenes/Characters/Demontek.tscn<>uid://bpw2tov64j5h0::::res://Assets/backgrounds/castle/skyHigh_5680.png<>uid://c45vbvbyuvalg::::res://Scenes/Characters/Mutant.tscn<>uid://bn0fkaovc8dv3::::res://Scenes/Characters/Goliath.tscn<>res://Scenes/Characters/King.tscn<>uid://b3llpurrvcakm::::res://Assets/tilesets/castle_tileset_16x16.tres<>uid://cpqm8y5xvn3ks::::res://Scenes/Prefabs/Platform.tscn<>uid://dmdsgwqrbtwfg::::res://Scenes/Prefabs/Checkpoint.tscn<>uid://dvh3lb5rhtxyl::::res://Assets/backgrounds/castle/sky_1920.png<>uid://dtxcu03yj4kuj::::res://Assets/backgrounds/castle/mid_3840.png<>uid://cq0diycq3aqxk::::res://Assets/backgrounds/castle/foreground_5680.png<>res://Scenes/UI/HUD.tscn<>uid://dttb8i783ht3m::::res://Scenes/UI/PauseMenu.tscn<>uid://ctoegptmn0ent::::res://Scripts/Utils/CameraFollow.cs<>uid://bf8h6jfb721ho::::res://Scripts/Utils/KillZone.cs<>uid://byv4hakolpvsu::::res://Assets/audio/music/Level 3 (The Castle).mp3<>res://Scenes/Prefabs/FloorTrap.tscn<>uid://jle36yq00nc1::::res://Scripts/Environment/BossArena.cs<>uid://dww8aiua5yj2b::::res://Scenes/Prefabs/WeaponPickup.tscn
+Level3_Castle.tscn::PackedScene::19435098021447392::1772432340::0::1::::<><><>0<>0<><>::uid://x5pm7vvasqky::::res://Scenes/Characters/Player.tscn<>res://Scenes/Characters/Demontek.tscn<>uid://bpw2tov64j5h0::::res://Assets/backgrounds/castle/skyHigh_5680.png<>uid://c45vbvbyuvalg::::res://Scenes/Characters/Mutant.tscn<>uid://bn0fkaovc8dv3::::res://Scenes/Characters/Goliath.tscn<>res://Scenes/Characters/King.tscn<>uid://b3llpurrvcakm::::res://Assets/tilesets/castle_tileset_16x16.tres<>uid://cpqm8y5xvn3ks::::res://Scenes/Prefabs/Platform.tscn<>uid://dmdsgwqrbtwfg::::res://Scenes/Prefabs/Checkpoint.tscn<>uid://dvh3lb5rhtxyl::::res://Assets/backgrounds/castle/sky_1920.png<>uid://dtxcu03yj4kuj::::res://Assets/backgrounds/castle/mid_3840.png<>uid://cq0diycq3aqxk::::res://Assets/backgrounds/castle/foreground_5680.png<>res://Scenes/UI/HUD.tscn<>uid://dttb8i783ht3m::::res://Scenes/UI/PauseMenu.tscn<>uid://ctoegptmn0ent::::res://Scripts/Utils/CameraFollow.cs<>uid://bf8h6jfb721ho::::res://Scripts/Utils/KillZone.cs<>uid://byv4hakolpvsu::::res://Assets/audio/music/Level 3 (The Castle).mp3<>res://Scenes/Prefabs/FloorTrap.tscn<>uid://jle36yq00nc1::::res://Scripts/Environment/BossArena.cs<>uid://dww8aiua5yj2b::::res://Scenes/Prefabs/WeaponPickup.tscn<>uid://cd6wpk82k038j::::res://Scripts/Environment/AmbientSoundController.cs
 ParallaxBackgroundSystem.cs::CSharpScript::2170151002849221040::1771170897::0::1::::<>Node2D<><>0<>0<><>::
 ::res://Scenes/Prefabs/::1772165507
 Checkpoint.tscn::PackedScene::8008826109636181584::1771104571::0::1::::<><><>0<>0<><>::uid://boapvodk8upe1::::res://Scripts/Utils/Checkpoint.cs
@@ -1988,7 +1989,7 @@ FloorTrap.tscn::PackedScene::-1::1772430492::0::1::::<><><>0<>0<><>::
 Platform.tscn::PackedScene::5859492909111860846::1771799419::0::1::::<><><>0<>0<><>::
 StoneButton.tscn::PackedScene::-1::1771668241::0::1::::<><><>0<>0<><>::uid://ddxxbtndm5v7::::res://Scripts/Environment/StoneButton.cs<>res://Assets/tilesets/dungeon_tileset_16x16.png
 WeaponPickup.tscn::PackedScene::8750837033590558171::1771104572::0::1::::<><><>0<>0<><>::uid://l53i5h46n8n2::::res://Scripts/Utils/WeaponPickup.cs
-::res://Scenes/UI/::1772432489
+::res://Scenes/UI/::1772432698
 GameOver.tscn::PackedScene::3588584078708390393::1771104574::0::1::::<><><>0<>0<><>::uid://dy15wxrffstaw::::res://Scripts/UI/GameOverController.cs
 HUD.tscn::PackedScene::-1::1771476263::0::1::::<><><>0<>0<><>::uid://b876pw551tf6x::::res://Scenes/UI/HUDController.cs
 HUDController.cs::CSharpScript::4770622828818813121::1771013655::0::1::::<>CanvasLayer<><>0<>0<><>::
@@ -1997,13 +1998,13 @@ MainMenuController.cs::CSharpScript::1369838147690830500::1772356258::0::1::::<>
 MobileControls.cs::CSharpScript::4745293149728249468::1771105668::0::1::::<>CanvasLayer<><>0<>0<><>::
 MobileControls.tscn::PackedScene::6258744733137378638::1771104579::0::1::::<><><>0<>0<><>::uid://bt8twb6fwjbu7::::res://Scripts/UI/MobileControls.cs
 PauseMenu.tscn::PackedScene::8532193376878309160::1772425734::0::1::::<><><>0<>0<><>::uid://0hdtnwxd8qv7::::res://Scripts/UI/PauseMenuController.cs
-UIAudioController.cs::CSharpScript::7854234050163986495::1772432489::0::1::::<><><>0<>0<><>::
+UIAudioController.cs::CSharpScript::7854234050163986495::1772432489::0::1::::<>Node<><>0<>0<><>::
 Victory.tscn::PackedScene::2445040089778468362::1772165676::0::1::::<><><>0<>0<><>::uid://b7yubpp8coqy0::::res://Scripts/UI/VictoryController.cs
 VideoIntro.tscn::PackedScene::-1::1772165509::0::1::::<><><>0<>0<><>::
 ::res://Scripts/::1772332854
 ::res://Scripts/Combat/::1770962494
 ::res://Scripts/Enemy/::1771800922
-DemontekAI.cs::CSharpScript::7903411876532815651::1772428089::0::1::::<>CharacterBody2D<><>0<>0<><>::
+DemontekAI.cs::CSharpScript::7903411876532815651::1772480782::0::1::::<>CharacterBody2D<><>0<>0<><>::
 ::res://Scripts/Environment/::1772343878
 AmbientSoundController.cs::CSharpScript::5048766746878771043::1772356003::0::1::::<>Node2D<><>0<>0<><>::
 BossArena.cs::CSharpScript::654702284297885290::1772165308::0::1::::<>Area2D<><>0<>0<><>::
