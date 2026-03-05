@@ -268,3 +268,4 @@ script = ExtResource("ambient_audio_script")
 
 [node name="WeaponPickup" parent="." unique_id=1510664551 instance=ExtResource("14_q118p")]
 position = Vector2(100, 400)
+WeaponToPickup = 2

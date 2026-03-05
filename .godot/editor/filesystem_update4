@@ -19,3 +19,8 @@ res://Scripts/Management/AudioManager.cs
 res://Scripts/Management/SaveManager.cs
 res://Scripts/Management/GameManager.cs
 res://Scenes/UI/UIAudioController.cs
+res://Scenes/Levels/Level2_Dungeon.tscn
+res://Assets/tilesets/jungle_tileset_16x16.tres
+res://Assets/tilesets/dungeon_tileset_16x16.tres
+res://Assets/tilesets/castle_tileset_16x16.tres
+res://Scenes/Levels/Level1_Jungle.tscn

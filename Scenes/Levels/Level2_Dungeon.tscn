@@ -133,9 +133,11 @@ shape = SubResource("Shape_door")
 
 [node name="WeaponPickupMachete" parent="Pickups" unique_id=796937422 instance=ExtResource("15_weapon")]
 position = Vector2(4160, 272)
+WeaponType = 2
 
 [node name="WeaponPickupSword" parent="Pickups" unique_id=654222634 instance=ExtResource("15_weapon")]
 position = Vector2(4240, 272)
+WeaponType = 3
 
 [node name="LevelEnd" type="Area2D" parent="." unique_id=1917794312]
 position = Vector2(5584, 240)

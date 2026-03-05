@@ -51,6 +51,7 @@ namespace Demonteks.Enemy
         private Vector2 _velocity = Vector2.Zero;
         private Vector2 _startPosition;
         private bool _facingRight = true;
+        private float _facingCooldownTimer = 0f;
 
         // AI State Machine
         private EnemyStateMachine _stateMachine;
@@ -97,6 +98,7 @@ namespace Demonteks.Enemy
 
             _currentHealth = MaxHealth;
             _startPosition = GlobalPosition;
+            _facingCooldownTimer = 0f;
 
             // Setup state machine
             _stateMachine = new EnemyStateMachine(this);
@@ -124,6 +126,8 @@ namespace Demonteks.Enemy
                 _attackCooldownTimer -= deltaF;
             if (_separationCooldown > 0)
                 _separationCooldown -= deltaF;
+            if (_facingCooldownTimer > 0)
+                _facingCooldownTimer -= deltaF;
 
             // Apply gravity
             if (!IsOnFloor())
@@ -371,13 +375,20 @@ namespace Demonteks.Enemy
         {
             // Do not override with horizontal flipping since we have dynamic directional animations now
             // We just track facing direction internally
-            if (_velocity.X > 0 && !_facingRight)
+
+            // Only flip if not in facing cooldown
+            if (_facingCooldownTimer <= 0f)
             {
-                _facingRight = true;
-            }
-            else if (_velocity.X < 0 && _facingRight)
-            {
-                _facingRight = false;
+                if (_velocity.X > 0.1f && !_facingRight)
+                {
+                    _facingRight = true;
+                    _facingCooldownTimer = 0.2f; // Debounce for 0.2 seconds
+                }
+                else if (_velocity.X < -0.1f && _facingRight)
+                {
+                    _facingRight = false;
+                    _facingCooldownTimer = 0.2f; // Debounce for 0.2 seconds
+                }
             }
         }
         #endregion
