@@ -52,11 +52,12 @@ namespace Demonteks.Debug
                 GD.Print("✓ WeaponSprite node found");
             }
 
-            GD.Print($"\n--- Available Animations ({animatedSprite.SpriteFrames.GetAnimationCount()}) ---");
             foreach (var animName in animatedSprite.SpriteFrames.GetAnimationNames())
             {
-                var anim = animatedSprite.SpriteFrames.GetAnimation(animName);
-                GD.Print($"  - {animName}: {anim.Frames.Count} frames, speed: {anim.Speed}, loop: {anim.Loop}");
+                int frameCount = animatedSprite.SpriteFrames.GetFrameCount(animName);
+                double speed = animatedSprite.SpriteFrames.GetAnimationSpeed(animName);
+                bool loop = animatedSprite.SpriteFrames.GetAnimationLoop(animName);
+                GD.Print($"  - {animName}: {frameCount} frames, speed: {speed}, loop: {loop}");
             }
 
             GD.Print($"\n--- Weapon Configuration ---");
