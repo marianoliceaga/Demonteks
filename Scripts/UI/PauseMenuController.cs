@@ -77,12 +77,14 @@ namespace Demonteks.UI
                 _vibrationCheck.ButtonPressed = _saveManager.GameOptions.VibrationEnabled;
             }
 
+            UIAudioController.Instance?.PlaySound(UIAudioController.UiSound.MenuOpen);
             _gameManager.PauseGame();
             GD.Print("Game paused");
         }
 
         private void Resume()
         {
+            UIAudioController.Instance?.PlaySound(UIAudioController.UiSound.MenuClose);
             Visible = false;
             _gameManager.ResumeGame();
             GD.Print("Game resumed");
@@ -102,12 +104,14 @@ namespace Demonteks.UI
 
         private void _on_options_pressed()
         {
+            UIAudioController.Instance?.PlaySound(UIAudioController.UiSound.MenuNavigate);
             _mainVBox.Visible = false;
             _optionsPanel.Visible = true;
         }
 
         private void _on_options_back_pressed()
         {
+            UIAudioController.Instance?.PlaySound(UIAudioController.UiSound.MenuNavigate);
             _optionsPanel.Visible = false;
             _mainVBox.Visible = true;
         }

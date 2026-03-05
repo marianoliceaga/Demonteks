@@ -27,6 +27,7 @@ namespace Demonteks.Player
         #region Private Variables
         private float _invincibilityTimer = 0f;
         private bool _canAct = true;
+        private bool _lowHealthWarningFired = false;
         #endregion
 
         #region Signals
@@ -79,6 +80,14 @@ namespace Demonteks.Player
             {
                 Die();
             }
+            else if (IsLowHealth && !_lowHealthWarningFired)
+            {
+                _lowHealthWarningFired = true;
+                // Heavy breathing
+                GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("../CharacterAudioController")?.PlayAction("Idle");
+                // UI low-health warning
+                Demonteks.UI.UIAudioController.Instance?.PlaySound(Demonteks.UI.UIAudioController.UiSound.HealthLowWarning);
+            }
         }
 
         /// <summary>
@@ -96,6 +105,11 @@ namespace Demonteks.Player
             {
                 EmitSignal(SignalName.HealthChanged, CurrentHealth, MaxHealth);
                 EmitSignal(SignalName.Healed, actualHealing);
+
+                // Reset low-health warning if health recovered
+                if (!IsLowHealth)
+                    _lowHealthWarningFired = false;
+
                 GD.Print($"Player healed for {actualHealing}. Health: {CurrentHealth}/{MaxHealth}");
             }
         }

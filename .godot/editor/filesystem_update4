@@ -1,0 +1,10 @@
+res://Scenes/UI/UIAudioController.cs
+res://Scripts/Environment/CharacterAudioController.cs
+res://Scripts/Management/GameManager.cs
+res://Scripts/Player/PlayerController.cs
+res://Scripts/Player/PlayerStats.cs
+res://Scripts/UI/PauseMenuController.cs
+res://Scripts/Utils/Checkpoint.cs
+res://Scripts/Utils/WeaponPickup.cs
+res://Scripts/Management/AudioManager.cs
+res://Scripts/Management/SaveManager.cs

@@ -79,7 +79,7 @@ namespace Demonteks.Environment
                 { "Footstep", new[] { "footstep", "march", "stomp" } },
                 { "SeeEnemies", new[] { "seeenemies", "seeportal", "wakeup", "entrance" } },
                 { "Idle", new[] { "idle", "breathing" } },
-                { "Roar", new[] { "roar", "taunt", "mercy", "enrage", "phase", "whispers", "chanting" } },
+                { "Roar", new[] { "roar", "taunt", "mercy", "enrage", "phase", "whispers", "chanting", "screams" } },
                 { "Interact", new[] { "checkpoint", "lever", "heal" } },
                 { "Victory", new[] { "victory", "respawn" } }
             };

@@ -35,7 +35,8 @@ namespace Demonteks.Management
 		private GameState _gameState = GameState.MainMenu;
 		private int _currentLevelIndex = 1;
 		private Vector2 _currentCheckpoint = Vector2.Zero;
-		private int _playerDeaths = 0;
+		private int _playerDeaths = 0; // Global total deaths
+		private int _levelDeaths = 0;  // Deaths in current level (resets on load)
 		private float _totalPlayTime = 0f;
 
 		// Level Progress
@@ -143,6 +144,8 @@ namespace Demonteks.Management
 				_ => Level1Scene
 			};
 
+			_levelDeaths = 0; // Reset deaths for this level
+
 			GetTree().ChangeSceneToFile(scenePath);
 
 			GD.Print($"Loading Level {levelIndex}: {scenePath}");
@@ -214,6 +217,9 @@ namespace Demonteks.Management
 				{
 					_player.Call("Revive");
 				}
+
+				// Respawn audio cue
+				UI.UIAudioController.Instance?.PlaySound(UI.UIAudioController.UiSound.SuccessChime);
 			}
 		}
 		#endregion
@@ -236,25 +242,35 @@ namespace Demonteks.Management
 		public void OnPlayerDied()
 		{
 			_playerDeaths++;
+			_levelDeaths++;
 			EmitSignal(SignalName.PlayerDied, _playerDeaths);
 
-			GD.Print($"Player died. Total deaths: {_playerDeaths}");
+			GD.Print($"Player died. Total deaths: {_playerDeaths}. Level deaths: {_levelDeaths}/3");
 
-			// Respawn after delay
-			GetTree().CreateTimer(2.0f).Timeout += RespawnPlayer;
+			if (_levelDeaths >= 3)
+			{
+				// Delay game over screen slightly so death animation/sound can play
+				GetTree().CreateTimer(2.0f).Timeout += TriggerGameOver;
+			}
+			else
+			{
+				// Respawn after delay
+				GetTree().CreateTimer(2.0f).Timeout += RespawnPlayer;
+			}
 		}
 
 		/// <summary>
 		/// Handle game over
 		/// </summary>
-		//TODO Verify this
-		///private void GameOver()
-		//{
-		//	ChangeGameState(GameState.GameOver);
-		//	EmitSignal(SignalName.GameOver);
+		private void TriggerGameOver()
+		{
+			ChangeGameState(GameState.GameOver);
+			EmitSignal(SignalName.GameOver);
 
-		//	GD.Print("Game Over!");
-		//}
+			GD.Print("Game Over! Max deaths reached for this level.");
+
+			GetTree().ChangeSceneToFile("res://Scenes/UI/GameOver.tscn");
+		}
 
 		/// <summary>
 		/// Handle game win — transition to Victory screen

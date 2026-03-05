@@ -612,6 +612,8 @@ namespace Demonteks.Player
 
 			if (player.IsOnFloor())
 			{
+				// Play landing sound
+				player.GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Jump");
 				return player.IsMoving() ? new MoveState() : (IPlayerState)new IdleState();
 			}
 

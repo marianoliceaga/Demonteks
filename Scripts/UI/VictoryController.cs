@@ -18,11 +18,17 @@ namespace Demonteks.UI
             _endingText = GetNode<RichTextLabel>("VBoxContainer/EndingText");
             _statsLabel = GetNode<Label>("VBoxContainer/StatsLabel");
             _gameManager = GetNode<Management.GameManager>("/root/GameManager");
-            
+
             // Display ending based on player's route
             DisplayEnding();
             DisplayStats();
-            
+
+            // Play victory fanfare
+            UIAudioController.Instance?.PlaySound(UIAudioController.UiSound.LevelComplete);
+            // Delay achievement sound slightly so both are audible
+            GetTree().CreateTimer(1.0f).Timeout += () =>
+                UIAudioController.Instance?.PlaySound(UIAudioController.UiSound.AchievementUnlock);
+
             GD.Print("Victory screen displayed");
         }
 
@@ -30,7 +36,7 @@ namespace Demonteks.UI
         {
             Dictionary<string, object> stats = _gameManager.GetStatistics();
             bool mercyRoute = (bool)stats["mercy_route"];
-            
+
             if (mercyRoute)
             {
                 // Pacifist/Mercy Ending
@@ -74,17 +80,17 @@ the beginning of the war between humans and Demonteks.
         private void DisplayStats()
         {
             Dictionary<string, object> stats = _gameManager.GetStatistics();
-            
+
             int deaths = (int)stats["deaths"];
             int kills = (int)stats["enemies_killed"];
             float playTime = (float)stats["play_time"];
             bool mercyRoute = (bool)stats["mercy_route"];
-            
+
             int minutes = (int)(playTime / 60);
             int seconds = (int)(playTime % 60);
-            
+
             string routeText = mercyRoute ? "Mercy (Pacifist)" : "Combat";
-            
+
             _statsLabel.Text = $@"Final Statistics:
 Deaths: {deaths}
 Enemies Killed: {kills}
