@@ -71,8 +71,7 @@ namespace Demonteks.Environment
             {
                 { "Attack", new[] { "attack", "combat", "punch", "pound", "projectile", "explosion" } },
                 { "Slash", new[] { "slash", "swing" } },
-                { "Hit", new[] { "hit", "stagger" } },
-                { "Hurt", new[] { "hurt" } },
+                { "Hurt", new[] { "hurt", "hit", "stagger" } },
                 { "Death", new[] { "death", "collapse", "cry" } },
                 { "Jump", new[] { "jump", "land" } },
                 { "Dash", new[] { "dash", "escape" } },

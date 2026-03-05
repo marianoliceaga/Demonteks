@@ -640,15 +640,29 @@ namespace Demonteks.Enemy
 
     public class IdleState : IEnemyState
     {
+        private float _idleSoundTimer = 0f;
+        private float _nextSoundDelay = 0f;
+
         public void Enter(DemontekAI enemy)
         {
             enemy.StopMoving();
+            // Random delay between 2 to 5 seconds for idle sounds
+            _nextSoundDelay = (float)GD.RandRange(2.0, 5.0);
+            _idleSoundTimer = 0f;
         }
 
         public IEnemyState Update(DemontekAI enemy, float delta)
         {
             if (enemy.CanSeeTarget)
                 return new ChaseState();
+
+            _idleSoundTimer += delta;
+            if (_idleSoundTimer >= _nextSoundDelay)
+            {
+                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Idle");
+                _idleSoundTimer = 0f;
+                _nextSoundDelay = (float)GD.RandRange(3.0, 6.0);
+            }
 
             return this;
         }
@@ -658,7 +672,14 @@ namespace Demonteks.Enemy
 
     public class PatrolState : IEnemyState
     {
-        public void Enter(DemontekAI enemy) { }
+        private float _footstepTimer = 0f;
+        private float _footstepInterval = 0.5f; // Adjust based on patrol speed
+
+        public void Enter(DemontekAI enemy)
+        {
+            // Faster enemies need faster footsteps
+            _footstepInterval = 30f / enemy.PatrolSpeed;
+        }
 
         public IEnemyState Update(DemontekAI enemy, float delta)
         {
@@ -666,6 +687,14 @@ namespace Demonteks.Enemy
                 return new ChaseState();
 
             enemy.Patrol(delta);
+
+            _footstepTimer += delta;
+            if (_footstepTimer >= _footstepInterval)
+            {
+                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
+                _footstepTimer = 0f;
+            }
+
             return this;
         }
 
@@ -674,9 +703,16 @@ namespace Demonteks.Enemy
 
     public class ChaseState : IEnemyState
     {
+        private float _footstepTimer = 0f;
+        private float _footstepInterval = 0.3f;
+
         public void Enter(DemontekAI enemy)
         {
+            // Play a roar or taunt when discovering the player
+            enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Roar");
             GD.Print($"{enemy.Type} Demontek started chasing!");
+
+            _footstepInterval = 30f / enemy.ChaseSpeed;
         }
 
         public IEnemyState Update(DemontekAI enemy, float delta)
@@ -694,6 +730,14 @@ namespace Demonteks.Enemy
                 return new AttackState();
 
             enemy.ChaseTarget(delta);
+
+            _footstepTimer += delta;
+            if (_footstepTimer >= _footstepInterval)
+            {
+                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
+                _footstepTimer = 0f;
+            }
+
             return this;
         }
 
