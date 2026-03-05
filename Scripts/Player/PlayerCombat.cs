@@ -15,6 +15,7 @@ namespace Demonteks.Player
         [Export] public float AttackRange { get; set; } = 50f;
         [Export] public float AttackCooldown { get; set; } = 0.5f;
         [Export] public NodePath HitboxPath { get; set; }
+        [Export] public NodePath WeaponSpritePath { get; set; }
 
         [ExportCategory("Starting Weapon")]
         [Export] public WeaponType StartingWeapon { get; set; } = WeaponType.Knife;
@@ -23,11 +24,13 @@ namespace Demonteks.Player
         #region Private Variables
         private Area2D _hitbox;
         private CollisionShape2D _hitboxShape;
+        private Sprite2D _weaponSprite;
         private float _attackCooldownTimer = 0f;
         private bool _isAttacking = false;
         private string _currentAttackAnim = "attack";
 
         private Dictionary<WeaponType, Weapon> _weapons = new();
+        private Dictionary<WeaponType, string> _weaponSpritePaths = new();
         private Weapon _currentWeapon;
         private PlayerStats _playerStats;
         #endregion
@@ -46,6 +49,15 @@ namespace Demonteks.Player
             _hitbox = GetNode<Area2D>(HitboxPath);
             _hitboxShape = _hitbox.GetNode<CollisionShape2D>("CollisionShape2D");
             _playerStats = GetParent().GetNode<PlayerStats>("PlayerStats");
+
+            // Get weapon sprite reference if path is provided
+            if (WeaponSpritePath != null && !WeaponSpritePath.IsEmpty)
+            {
+                _weaponSprite = GetNodeOrNull<Sprite2D>(WeaponSpritePath);
+            }
+
+            // Initialize weapon sprite paths
+            InitializeWeaponSprites();
 
             // Initialize weapons
             InitializeWeapons();
@@ -148,6 +160,17 @@ namespace Demonteks.Player
                 Description = "The finest blade in the Demontek armory."
             };
         }
+
+        private void InitializeWeaponSprites()
+        {
+            // Map weapon types to their sprite paths
+            _weaponSpritePaths[WeaponType.Knife] = null; // Knife doesn't have a visible sprite (fists)
+            _weaponSpritePaths[WeaponType.Machete] = "res://Assets/items/weapons/weapon_machete.png";
+            _weaponSpritePaths[WeaponType.Sword] = "res://Assets/items/weapons/weapon_sword.png";
+            _weaponSpritePaths[WeaponType.DemontekSaber] = "res://Assets/items/weapons/weapon_saber.png";
+            _weaponSpritePaths[WeaponType.Sawtooth] = "res://Assets/items/weapons/weapon_sawtooth.png";
+            _weaponSpritePaths[WeaponType.AlienSword] = "res://Assets/items/weapons/weapon_alien.png";
+        }
         #endregion
 
         #region Weapon Management
@@ -175,6 +198,9 @@ namespace Demonteks.Player
 
             // Update attack animation for new weapon
             UpdateWeaponAttackAnimation(type);
+
+            // Update weapon sprite
+            UpdateWeaponSprite(type);
 
             EmitSignal(SignalName.WeaponChanged, _currentWeapon.WeaponName);
             GD.Print($"Equipped weapon: {_currentWeapon.WeaponName} (Unlocked: {_currentWeapon.IsUnlocked})");
@@ -239,6 +265,29 @@ namespace Demonteks.Player
                 _ => "attack"
             };
             GD.Print($"Attack animation set to: {_currentAttackAnim}");
+        }
+
+        /// <summary>
+        /// Updates the visual weapon sprite based on the equipped weapon.
+        /// </summary>
+        private void UpdateWeaponSprite(WeaponType type)
+        {
+            if (_weaponSprite == null) return;
+
+            if (_weaponSpritePaths.ContainsKey(type) && _weaponSpritePaths[type] != null)
+            {
+                var texture = GD.Load<Texture2D>(_weaponSpritePaths[type]);
+                _weaponSprite.Texture = texture;
+                _weaponSprite.Visible = true;
+                GD.Print($"Weapon sprite updated: {type} -> {_weaponSpritePaths[type]}");
+            }
+            else
+            {
+                // Hide weapon sprite for knife (fists) or if no sprite available
+                _weaponSprite.Texture = null;
+                _weaponSprite.Visible = false;
+                GD.Print($"Weapon sprite hidden for: {type}");
+            }
         }
         #endregion
 

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(echo:*)"
+      "Bash(echo:*)",
+      "Bash(python download_weapon_anims.py)"
     ]
   }
 }

@@ -24,10 +24,22 @@
 [ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_004.png" id="sword_4"]
 [ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_005.png" id="sword_5"]
 [ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_006.png" id="sword_6"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_000.png" id="saber_0"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_001.png" id="saber_1"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_002.png" id="saber_2"]
-[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_003.png" id="saber_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_000.png" id="saber_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_001.png" id="saber_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_002.png" id="saber_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_003.png" id="saber_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_004.png" id="saber_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_005.png" id="saber_5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_000.png" id="hurricane_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_001.png" id="hurricane_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_002.png" id="hurricane_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_003.png" id="hurricane_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/sawtooth-attack/east/frame_000.png" id="sawtooth_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/sawtooth-attack/east/frame_001.png" id="sawtooth_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/sawtooth-attack/east/frame_002.png" id="sawtooth_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/sawtooth-attack/east/frame_003.png" id="sawtooth_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/sawtooth-attack/east/frame_004.png" id="sawtooth_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/sawtooth-attack/east/frame_005.png" id="sawtooth_5"]
 [ext_resource type="Texture2D" uid="uid://nyhl8qh5elbr" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_000.png" id="death_0"]
 [ext_resource type="Texture2D" uid="uid://baaeqipgfne7q" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_001.png" id="death_1"]
 [ext_resource type="Texture2D" uid="uid://bg1m17qcb13gd" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_002.png" id="death_2"]
@@ -68,6 +80,11 @@
 [ext_resource type="Texture2D" uid="uid://b1yv0tk4xi26w" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_005.png" id="walk_5"]
 [ext_resource type="Texture2D" uid="uid://cc1hb2qwjiavv" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_006.png" id="walk_6"]
 [ext_resource type="Texture2D" uid="uid://bdfqfto1ditvv" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_007.png" id="walk_7"]
+[ext_resource type="Texture2D" path="res://Assets/items/weapons/weapon_alien.png" id="weapon_alien"]
+[ext_resource type="Texture2D" path="res://Assets/items/weapons/weapon_machete.png" id="weapon_machete"]
+[ext_resource type="Texture2D" path="res://Assets/items/weapons/weapon_saber.png" id="weapon_saber"]
+[ext_resource type="Texture2D" path="res://Assets/items/weapons/weapon_sawtooth.png" id="weapon_sawtooth"]
+[ext_resource type="Texture2D" path="res://Assets/items/weapons/weapon_sword.png" id="weapon_sword"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_player"]
 animations = [{
@@ -148,22 +165,22 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("attack_0")
+"texture": ExtResource("sawtooth_0")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_1")
+"texture": ExtResource("sawtooth_1")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_2")
+"texture": ExtResource("sawtooth_2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_3")
+"texture": ExtResource("sawtooth_3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_4")
+"texture": ExtResource("sawtooth_4")
 }, {
 "duration": 1.0,
-"texture": ExtResource("attack_5")
+"texture": ExtResource("sawtooth_5")
 }],
 "loop": false,
 "name": &"attack_sawtooth",
@@ -181,6 +198,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("saber_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_5")
 }],
 "loop": false,
 "name": &"attack_saber",
@@ -211,6 +234,23 @@ animations = [{
 "loop": false,
 "name": &"attack_alien",
 "speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("hurricane_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurricane_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurricane_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurricane_3")
+}],
+"loop": false,
+"name": &"attack_hurricane",
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -379,6 +419,11 @@ CollisionShapePath = NodePath("CollisionShape2D")
 position = Vector2(0, -48)
 sprite_frames = SubResource("SpriteFrames_player")
 animation = &"idle"
+
+[node name="WeaponSprite" type="Sprite2D" parent="." unique_id=9876543211]
+position = Vector2(12, -52)
+z_index = 1
+texture = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1154734011]
 position = Vector2(0, -48)
