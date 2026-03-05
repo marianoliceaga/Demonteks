@@ -265,14 +265,12 @@ namespace Demonteks.Player
 			if (_inputDirection.X > 0)
 			{
 				_facingRight = true;
-				_animatedSprite.FlipH = false;
 				// Ensure combat hitbox faces right
 				if (_combat != null) _combat.Scale = new Vector2(1, 1);
 			}
 			else if (_inputDirection.X < 0)
 			{
 				_facingRight = false;
-				_animatedSprite.FlipH = true;
 				// Ensure combat hitbox faces left
 				if (_combat != null) _combat.Scale = new Vector2(-1, 1);
 			}
@@ -327,30 +325,43 @@ namespace Demonteks.Player
 
 			string currentState = _stateMachine.CurrentState.GetType().Name;
 
+			// Determine base flip based on facing direction
+			bool shouldFlip = !_facingRight;
+			string animToPlay = "idle";
+			string fallbackAnim = null;
+
 			// Map state to animation
 			switch (currentState)
 			{
 				case "IdleState":
-					PlaySafe("idle");
+					animToPlay = "idle";
 					break;
 				case "MoveState":
-					PlaySafe(_isRunning ? "run" : "walk");
+					animToPlay = _isRunning ? "run" : "walk";
 					break;
 				case "JumpState":
-					PlaySafe("jump");
+					animToPlay = "jump";
 					break;
 				case "FallState":
-					PlaySafe("fall", "jump"); // fall back to jump if no fall anim
+					animToPlay = "fall";
+					fallbackAnim = "jump"; // fall back to jump if no fall anim
 					break;
 				case "AttackState":
-					string weaponAttackAnim = _combat?.CurrentAttackAnim ?? "attack";
-					PlaySafe(weaponAttackAnim, "attack");
+					animToPlay = _combat?.CurrentAttackAnim ?? "attack";
+					fallbackAnim = "attack";
+
+					// Specific fix for machete/alien animations which are drawn backwards in the assets
+					if (animToPlay == "attack_machete" || animToPlay == "attack_alien")
+					{
+						shouldFlip = _facingRight;
+					}
 					break;
 				case "CrouchState":
-					PlaySafe("crouch", "idle"); // fall back to idle if no crouch anim
+					animToPlay = "crouch";
+					fallbackAnim = "idle"; // fall back to idle if no crouch anim
 					break;
 				case "HurtState":
-					PlaySafe("hurt");
+					animToPlay = "hurt";
 					break;
 				case "DeathState":
 					// Only play the death animation once and never restart it
@@ -359,8 +370,13 @@ namespace Demonteks.Player
 						PlaySafe("death");
 						_deathAnimationPlayed = true;
 					}
-					break;
+					// Apply flip even if not actively playing new frame
+					_animatedSprite.FlipH = shouldFlip;
+					return;
 			}
+
+			_animatedSprite.FlipH = shouldFlip;
+			PlaySafe(animToPlay, fallbackAnim);
 		}
 
 		/// <summary>

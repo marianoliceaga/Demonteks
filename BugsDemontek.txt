@@ -28,11 +28,12 @@ X-Check if the funcionality exists for when the Player falls on the killzone, it
 X-All enemies should do a bit more damage and have a bit more health so the game is a bit more challenging
 X-Finish assigning sound FX for all the game
 X-Player is not picking up HealthPickup or Weapons
--Remove other weapons or make them useful (and change sprites to match the weapons)
+X-Remove the walking sound from the Demonteks
+X-Add weapons and make them useful (and change sprites to match the weapons)
+X-Verify why Machete attack of Player looks backwards
 ---------------------------------------------------------------------------------
 //TODO
--Remove the walking sound from the Demonteks
--Verify why Machete attack of Player looks backwards
+-Sometimes Demonteks try to run both left and right at the same time and they get stuck
 -Make the character use the other weapons when they are picked up, for this it's needed to generate them using PixelLab MCP and change the sprites to match the weapons being used at the time, and programmatically the damage inflicted.
 -Paint floor traps with tiles instead of colorrects and place them in strategic places
 -Complete Level 2 and Level 3 tilesets in scene (change tilesets)
