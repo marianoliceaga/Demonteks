@@ -343,7 +343,8 @@ namespace Demonteks.Player
 					PlaySafe("fall", "jump"); // fall back to jump if no fall anim
 					break;
 				case "AttackState":
-					PlaySafe("attack");
+					string weaponAttackAnim = _combat?.CurrentAttackAnim ?? "attack";
+					PlaySafe(weaponAttackAnim, "attack");
 					break;
 				case "CrouchState":
 					PlaySafe("crouch", "idle"); // fall back to idle if no crouch anim

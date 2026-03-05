@@ -10,6 +10,24 @@
 [ext_resource type="Texture2D" uid="uid://c4d6cdqqdvbvm" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_003.png" id="attack_3"]
 [ext_resource type="Texture2D" uid="uid://bpjeyndcnl7wg" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_004.png" id="attack_4"]
 [ext_resource type="Texture2D" uid="uid://rlnkjfxet66y" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_005.png" id="attack_5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/high-kick/east/frame_000.png" id="machete_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/high-kick/east/frame_001.png" id="machete_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/high-kick/east/frame_002.png" id="machete_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/high-kick/east/frame_003.png" id="machete_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/high-kick/east/frame_004.png" id="machete_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/high-kick/east/frame_005.png" id="machete_5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/high-kick/east/frame_006.png" id="machete_6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_000.png" id="sword_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_001.png" id="sword_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_002.png" id="sword_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_003.png" id="sword_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_004.png" id="sword_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_005.png" id="sword_5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_006.png" id="sword_6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_000.png" id="saber_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_001.png" id="saber_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_002.png" id="saber_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_003.png" id="saber_3"]
 [ext_resource type="Texture2D" uid="uid://nyhl8qh5elbr" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_000.png" id="death_0"]
 [ext_resource type="Texture2D" uid="uid://baaeqipgfne7q" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_001.png" id="death_1"]
 [ext_resource type="Texture2D" uid="uid://bg1m17qcb13gd" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_002.png" id="death_2"]
@@ -75,6 +93,124 @@ animations = [{
 "loop": false,
 "name": &"attack",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("machete_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_6")
+}],
+"loop": false,
+"name": &"attack_machete",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("sword_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_6")
+}],
+"loop": false,
+"name": &"attack_sword",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("attack_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_5")
+}],
+"loop": false,
+"name": &"attack_sawtooth",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("saber_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_3")
+}],
+"loop": false,
+"name": &"attack_saber",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("machete_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_6")
+}],
+"loop": false,
+"name": &"attack_alien",
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,

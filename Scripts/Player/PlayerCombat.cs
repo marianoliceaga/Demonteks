@@ -25,6 +25,7 @@ namespace Demonteks.Player
         private CollisionShape2D _hitboxShape;
         private float _attackCooldownTimer = 0f;
         private bool _isAttacking = false;
+        private string _currentAttackAnim = "attack";
 
         private Dictionary<WeaponType, Weapon> _weapons = new();
         private Weapon _currentWeapon;
@@ -172,6 +173,9 @@ namespace Demonteks.Player
             AttackRange = _currentWeapon.Range;
             AttackCooldown = _currentWeapon.Cooldown;
 
+            // Update attack animation for new weapon
+            UpdateWeaponAttackAnimation(type);
+
             EmitSignal(SignalName.WeaponChanged, _currentWeapon.WeaponName);
             GD.Print($"Equipped weapon: {_currentWeapon.WeaponName} (Unlocked: {_currentWeapon.IsUnlocked})");
         }
@@ -216,6 +220,25 @@ namespace Demonteks.Player
                                    : (currentIndex - 1 + unlockedWeapons.Count) % unlockedWeapons.Count;
 
             EquipWeapon(unlockedWeapons[nextIndex]);
+        }
+
+        /// <summary>
+        /// Maps a WeaponType to the corresponding attack animation name in the player's SpriteFrames.
+        /// Falls back to the base "attack" animation if weapon-specific one isn't defined.
+        /// </summary>
+        private void UpdateWeaponAttackAnimation(WeaponType type)
+        {
+            _currentAttackAnim = type switch
+            {
+                WeaponType.Knife => "attack",
+                WeaponType.Machete => "attack_machete",
+                WeaponType.Sword => "attack_sword",
+                WeaponType.DemontekSaber => "attack_saber",
+                WeaponType.Sawtooth => "attack_sawtooth",
+                WeaponType.AlienSword => "attack_alien",
+                _ => "attack"
+            };
+            GD.Print($"Attack animation set to: {_currentAttackAnim}");
         }
         #endregion
 
@@ -371,6 +394,8 @@ namespace Demonteks.Player
         public bool CanAttack => !_isAttacking && _attackCooldownTimer <= 0 && _playerStats.CanAct;
         public Weapon CurrentWeapon => _currentWeapon;
         public bool IsAttacking => _isAttacking;
+        /// <summary>The animation name to play for the current weapon's attack.</summary>
+        public string CurrentAttackAnim => _currentAttackAnim;
         public List<Weapon> UnlockedWeapons
         {
             get

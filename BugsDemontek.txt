@@ -30,12 +30,11 @@ X-All enemies should do a bit more damage and have a bit more health so the game
 -Player is not picking up HealthPickup or Weapons
 ---------------------------------------------------------------------------------
 //TODO
+-Make the character use the other weapons when they are picked up, for this it's needed to generate them using PixelLab MCP and change the sprites to match the weapons being used at the time, and programmatically the damage inflicted.
 -Paint floor traps with tiles instead of colorrects and place them in strategic places
 -Rediseñar tiles de Level2 y Level3 / Complete Level 2 and Level 3 tilesets in scene (change tilesets)
 -Remove some sounds from the Demonteks, add steps and fall to the Player
 -Remove other weapons or make them useful (and change sprites to match the weapons)
--Make the character use the other weapons when they are picked up, for this it's needed to generate them using PixelLab MCP and change the sprites to match the weapons being used at the time, and programmatically the damage inflicted.
 -Llevar ascension a la arena del rey de Level3 hacia la derecha
 -Play cinematic cutscenes at the beginning of Level 1 and end of Levels 1, 2 and 3 when the Player enters the LevelEnd
-
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
