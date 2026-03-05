@@ -86,29 +86,36 @@ namespace Demonteks.Items
             if (_playerNearby == null || _collected) return;
 
             // Try to heal the player
-            var stats = _playerNearby.GetNodeOrNull<Node>("PlayerStats");
-            if (stats != null && stats.HasMethod("Heal"))
+            var stats = _playerNearby.GetNodeOrNull<Demonteks.Player.PlayerStats>("PlayerStats");
+            if (stats != null)
             {
-                stats.Call("Heal", HealAmount);
-                GD.Print($"Player healed for {HealAmount} HP!");
-            }
-
-            // Play heal sound
-            _audioPlayer?.Play();
-
-            if (OneTimeUse)
-            {
-                _collected = true;
-
-                if (_interactLabel != null)
+                // Optionally prevent pickup if full health
+                if (stats.IsFullHealth)
                 {
-                    _interactLabel.Visible = false;
+                    GD.Print("Player is already at full health.");
+                    return;
                 }
 
-                // Quick fade-out effect then remove
-                var tween = CreateTween();
-                tween.TweenProperty(this, "modulate:a", 0.0f, 0.3f);
-                tween.TweenCallback(Callable.From(QueueFree));
+                stats.Heal(HealAmount);
+                GD.Print($"Player healed for {HealAmount} HP!");
+
+                // Play heal sound
+                _audioPlayer?.Play();
+
+                if (OneTimeUse)
+                {
+                    _collected = true;
+
+                    if (_interactLabel != null)
+                    {
+                        _interactLabel.Visible = false;
+                    }
+
+                    // Quick fade-out effect then remove
+                    var tween = CreateTween();
+                    tween.TweenProperty(this, "modulate:a", 0.0f, 0.3f);
+                    tween.TweenCallback(Callable.From(QueueFree));
+                }
             }
         }
     }

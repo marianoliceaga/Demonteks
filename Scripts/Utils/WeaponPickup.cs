@@ -69,13 +69,13 @@ namespace Demonteks.Utils
         {
             if (_playerNearby == null || _isPickedUp) return;
 
-            _isPickedUp = true;
-
             // Give weapon to player
-            var combat = _playerNearby.GetNodeOrNull("PlayerCombat");
-            if (combat != null && combat.HasMethod("PickupWeapon"))
+            var combat = _playerNearby.GetNodeOrNull<Demonteks.Player.PlayerCombat>("PlayerCombat");
+            if (combat != null)
             {
-                combat.Call("PickupWeapon", (int)WeaponType);
+                _isPickedUp = true;
+
+                combat.PickupWeapon(WeaponType);
 
                 // Show pickup message
                 _label.Text = $"{WeaponType} ACQUIRED!";
