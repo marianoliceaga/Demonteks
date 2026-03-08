@@ -17,7 +17,7 @@
 [ext_resource type="Script" uid="uid://ctoegptmn0ent" path="res://Scripts/Utils/CameraFollow.cs" id="15_camera"]
 [ext_resource type="Script" uid="uid://bf8h6jfb721ho" path="res://Scripts/Utils/KillZone.cs" id="16_killzone"]
 [ext_resource type="AudioStream" uid="uid://byv4hakolpvsu" path="res://Assets/audio/music/Level 3 (The Castle).mp3" id="17_bgm"]
-[ext_resource type="PackedScene" path="res://Scenes/Prefabs/FloorTrap.tscn" id="18_floortrap"]
+[ext_resource type="PackedScene" uid="uid://cod4uis51uv2r" path="res://Scenes/Prefabs/FloorTrap.tscn" id="18_floortrap"]
 [ext_resource type="Script" uid="uid://jle36yq00nc1" path="res://Scripts/Environment/BossArena.cs" id="19_bossarena"]
 [ext_resource type="PackedScene" uid="uid://dww8aiua5yj2b" path="res://Scenes/Prefabs/WeaponPickup.tscn" id="20_weapon"]
 [ext_resource type="Script" uid="uid://cd6wpk82k038j" path="res://Scripts/Environment/AmbientSoundController.cs" id="21_ambient"]
@@ -345,6 +345,7 @@ position = Vector2(0, 32)
 [node name="PauseMenu" parent="." unique_id=321273952 instance=ExtResource("13_pause")]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=638802624]
+zoom = Vector2(0.5, 0.5)
 script = ExtResource("15_camera")
 LimitRightValue = 2700
 LimitTopValue = -700

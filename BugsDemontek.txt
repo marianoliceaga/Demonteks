@@ -34,13 +34,13 @@ X-Verify why Machete attack of Player looks backwards
 X-Sometimes Demonteks try to run both left and right at the same time and they get stuck
 X-The Guard character traspases the Player when they are close to each other 
 X-When the Player falls dead to the KillZone it should respawn at the last checkpoint
+X-The floor traps in Level1 are not working and they are also blocking the Player and the Enemies. Must be something with the tiles.
 ---------------------------------------------------------------------------------
 //TODO
--The floor traps in Level1 are not working and they are also blocking the Player and the Enemies. Must be something with the tiles.
 -The weapons don't make it through levels.
 -Add music to the GameOver Screen and Victory Screen.
--Add floor traps to all levels (except 3 that already has them).
--Add HealthPickups, floor traps and Weapons to all levels.
+-Redo level 2.
+-Add HealthPickups, floor traps and Weapons levels.
 -Complete all levels tilesets in scenes.
 -Redesign all levels to extend more to the right, smartly place platforms and ground.
 -Remove some sounds from the Demonteks, add steps and fall to the Player

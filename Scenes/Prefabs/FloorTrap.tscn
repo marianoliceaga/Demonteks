@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://b3llpurrvcakm" path="res://Assets/tilesets/castle_tileset_16x16.tres" id="2_tileset"]
 
 [sub_resource type="RectangleShape2D" id="Shape_trap"]
-size = Vector2(56, 24)
+size = Vector2(68, 32)
 
 [sub_resource type="RectangleShape2D" id="Shape_solid"]
 size = Vector2(64, 16)

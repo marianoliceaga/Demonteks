@@ -96,9 +96,13 @@ namespace Demonteks.Player
 				// Set initial spawn position as checkpoint
 				_gameManager.SetCheckpoint(GlobalPosition);
 				GD.Print($"Player registered with GameManager. Spawn checkpoint set at {GlobalPosition}");
+
+				// Load transitional data (e.g. kept weapons/stats when walking between levels)
+				_gameManager.LoadTransitionPlayerData(this);
 			}
 
 			// Request SaveManager to load pending data for this player instance
+			// (e.g. when loading from Main Menu "Continue" button)
 			var saveManager = GetNodeOrNull<Management.SaveManager>("/root/SaveManager");
 			if (saveManager != null)
 			{

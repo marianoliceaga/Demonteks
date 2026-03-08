@@ -39,6 +39,9 @@ namespace Demonteks.Management
 		private int _levelDeaths = 0;  // Deaths in current level (resets on load)
 		private float _totalPlayTime = 0f;
 
+		// Data passed between levels
+		private Godot.Collections.Dictionary<string, Godot.Collections.Dictionary<string, Variant>> _transitionPlayerData;
+
 		// Level Progress
 		private Dictionary<int, bool> _levelsCompleted = new Dictionary<int, bool>
 		{
@@ -159,6 +162,41 @@ namespace Demonteks.Management
 			_levelsCompleted[_currentLevelIndex] = true;
 			EmitSignal(SignalName.LevelCompleted, _currentLevelIndex);
 
+			// Capture player data manually for the next level before saving to disk
+			_transitionPlayerData = new Godot.Collections.Dictionary<string, Godot.Collections.Dictionary<string, Variant>>();
+			if (_player != null)
+			{
+				if (_player.HasNode("PlayerStats"))
+				{
+					var stats = _player.GetNode("PlayerStats");
+					if (stats.HasMethod("GetSaveData"))
+					{
+						var rawData = stats.Call("GetSaveData").AsGodotDictionary();
+						var typedData = new Godot.Collections.Dictionary<string, Variant>();
+						foreach (var key in rawData.Keys)
+						{
+							typedData[key.AsString()] = rawData[key];
+						}
+						_transitionPlayerData["stats"] = typedData;
+					}
+				}
+
+				if (_player.HasNode("PlayerCombat"))
+				{
+					var combat = _player.GetNode("PlayerCombat");
+					if (combat.HasMethod("GetSaveData"))
+					{
+						var rawData = combat.Call("GetSaveData").AsGodotDictionary();
+						var typedData = new Godot.Collections.Dictionary<string, Variant>();
+						foreach (var key in rawData.Keys)
+						{
+							typedData[key.AsString()] = rawData[key];
+						}
+						_transitionPlayerData["combat"] = typedData;
+					}
+				}
+			}
+
 			_saveManager.SaveGame();
 
 			if (_currentLevelIndex < 3)
@@ -220,6 +258,43 @@ namespace Demonteks.Management
 
 				// Respawn audio cue
 				UI.UIAudioController.Instance?.PlaySound(UI.UIAudioController.UiSound.SuccessChime);
+			}
+		}
+
+		/// <summary>
+		/// Loads pending transfer data onto a newly spawned player scene, used when crossing level boundaries
+		/// </summary>
+		public void LoadTransitionPlayerData(Node player)
+		{
+			if (_transitionPlayerData == null) return;
+
+			try
+			{
+				if (player.HasNode("PlayerStats") && _transitionPlayerData.ContainsKey("stats"))
+				{
+					var stats = player.GetNode("PlayerStats");
+					if (stats.HasMethod("LoadSaveData"))
+					{
+						stats.Call("LoadSaveData", _transitionPlayerData["stats"]);
+					}
+				}
+
+				if (player.HasNode("PlayerCombat") && _transitionPlayerData.ContainsKey("combat"))
+				{
+					var combat = player.GetNode("PlayerCombat");
+					if (combat.HasMethod("LoadSaveData"))
+					{
+						combat.Call("LoadSaveData", _transitionPlayerData["combat"]);
+					}
+				}
+
+				// Clear it so it doesn't get applied incorrectly later
+				_transitionPlayerData = null;
+				GD.Print("Transition player data loaded successfully");
+			}
+			catch (Exception ex)
+			{
+				GD.PrintErr($"Error loading transition player data: {ex.Message}");
 			}
 		}
 		#endregion
