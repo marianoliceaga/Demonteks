@@ -39,5 +39,8 @@ X-The weapons don't make it through levels.
 ---------------------------------------------------------------------------------
 //TODO
 -Completely redo level 3, it's too short and boring, make it longer to the right with an irregular terrain and more interesting. When it reaches the far right create an ascending spiral-like stairs that leads to the Demontek King. The whole level should have 4 kind of enemies (guard demonteks, mutant demonteks, 1 Goliath boss and the King Demontek Final Boss), place some floor traps and health pickups strategically. Also place some WeaponPickup with the most advanced weapons. Use the tileset castle_tileset_16x16.png
+-Even when the Player is surrounded by enemies, they don't attack, they just keep walking in the same spot
+-The enemies don't attack the Player when they are close to each other
+-Sometimes Demonteks get stuck and don't move, they just keep walking in the same spot
 -Play cinematic cutscenes at the beginning of Level 1, Level 2
 -Remove some sounds from the Demonteks, add steps and fall to the Player

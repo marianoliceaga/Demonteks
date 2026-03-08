@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://c53vbx5j2yy3a"]
+
+[ext_resource type="Script" uid="uid://dngp0jklv8a2" path="res://Scripts/Editor/GenerateLevel3.cs" id="1_script"]
+
+[node name="GenerateLevel3" type="Node"]
+script = ExtResource("1_script")

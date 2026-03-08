@@ -1,2 +1,7 @@
 res://Scenes/UI/MainMenu.tscn
 res://Assets/tilesets/dungeon_tileset_16x16.tres
+res://Scripts/Editor/GenerateLevel3.cs
+res://Scripts/Management/AudioManager.cs
+res://Scripts/Management/SaveManager.cs
+res://Scripts/Management/GameManager.cs
+res://Scenes/UI/UIAudioController.cs
