@@ -36,8 +36,11 @@ X-The Guard character traspases the Player when they are close to each other
 X-When the Player falls dead to the KillZone it should respawn at the last checkpoint
 ---------------------------------------------------------------------------------
 //TODO
--Complete all levels tilesets in scene (change tilesets)
--The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
+-Add music to the MainMenu, PauseMenu, GameOver Screen and Victory Screen.
+-Add floor traps to all levels (except 3 that already has them).
+-Add HealthPickups and Weapons to all levels.
+-Complete all levels tilesets in scenes.
+-Redesign all levels to extend more to the right, add more platforms ()
 -Paint floor traps with tiles instead of colorrects and place them in strategic places
 -Remove some sounds from the Demonteks, add steps and fall to the Player
 -Llevar ascension a la arena del rey de Level3 hacia la derecha
