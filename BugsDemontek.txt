@@ -35,14 +35,11 @@ X-Sometimes Demonteks try to run both left and right at the same time and they g
 X-The Guard character traspases the Player when they are close to each other 
 X-When the Player falls dead to the KillZone it should respawn at the last checkpoint
 X-The floor traps in Level1 are not working and they are also blocking the Player and the Enemies. Must be something with the tiles.
+X-The weapons don't make it through levels.
 ---------------------------------------------------------------------------------
 //TODO
--The weapons don't make it through levels.
--Add music to the GameOver Screen and Victory Screen.
--Redo level 2.
--Add HealthPickups, floor traps and Weapons levels.
--Complete all levels tilesets in scenes.
--Redesign all levels to extend more to the right, smartly place platforms and ground.
--Remove some sounds from the Demonteks, add steps and fall to the Player
+-Completely redo level 2, it's too short and boring, make it longer and more interesting, with many different platform levels, 3 kind of enemies (normal Demonteks, guards and mutants), place some floor traps and health pickups. Also place some weapons pickups. Use the tileset dungeon_tileset_16x16.png
 -Llevar ascension a la arena del rey de Level3 hacia la derecha
--Play cinematic cutscenes at the beginning of Level 1 and end of Levels 1, 2 and 3 when the Player enters the LevelEnd
+-Play cinematic cutscenes at the beginning of Level 1, Level 2
+-Remove some sounds from the Demonteks, add steps and fall to the Player
+-Add music to the GameOver Screen and Victory Screen
