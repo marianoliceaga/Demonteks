@@ -1,19 +1,28 @@
-[gd_scene format=3 uid="uid://s5u184lawo56"]
+[gd_scene format=4 uid="uid://s5u184lawo56"]
 
-[ext_resource type="Texture2D" uid="uid://hi0hujbk56df" path="res://Assets/tilesets/jungle_tileset_16x16.png" id="1_g0jkb"]
+[ext_resource type="TileSet" uid="uid://b3p7vau4bfr1s" path="res://Assets/tilesets/dungeon_tileset_16x16.tres" id="1_g0jkb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
-size = Vector2(128, 8)
+size = Vector2(120, 8)
 
-[node name="Platform" type="StaticBody2D"]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4ucob"]
+load_path = "res://.godot/imported/dungeon_tileset_16x16.png-31570f0a4a0aec94a880905c0948bf30.ctex"
+
+[node name="Platform" type="StaticBody2D" unique_id=903577811]
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 4)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=17988280]
+position = Vector2(-5, 4)
 shape = SubResource("RectangleShape2D_platform")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_g0jkb")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=616247639]
+texture_filter = 1
+position = Vector2(-10, 0)
+texture = SubResource("CompressedTexture2D_4ucob")
 region_enabled = true
 region_rect = Rect2(16, 0, 128, 16)
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1128597968]
+tile_map_data = PackedByteArray("AAD8////AAACAAAAAAD9////AAAAAAEAAAD+////AAACAAAAAAD/////AAACAAAAAAAAAP//AAAAAAEAAAD8/wAAAAACAAEAAAD9/wAAAAACAAEAAAD+/wAAAAACAAEAAAD//wAAAAACAAEAAAAAAAAAAAACAAEAAAABAAAAAAACAAEAAAACAAAAAAACAAEAAAADAAAAAAACAAEAAAABAP//AAACAAAAAAACAP//AAAAAAEAAAADAP//AAACAAAAAAD8/wEAAAACAAIAAAADAAEAAAACAAIAABD8/wIAAAABAAEAAAADAAIAAAABAAEAABA=")
+tile_set = ExtResource("1_g0jkb")

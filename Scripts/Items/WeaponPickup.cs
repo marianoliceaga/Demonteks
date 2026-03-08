@@ -119,6 +119,13 @@ namespace Demonteks.Items
             combat.PickupWeapon(WeaponToPickup);
             GD.Print($"Player picked up: {WeaponToPickup}");
 
+            // Save the game immediately so weapon unlocks persist through death or quit
+            var saveManager = GetNodeOrNull<Management.SaveManager>("/root/SaveManager");
+            if (saveManager != null)
+            {
+                saveManager.SaveGame();
+            }
+
             _audioPlayer?.Play();
 
             if (OneTimeUse)

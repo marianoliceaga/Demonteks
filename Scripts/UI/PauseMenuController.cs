@@ -69,6 +69,9 @@ namespace Demonteks.UI
             _mainVBox.Visible = true;
             _optionsPanel.Visible = false;
 
+            // Play Pause music
+            GetNode<AudioStreamPlayer>("AudioStreamPlayer").Play();
+
             // Update Option UI states when opening
             if (_saveManager != null)
             {
@@ -84,6 +87,8 @@ namespace Demonteks.UI
 
         private void Resume()
         {
+            GetNode<AudioStreamPlayer>("AudioStreamPlayer").Stop();
+
             UIAudioController.Instance?.PlaySound(UIAudioController.UiSound.MenuClose);
             Visible = false;
             _gameManager.ResumeGame();

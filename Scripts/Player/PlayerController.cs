@@ -88,7 +88,7 @@ namespace Demonteks.Player
 			// Detect platform
 			DetectPlatform();
 
-			// Register with GameManager
+			// Register with GameManager and load data
 			_gameManager = GetNode<Management.GameManager>("/root/GameManager");
 			if (_gameManager != null)
 			{
@@ -96,6 +96,13 @@ namespace Demonteks.Player
 				// Set initial spawn position as checkpoint
 				_gameManager.SetCheckpoint(GlobalPosition);
 				GD.Print($"Player registered with GameManager. Spawn checkpoint set at {GlobalPosition}");
+			}
+
+			// Request SaveManager to load pending data for this player instance
+			var saveManager = GetNodeOrNull<Management.SaveManager>("/root/SaveManager");
+			if (saveManager != null)
+			{
+				saveManager.LoadPlayerData(this);
 			}
 
 			// Initialize jumps

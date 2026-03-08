@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dttb8i783ht3m"]
 
 [ext_resource type="Script" uid="uid://0hdtnwxd8qv7" path="res://Scripts/UI/PauseMenuController.cs" id="1_pause"]
+[ext_resource type="AudioStream" uid="uid://dc5s0a8g21h1m" path="res://Assets/audio/music/MainTheme.mp3" id="2_mjmdf"]
 
 [node name="PauseMenu" type="CanvasLayer" unique_id=575461376]
 process_mode = 3
@@ -106,3 +107,7 @@ layout_mode = 2
 text = "Back"
 
 [connection signal="pressed" from="OptionsPanel/VBoxContainer/OptionsBackButton" to="." method="_on_options_back_pressed"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=987654321]
+stream = ExtResource("2_mjmdf")
+bus = &"Music"

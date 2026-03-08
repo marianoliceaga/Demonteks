@@ -36,13 +36,17 @@ namespace Demonteks.Environment
             Monitorable = false;
 
             // Swap tilesets to reveal trap
-            if (GetNodeOrNull<TileMap>("FakeFloorTiles") is TileMap fakeTiles)
+            if (GetNodeOrNull<TileMapLayer>("FakeFloorTileS") is TileMapLayer fakeTiles)
             {
                 fakeTiles.Visible = false;
             }
-            if (GetNodeOrNull<TileMap>("RevealedTrapTiles") is TileMap revealedTiles)
+            if (GetNodeOrNull<TileMapLayer>("RevealedTrapTilesS") is TileMapLayer revealedTiles)
             {
                 revealedTiles.Visible = true;
+            }
+            if (GetNodeOrNull<StaticBody2D>("SolidFloor") is StaticBody2D solidFloor)
+            {
+                solidFloor.QueueFree();
             }
 
             // Spawn enemies

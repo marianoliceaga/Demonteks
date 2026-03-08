@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cwn8kv5s3fwma"]
 
 [ext_resource type="Script" uid="uid://trtbfqqyb2qq" path="res://Scenes/UI/MainMenuController.cs" id="1_menu"]
+[ext_resource type="AudioStream" uid="uid://dc5s0a8g21h1m" path="res://Assets/audio/music/MainTheme.mp3" id="2_mjmdf"]
 
 [node name="MainMenu" type="Control" unique_id=1376952325]
 layout_mode = 3
@@ -73,7 +74,7 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v0.1.0-alpha"
+text = "v1.5.1-alpha"
 horizontal_alignment = 2
 
 [node name="OptionsPanel" type="ColorRect" parent="." unique_id=209823901]
@@ -122,3 +123,8 @@ text = "Enable Vibrations"
 [node name="OptionsBackButton" type="Button" parent="OptionsPanel/VBoxContainer" unique_id=992830101]
 layout_mode = 2
 text = "Back"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1816109226]
+stream = ExtResource("2_mjmdf")
+autoplay = true
+bus = &"Music"

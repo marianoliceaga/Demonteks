@@ -1,3 +1,4 @@
+res://Assets/tilesets/
 res://Assets/backgrounds/jungle/
 res://Assets/characters/explorer/animations/surprise-uppercut/east/
 res://Assets/backgrounds/castle/
@@ -5,7 +6,6 @@ D:/Demonteks/Scenes/Characters/
 res://Assets/characters/goliath/animations/breathing-idle/south/
 res://Assets/characters/mutant_demontek/animations/breathing-idle/south/
 res://Assets/characters/king_demontek/animations/breathing-idle/north/
-res://Assets/tilesets/
 res://Assets/characters/guard_demontek/animations/cross-punch/south/
 res://Scenes/UI/
 res://Assets/characters/explorer/animations/walking-8-frames/east/

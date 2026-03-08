@@ -159,6 +159,7 @@ color = Color(1, 0.843137, 0, 0.6)
 [node name="PauseMenu" parent="." unique_id=328951871 instance=ExtResource("10_pause")]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1396198852]
+zoom = Vector2(0.5, 0.5)
 script = ExtResource("12_camera")
 LimitRightValue = 5700
 LimitTopValue = -800

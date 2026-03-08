@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bf8h6jfb721ho" path="res://Scripts/Utils/KillZone.cs" id="13_killzone"]
 [ext_resource type="PackedScene" path="res://Scenes/Items/WeaponPickup.tscn" id="14_q118p"]
 [ext_resource type="PackedScene" path="res://Scenes/Items/HealthPickup.tscn" id="15_healthpickup"]
+[ext_resource type="PackedScene" uid="uid://cod4uis51uv2r" path="res://Scenes/Prefabs/FloorTrap.tscn" id="17_serf7"]
 [ext_resource type="Script" uid="uid://cd6wpk82k038j" path="res://Scripts/Environment/AmbientSoundController.cs" id="ambient_audio_script"]
 [ext_resource type="AudioStream" uid="uid://bohlj2xwfuv6s" path="res://Assets/audio/music/Level1 (The Jungle).mp3" id="bgm_level1"]
 
@@ -39,6 +40,7 @@ motion_scale = Vector2(0.4, 0.3)
 motion_mirroring = Vector2(3840, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/MidLayer" unique_id=2135551924]
+position = Vector2(0, -90)
 texture = ExtResource("6_bg_mid")
 centered = false
 
@@ -72,9 +74,6 @@ position = Vector2(2240, 352)
 
 [node name="TreePlatform8" parent="Platforms" unique_id=2023648829 instance=ExtResource("4_platform")]
 position = Vector2(2560, 304)
-
-[node name="TreePlatform9" parent="Platforms" unique_id=1664604227 instance=ExtResource("4_platform")]
-position = Vector2(2950, 330)
 
 [node name="SafetyFloor_2_R" parent="Platforms" unique_id=1667245088 instance=ExtResource("4_platform")]
 position = Vector2(736, 600)
@@ -131,12 +130,13 @@ collision_layer = 0
 script = ExtResource("10_levelend")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LevelEnd" unique_id=1974925606]
+position = Vector2(-23, 1)
 shape = SubResource("RectangleShape2D_levelend")
 
 [node name="Marker" type="ColorRect" parent="LevelEnd" unique_id=52621383]
-offset_left = -8.0
+offset_left = -33.0
 offset_top = -48.0
-offset_right = 8.0
+offset_right = -17.0
 offset_bottom = 48.0
 color = Color(1, 0.843137, 0, 0.6)
 
@@ -145,6 +145,7 @@ color = Color(1, 0.843137, 0, 0.6)
 [node name="PauseMenu" parent="." unique_id=166623122 instance=ExtResource("9_pause")]
 
 [node name="Camera" type="Camera2D" parent="." unique_id=1762235020]
+zoom = Vector2(0.5, 0.5)
 script = ExtResource("12_camera")
 
 [node name="KillZone" type="Area2D" parent="." unique_id=18996988]
@@ -180,3 +181,9 @@ tile_set = ExtResource("3_tileset")
 [node name="Layer0" type="TileMapLayer" parent="." unique_id=1813608312]
 use_parent_material = true
 tile_set = ExtResource("3_tileset")
+
+[node name="FloorTrap" parent="." unique_id=962352958 instance=ExtResource("17_serf7")]
+position = Vector2(1232, 464)
+
+[node name="FloorTrap2" parent="." unique_id=1334791789 instance=ExtResource("17_serf7")]
+position = Vector2(2512, 464)
