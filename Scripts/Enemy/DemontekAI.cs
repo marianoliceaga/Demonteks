@@ -50,7 +50,7 @@ namespace Demonteks.Enemy
         // Movement
         private Vector2 _velocity = Vector2.Zero;
         private Vector2 _startPosition;
-        private bool _facingRight = true;
+        private bool _facingRight = false;
         private float _facingCooldownTimer = 0f;
 
         // AI State Machine
@@ -58,7 +58,7 @@ namespace Demonteks.Enemy
         private Node2D _target; // Player reference
 
         // Patrol
-        private float _patrolDirection = 1f;
+        private float _patrolDirection = -1f;
         private float _patrolDistanceTraveled = 0f;
 
         // Enemy separation
@@ -281,8 +281,8 @@ namespace Demonteks.Enemy
                 edgeAhead = result.Count == 0;
             }
 
-            // Turn around at patrol distance or edges
-            if (_patrolDistanceTraveled >= PatrolDistance || edgeAhead)
+            // Turn around at patrol distance, edges, or walls
+            if (_patrolDistanceTraveled >= PatrolDistance || edgeAhead || IsOnWall())
             {
                 TurnAround();
                 _patrolDistanceTraveled = 0;
@@ -492,7 +492,7 @@ namespace Demonteks.Enemy
             GlobalPosition = _startPosition;
             _velocity = Vector2.Zero;
 
-            _patrolDirection = 1f;
+            _patrolDirection = -1f;
             _patrolDistanceTraveled = 0f;
             _target = null;
 
