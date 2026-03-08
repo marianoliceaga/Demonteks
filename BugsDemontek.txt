@@ -34,7 +34,7 @@ X-Verify why Machete attack of Player looks backwards
 X-Sometimes Demonteks try to run both left and right at the same time and they get stuck
 X-The Guard character traspases the Player when they are close to each other 
 X-When the Player falls dead to the KillZone it should respawn at the last checkpoint
----------------------------------------------------------------------------------
+--------------------------------------------g-------------------------------------
 //TODO
 -Complete all levels tilesets in scene (change tilesets)
 -The 3 Levels are too small, they should be larger, more complicated, with more platforms and enemies.
