@@ -38,8 +38,6 @@ X-The floor traps in Level1 are not working and they are also blocking the Playe
 X-The weapons don't make it through levels.
 ---------------------------------------------------------------------------------
 //TODO
--Completely redo level 2, it's too short and boring, make it longer and more interesting, with many different platform levels, 3 kind of enemies (normal Demonteks, guards and mutants), place some floor traps and health pickups. Also place some weapons pickups. Use the tileset dungeon_tileset_16x16.png
--Llevar ascension a la arena del rey de Level3 hacia la derecha
+-Completely redo level 3, it's too short and boring, make it longer to the right with an irregular terrain and more interesting. When it reaches the far right create an ascending spiral-like stairs that leads to the Demontek King. The whole level should have 4 kind of enemies (guard demonteks, mutant demonteks, 1 Goliath boss and the King Demontek Final Boss), place some floor traps and health pickups strategically. Also place some WeaponPickup with the most advanced weapons. Use the tileset castle_tileset_16x16.png
 -Play cinematic cutscenes at the beginning of Level 1, Level 2
 -Remove some sounds from the Demonteks, add steps and fall to the Player
--Add music to the GameOver Screen and Victory Screen

@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dgu0qpi241ems"]
-
-[ext_resource type="Script" uid="uid://d22w5ym43yvp7" path="res://Scripts/Editor/GenerateLevel2.cs" id="1_y070t"]
-
-[node name="Createlvl2" type="Node2D" unique_id=734096374]
-script = ExtResource("1_y070t")
