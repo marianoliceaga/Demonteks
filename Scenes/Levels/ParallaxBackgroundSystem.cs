@@ -7,7 +7,7 @@ namespace Demonteks.Environment
     {
         [Export] public string CurrentLevel { get; set; } = "Jungle";
         [Export] public bool AutoSetup { get; set; } = true;
-        
+
         private ParallaxBackground _parallaxBg;
 
         public override void _Ready()
@@ -77,10 +77,21 @@ namespace Demonteks.Environment
             var layer = new ParallaxLayer();
             layer.Name = $"{config.Name}Layer";
             layer.MotionScale = config.MotionScale;
-            layer.MotionMirroring = config.MotionMirroring;
+
+            // Calculate a safe repetition count since the Camera2D zoom is 0.3, meaning the viewport is up to ~6400 pixels wide.
+            int repeatCount = 1;
+            if (config.MotionMirroring.X > 0)
+            {
+                repeatCount = (int)(12000f / config.MotionMirroring.X) + 1;
+                layer.MotionMirroring = new Vector2(config.MotionMirroring.X * repeatCount, config.MotionMirroring.Y);
+            }
+            else
+            {
+                layer.MotionMirroring = config.MotionMirroring;
+            }
 
             var texture = GD.Load<Texture2D>(config.TexturePath);
-            
+
             if (texture != null)
             {
                 var sprite = new Sprite2D();
@@ -88,13 +99,21 @@ namespace Demonteks.Environment
                 sprite.Texture = texture;
                 sprite.Centered = false;
                 sprite.TextureFilter = CanvasItem.TextureFilterEnum.Nearest;
+
+                if (config.MotionMirroring.X > 0)
+                {
+                    sprite.TextureRepeat = CanvasItem.TextureRepeatEnum.Enabled;
+                    sprite.RegionEnabled = true;
+                    sprite.RegionRect = new Rect2(0, 0, config.MotionMirroring.X * repeatCount, texture.GetHeight());
+                }
+
                 layer.AddChild(sprite);
             }
             else
             {
                 var colorRect = new ColorRect();
                 colorRect.Name = "Background";
-                colorRect.Size = new Vector2(1920, 1080);
+                colorRect.Size = new Vector2(layer.MotionMirroring.X > 0 ? layer.MotionMirroring.X : 1920, 1080);
                 colorRect.Color = config.BackgroundColor;
                 layer.AddChild(colorRect);
             }

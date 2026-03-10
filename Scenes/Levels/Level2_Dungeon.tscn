@@ -38,25 +38,33 @@ size = Vector2(8688, 64)
 motion_mirroring = Vector2(1920, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/SkyLayer" unique_id=1277324049]
+position = Vector2(0, -339)
 texture = ExtResource("6_bg_sky")
 centered = false
 
 [node name="MidLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=891224617]
 motion_scale = Vector2(0.3, 0.2)
-motion_mirroring = Vector2(3840, 0)
+motion_mirroring = Vector2(15360, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/MidLayer" unique_id=283986943]
+texture_repeat = 2
+position = Vector2(6, -322)
 texture = ExtResource("7_bg_mid")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 15360, 1080)
 
 [node name="ForegroundLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=66578198]
 visible = false
 motion_scale = Vector2(0.6, 0.4)
-motion_mirroring = Vector2(5760, 0)
+motion_mirroring = Vector2(17280, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ForegroundLayer" unique_id=181038759]
+texture_repeat = 2
 texture = ExtResource("8_bg_fg")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 17280, 1080)
 
 [node name="Player" parent="." unique_id=1717216536 instance=ExtResource("1_player")]
 position = Vector2(80, 352)
@@ -64,16 +72,16 @@ position = Vector2(80, 352)
 [node name="Checkpoints" type="Node2D" parent="." unique_id=1402416]
 
 [node name="Checkpoint" parent="Checkpoints" unique_id=1052615815 instance=ExtResource("4_checkpoint")]
-position = Vector2(80, 368)
+position = Vector2(80, 336)
 
 [node name="@Area2D@6" parent="Checkpoints" unique_id=1484132040 instance=ExtResource("4_checkpoint")]
-position = Vector2(2144, 240)
+position = Vector2(2144, 208)
 
 [node name="@Area2D@13" parent="Checkpoints" unique_id=229040620 instance=ExtResource("4_checkpoint")]
-position = Vector2(4384, 432)
+position = Vector2(4384, 400)
 
 [node name="@Area2D@21" parent="Checkpoints" unique_id=1545943019 instance=ExtResource("4_checkpoint")]
-position = Vector2(7808, 48)
+position = Vector2(7808, 16)
 
 [node name="Enemies" type="Node2D" parent="." unique_id=194880502]
 

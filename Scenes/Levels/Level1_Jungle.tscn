@@ -37,20 +37,26 @@ texture = ExtResource("1_jb8xk")
 
 [node name="MidLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=1600974380]
 motion_scale = Vector2(0.4, 0.3)
-motion_mirroring = Vector2(3840, 0)
+motion_mirroring = Vector2(15360, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/MidLayer" unique_id=2135551924]
+texture_repeat = 2
 position = Vector2(0, -90)
 texture = ExtResource("6_bg_mid")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 15360, 1080)
 
 [node name="ForegroundLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=610091722]
 motion_scale = Vector2(0.7, 0.5)
-motion_mirroring = Vector2(5760, 0)
+motion_mirroring = Vector2(17280, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ForegroundLayer" unique_id=129576658]
+texture_repeat = 2
 texture = ExtResource("7_bg_foreground")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 17280, 1080)
 
 [node name="Player" parent="." unique_id=966814073 instance=ExtResource("1_player")]
 position = Vector2(64, 416)

@@ -65,21 +65,27 @@ offset = Vector2(0, -520)
 
 [node name="MidLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=670741759]
 motion_scale = Vector2(0.3, 0.2)
-motion_mirroring = Vector2(3840, 0)
+motion_mirroring = Vector2(15360, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/MidLayer" unique_id=152219005]
+texture_repeat = 2
 position = Vector2(200, 0)
 texture = ExtResource("10_bg_mid")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 15360, 1080)
 
 [node name="ForegroundLayer" type="ParallaxLayer" parent="ParallaxBackground" unique_id=35260405]
 motion_scale = Vector2(0.6, 0.4)
-motion_mirroring = Vector2(5680, 0)
+motion_mirroring = Vector2(17040, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ForegroundLayer" unique_id=1959050393]
+texture_repeat = 2
 position = Vector2(-22, -306)
 texture = ExtResource("11_bg_fg")
 centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 17040, 1080)
 
 [node name="Player" parent="." unique_id=1564150844 instance=ExtResource("1_player")]
 position = Vector2(80, 352)

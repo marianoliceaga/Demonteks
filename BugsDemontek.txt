@@ -36,11 +36,15 @@ X-The Guard character traspases the Player when they are close to each other
 X-When the Player falls dead to the KillZone it should respawn at the last checkpoint
 X-The floor traps in Level1 are not working and they are also blocking the Player and the Enemies. Must be something with the tiles.
 X-The weapons don't make it through levels.
+X-In all levels the SkyLater Parallax Background is not repeating horizontally till the end of the level.
+X-In Level2 checkpoints look buried in the tiles.
+X-Completely redo level 3, it's too short and boring, make it longer to the right with an irregular terrain and more interesting. When it reaches the far right create an ascending spiral-like stairs that leads to the Demontek King. The whole level should have 4 kind of enemies (guard demonteks, mutant demonteks, 1 Goliath boss and the King Demontek Final Boss), place some floor traps and health pickups strategically. Also place some WeaponPickup with the most advanced weapons. Use the tileset castle_tileset_16x16.png
 ---------------------------------------------------------------------------------
 //TODO
--In Level2 checkpoints look buried in the tiles.
--In all levels the SkyLater Parallax Background is not repeating horizontally till the end of the level.
--Completely redo level 3, it's too short and boring, make it longer to the right with an irregular terrain and more interesting. When it reaches the far right create an ascending spiral-like stairs that leads to the Demontek King. The whole level should have 4 kind of enemies (guard demonteks, mutant demonteks, 1 Goliath boss and the King Demontek Final Boss), place some floor traps and health pickups strategically. Also place some WeaponPickup with the most advanced weapons. Use the tileset castle_tileset_16x16.png
+-In Level3 checkpoints look buried in the tiles.
+-Level2: fix floortraps and weapon pickups.
+-Level2: fix midlayer (more transparent)
+-Why is it that when the Player is surrounded by enemies, he attacks and makes damage to all of them easily and kill them?
 -Even when the Player is surrounded by enemies, they don't attack, they just keep walking in the same spot
 -The enemies don't attack the Player when they are close to each other
 -Sometimes Demonteks get stuck and don't move, they just keep walking in the same spot
