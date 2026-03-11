@@ -65,7 +65,8 @@ namespace Demonteks.Player
         /// </summary>
         public void TakeDamage(int damage)
         {
-            if (IsDead || IsInvincible) return;
+            // Allow massive damage (e.g. from KillZone) to bypass invincibility
+            if (IsDead || (IsInvincible && damage < 9999)) return;
 
             CurrentHealth = Mathf.Max(0, CurrentHealth - damage);
             EmitSignal(SignalName.HealthChanged, CurrentHealth, MaxHealth);

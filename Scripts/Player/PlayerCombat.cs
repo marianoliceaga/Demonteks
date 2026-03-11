@@ -33,6 +33,7 @@ namespace Demonteks.Player
         private Dictionary<WeaponType, string> _weaponSpritePaths = new();
         private Weapon _currentWeapon;
         private PlayerStats _playerStats;
+        private HashSet<Node2D> _hitEnemiesTracker = new HashSet<Node2D>();
         #endregion
 
         #region Signals
@@ -305,6 +306,7 @@ namespace Demonteks.Player
 
             _isAttacking = true;
             _attackCooldownTimer = AttackCooldown;
+            _hitEnemiesTracker.Clear();
 
             // Calculate damage with player stats
             int finalDamage = _playerStats.CalculateDamage(_currentWeapon.BaseDamage);
@@ -367,6 +369,9 @@ namespace Demonteks.Player
         private void ApplyDamageToBody(Node2D body)
         {
             if (!body.IsInGroup("enemies")) return;
+
+            if (_hitEnemiesTracker.Contains(body)) return;
+            _hitEnemiesTracker.Add(body);
 
             int damage = _playerStats.CalculateDamage(_currentWeapon.BaseDamage);
             EmitSignal(SignalName.EnemyHit, body, damage);

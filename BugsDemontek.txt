@@ -42,12 +42,12 @@ X-Completely redo level 3, it's too short and boring, make it longer to the righ
 X-In Level3 checkpoints and weapong pickups look buried in the tiles.
 X-Level2: fix floortraps and weapon pickups.
 X-Level2: Midlayer set to no transparency
---------------------------------------------------------------------------------
-//TODO
--In level2, at least, 
--Why is it that when the Player is surrounded by enemies, he attacks and makes damage to all of them easily and kill them?
--Even when the Player is surrounded by enemies, they don't attack, they just keep walking in the same spot
--The enemies don't attack the Player when they are close to each other
--Sometimes Demonteks get stuck and don't move, they just keep walking in the same spot
+X-In level2, at least, sometimes when Player falls to the void it doesn't die and respawn at the last checkpoint 
+X-All enemies should die and not respawn when they fall to the void as part of a Player's attack, the exception is when they fall to the void as part of an enemy's attack or when they fall to the void by themselves, in which case they should respawn at the last checkpoint
+X-Sometimes, at least in Level 1, the Demonteks are blocked by the floor traps and they can't walk or run through them.
+X-Why is it that when the Player is surrounded by enemies, he attacks and makes damage to all of them easily and kill them?
+X-When the enemies are in a pit, they should be able to walk out of it. 
+X-Sometimes the enemies don't attack the Player when they are close to each other, they just keep walking in the same spot.
+-------------------------------------------------------------------------------
 -Play cinematic cutscenes at the beginning of Level 1, Level 2
 -Remove some sounds from the Demonteks, add steps and fall to the Player

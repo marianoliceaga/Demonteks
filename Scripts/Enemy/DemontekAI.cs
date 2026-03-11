@@ -47,6 +47,10 @@ namespace Demonteks.Enemy
         private bool _isDead = false;
         private bool _canAct = true;
 
+        // Void knockback tracking
+        private float _timeSinceLastPlayerHit = 0f;
+        private const float PlayerKnockbackWindow = 2.0f;
+
         // Movement
         private Vector2 _velocity = Vector2.Zero;
         private Vector2 _startPosition;
@@ -128,6 +132,8 @@ namespace Demonteks.Enemy
                 _separationCooldown -= deltaF;
             if (_facingCooldownTimer > 0)
                 _facingCooldownTimer -= deltaF;
+            if (_timeSinceLastPlayerHit > 0)
+                _timeSinceLastPlayerHit -= deltaF;
 
             // Apply gravity
             if (!IsOnFloor())
@@ -139,10 +145,19 @@ namespace Demonteks.Enemy
                 _velocity.Y = 0;
             }
 
-            // Check for void - respawn if fallen too far
+            // Check for void - respawn if fallen too far or die if knocked in by player
             if (GlobalPosition.Y > VoidThreshold)
             {
-                Respawn();
+                if (_timeSinceLastPlayerHit > 0f)
+                {
+                    GD.Print($"{Type} Demontek was knocked into the void by the player and died!");
+                    Die();
+                }
+                else
+                {
+                    GD.Print($"{Type} Demontek fell into the void and respawned.");
+                    Respawn();
+                }
                 return; // Skip rest of physics frame
             }
 
@@ -152,13 +167,31 @@ namespace Demonteks.Enemy
             // Apply movement
             Velocity = _velocity;
 
+            MoveAndSlide();
+
+            // Step climbing for small pits (obstacles < 14 pixels high)
+            if (IsOnWall() && IsOnFloor() && Mathf.Abs(_velocity.X) > 0.1f)
+            {
+                var spaceState = GetWorld2D().DirectSpaceState;
+                float direction = Mathf.Sign(_velocity.X);
+
+                // Check if there is free space slightly above the obstacle
+                Vector2 stepCheckStart = GlobalPosition + new Vector2(0, -16f);
+                Vector2 stepCheckEnd = GlobalPosition + new Vector2(direction * 12f, -16f);
+                var stepQuery = PhysicsRayQueryParameters2D.Create(stepCheckStart, stepCheckEnd, _floorCollisionMask);
+                stepQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+
+                if (spaceState.IntersectRay(stepQuery).Count == 0)
+                {
+                    // Step up safely over the lip of the pit
+                    GlobalPosition += new Vector2(direction * 2f, -8f);
+                }
+            }
+
             // Check for collision with player specifically to apply a small pushback
             bool hitPlayer = false;
             Vector2 pushDir = Vector2.Zero;
 
-            MoveAndSlide();
-
-            // Post-move collision check to gently push enemies away from the player
             for (int i = 0; i < GetSlideCollisionCount(); i++)
             {
                 var collision = GetSlideCollision(i);
@@ -266,23 +299,32 @@ namespace Demonteks.Enemy
         {
             if (!_canAct) return;
 
-            // Check for edge using direct space state raycast before moving
+            // Check for edge and wall using direct space state raycast before moving
             bool edgeAhead = false;
+            bool wallAhead = false;
             if (IsOnFloor())
             {
                 var spaceState = GetWorld2D().DirectSpaceState;
-                Vector2 rayStart = GlobalPosition + new Vector2(0, -10f);
-                Vector2 rayEnd = GlobalPosition + new Vector2(_patrolDirection * 20f, 30f);
 
-                var query = PhysicsRayQueryParameters2D.Create(rayStart, rayEnd, _floorCollisionMask);
-                query.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                // Edge raycast
+                Vector2 edgeRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 edgeRayEnd = GlobalPosition + new Vector2(_patrolDirection * 20f, 30f);
+                var edgeQuery = PhysicsRayQueryParameters2D.Create(edgeRayStart, edgeRayEnd, _floorCollisionMask);
+                edgeQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var edgeResult = spaceState.IntersectRay(edgeQuery);
+                edgeAhead = edgeResult.Count == 0;
 
-                var result = spaceState.IntersectRay(query);
-                edgeAhead = result.Count == 0;
+                // Wall raycast
+                Vector2 wallRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 wallRayEnd = GlobalPosition + new Vector2(_patrolDirection * 16f, -10f);
+                var wallQuery = PhysicsRayQueryParameters2D.Create(wallRayStart, wallRayEnd, _floorCollisionMask);
+                wallQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var wallResult = spaceState.IntersectRay(wallQuery);
+                wallAhead = wallResult.Count > 0;
             }
 
-            // Turn around at patrol distance, edges, or walls
-            if (_patrolDistanceTraveled >= PatrolDistance || edgeAhead || IsOnWall())
+            // Turn around at patrol distance, edges, or real walls
+            if (_patrolDistanceTraveled >= PatrolDistance || edgeAhead || wallAhead)
             {
                 TurnAround();
                 _patrolDistanceTraveled = 0;
@@ -303,20 +345,29 @@ namespace Demonteks.Enemy
 
             // Check for edge using direct space state raycast before moving
             bool edgeAhead = false;
+            bool wallAhead = false;
             if (IsOnFloor())
             {
                 var spaceState = GetWorld2D().DirectSpaceState;
-                Vector2 rayStart = GlobalPosition + new Vector2(0, -10f);
-                Vector2 rayEnd = GlobalPosition + new Vector2(direction * 20f, 30f);
 
-                var query = PhysicsRayQueryParameters2D.Create(rayStart, rayEnd, _floorCollisionMask);
-                query.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                // Edge raycast
+                Vector2 edgeRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 edgeRayEnd = GlobalPosition + new Vector2(direction * 20f, 30f);
+                var edgeQuery = PhysicsRayQueryParameters2D.Create(edgeRayStart, edgeRayEnd, _floorCollisionMask);
+                edgeQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var edgeResult = spaceState.IntersectRay(edgeQuery);
+                edgeAhead = edgeResult.Count == 0;
 
-                var result = spaceState.IntersectRay(query);
-                edgeAhead = result.Count == 0;
+                // Wall raycast
+                Vector2 wallRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 wallRayEnd = GlobalPosition + new Vector2(direction * 16f, -10f);
+                var wallQuery = PhysicsRayQueryParameters2D.Create(wallRayStart, wallRayEnd, _floorCollisionMask);
+                wallQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var wallResult = spaceState.IntersectRay(wallQuery);
+                wallAhead = wallResult.Count > 0;
             }
 
-            if (edgeAhead)
+            if (edgeAhead || wallAhead)
             {
                 // Stand near the edge, refusing to fall off
                 _velocity.X = 0;
@@ -336,20 +387,29 @@ namespace Demonteks.Enemy
             float direction = Mathf.Sign(targetPosition.X - GlobalPosition.X);
 
             bool edgeAhead = false;
+            bool wallAhead = false;
             if (IsOnFloor())
             {
                 var spaceState = GetWorld2D().DirectSpaceState;
-                Vector2 rayStart = GlobalPosition + new Vector2(0, -10f);
-                Vector2 rayEnd = GlobalPosition + new Vector2(direction * 20f, 30f);
 
-                var query = PhysicsRayQueryParameters2D.Create(rayStart, rayEnd, _floorCollisionMask);
-                query.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                // Edge raycast
+                Vector2 edgeRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 edgeRayEnd = GlobalPosition + new Vector2(direction * 20f, 30f);
+                var edgeQuery = PhysicsRayQueryParameters2D.Create(edgeRayStart, edgeRayEnd, _floorCollisionMask);
+                edgeQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var edgeResult = spaceState.IntersectRay(edgeQuery);
+                edgeAhead = edgeResult.Count == 0;
 
-                var result = spaceState.IntersectRay(query);
-                edgeAhead = result.Count == 0;
+                // Wall raycast
+                Vector2 wallRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 wallRayEnd = GlobalPosition + new Vector2(direction * 16f, -10f);
+                var wallQuery = PhysicsRayQueryParameters2D.Create(wallRayStart, wallRayEnd, _floorCollisionMask);
+                wallQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var wallResult = spaceState.IntersectRay(wallQuery);
+                wallAhead = wallResult.Count > 0;
             }
 
-            if (edgeAhead)
+            if (edgeAhead || wallAhead)
             {
                 _velocity.X = 0;
             }
@@ -364,6 +424,11 @@ namespace Demonteks.Enemy
         public void StopMoving()
         {
             _velocity.X = 0;
+        }
+
+        public void SetVelocityX(float x)
+        {
+            _velocity.X = x;
         }
 
         private void TurnAround()
@@ -431,6 +496,9 @@ namespace Demonteks.Enemy
 
             _currentHealth -= damage;
             EmitSignal(SignalName.HealthChanged, _currentHealth, MaxHealth);
+
+            // Track timestamp for void death logic
+            _timeSinceLastPlayerHit = PlayerKnockbackWindow;
 
             GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Hurt");
 
@@ -757,7 +825,6 @@ namespace Demonteks.Enemy
 
     public class AttackState : IEnemyState
     {
-        private float _attackDuration = 0.5f;
         private float _timer = 0f;
         private bool _hasAttacked = false;
 
@@ -765,34 +832,31 @@ namespace Demonteks.Enemy
         {
             _timer = 0f;
             _hasAttacked = false;
+            enemy.SetVelocityX(0); // Stop moving securely for attack swing
         }
 
         public IEnemyState Update(DemontekAI enemy, float delta)
         {
             _timer += delta;
 
-            // Keep moving toward player during attack
+            // Optional: minimal forward drift
             if (enemy.Target != null)
             {
                 float direction = Mathf.Sign(enemy.Target.GlobalPosition.X - enemy.GlobalPosition.X);
-                enemy.Velocity = new Vector2(direction * enemy.ChaseSpeed * 0.5f, enemy.Velocity.Y);
+                enemy.SetVelocityX(direction * enemy.ChaseSpeed * 0.1f);
             }
 
-            // Execute attack quickly
-            if (!_hasAttacked && _timer >= _attackDuration * 0.3f)
+            // Execute actual attack hit midway through the cooldown
+            if (!_hasAttacked && _timer >= enemy.AttackCooldown * 0.3f)
             {
                 enemy.Attack();
                 _hasAttacked = true;
             }
 
-            // Return to chase after attack completes
-            if (_timer >= _attackDuration)
+            // Return to chase only after full cooldown recovers
+            if (_timer >= enemy.AttackCooldown)
             {
-                // Continue attacking if still in range
-                if (enemy.IsNearTarget)
-                    return new AttackState();
-                else
-                    return new ChaseState();
+                return new ChaseState();
             }
 
             return this;

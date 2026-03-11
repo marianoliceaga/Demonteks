@@ -22,7 +22,7 @@
 size = Vector2(16, 96)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_killzone"]
-size = Vector2(6400, 32)
+size = Vector2(10000, 32)
 
 [node name="Level1_Jungle" type="Node2D" unique_id=473628263]
 

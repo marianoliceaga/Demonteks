@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Items/HealthPickup.tscn" id="15_6r4au"]
 [ext_resource type="PackedScene" uid="uid://dww8aiua5yj2b" path="res://Scenes/Prefabs/WeaponPickup.tscn" id="15_weapon"]
 [ext_resource type="AudioStream" uid="uid://c86x8h5ytaqef" path="res://Assets/audio/music/Level 2 (The Dungeon).mp3" id="16_bgm"]
-[ext_resource type="PackedScene" uid="uid://c6lxbx3v2x1xx" path="res://Scenes/Prefabs/DungeonFloorTrap.tscn" id="28_3ltvm"]
+[ext_resource type="PackedScene" path="res://Scenes/Prefabs/DungeonFloorTrap.tscn" id="28_3ltvm"]
 [ext_resource type="Script" uid="uid://cd6wpk82k038j" path="res://Scripts/Environment/AmbientSoundController.cs" id="ambient_audio_script"]
 
 [sub_resource type="RectangleShape2D" id="Shape_door"]
@@ -203,13 +203,13 @@ script = ExtResource("ambient_audio_script")
 AudioDirectory = "res://Assets/audio/sfx/Level2_Dungeon"
 
 [node name="FloorTrap" parent="." unique_id=962352958 instance=ExtResource("28_3ltvm")]
-position = Vector2(3248, 448)
+position = Vector2(3280, 464)
 
 [node name="@Area2D@9" parent="." unique_id=649715094 instance=ExtResource("28_3ltvm")]
-position = Vector2(3568, 448)
+position = Vector2(3600, 464)
 
 [node name="@Area2D@10" parent="." unique_id=1293129484 instance=ExtResource("28_3ltvm")]
-position = Vector2(3888, 448)
+position = Vector2(3920, 464)
 
 [node name="Layer0" type="TileMapLayer" parent="." unique_id=477048214]
 use_parent_material = true

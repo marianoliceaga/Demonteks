@@ -25,3 +25,4 @@ res://Scripts/Management/AudioManager.cs
 res://Scripts/Management/SaveManager.cs
 res://Scripts/Management/GameManager.cs
 res://Scenes/UI/UIAudioController.cs
+res://Scenes/Levels/Level1_Jungle.tscn
