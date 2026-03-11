@@ -49,5 +49,7 @@ X-Why is it that when the Player is surrounded by enemies, he attacks and makes 
 X-When the enemies are in a pit, they should be able to walk out of it. 
 X-Sometimes the enemies don't attack the Player when they are close to each other, they just keep walking in the same spot.
 -------------------------------------------------------------------------------
+//TODO
+-Add footsteps and fall sound from jump to the Player
+-Add Tek Tek sounds to the Demonteks
 -Play cinematic videos before Level 1, Level 2, Level 3, and the finale after finishing level 3.
--Remove some sounds from the Demonteks, add steps and fall to the Player
