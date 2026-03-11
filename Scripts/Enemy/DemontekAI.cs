@@ -209,6 +209,11 @@ namespace Demonteks.Enemy
                     else
                     {
                         pushDir = pushDir.Normalized();
+                        // If enemy is mostly above the player, force a strong horizontal vector to slide them off
+                        if (pushDir.Y < -0.7f && Mathf.Abs(pushDir.X) < 0.5f)
+                        {
+                            pushDir.X = pushDir.X < 0 ? -1f : 1f;
+                        }
                     }
                     break;
                 }
@@ -217,7 +222,10 @@ namespace Demonteks.Enemy
             if (hitPlayer)
             {
                 // Push the enemy back slightly to create space for the player
-                GlobalPosition += new Vector2(pushDir.X * 1.5f, 0);
+                // Slide them off much faster if they end up on top of the player's head
+                float pushForce = pushDir.Y < -0.5f ? 4.0f : 1.5f;
+                // Don't push them horizontally if they hit the player from the side, just gently
+                GlobalPosition += new Vector2(Mathf.Sign(pushDir.X) * pushForce, 0);
             }
 
             // Enemy-to-enemy separation: avoid head-on deadlock flickering
