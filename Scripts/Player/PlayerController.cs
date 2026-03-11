@@ -41,7 +41,7 @@ namespace Demonteks.Player
 		private Vector2 _velocity = Vector2.Zero;
 		private float _coyoteTimer = 0f;
 		private float _jumpBufferTimer = 0f;
-		private bool _isRunning = false;
+		public bool _isRunning = false;
 		private bool _isCrouching = false;
 		private int _jumpsRemaining;
 
@@ -598,7 +598,14 @@ namespace Demonteks.Player
 
 	public class MoveState : IPlayerState
 	{
-		public void Enter(PlayerController player) { }
+		private float _footstepTimer = 0f;
+		private const float WalkInterval = 0.35f;
+		private const float RunInterval = 0.25f;
+
+		public void Enter(PlayerController player)
+		{
+			_footstepTimer = 0f;
+		}
 
 		public IPlayerState Update(PlayerController player, float delta)
 		{
@@ -608,6 +615,16 @@ namespace Demonteks.Player
 			if (!player.IsMoving()) return new IdleState();
 
 			player.Move(delta);
+
+			// Footstep logic
+			float currentInterval = player._isRunning ? RunInterval : WalkInterval;
+			_footstepTimer += delta;
+			if (_footstepTimer >= currentInterval)
+			{
+				player.GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
+				_footstepTimer = 0f;
+			}
+
 			return this;
 		}
 

@@ -48,8 +48,7 @@ X-Sometimes, at least in Level 1, the Demonteks are blocked by the floor traps a
 X-Why is it that when the Player is surrounded by enemies, he attacks and makes damage to all of them easily and kill them?
 X-When the enemies are in a pit, they should be able to walk out of it. 
 X-Sometimes the enemies don't attack the Player when they are close to each other, they just keep walking in the same spot.
+X-Add Tek Tek sounds to the Demonteks
+X-Add footsteps and fall sound from jump to the Player
 -------------------------------------------------------------------------------
-//TODO
--Add footsteps and fall sound from jump to the Player
--Add Tek Tek sounds to the Demonteks
 -Play cinematic videos before Level 1, Level 2, Level 3, and the finale after finishing level 3.

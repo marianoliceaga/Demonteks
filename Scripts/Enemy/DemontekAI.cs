@@ -261,10 +261,10 @@ namespace Demonteks.Enemy
             switch (Type)
             {
                 case EnemyType.Normal:
-                    MaxHealth = 30;
-                    Damage = 8;
-                    ChaseSpeed = 140f;
-                    DetectionRange = 200f;
+                    MaxHealth = 20;
+                    Damage = 5;
+                    ChaseSpeed = 130f;
+                    DetectionRange = 180f;
                     break;
 
                 case EnemyType.Guard:
@@ -761,11 +761,15 @@ namespace Demonteks.Enemy
     {
         private float _footstepTimer = 0f;
         private float _footstepInterval = 0.5f; // Adjust based on patrol speed
+        private float _voiceTimer = 0f;
+        private float _nextVoiceDelay = 0f;
 
         public void Enter(DemontekAI enemy)
         {
             // Faster enemies need faster footsteps
             _footstepInterval = 30f / enemy.PatrolSpeed;
+            _nextVoiceDelay = (float)GD.RandRange(3.0, 8.0);
+            _voiceTimer = 0f;
         }
 
         public IEnemyState Update(DemontekAI enemy, float delta)
@@ -782,6 +786,14 @@ namespace Demonteks.Enemy
                 _footstepTimer = 0f;
             }
 
+            _voiceTimer += delta;
+            if (_voiceTimer >= _nextVoiceDelay)
+            {
+                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Voice");
+                _voiceTimer = 0f;
+                _nextVoiceDelay = (float)GD.RandRange(5.0, 12.0);
+            }
+
             return this;
         }
 
@@ -792,6 +804,8 @@ namespace Demonteks.Enemy
     {
         private float _footstepTimer = 0f;
         private float _footstepInterval = 0.3f;
+        private float _voiceTimer = 0f;
+        private float _nextVoiceDelay = 0f;
 
         public void Enter(DemontekAI enemy)
         {
@@ -800,6 +814,8 @@ namespace Demonteks.Enemy
             GD.Print($"{enemy.Type} Demontek started chasing!");
 
             _footstepInterval = 30f / enemy.ChaseSpeed;
+            _nextVoiceDelay = (float)GD.RandRange(2.0, 5.0);
+            _voiceTimer = 0f;
         }
 
         public IEnemyState Update(DemontekAI enemy, float delta)
@@ -823,6 +839,14 @@ namespace Demonteks.Enemy
             {
                 // enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
                 _footstepTimer = 0f;
+            }
+
+            _voiceTimer += delta;
+            if (_voiceTimer >= _nextVoiceDelay)
+            {
+                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Voice");
+                _voiceTimer = 0f;
+                _nextVoiceDelay = (float)GD.RandRange(3.0, 7.0);
             }
 
             return this;

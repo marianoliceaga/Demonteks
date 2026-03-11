@@ -81,7 +81,8 @@ namespace Demonteks.Environment
                 { "Idle", new[] { "idle", "breathing", "tektek" } },
                 { "Roar", new[] { "roar", "taunt", "mercy", "enrage", "phase", "whispers", "chanting", "screams" } },
                 { "Interact", new[] { "checkpoint", "lever", "heal" } },
-                { "Victory", new[] { "victory", "respawn" } }
+                { "Victory", new[] { "victory", "respawn" } },
+                { "Voice", new[] { "tektek", "voice", "mumble" } }
             };
 
             string lowerFileName = fileName.ToLower();
