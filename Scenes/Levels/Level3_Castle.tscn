@@ -95,16 +95,16 @@ position = Vector2(80, 352)
 [node name="Checkpoints" type="Node2D" parent="." unique_id=1933119710]
 
 [node name="Checkpoint" parent="Checkpoints" unique_id=1052615815 instance=ExtResource("8_checkpoint")]
-position = Vector2(80, 368)
+position = Vector2(80, 336)
 
 [node name="@Area2D@9" parent="Checkpoints" unique_id=302859473 instance=ExtResource("8_checkpoint")]
-position = Vector2(1328, 400)
+position = Vector2(1328, 368)
 
 [node name="@Area2D@12" parent="Checkpoints" unique_id=1009349421 instance=ExtResource("8_checkpoint")]
-position = Vector2(2560, 432)
+position = Vector2(2560, 400)
 
 [node name="@Area2D@26" parent="Checkpoints" unique_id=1133239895 instance=ExtResource("8_checkpoint")]
-position = Vector2(4976, -186)
+position = Vector2(4976, -218)
 
 [node name="Traps" type="Node2D" parent="." unique_id=2115939944]
 
@@ -164,37 +164,37 @@ position = Vector2(5351, -191)
 [node name="Pickups" type="Node2D" parent="." unique_id=1897969107]
 
 [node name="WeaponPickup" parent="Pickups" unique_id=1313220266 instance=ExtResource("20_weapon")]
-position = Vector2(1040, 400)
+position = Vector2(1040, 376)
 WeaponType = 3
 
 [node name="HealthPickup" parent="Pickups" unique_id=788671515 instance=ExtResource("19_2x37t")]
-position = Vector2(1792, 400)
+position = Vector2(1792, 376)
 
 [node name="@Area2D@15" parent="Pickups" unique_id=1716186989 instance=ExtResource("20_weapon")]
-position = Vector2(2868, 423)
+position = Vector2(2868, 399)
 WeaponType = 4
 
 [node name="@Area2D@16" parent="Pickups" unique_id=1444355080 instance=ExtResource("19_2x37t")]
-position = Vector2(3093, 423)
+position = Vector2(3093, 399)
 
 [node name="@Area2D@18" parent="Pickups" unique_id=1420560849 instance=ExtResource("19_2x37t")]
-position = Vector2(3360, 304)
+position = Vector2(3360, 280)
 
 [node name="@Area2D@20" parent="Pickups" unique_id=1551475765 instance=ExtResource("19_2x37t")]
-position = Vector2(4086, -107)
+position = Vector2(4086, -131)
 
 [node name="@Area2D@23" parent="Pickups" unique_id=1466890563 instance=ExtResource("19_2x37t")]
-position = Vector2(4277, -1)
+position = Vector2(4277, -25)
 
 [node name="@Area2D@25" parent="Pickups" unique_id=281955936 instance=ExtResource("19_2x37t")]
-position = Vector2(5214, -191)
+position = Vector2(5214, -215)
 
 [node name="@Area2D@27" parent="Pickups" unique_id=366574205 instance=ExtResource("20_weapon")]
-position = Vector2(5040, -169)
+position = Vector2(5040, -193)
 WeaponType = 5
 
 [node name="@Area2D@28" parent="Pickups" unique_id=1787322429 instance=ExtResource("19_2x37t")]
-position = Vector2(5100, -162)
+position = Vector2(5100, -186)
 
 [node name="GoliathArena" type="Area2D" parent="." unique_id=579498558]
 position = Vector2(2080, 352)

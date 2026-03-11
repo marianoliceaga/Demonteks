@@ -18,7 +18,7 @@
 [ext_resource type="PackedScene" path="res://Scenes/Items/HealthPickup.tscn" id="15_6r4au"]
 [ext_resource type="PackedScene" uid="uid://dww8aiua5yj2b" path="res://Scenes/Prefabs/WeaponPickup.tscn" id="15_weapon"]
 [ext_resource type="AudioStream" uid="uid://c86x8h5ytaqef" path="res://Assets/audio/music/Level 2 (The Dungeon).mp3" id="16_bgm"]
-[ext_resource type="PackedScene" uid="uid://cod4uis51uv2r" path="res://Scenes/Prefabs/FloorTrap.tscn" id="28_3ltvm"]
+[ext_resource type="PackedScene" uid="uid://c6lxbx3v2x1xx" path="res://Scenes/Prefabs/DungeonFloorTrap.tscn" id="28_3ltvm"]
 [ext_resource type="Script" uid="uid://cd6wpk82k038j" path="res://Scripts/Environment/AmbientSoundController.cs" id="ambient_audio_script"]
 
 [sub_resource type="RectangleShape2D" id="Shape_door"]
@@ -147,17 +147,17 @@ shape = SubResource("Shape_door")
 [node name="Pickups" type="Node2D" parent="." unique_id=843079563]
 
 [node name="HealthPickup" parent="Pickups" unique_id=298211810 instance=ExtResource("15_6r4au")]
-position = Vector2(1632, 304)
+position = Vector2(1632, 280)
 
 [node name="WeaponPickup" parent="Pickups" unique_id=1313220266 instance=ExtResource("15_weapon")]
-position = Vector2(4128, 432)
+position = Vector2(4128, 408)
 WeaponType = 2
 
 [node name="@Area2D@16" parent="Pickups" unique_id=512945341 instance=ExtResource("15_6r4au")]
-position = Vector2(5760, 432)
+position = Vector2(5760, 408)
 
 [node name="@Area2D@24" parent="Pickups" unique_id=1176106272 instance=ExtResource("15_weapon")]
-position = Vector2(8448, 48)
+position = Vector2(8448, 24)
 WeaponType = 3
 
 [node name="LevelEnd" type="Area2D" parent="." unique_id=1917794312]
