@@ -1,7 +1,8 @@
 72322a848ab928aa5c89f0cb78209805
-::res://::1773180873
-BugsDemontek.txt::TextFile::-1::1773198485::0::1::::<><><>0<>0<><>::
+::res://::1773264450
+BugsDemontek.txt::TextFile::-1::1773201187::0::1::::<><><>0<>0<><>::
 default_bus_layout.tres::AudioBusLayout::4821987621209090164::1772356123::0::1::::<><><>0<>0<><>::
+Demonteks_VEO3_Script.md::TextFile::-1::1773199819::0::1::::<><><>0<>0<><>::
 PrintTileMapProps.cs::CSharpScript::4948070657492353794::1772982116::0::1::::<>SceneTree<><>0<>0<><>::
 TestDict.cs::CSharpScript::2663161568742676310::1772983767::0::1::::<>SceneTree<><>0<>0<><>::
 ::res://Assets/::1772944327
@@ -73,11 +74,12 @@ Mutant_Death_Roar.mp3::AudioStreamMP3::5573052963016066394::1771903112::17724326
 Mutant_Footstep_Heavy.mp3::AudioStreamMP3::3818674479279528707::1772158088::1772159649::1::::<><><>0<>0<>aca8482624f4ff4c7d3d8e30c0027d5a<>res://.godot/imported/Mutant_Footstep_Heavy.mp3-b7583c23ac044db9a04c9f1c28df2aa2.mp3str::
 Mutant_Hit.mp3::AudioStreamMP3::8208261541537052996::1772158084::1772159649::1::::<><><>0<>0<>dd0e2adadbcc3e5cfb59f68d5412aa57<>res://.godot/imported/Mutant_Hit.mp3-b50a2fb7b745bbadfbb768cf85e5d842.mp3str::
 Mutant_Idle_Breathing.mp3::AudioStreamMP3::6124290913149902449::1772158077::1772159649::1::::<><><>0<>0<>5db81c6394992bbe39f2d8dbfe736414<>res://.godot/imported/Mutant_Idle_Breathing.mp3-6bc15a38950cff68737f62f0d8d6f347.mp3str::
-::res://Assets/audio/sfx/Enemies/TekTekVoices/::1773198567
-TekTek1.mp3::AudioStreamMP3::7632583469281123729::1773198064::1773198571::1::::<><><>0<>0<>aaab1d66cfb79933cc40475e8e6d5a08<>res://.godot/imported/TekTek1.mp3-a175006b3ca83e5612078b07c00992fa.mp3str::
-TekTek2.mp3::AudioStreamMP3::3939720531904726218::1773198119::1773198571::1::::<><><>0<>0<>ef420e658c7d795337ecf8a39920203c<>res://.godot/imported/TekTek2.mp3-ca2d803e298f0d2c8f308144c87a0b0d.mp3str::
-TekTek3.mp3::AudioStreamMP3::293650250515723755::1773198191::1773198571::1::::<><><>0<>0<>d80366d4063d03e424b4f31b3a649ee2<>res://.godot/imported/TekTek3.mp3-4bcadda0c4eb16ed43f5d89eebddf16b.mp3str::
-TekTek4.mp3::AudioStreamMP3::8518422059216118528::1773198241::1773198571::1::::<><><>0<>0<>ff34facc70e2d9bdf300553677692741<>res://.godot/imported/TekTek4.mp3-423e2bcaa1018216288bf77fccf743be.mp3str::
+::res://Assets/audio/sfx/Enemies/TekTekVoices/::1773265514
+TekTek1.mp3::AudioStreamMP3::7632583469281123729::1773264940::1773267950::1::::<><><>0<>0<>aaab1d66cfb79933cc40475e8e6d5a08<>res://.godot/imported/TekTek1.mp3-a175006b3ca83e5612078b07c00992fa.mp3str::
+TekTek2.mp3::AudioStreamMP3::3939720531904726218::1773265100::1773267950::1::::<><><>0<>0<>ef420e658c7d795337ecf8a39920203c<>res://.godot/imported/TekTek2.mp3-ca2d803e298f0d2c8f308144c87a0b0d.mp3str::
+TekTek3.mp3::AudioStreamMP3::293650250515723755::1773198241::1773267950::1::::<><><>0<>0<>d80366d4063d03e424b4f31b3a649ee2<>res://.godot/imported/TekTek3.mp3-4bcadda0c4eb16ed43f5d89eebddf16b.mp3str::
+TekTek4.mp3::AudioStreamMP3::8518422059216118528::1773265450::1773267950::1::::<><><>0<>0<>ff34facc70e2d9bdf300553677692741<>res://.godot/imported/TekTek4.mp3-423e2bcaa1018216288bf77fccf743be.mp3str::
+TekTek5.mp3::AudioStreamMP3::2352434430410272124::1773266347::1773267950::1::::<><><>0<>0<>7e92b25819d7da8635ecb94dd79a5379<>res://.godot/imported/TekTek5.mp3-a9baf2b3505feb56a96de06db42c3644.mp3str::
 ::res://Assets/audio/sfx/Level1_Jungle/::1772346265
 Birds_Chirping.ogg::AudioStreamOggVorbis::865672649022928311::1772346125::1772346265::1::::<><><>0<>0<>2a307b0eb8b7339e670f92acb214f2f9<>res://.godot/imported/Birds_Chirping.ogg-c248db0ba81b76884760278d09478704.oggvorbisstr::
 Bush_Rustle.ogg::AudioStreamOggVorbis::3776291294786838610::1772346244::1772346265::1::::<><><>0<>0<>f67767f77212d8a7f4ecab5a3a161fdd<>res://.godot/imported/Bush_Rustle.ogg-bdf0d944fe0a7c1b03680a0d619d43df.oggvorbisstr::
@@ -97,8 +99,8 @@ Footstep_Stone.mp3::AudioStreamMP3::4445235001128318789::1771909204::1772337924:
 Jump.mp3::AudioStreamMP3::3883392733578983854::1772157849::1772159649::1::::<><><>0<>0<>13c4ae0951cc5da125c813fbef74ad0c<>res://.godot/imported/Jump.mp3-4d26ddc1e5cf9e48dd63095518318cf2.mp3str::
 Knife_Hit_Enemy.mp3::AudioStreamMP3::6442403330936709032::1772157859::1772159649::1::::<><><>0<>0<>d9ae31687510f7c94ee01b24108cd0bd<>res://.godot/imported/Knife_Hit_Enemy.mp3-f7ede0f7182c758f53d6448b8e5e3f52.mp3str::
 Knife_Slash.mp3::AudioStreamMP3::8442913680586671057::1772157857::1772159649::1::::<><><>0<>0<>e6d2f0fec4a9898577401468501f49eb<>res://.godot/imported/Knife_Slash.mp3-cf5a3814924f35c70d6e15681cc2408e.mp3str::
-Land_Hard.mp3::AudioStreamMP3::2291323933554151717::1772157853::1772159649::1::::<><><>0<>0<>6ae53241f71c962c5b726cfb6403eb4d<>res://.godot/imported/Land_Hard.mp3-3624f1b049b0e9089a28875b1b112621.mp3str::
-Land_Soft.mp3::AudioStreamMP3::4849607444169275780::1772157851::1772159649::1::::<><><>0<>0<>3c593f639f4ec70dfca589b48dc2b251<>res://.godot/imported/Land_Soft.mp3-780ab5ef18da328cdb9da080c1f37868.mp3str::
+Land_Hard.mp3::AudioStreamMP3::2291323933554151717::1773266286::1773267950::1::::<><><>0<>0<>6ae53241f71c962c5b726cfb6403eb4d<>res://.godot/imported/Land_Hard.mp3-3624f1b049b0e9089a28875b1b112621.mp3str::
+Land_Soft.mp3::AudioStreamMP3::4849607444169275780::1773266538::1773267950::1::::<><><>0<>0<>3c593f639f4ec70dfca589b48dc2b251<>res://.godot/imported/Land_Soft.mp3-780ab5ef18da328cdb9da080c1f37868.mp3str::
 Lever_Pull.mp3::AudioStreamMP3::2024349962302910728::1772157895::1772159649::1::::<><><>0<>0<>341e79c05aa7e1cef04b146a4378a50e<>res://.godot/imported/Lever_Pull.mp3-a4a35c6a2b830bca9a8a3f4b589926c5.mp3str::
 Machete_Hit_Enemy.mp3::AudioStreamMP3::4406747182755479149::1772157875::1772159649::1::::<><><>0<>0<>bb5188aa8d75ba4448537542e015c5e6<>res://.godot/imported/Machete_Hit_Enemy.mp3-3f9de7f0219946750c4c028d6c8165c9.mp3str::
 Machete_Slash.mp3::AudioStreamMP3::3112130099511989722::1772157861::1772159649::1::::<><><>0<>0<>9d89cd64d0e52ff55255dcbcedd26112<>res://.godot/imported/Machete_Slash.mp3-071764ba76769ed5e25a15bf2987d102.mp3str::
@@ -2325,7 +2327,7 @@ frame_004.png::CompressedTexture2D::5448135123066500260::1771025532::1772944371:
 frame_005.png::CompressedTexture2D::2996134116683333706::1771025532::1772944371::1::::<><><>0<>0<>4d05dbf5693ef153022dc31a9055bf35<>res://.godot/imported/frame_005.png-013d9bf7156352361cedaf4d8c3f839c.ctex::
 frame_006.png::CompressedTexture2D::5033793417363475145::1771025534::1772944371::1::::<><><>0<>0<>89a98bfe9d861f0ab0e790b93ed4d6ed<>res://.godot/imported/frame_006.png-3680cbdc8f16457bd446b5ea80bf5892.ctex::
 frame_007.png::CompressedTexture2D::5957898991856447230::1771025534::1772944371::1::::<><><>0<>0<>09c2dc3fdc9c847e0304eaae16d800ee<>res://.godot/imported/frame_007.png-533786053c1940aafd1b4416840a5f18.ctex::
-::res://Assets/Cinematics/::1772944327
+::res://Assets/Cinematics/::1773198692
 ::res://Assets/Cinematics/Ingredients/::1772944371
 Demontek.png::CompressedTexture2D::4727964483874743374::1772944327::1772944371::0::::<><><>0<>0<>209d8c25d961cedf0b9940febbfffd36<>::
 Explorer.png::CompressedTexture2D::2379281146269226290::1772944327::1772944371::0::::<><><>0<>0<>7455f447daa75346c01eca70b3bfb324<>::
@@ -2438,7 +2440,7 @@ DemontekAI.cs::CSharpScript::7903411876532815651::1773197077::0::1::::<>Characte
 ::res://Scripts/Environment/::1772343878
 AmbientSoundController.cs::CSharpScript::5048766746878771043::1772356003::0::1::::<>Node2D<><>0<>0<><>::
 BossArena.cs::CSharpScript::654702284297885290::1772165308::0::1::::<>Area2D<><>0<>0<><>::
-CharacterAudioController.cs::CSharpScript::8180182515111812406::1772686436::0::1::::<>Node2D<><>0<>0<><>::
+CharacterAudioController.cs::CSharpScript::8180182515111812406::1773267370::0::1::::<>Node2D<><>0<>0<><>::
 EarthPortal.cs::CSharpScript::4051312652767114871::1772679720::0::1::::<>Area2D<><>0<>0<><>::
 FloorTrap.cs::CSharpScript::6691599725986166292::1772982211::0::1::::<>Area2D<><>0<>0<><>::
 StoneButton.cs::CSharpScript::8703560269016911832::1772678831::0::1::::<>StaticBody2D<><>0<>0<><>::
@@ -2453,7 +2455,7 @@ GameManager.cs::CSharpScript::6177765981116727885::1772983785::0::1::::<>Node<><
 SaveManager.cs::CSharpScript::2656282018469572071::1772356169::0::1::::<>Node<><>0<>0<><>::
 ::res://Scripts/Player/::1772734517
 PlayerCombat.cs::CSharpScript::6230972554980815358::1773195711::0::1::::<>Node2D<><>0<>0<><>::
-PlayerController.cs::CSharpScript::229851645170514767::1772983316::0::1::::<>CharacterBody2D<><>0<>0<><>::
+PlayerController.cs::CSharpScript::229851645170514767::1773267372::0::1::::<>CharacterBody2D<><>0<>0<><>::
 PlayerStats.cs::CSharpScript::1148759280985621753::1773190583::0::1::::<>Node<><>0<>0<><>::
 ::res://Scripts/UI/::1772166546
 GameOverController.cs::CSharpScript::8899330151779852834::1772679643::0::1::::<>CanvasLayer<><>0<>0<><>::
