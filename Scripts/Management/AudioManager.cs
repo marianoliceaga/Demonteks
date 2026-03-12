@@ -81,6 +81,12 @@ namespace Demonteks.Management
             var stream = LoadAudio(path);
             if (stream != null)
             {
+                // If it's the exact same stream and it's already playing, do nothing to allow continuous playback
+                if (_musicPlayer.Stream == stream && _musicPlayer.Playing)
+                {
+                    return;
+                }
+                
                 _musicPlayer.Stream = stream;
                 _musicPlayer.VolumeDb = Mathf.LinearToDb(MusicVolume);
                 _musicPlayer.Play();

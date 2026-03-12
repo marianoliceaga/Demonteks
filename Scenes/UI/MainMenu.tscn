@@ -74,7 +74,7 @@ offset_right = -10.0
 offset_bottom = -10.0
 grow_horizontal = 0
 grow_vertical = 0
-text = "v0.9.9-alpha"
+text = "v1.0.0-beta"
 horizontal_alignment = 2
 
 [node name="OptionsPanel" type="ColorRect" parent="." unique_id=209823901]

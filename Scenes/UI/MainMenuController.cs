@@ -61,6 +61,10 @@ namespace Demonteks.UI
                     return;
                 }
 
+                // Start main menu music
+                var audioManager = GetNodeOrNull<Management.AudioManager>("/root/AudioManager");
+                audioManager?.PlayMusic("res://Assets/audio/music/MainTheme.mp3");
+
                 // Initialize Options UI states
                 _musicCheck.ButtonPressed = _saveManager.GameOptions.MusicEnabled;
                 _sfxCheck.ButtonPressed = _saveManager.GameOptions.SfxEnabled;

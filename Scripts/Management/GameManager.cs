@@ -110,7 +110,8 @@ namespace Demonteks.Management
 		public void StartNewGame()
 		{
 			ResetGameState();
-			LoadLevel(1);
+			// Show story intro cutscene before Level 1
+			GetTree().ChangeSceneToFile("res://Scenes/UI/StoryIntro.tscn");
 			ChangeGameState(GameState.Playing);
 		}
 
@@ -148,6 +149,9 @@ namespace Demonteks.Management
 			};
 
 			_levelDeaths = 0; // Reset deaths for this level
+
+			// Stop global menu music before loading level
+			GetNodeOrNull<AudioManager>("/root/AudioManager")?.StopMusic();
 
 			GetTree().ChangeSceneToFile(scenePath);
 
