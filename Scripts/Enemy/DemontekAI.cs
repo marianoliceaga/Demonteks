@@ -1,0 +1,982 @@
+using Godot;
+using System;
+
+namespace Demonteks.Enemy
+{
+    /// <summary>
+    /// AI controller for Demontek enemies with patrol, chase, and attack behaviors.
+    /// Implements FSM pattern for clean state management.
+    /// </summary>
+    public partial class DemontekAI : CharacterBody2D
+    {
+        #region Export Variables
+        [ExportCategory("Enemy Type")]
+        [Export] public EnemyType Type { get; set; } = EnemyType.Normal;
+
+        [ExportCategory("Movement")]
+        [Export] public float PatrolSpeed { get; set; } = 50f;
+        [Export] public float ChaseSpeed { get; set; } = 150f;
+        [Export] public float DetectionRange { get; set; } = 200f;
+        [Export] public float AttackRange { get; set; } = 70f;
+        [Export] public float PatrolDistance { get; set; } = 200f;
+
+        [ExportCategory("Combat")]
+        [Export] public int MaxHealth { get; set; } = 45;
+        [Export] public int Damage { get; set; } = 38;
+        [Export] public float AttackCooldown { get; set; } = 0.6f;
+        [Export] public float Gravity { get; set; } = 980f;
+
+        [ExportCategory("References")]
+        [Export] public NodePath AnimatedSpritePath { get; set; }
+        [Export] public NodePath DetectionAreaPath { get; set; }
+        [Export] public NodePath AttackAreaPath { get; set; }
+        [Export] public NodePath FloorRayPath { get; set; }
+
+        [ExportCategory("Void Detection")]
+        [Export] public float VoidThreshold { get; set; } = 1000f; // Y position below which to respawn
+        #endregion
+
+        #region Private Variables
+        private AnimatedSprite2D _animatedSprite;
+        private Area2D _detectionArea;
+        private Area2D _attackArea;
+        private RayCast2D _floorRay;
+
+        private int _currentHealth;
+        private float _attackCooldownTimer = 0f;
+        private bool _isDead = false;
+        private bool _canAct = true;
+
+        // Void knockback tracking
+        private float _timeSinceLastPlayerHit = 0f;
+        private const float PlayerKnockbackWindow = 2.0f;
+
+        // Movement
+        private Vector2 _velocity = Vector2.Zero;
+        private Vector2 _startPosition;
+        private bool _facingRight = false;
+        private float _facingCooldownTimer = 0f;
+
+        // AI State Machine
+        private EnemyStateMachine _stateMachine;
+        private Node2D _target; // Player reference
+
+        // Patrol
+        private float _patrolDirection = -1f;
+        private float _patrolDistanceTraveled = 0f;
+
+        // Enemy separation
+        private float _separationCooldown = 0f;
+        private const float SeparationCooldownDuration = 0.4f;
+
+        // Floor collision mask for direct space state rays
+        private uint _floorCollisionMask = 5; // Layer 1 (1) + Layer 3 (4) = 5
+        #endregion
+
+        #region Signals
+        [Signal] public delegate void DiedEventHandler();
+        [Signal] public delegate void HealthChangedEventHandler(int currentHealth, int maxHealth);
+        [Signal] public delegate void AttackedPlayerEventHandler(int damage);
+        [Signal] public delegate void PlayerDetectedEventHandler();
+        [Signal] public delegate void PlayerLostEventHandler();
+        #endregion
+
+        #region Godot Lifecycle
+        public override void _Ready()
+        {
+            // Get references
+            _animatedSprite = GetNode<AnimatedSprite2D>(AnimatedSpritePath);
+            _detectionArea = GetNode<Area2D>(DetectionAreaPath);
+            _attackArea = GetNode<Area2D>(AttackAreaPath);
+
+            // Setup floor ray for edge detection (Legacy nodes retained for layout compat, managed via code now)
+            // if (FloorRayPath != null)
+            // {
+            //     _floorRay = GetNode<RayCast2D>(FloorRayPath);
+            //     _floorRay.Enabled = true;
+            //     _floorRay.CollisionMask = 1; // World layer
+            // }
+
+            // Initialize stats based on type
+            InitializeByType();
+
+            _currentHealth = MaxHealth;
+            _startPosition = GlobalPosition;
+            _facingCooldownTimer = 0f;
+
+            // Setup state machine
+            _stateMachine = new EnemyStateMachine(this);
+            _stateMachine.ChangeState(new PatrolState());
+
+            // Connect detection areas
+            _detectionArea.BodyEntered += OnDetectionAreaEntered;
+            _detectionArea.BodyExited += OnDetectionAreaExited;
+            _attackArea.BodyEntered += OnAttackAreaEntered;
+
+            // Add to enemies group
+            AddToGroup("enemies");
+
+            GD.Print($"{Type} Demontek initialized. Health: {MaxHealth}, Damage: {Damage}");
+        }
+
+        public override void _PhysicsProcess(double delta)
+        {
+            if (_isDead) return;
+
+            float deltaF = (float)delta;
+
+            // Update cooldowns
+            if (_attackCooldownTimer > 0)
+                _attackCooldownTimer -= deltaF;
+            if (_separationCooldown > 0)
+                _separationCooldown -= deltaF;
+            if (_facingCooldownTimer > 0)
+                _facingCooldownTimer -= deltaF;
+            if (_timeSinceLastPlayerHit > 0)
+                _timeSinceLastPlayerHit -= deltaF;
+
+            // Apply gravity
+            if (!IsOnFloor())
+            {
+                _velocity.Y += Gravity * deltaF;
+            }
+            else
+            {
+                _velocity.Y = 0;
+            }
+
+            // Check for void - respawn if fallen too far or die if knocked in by player
+            if (GlobalPosition.Y > VoidThreshold)
+            {
+                if (_timeSinceLastPlayerHit > 0f)
+                {
+                    GD.Print($"{Type} Demontek was knocked into the void by the player and died!");
+                    Die();
+                }
+                else
+                {
+                    GD.Print($"{Type} Demontek fell into the void and respawned.");
+                    Respawn();
+                }
+                return; // Skip rest of physics frame
+            }
+
+            // Update state machine
+            _stateMachine.Update(deltaF);
+
+            // Apply movement
+            Velocity = _velocity;
+
+            MoveAndSlide();
+
+            // Step climbing for small pits (obstacles < 14 pixels high)
+            if (IsOnWall() && IsOnFloor() && Mathf.Abs(_velocity.X) > 0.1f)
+            {
+                var spaceState = GetWorld2D().DirectSpaceState;
+                float direction = Mathf.Sign(_velocity.X);
+
+                // Check if there is free space slightly above the obstacle
+                Vector2 stepCheckStart = GlobalPosition + new Vector2(0, -16f);
+                Vector2 stepCheckEnd = GlobalPosition + new Vector2(direction * 12f, -16f);
+                var stepQuery = PhysicsRayQueryParameters2D.Create(stepCheckStart, stepCheckEnd, _floorCollisionMask);
+                stepQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+
+                if (spaceState.IntersectRay(stepQuery).Count == 0)
+                {
+                    // Step up safely over the lip of the pit
+                    GlobalPosition += new Vector2(direction * 2f, -8f);
+                }
+            }
+
+            // Check for collision with player specifically to apply a small pushback
+            bool hitPlayer = false;
+            Vector2 pushDir = Vector2.Zero;
+
+            for (int i = 0; i < GetSlideCollisionCount(); i++)
+            {
+                var collision = GetSlideCollision(i);
+                if (collision.GetCollider() is Node2D collider && collider.IsInGroup("player"))
+                {
+                    hitPlayer = true;
+                    // Push direction is from collider to this enemy
+                    pushDir = GlobalPosition - collider.GlobalPosition;
+
+                    // If they are stacked perfectly on top of each other
+                    if (pushDir.LengthSquared() < 0.1f)
+                    {
+                        pushDir = new Vector2(_facingRight ? 1f : -1f, 0);
+                    }
+                    else
+                    {
+                        pushDir = pushDir.Normalized();
+                        // If enemy is mostly above the player, force a strong horizontal vector to slide them off
+                        if (pushDir.Y < -0.7f && Mathf.Abs(pushDir.X) < 0.5f)
+                        {
+                            pushDir.X = pushDir.X < 0 ? -1f : 1f;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            if (hitPlayer)
+            {
+                // Push the enemy back slightly to create space for the player
+                // Slide them off much faster if they end up on top of the player's head
+                float pushForce = pushDir.Y < -0.5f ? 4.0f : 1.5f;
+                // Don't push them horizontally if they hit the player from the side, just gently
+                GlobalPosition += new Vector2(Mathf.Sign(pushDir.X) * pushForce, 0);
+            }
+
+            // Enemy-to-enemy separation: avoid head-on deadlock flickering
+            if (_separationCooldown <= 0f)
+            {
+                for (int i = 0; i < GetSlideCollisionCount(); i++)
+                {
+                    var col = GetSlideCollision(i);
+                    if (col.GetCollider() is DemontekAI otherEnemy && !otherEnemy.IsDead)
+                    {
+                        // Only the enemy with the larger ID yields, avoiding mutual reaction
+                        if (GetInstanceId() > otherEnemy.GetInstanceId())
+                        {
+                            // Step to the side of the other enemy (opposite direction they are pushing us)
+                            float sideDir = Mathf.Sign(GlobalPosition.X - otherEnemy.GlobalPosition.X);
+                            if (sideDir == 0f) sideDir = 1f;
+                            GlobalPosition += new Vector2(sideDir * 3f, 0f);
+                            _separationCooldown = SeparationCooldownDuration;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            // Update animation
+            UpdateAnimation();
+        }
+        #endregion
+
+        #region Type Initialization
+        private void InitializeByType()
+        {
+            switch (Type)
+            {
+                case EnemyType.Normal:
+                    MaxHealth = 15;  // was 10
+                    Damage = 8;      // was 3
+                    ChaseSpeed = 130f;
+                    DetectionRange = 180f;
+                    break;
+
+                case EnemyType.Guard:
+                    MaxHealth = 30;  // was 20
+                    Damage = 15;     // was 6
+                    ChaseSpeed = 120f;
+                    DetectionRange = 250f;
+                    PatrolDistance = 150f;
+                    break;
+
+                case EnemyType.Mutant:
+                    MaxHealth = 45;  // was 30
+                    Damage = 20;     // was 8
+                    ChaseSpeed = 160f;
+                    DetectionRange = 220f;
+                    AttackCooldown = 0.6f;
+                    break;
+
+                case EnemyType.Goliath:
+                    MaxHealth = 113; // was 75
+                    Damage = 25;     // was 10
+                    ChaseSpeed = 100f;
+                    DetectionRange = 300f;
+                    AttackCooldown = 0.8f;
+                    break;
+
+                case EnemyType.King:
+                    MaxHealth = 248; // was 165
+                    Damage = 30;     // was 12
+                    ChaseSpeed = 110f;
+                    DetectionRange = 350f;
+                    AttackCooldown = 1.4f;
+                    break;
+            }
+        }
+        #endregion
+
+        #region Movement
+        public void Patrol(float delta)
+        {
+            if (!_canAct) return;
+
+            // Check for edge and wall using direct space state raycast before moving
+            bool edgeAhead = false;
+            bool wallAhead = false;
+            if (IsOnFloor())
+            {
+                var spaceState = GetWorld2D().DirectSpaceState;
+
+                // Edge raycast
+                Vector2 edgeRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 edgeRayEnd = GlobalPosition + new Vector2(_patrolDirection * 20f, 30f);
+                var edgeQuery = PhysicsRayQueryParameters2D.Create(edgeRayStart, edgeRayEnd, _floorCollisionMask);
+                edgeQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var edgeResult = spaceState.IntersectRay(edgeQuery);
+                edgeAhead = edgeResult.Count == 0;
+
+                // Wall raycast
+                Vector2 wallRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 wallRayEnd = GlobalPosition + new Vector2(_patrolDirection * 16f, -10f);
+                var wallQuery = PhysicsRayQueryParameters2D.Create(wallRayStart, wallRayEnd, _floorCollisionMask);
+                wallQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var wallResult = spaceState.IntersectRay(wallQuery);
+                wallAhead = wallResult.Count > 0;
+            }
+
+            // Turn around at patrol distance, edges, or real walls
+            if (_patrolDistanceTraveled >= PatrolDistance || edgeAhead || wallAhead)
+            {
+                TurnAround();
+                _patrolDistanceTraveled = 0;
+            }
+
+            // Move in patrol direction
+            _velocity.X = _patrolDirection * PatrolSpeed;
+            _patrolDistanceTraveled += Mathf.Abs(_velocity.X * delta);
+
+            UpdateFacing();
+        }
+
+        public void ChaseTarget(float delta)
+        {
+            if (!_canAct || _target == null) return;
+
+            float direction = Mathf.Sign(_target.GlobalPosition.X - GlobalPosition.X);
+
+            // Check for edge using direct space state raycast before moving
+            bool edgeAhead = false;
+            bool wallAhead = false;
+            if (IsOnFloor())
+            {
+                var spaceState = GetWorld2D().DirectSpaceState;
+
+                // Edge raycast
+                Vector2 edgeRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 edgeRayEnd = GlobalPosition + new Vector2(direction * 20f, 30f);
+                var edgeQuery = PhysicsRayQueryParameters2D.Create(edgeRayStart, edgeRayEnd, _floorCollisionMask);
+                edgeQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var edgeResult = spaceState.IntersectRay(edgeQuery);
+                edgeAhead = edgeResult.Count == 0;
+
+                // Wall raycast
+                Vector2 wallRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 wallRayEnd = GlobalPosition + new Vector2(direction * 16f, -10f);
+                var wallQuery = PhysicsRayQueryParameters2D.Create(wallRayStart, wallRayEnd, _floorCollisionMask);
+                wallQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var wallResult = spaceState.IntersectRay(wallQuery);
+                wallAhead = wallResult.Count > 0;
+            }
+
+            if (edgeAhead || wallAhead)
+            {
+                // Stand near the edge, refusing to fall off
+                _velocity.X = 0;
+            }
+            else
+            {
+                _velocity.X = direction * ChaseSpeed;
+            }
+
+            UpdateFacing();
+        }
+
+        public void MoveTowards(Vector2 targetPosition, float speed)
+        {
+            if (!_canAct) return;
+
+            float direction = Mathf.Sign(targetPosition.X - GlobalPosition.X);
+
+            bool edgeAhead = false;
+            bool wallAhead = false;
+            if (IsOnFloor())
+            {
+                var spaceState = GetWorld2D().DirectSpaceState;
+
+                // Edge raycast
+                Vector2 edgeRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 edgeRayEnd = GlobalPosition + new Vector2(direction * 20f, 30f);
+                var edgeQuery = PhysicsRayQueryParameters2D.Create(edgeRayStart, edgeRayEnd, _floorCollisionMask);
+                edgeQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var edgeResult = spaceState.IntersectRay(edgeQuery);
+                edgeAhead = edgeResult.Count == 0;
+
+                // Wall raycast
+                Vector2 wallRayStart = GlobalPosition + new Vector2(0, -10f);
+                Vector2 wallRayEnd = GlobalPosition + new Vector2(direction * 16f, -10f);
+                var wallQuery = PhysicsRayQueryParameters2D.Create(wallRayStart, wallRayEnd, _floorCollisionMask);
+                wallQuery.Exclude = new Godot.Collections.Array<Rid> { this.GetRid() };
+                var wallResult = spaceState.IntersectRay(wallQuery);
+                wallAhead = wallResult.Count > 0;
+            }
+
+            if (edgeAhead || wallAhead)
+            {
+                _velocity.X = 0;
+            }
+            else
+            {
+                _velocity.X = direction * speed;
+            }
+
+            UpdateFacing();
+        }
+
+        public void StopMoving()
+        {
+            _velocity.X = 0;
+        }
+
+        public void SetVelocityX(float x)
+        {
+            _velocity.X = x;
+        }
+
+        private void TurnAround()
+        {
+            _patrolDirection *= -1;
+        }
+
+        private void UpdateFacing()
+        {
+            // Do not override with horizontal flipping since we have dynamic directional animations now
+            // We just track facing direction internally
+
+            // Only flip if not in facing cooldown
+            if (_facingCooldownTimer <= 0f)
+            {
+                if (_velocity.X > 0.1f && !_facingRight)
+                {
+                    _facingRight = true;
+                    _facingCooldownTimer = 0.2f; // Debounce for 0.2 seconds
+                }
+                else if (_velocity.X < -0.1f && _facingRight)
+                {
+                    _facingRight = false;
+                    _facingCooldownTimer = 0.2f; // Debounce for 0.2 seconds
+                }
+            }
+        }
+        #endregion
+
+        #region Combat
+        public void Attack()
+        {
+            if (_attackCooldownTimer > 0 || _target == null) return;
+
+            // Face the target before attacking (update direction flag only, let animation handle visuals)
+            float direction = Mathf.Sign(_target.GlobalPosition.X - GlobalPosition.X);
+            if (direction > 0)
+            {
+                _facingRight = true;
+                _animatedSprite.FlipH = false; // reset flip for directional anims
+            }
+            else if (direction < 0)
+            {
+                _facingRight = false;
+                _animatedSprite.FlipH = false; // reset flip for directional anims
+            }
+
+            _attackCooldownTimer = AttackCooldown;
+            EmitSignal(SignalName.AttackedPlayer, Damage);
+
+            // Apply damage to player
+            if (_target.HasMethod("TakeDamage"))
+            {
+                _target.Call("TakeDamage", Damage);
+            }
+
+            GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Attack");
+
+            GD.Print($"{Type} Demontek attacked for {Damage} damage!");
+        }
+
+        public void TakeDamage(int damage)
+        {
+            if (_isDead) return;
+
+            _currentHealth -= damage;
+            EmitSignal(SignalName.HealthChanged, _currentHealth, MaxHealth);
+
+            // Track timestamp for void death logic
+            _timeSinceLastPlayerHit = PlayerKnockbackWindow;
+
+            GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Hurt");
+
+            GD.Print($"{Type} Demontek took {damage} damage. Health: {_currentHealth}/{MaxHealth}");
+
+            // Visual feedback - Flash Red
+            if (_animatedSprite != null)
+            {
+                var tween = CreateTween();
+                tween.TweenProperty(_animatedSprite, "modulate", Colors.Red, 0.1f);
+                tween.TweenProperty(_animatedSprite, "modulate", Colors.White, 0.1f);
+            }
+
+            if (_currentHealth <= 0)
+            {
+                Die();
+            }
+            else
+            {
+                // Enter hurt state briefly
+                _stateMachine.ChangeState(new HurtState());
+            }
+        }
+
+        private void Die()
+        {
+            if (_isDead) return;
+
+            _isDead = true;
+            _canAct = false;
+            _velocity = Vector2.Zero;
+
+            EmitSignal(SignalName.Died);
+            _stateMachine.ChangeState(new DeathState());
+
+            // Record enemy kill in GameManager
+            var gameManager = GetNode<Management.GameManager>("/root/GameManager");
+            gameManager?.RecordEnemyKilled();
+
+            // Remove collision
+            SetCollisionLayerValue(2, false); // Disable Enemy layer
+            SetCollisionMaskValue(1, false); // Disable World collision
+
+            // Queue free after death animation
+            GetTree().CreateTimer(2.0f).Timeout += QueueFree;
+
+            GetNodeOrNull<Demonteks.Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Death");
+
+            GD.Print($"{Type} Demontek died!");
+        }
+
+        /// <summary>
+        /// Respawn enemy at starting position with health intact (called when falling into void)
+        /// </summary>
+        public void Respawn()
+        {
+            if (_isDead) return;
+
+            GlobalPosition = _startPosition;
+            _velocity = Vector2.Zero;
+
+            _patrolDirection = -1f;
+            _patrolDistanceTraveled = 0f;
+            _target = null;
+
+            _stateMachine.ChangeState(new PatrolState());
+
+            GD.Print($"{Type} Demontek respawned at {_startPosition}. Health: {_currentHealth}/{MaxHealth}");
+        }
+        #endregion
+
+        #region Detection
+        private void OnDetectionAreaEntered(Node2D body)
+        {
+            if (body.IsInGroup("player"))
+            {
+                _target = body;
+                EmitSignal(SignalName.PlayerDetected);
+
+                if (_stateMachine.CurrentState is PatrolState)
+                {
+                    _stateMachine.ChangeState(new ChaseState());
+                }
+            }
+        }
+
+        private void OnDetectionAreaExited(Node2D body)
+        {
+            if (body == _target)
+            {
+                EmitSignal(SignalName.PlayerLost);
+
+                if (_stateMachine.CurrentState is ChaseState)
+                {
+                    _stateMachine.ChangeState(new ReturnState());
+                }
+            }
+        }
+
+        private void OnAttackAreaEntered(Node2D body)
+        {
+            if (body == _target && _stateMachine.CurrentState is ChaseState)
+            {
+                _stateMachine.ChangeState(new AttackState());
+            }
+        }
+        #endregion
+
+        #region Animation
+        private void UpdateAnimation()
+        {
+            if (_animatedSprite == null || _isDead) return;
+
+            string currentState = _stateMachine.CurrentState.GetType().Name;
+
+            // Start by assuming no flip, we will apply it if a generic animation is used
+            _animatedSprite.FlipH = false;
+
+            string suffix = _facingRight ? "east" : "west";
+            string animPlayed = "";
+
+            switch (currentState)
+            {
+                case "IdleState":
+                    animPlayed = PlaySafe($"idle_{suffix}", "idle");
+                    break;
+                case "PatrolState":
+                    animPlayed = PlaySafe($"walk_{suffix}", "walk");
+                    break;
+                case "ChaseState":
+                    animPlayed = PlaySafe($"run_{suffix}", $"walk_{suffix}", "run", "walk"); // fallback chain
+                    break;
+                case "AttackState":
+                    animPlayed = PlaySafe($"attack_{suffix}", "attack");
+                    break;
+                case "HurtState":
+                    animPlayed = PlaySafe($"hurt_{suffix}", "hurt");
+                    break;
+                case "DeathState":
+                    animPlayed = PlaySafe($"death_{suffix}", "death");
+                    break;
+            }
+
+            // If a generic animation was played (no direct suffix match), flip the sprite manually
+            if (!string.IsNullOrEmpty(animPlayed) && !animPlayed.EndsWith($"_{suffix}"))
+            {
+                _animatedSprite.FlipH = !_facingRight;
+            }
+        }
+
+        private string PlaySafe(params string[] animNames)
+        {
+            if (_animatedSprite.SpriteFrames == null) return string.Empty;
+
+            foreach (var animName in animNames)
+            {
+                if (animName != null && _animatedSprite.SpriteFrames.HasAnimation(animName))
+                {
+                    _animatedSprite.Play(animName);
+                    return animName;
+                }
+            }
+            return string.Empty;
+        }
+        #endregion
+
+        #region Properties
+        public Vector2 StartPosition => _startPosition;
+        public bool CanAttack => _attackCooldownTimer <= 0;
+        public Node2D Target => _target;
+        public bool IsDead => _isDead;
+        public float DistanceToTarget => _target != null ? GlobalPosition.DistanceTo(_target.GlobalPosition) : float.MaxValue;
+        public bool IsNearTarget => _target != null && DistanceToTarget <= AttackRange;
+        public bool CanSeeTarget => _target != null && DistanceToTarget <= DetectionRange;
+        #endregion
+    }
+
+    #region Enemy State Machine
+    public class EnemyStateMachine
+    {
+        private DemontekAI _enemy;
+        private IEnemyState _currentState;
+
+        public EnemyStateMachine(DemontekAI enemy)
+        {
+            _enemy = enemy;
+        }
+
+        public void Update(float delta)
+        {
+            if (_currentState != null)
+            {
+                IEnemyState nextState = _currentState.Update(_enemy, delta);
+
+                if (nextState != null && nextState != _currentState)
+                {
+                    ChangeState(nextState);
+                }
+            }
+        }
+
+        public void ChangeState(IEnemyState newState)
+        {
+            _currentState?.Exit(_enemy);
+            _currentState = newState;
+            _currentState.Enter(_enemy);
+        }
+
+        public IEnemyState CurrentState => _currentState;
+    }
+
+    public interface IEnemyState
+    {
+        void Enter(DemontekAI enemy);
+        IEnemyState Update(DemontekAI enemy, float delta);
+        void Exit(DemontekAI enemy);
+    }
+
+    public class IdleState : IEnemyState
+    {
+        private float _idleSoundTimer = 0f;
+        private float _nextSoundDelay = 0f;
+
+        public void Enter(DemontekAI enemy)
+        {
+            enemy.StopMoving();
+            // Random delay between 2 to 5 seconds for idle sounds
+            _nextSoundDelay = (float)GD.RandRange(2.0, 5.0);
+            _idleSoundTimer = 0f;
+        }
+
+        public IEnemyState Update(DemontekAI enemy, float delta)
+        {
+            if (enemy.CanSeeTarget)
+                return new ChaseState();
+
+            _idleSoundTimer += delta;
+            if (_idleSoundTimer >= _nextSoundDelay)
+            {
+                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Idle");
+                _idleSoundTimer = 0f;
+                _nextSoundDelay = (float)GD.RandRange(3.0, 6.0);
+            }
+
+            return this;
+        }
+
+        public void Exit(DemontekAI enemy) { }
+    }
+
+    public class PatrolState : IEnemyState
+    {
+        private float _footstepTimer = 0f;
+        private float _footstepInterval = 0.5f; // Adjust based on patrol speed
+        private float _voiceTimer = 0f;
+        private float _nextVoiceDelay = 0f;
+
+        public void Enter(DemontekAI enemy)
+        {
+            // Faster enemies need faster footsteps
+            _footstepInterval = 30f / enemy.PatrolSpeed;
+            _nextVoiceDelay = (float)GD.RandRange(3.0, 8.0);
+            _voiceTimer = 0f;
+        }
+
+        public IEnemyState Update(DemontekAI enemy, float delta)
+        {
+            if (enemy.CanSeeTarget)
+                return new ChaseState();
+
+            enemy.Patrol(delta);
+
+            _footstepTimer += delta;
+            if (_footstepTimer >= _footstepInterval)
+            {
+                // enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
+                _footstepTimer = 0f;
+            }
+
+            _voiceTimer += delta;
+            if (_voiceTimer >= _nextVoiceDelay)
+            {
+                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Voice");
+                _voiceTimer = 0f;
+                _nextVoiceDelay = (float)GD.RandRange(5.0, 12.0);
+            }
+
+            return this;
+        }
+
+        public void Exit(DemontekAI enemy) { }
+    }
+
+    public class ChaseState : IEnemyState
+    {
+        private float _footstepTimer = 0f;
+        private float _footstepInterval = 0.3f;
+        private float _voiceTimer = 0f;
+        private float _nextVoiceDelay = 0f;
+
+        public void Enter(DemontekAI enemy)
+        {
+            // Play a roar or taunt when discovering the player
+            enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Roar");
+            GD.Print($"{enemy.Type} Demontek started chasing!");
+
+            _footstepInterval = 30f / enemy.ChaseSpeed;
+            _nextVoiceDelay = (float)GD.RandRange(2.0, 5.0);
+            _voiceTimer = 0f;
+        }
+
+        public IEnemyState Update(DemontekAI enemy, float delta)
+        {
+            if (enemy.IsDead)
+                return new DeathState();
+
+            // Don't give up easily - keep chasing even if slightly out of detection range
+            float distanceToTarget = enemy.DistanceToTarget;
+            if (distanceToTarget > enemy.DetectionRange * 1.5f)
+                return new ReturnState();
+
+            // Attack aggressively when close
+            if (enemy.IsNearTarget)
+                return new AttackState();
+
+            enemy.ChaseTarget(delta);
+
+            _footstepTimer += delta;
+            if (_footstepTimer >= _footstepInterval)
+            {
+                // enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Footstep");
+                _footstepTimer = 0f;
+            }
+
+            _voiceTimer += delta;
+            if (_voiceTimer >= _nextVoiceDelay)
+            {
+                enemy.GetNodeOrNull<Environment.CharacterAudioController>("CharacterAudioController")?.PlayAction("Voice");
+                _voiceTimer = 0f;
+                _nextVoiceDelay = (float)GD.RandRange(3.0, 7.0);
+            }
+
+            return this;
+        }
+
+        public void Exit(DemontekAI enemy) { }
+    }
+
+    public class AttackState : IEnemyState
+    {
+        private float _timer = 0f;
+        private bool _hasAttacked = false;
+
+        public void Enter(DemontekAI enemy)
+        {
+            _timer = 0f;
+            _hasAttacked = false;
+            enemy.SetVelocityX(0); // Stop moving securely for attack swing
+        }
+
+        public IEnemyState Update(DemontekAI enemy, float delta)
+        {
+            _timer += delta;
+
+            // Optional: minimal forward drift
+            if (enemy.Target != null)
+            {
+                float direction = Mathf.Sign(enemy.Target.GlobalPosition.X - enemy.GlobalPosition.X);
+                enemy.SetVelocityX(direction * enemy.ChaseSpeed * 0.1f);
+            }
+
+            // Execute actual attack hit midway through the cooldown
+            if (!_hasAttacked && _timer >= enemy.AttackCooldown * 0.3f)
+            {
+                enemy.Attack();
+                _hasAttacked = true;
+            }
+
+            // Return to chase only after full cooldown recovers
+            if (_timer >= enemy.AttackCooldown)
+            {
+                return new ChaseState();
+            }
+
+            return this;
+        }
+
+        public void Exit(DemontekAI enemy) { }
+    }
+
+    public class ReturnState : IEnemyState
+    {
+        public void Enter(DemontekAI enemy)
+        {
+            GD.Print($"{enemy.Type} Demontek returning to patrol.");
+        }
+
+        public IEnemyState Update(DemontekAI enemy, float delta)
+        {
+            if (enemy.CanSeeTarget)
+                return new ChaseState();
+
+            float distanceToStart = enemy.GlobalPosition.DistanceTo(enemy.StartPosition);
+
+            if (distanceToStart < 10f)
+            {
+                return new PatrolState();
+            }
+
+            enemy.MoveTowards(enemy.StartPosition, enemy.PatrolSpeed);
+            return this;
+        }
+
+        public void Exit(DemontekAI enemy) { }
+    }
+
+    public class HurtState : IEnemyState
+    {
+        private float _hurtDuration = 0.3f;
+        private float _timer = 0f;
+
+        public void Enter(DemontekAI enemy)
+        {
+            enemy.StopMoving();
+            _timer = 0f;
+        }
+
+        public IEnemyState Update(DemontekAI enemy, float delta)
+        {
+            _timer += delta;
+
+            if (_timer >= _hurtDuration)
+            {
+                if (enemy.CanSeeTarget)
+                    return new ChaseState();
+                else
+                    return new PatrolState();
+            }
+
+            return this;
+        }
+
+        public void Exit(DemontekAI enemy) { }
+    }
+
+    public class DeathState : IEnemyState
+    {
+        public void Enter(DemontekAI enemy)
+        {
+            enemy.StopMoving();
+        }
+
+        public IEnemyState Update(DemontekAI enemy, float delta)
+        {
+            // Stay in death state
+            return this;
+        }
+
+        public void Exit(DemontekAI enemy) { }
+    }
+    #endregion
+
+    #region Enemy Types
+    public enum EnemyType
+    {
+        Normal,    // Standard Demontek
+        Guard,     // Demontek with uniform
+        Mutant,    // Muscular Demontek
+        Goliath,   // Boss: Demontek-Monster fusion
+        King       // Final Boss: King Demontek
+    }
+    #endregion
+}

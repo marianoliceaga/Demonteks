@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://bsv4hwe7ddnfu"]
+
+[ext_resource type="Script" uid="uid://bxyqr61lyoftn" path="res://Scripts/Environment/EarthPortal.cs" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bre7d7x6v0b2s" path="res://Assets/decorations/PortalEarth.png" id="2_dvyam"]
+
+[sub_resource type="CircleShape2D" id="Shape_portal"]
+radius = 24.0
+
+[node name="EarthPortal" type="Area2D" unique_id=867256829]
+collision_layer = 0
+script = ExtResource("1_script")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1104916981]
+shape = SubResource("Shape_portal")
+
+[node name="PortalGlow" type="ColorRect" parent="." unique_id=990087783]
+offset_left = -20.0
+offset_top = -32.0
+offset_right = 20.0
+
+[node name="InteractionLabel" type="Label" parent="." unique_id=1879448083]
+visible = false
+offset_left = -80.0
+offset_top = 8.0
+offset_right = 80.0
+offset_bottom = 28.0
+text = "Press F to return to Earth"
+horizontal_alignment = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=62658262]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_dvyam")

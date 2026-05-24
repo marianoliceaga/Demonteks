@@ -1,0 +1,273 @@
+[gd_scene load_steps=30 format=3]
+
+[ext_resource type="Script" path="res://Scripts/Enemy/DemontekAI.cs" id="1_ai"]
+[ext_resource type="Script" path="res://Scripts/Environment/CharacterAudioController.cs" id="2_audio"]
+
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/breathing-idle/east/frame_000.png" id="idle_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/breathing-idle/east/frame_001.png" id="idle_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/breathing-idle/east/frame_002.png" id="idle_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/breathing-idle/east/frame_003.png" id="idle_3"]
+
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/walking-8-frames/east/frame_000.png" id="walk_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/walking-8-frames/east/frame_001.png" id="walk_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/walking-8-frames/east/frame_002.png" id="walk_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/walking-8-frames/east/frame_003.png" id="walk_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/walking-8-frames/east/frame_004.png" id="walk_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/walking-8-frames/east/frame_005.png" id="walk_5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/walking-8-frames/east/frame_006.png" id="walk_6"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/walking-8-frames/east/frame_007.png" id="walk_7"]
+
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/running-6-frames/east/frame_000.png" id="run_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/running-6-frames/east/frame_001.png" id="run_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/running-6-frames/east/frame_002.png" id="run_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/running-6-frames/east/frame_003.png" id="run_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/running-6-frames/east/frame_004.png" id="run_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/running-6-frames/east/frame_005.png" id="run_5"]
+
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_000.png" id="attack_west_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_001.png" id="attack_west_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_002.png" id="attack_west_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_003.png" id="attack_west_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_004.png" id="attack_west_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/west/frame_005.png" id="attack_west_5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_000.png" id="attack_east_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_001.png" id="attack_east_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_002.png" id="attack_east_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_003.png" id="attack_east_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_004.png" id="attack_east_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/cross-punch/east/frame_005.png" id="attack_east_5"]
+
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/taking-punch/west/frame_000.png" id="hurt_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/taking-punch/west/frame_001.png" id="hurt_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/taking-punch/west/frame_002.png" id="hurt_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/taking-punch/west/frame_003.png" id="hurt_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/taking-punch/west/frame_004.png" id="hurt_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/taking-punch/west/frame_005.png" id="hurt_5"]
+
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/falling-back-death/east/frame_000.png" id="death_0"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/falling-back-death/east/frame_001.png" id="death_1"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/falling-back-death/east/frame_002.png" id="death_2"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/falling-back-death/east/frame_003.png" id="death_3"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/falling-back-death/east/frame_004.png" id="death_4"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/falling-back-death/east/frame_005.png" id="death_5"]
+[ext_resource type="Texture2D" path="res://Assets/characters/demontek/animations/falling-back-death/east/frame_006.png" id="death_6"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_enemy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("attack_west_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_west_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_west_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_west_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_west_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_west_5")
+}],
+"loop": false,
+"name": &"attack_west",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("attack_east_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_east_5")
+}],
+"loop": false,
+"name": &"attack_east",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("death_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_6")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("hurt_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_5")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("idle_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("run_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("walk_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(16, 32)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_detection"]
+radius = 150.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(40, 24)
+
+[node name="Demontek" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 2
+collision_mask = 7
+script = ExtResource("1_ai")
+Type = 0
+AnimatedSpritePath = NodePath("AnimatedSprite2D")
+DetectionAreaPath = NodePath("DetectionArea")
+AttackAreaPath = NodePath("AttackArea")
+FloorRayPath = NodePath("FloorRay")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 0)
+sprite_frames = SubResource("SpriteFrames_enemy")
+animation = &"idle"
+offset = Vector2(0, -48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+shape = SubResource("CircleShape2D_detection")
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(10, -8)
+collision_layer = 128
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("RectangleShape2D_attack")
+
+[node name="CharacterAudioController" type="Node2D" parent="."]
+script = ExtResource("2_audio")
+AudioDirectory = "res://Assets/audio/sfx/Enemies/Demontek"
+
+[node name="FloorRay" type="RayCast2D" parent="."]
+position = Vector2(0, -10)
+target_position = Vector2(0, 40)
+collision_mask = 5

@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://cwn8kv5s3fwma"]
+
+[ext_resource type="Script" uid="uid://trtbfqqyb2qq" path="res://Scenes/UI/MainMenuController.cs" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://b0xhq0560y42c" path="res://icon.png" id="2_icon"]
+
+[node name="MainMenu" type="Control" unique_id=1376952325]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1508376276]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.141176, 0.0862745, 0.133333, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=502758592]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -80.0
+offset_right = 90.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="TitleBox" type="HBoxContainer" parent="VBoxContainer" unique_id=987123981]
+layout_mode = 2
+alignment = 1
+
+[node name="IconLeft" type="TextureRect" parent="VBoxContainer/TitleBox" unique_id=876234871]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Title" type="Label" parent="VBoxContainer/TitleBox" unique_id=1876363272]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "DEMONTEKS"
+horizontal_alignment = 1
+
+[node name="IconRight" type="TextureRect" parent="VBoxContainer/TitleBox" unique_id=876234872]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture = ExtResource("2_icon")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="NewGameButton" type="Button" parent="VBoxContainer" unique_id=671445447]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "New Game"
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer" unique_id=1447615523]
+layout_mode = 2
+text = "Continue"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=670989069]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1869244273]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Quit"
+
+[node name="Version" type="Label" parent="." unique_id=164647737]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -30.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "v1.0.0"
+horizontal_alignment = 2
+
+[node name="OptionsPanel" type="ColorRect" parent="." unique_id=209823901]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel" unique_id=89234891]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -80.0
+offset_right = 130.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="OptionsPanel/VBoxContainer" unique_id=198034012]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="MusicCheck" type="CheckButton" parent="OptionsPanel/VBoxContainer" unique_id=40283011]
+layout_mode = 2
+text = "Enable Music"
+
+[node name="SfxCheck" type="CheckButton" parent="OptionsPanel/VBoxContainer" unique_id=59203912]
+layout_mode = 2
+text = "Enable Sound FX"
+
+[node name="VibrationCheck" type="CheckButton" parent="OptionsPanel/VBoxContainer" unique_id=749201992]
+layout_mode = 2
+text = "Enable Vibrations"
+
+[node name="OptionsBackButton" type="Button" parent="OptionsPanel/VBoxContainer" unique_id=992830101]
+layout_mode = 2
+text = "Back"
+

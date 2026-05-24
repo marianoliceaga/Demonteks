@@ -1,0 +1,53 @@
+X-If a Demontek is pushed to the void, it should respawn with his health intact, like the Player.
+X-The HUD is too big, make it 1/4 its size
+X-The enemy counter in the HUD is not counting killed enemies
+X-Make the camera zoom out a little
+X-The Demontek attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly and they attack facing the Player
+X-Platforms should look like the floor but thinner, just the top tiles
+X-Crea un piso casi en el fondo antes del KillZone justo abajo a la izquierda y a la derecha de los agujeros del piso principal
+X-Make the camera follow the Player vertically also
+X-Make the Player transition to Level 2 when it reaches the LevelEnd
+X-Level1 and Level2 Foreground can be improved
+X-Guard character attacks look bad, make sure they are using the cross punch attack animations both east and west accordingly and they attack facing the Player
+X-Music Level 3 (Castle)
+X-Make the platforms easily climbable between each other
+X-Make the platforms more random and not so close to each other
+X-Mutant character animations look bad, make sure they are using the right animations
+X-Goliath character animations look bad, make sure they are using the right animations 
+X-King character animations look bad, make sure they are using the right animations 
+X-Fix when Demontek is on top of the Player, it should be pushed to the side
+X-Demonteks keep looking and running right after the previous change
+X-When the Demonteks walk left they are facing right and walking backwards
+X-All the enemies should have more realistic movements and avoid making themm lock the player in a corner or between them
+X-Fondo (foreground) de Level3 tiene manchas blancas
+X-Los checkpoints solo funcionan si al Player lo matan los enemigos, no si cae en la Killzone
+X-The Options Menu Should have the features for: Enable Music, Enable Sound FX, Enable Vibrations, but when I click the Options button, nothing happens
+X-The enemies should not fall accidentally to the holes that lead to the killzone, but they should keep their current behavior, patrol and chase the Player when they are on the same platform or ground, this change should not break their current behaviour.
+X-Demonteks are still falling on top of the Player effectively stopping the Player from jumping or killing the demontek
+X-Check if the funcionality exists for when the Player falls on the killzone, it dies and respawns at the last checkpoint
+X-All enemies should do a bit more damage and have a bit more health so the game is a bit more challenging
+X-Finish assigning sound FX for all the game
+X-Player is not picking up HealthPickup or Weapons
+X-Remove the walking sound from the Demonteks
+X-Make the character use the other weapons when they are picked up, for this it's needed to generate them using PixelLab MCP and change the sprites to match the weapons being used at the time, and programmatically the damage inflicted.
+X-Verify why Machete attack of Player looks backwards
+X-Sometimes Demonteks try to run both left and right at the same time and they get stuck
+X-The Guard character traspases the Player when they are close to each other 
+X-When the Player falls dead to the KillZone it should respawn at the last checkpoint
+X-The floor traps in Level1 are not working and they are also blocking the Player and the Enemies. Must be something with the tiles.
+X-The weapons don't make it through levels.
+X-In all levels the SkyLater Parallax Background is not repeating horizontally till the end of the level.
+X-In Level2 checkpoints look buried in the tiles.
+X-Completely redo level 3, it's too short and boring, make it longer to the right with an irregular terrain and more interesting. When it reaches the far right create an ascending spiral-like stairs that leads to the Demontek King. The whole level should have 4 kind of enemies (guard demonteks, mutant demonteks, 1 Goliath boss and the King Demontek Final Boss), place some floor traps and health pickups strategically. Also place some WeaponPickup with the most advanced weapons. Use the tileset castle_tileset_16x16.png
+X-In Level3 checkpoints and weapong pickups look buried in the tiles.
+X-Level2: fix floortraps and weapon pickups.
+X-Level2: Midlayer set to no transparency
+X-In level2, at least, sometimes when Player falls to the void it doesn't die and respawn at the last checkpoint 
+X-All enemies should die and not respawn when they fall to the void as part of a Player's attack, the exception is when they fall to the void as part of an enemy's attack or when they fall to the void by themselves, in which case they should respawn at the last checkpoint
+X-Sometimes, at least in Level 1, the Demonteks are blocked by the floor traps and they can't walk or run through them.
+X-Why is it that when the Player is surrounded by enemies, he attacks and makes damage to all of them easily and kill them?
+X-When the enemies are in a pit, they should be able to walk out of it. 
+X-Sometimes the enemies don't attack the Player when they are close to each other, they just keep walking in the same spot.
+X-Add Tek Tek sounds to the Demonteks
+X-Add footsteps and fall sound from jump to the Player
+-Play storyboards before Level 1, Level 2, Level 3, and the finale after finishing level 3

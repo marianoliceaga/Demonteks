@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvf1u1yeu7551"]
+
+[ext_resource type="Script" uid="uid://bt8twb6fwjbu7" path="res://Scenes/UI/MobileControls.cs" id="1_mobile"]
+[ext_resource type="Texture2D" path="res://Assets/UI/btn_jump.png" id="2_jump"]
+[ext_resource type="Texture2D" path="res://Assets/UI/btn_attack.png" id="3_attack"]
+[ext_resource type="Texture2D" path="res://Assets/UI/btn_run.png" id="4_run"]
+[ext_resource type="Texture2D" path="res://Assets/UI/btn_interact.png" id="5_interact"]
+[ext_resource type="Texture2D" path="res://Assets/UI/btn_pause.png" id="6_pause"]
+
+
+[sub_resource type="Gradient" id="Gradient_Base"]
+offsets = PackedFloat32Array(0, 0.9, 1)
+colors = PackedColorArray(0.8, 0.8, 0.8, 1, 0.6, 0.6, 0.6, 1, 0.5, 0.5, 0.5, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_Base"]
+gradient = SubResource("Gradient_Base")
+width = 110
+height = 110
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_Knob"]
+offsets = PackedFloat32Array(0, 0.85, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_Knob"]
+gradient = SubResource("Gradient_Knob")
+width = 50
+height = 50
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="MobileControls" type="CanvasLayer"]
+process_mode = 3
+layer = 100
+script = ExtResource("1_mobile")
+JoystickPath = NodePath("Joystick")
+JumpButtonPath = NodePath("JumpButton")
+AttackButtonPath = NodePath("AttackButton")
+RunButtonPath = NodePath("RunButton")
+InteractButtonPath = NodePath("InteractButton")
+
+[node name="Joystick" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 60.0
+offset_top = 180.0
+offset_right = 160.0
+offset_bottom = 280.0
+
+[node name="Base" type="Sprite2D" parent="Joystick"]
+modulate = Color(1, 1, 1, 0.25)
+position = Vector2(50, 50)
+scale = Vector2(1, 0.3)
+texture = SubResource("GradientTexture2D_Base")
+
+[node name="Knob" type="Sprite2D" parent="Joystick"]
+modulate = Color(1, 1, 1, 0.85)
+position = Vector2(50, 50)
+texture = SubResource("GradientTexture2D_Knob")
+
+[node name="JumpButton" type="TouchScreenButton" parent="."]
+position = Vector2(388, 128)
+scale = Vector2(0.65, 0.65)
+texture_normal = ExtResource("2_jump")
+
+[node name="AttackButton" type="TouchScreenButton" parent="."]
+position = Vector2(433, 173)
+scale = Vector2(0.65, 0.65)
+texture_normal = ExtResource("3_attack")
+
+[node name="RunButton" type="TouchScreenButton" parent="."]
+position = Vector2(343, 173)
+scale = Vector2(0.65, 0.65)
+texture_normal = ExtResource("4_run")
+
+[node name="InteractButton" type="TouchScreenButton" parent="."]
+position = Vector2(388, 218)
+scale = Vector2(0.65, 0.65)
+texture_normal = ExtResource("5_interact")
+
+[node name="PauseButton" type="TouchScreenButton" parent="."]
+position = Vector2(430, 20)
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("6_pause")
+action = "pause"

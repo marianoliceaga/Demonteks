@@ -1,0 +1,113 @@
+[gd_scene format=3 uid="uid://dttb8i783ht3m"]
+
+[ext_resource type="Script" uid="uid://0hdtnwxd8qv7" path="res://Scripts/UI/PauseMenuController.cs" id="1_pause"]
+[ext_resource type="AudioStream" uid="uid://dc5s0a8g21h1m" path="res://Assets/audio/music/MainTheme.mp3" id="2_mjmdf"]
+
+[node name="PauseMenu" type="CanvasLayer" unique_id=575461376]
+process_mode = 3
+script = ExtResource("1_pause")
+
+[node name="Overlay" type="ColorRect" parent="." unique_id=1100392053]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.7)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=234279602]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -120.0
+offset_right = 100.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1474732647]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer" unique_id=283248789]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="VBoxContainer" unique_id=1577535977]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+text = "Restart Level"
+
+[node name="OptionsButton" type="Button" parent="VBoxContainer" unique_id=1497138681]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+text = "Options"
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer" unique_id=93837782]
+custom_minimum_size = Vector2(200, 32)
+layout_mode = 2
+text = "Main Menu"
+
+[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="VBoxContainer/RestartButton" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="VBoxContainer/MainMenuButton" to="." method="_on_main_menu_pressed"]
+
+[node name="OptionsPanel" type="ColorRect" parent="." unique_id=209823902]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.9)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel" unique_id=89234892]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -130.0
+offset_top = -80.0
+offset_right = 130.0
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="OptionsPanel/VBoxContainer" unique_id=198034013]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="MusicCheck" type="CheckButton" parent="OptionsPanel/VBoxContainer" unique_id=40283012]
+layout_mode = 2
+text = "Enable Music"
+
+[node name="SfxCheck" type="CheckButton" parent="OptionsPanel/VBoxContainer" unique_id=59203913]
+layout_mode = 2
+text = "Enable Sound FX"
+
+[node name="VibrationCheck" type="CheckButton" parent="OptionsPanel/VBoxContainer" unique_id=749201993]
+layout_mode = 2
+text = "Enable Vibrations"
+
+[node name="OptionsBackButton" type="Button" parent="OptionsPanel/VBoxContainer" unique_id=992830102]
+layout_mode = 2
+text = "Back"
+
+[connection signal="pressed" from="OptionsPanel/VBoxContainer/OptionsBackButton" to="." method="_on_options_back_pressed"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=987654321]
+stream = ExtResource("2_mjmdf")
+bus = &"Music"

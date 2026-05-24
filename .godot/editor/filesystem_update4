@@ -1,0 +1,6 @@
+res://Scenes/UI/MainMenuController.cs
+res://Scripts/Management/AudioManager.cs
+res://Scenes/UI/MobileControls.cs
+res://Scripts/Management/SaveManager.cs
+res://Scripts/Management/GameManager.cs
+res://Scenes/UI/UIAudioController.cs

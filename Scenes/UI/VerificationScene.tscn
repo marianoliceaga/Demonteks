@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://bixjf8oqkwqsd"]
+
+[node name="VerificationScene" type="Node2D" unique_id=417634197]
+
+[node name="Label" type="Label" parent="." unique_id=556817609]
+offset_left = 349.0
+offset_top = 75.0
+offset_right = 389.0
+offset_bottom = 98.0
+text = "Verification Build"

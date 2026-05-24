@@ -1,0 +1,455 @@
+[gd_scene format=3 uid="uid://x5pm7vvasqky"]
+
+[ext_resource type="Script" uid="uid://djlvgg7k6cuh" path="res://Scripts/Player/PlayerController.cs" id="1_player"]
+[ext_resource type="Script" uid="uid://qmp5rsg7x2av" path="res://Scripts/Player/PlayerStats.cs" id="2_stats"]
+[ext_resource type="Script" uid="uid://cu1lhcapq1juc" path="res://Scripts/Player/PlayerCombat.cs" id="3_combat"]
+[ext_resource type="Script" uid="uid://dossn78no8c4m" path="res://Scripts/Environment/CharacterAudioController.cs" id="4_audio"]
+[ext_resource type="Texture2D" uid="uid://ggu3qdletjl1" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_000.png" id="attack_0"]
+[ext_resource type="Texture2D" uid="uid://b1u7mdh6wy7rp" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_001.png" id="attack_1"]
+[ext_resource type="Texture2D" uid="uid://bwdc0enird4qn" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_002.png" id="attack_2"]
+[ext_resource type="Texture2D" uid="uid://c4d6cdqqdvbvm" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_003.png" id="attack_3"]
+[ext_resource type="Texture2D" uid="uid://bpjeyndcnl7wg" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_004.png" id="attack_4"]
+[ext_resource type="Texture2D" uid="uid://rlnkjfxet66y" path="res://Assets/characters/explorer/animations/cross-punch/east/frame_005.png" id="attack_5"]
+[ext_resource type="Texture2D" uid="uid://b743sdr03c1q" path="res://Assets/characters/explorer/animations/high-kick/east/frame_000.png" id="machete_0"]
+[ext_resource type="Texture2D" uid="uid://dmmnjw0xa2ek0" path="res://Assets/characters/explorer/animations/high-kick/east/frame_001.png" id="machete_1"]
+[ext_resource type="Texture2D" uid="uid://oclec6gve3yj" path="res://Assets/characters/explorer/animations/high-kick/east/frame_002.png" id="machete_2"]
+[ext_resource type="Texture2D" uid="uid://c6um65nn4sjn5" path="res://Assets/characters/explorer/animations/high-kick/east/frame_003.png" id="machete_3"]
+[ext_resource type="Texture2D" uid="uid://bemgsoi3fuarc" path="res://Assets/characters/explorer/animations/high-kick/east/frame_004.png" id="machete_4"]
+[ext_resource type="Texture2D" uid="uid://evaba6du2l54" path="res://Assets/characters/explorer/animations/high-kick/east/frame_005.png" id="machete_5"]
+[ext_resource type="Texture2D" uid="uid://brrxcpcvh1wnn" path="res://Assets/characters/explorer/animations/high-kick/east/frame_006.png" id="machete_6"]
+[ext_resource type="Texture2D" uid="uid://ctq5frsagjewq" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_000.png" id="sword_0"]
+[ext_resource type="Texture2D" uid="uid://c3lig2iw06ock" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_001.png" id="sword_1"]
+[ext_resource type="Texture2D" uid="uid://cpo88wyh8j5rj" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_002.png" id="sword_2"]
+[ext_resource type="Texture2D" uid="uid://ccn5rttm5ebnj" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_003.png" id="sword_3"]
+[ext_resource type="Texture2D" uid="uid://dieiu1fbyeg3j" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_004.png" id="sword_4"]
+[ext_resource type="Texture2D" uid="uid://dj0dqt3wes64" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_005.png" id="sword_5"]
+[ext_resource type="Texture2D" uid="uid://dq3krtskhmn3o" path="res://Assets/characters/explorer/animations/roundhouse-kick/east/frame_006.png" id="sword_6"]
+[ext_resource type="Texture2D" uid="uid://bx3vmcrovxvqb" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_000.png" id="saber_0"]
+[ext_resource type="Texture2D" uid="uid://b22p4b7ftpde8" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_001.png" id="saber_1"]
+[ext_resource type="Texture2D" uid="uid://de4nhgisaklpr" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_002.png" id="saber_2"]
+[ext_resource type="Texture2D" uid="uid://ddp3v8kby6ot4" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_003.png" id="saber_3"]
+[ext_resource type="Texture2D" uid="uid://gtw2h6yu83di" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_004.png" id="saber_4"]
+[ext_resource type="Texture2D" uid="uid://lliaov8pn28u" path="res://Assets/characters/explorer/animations/flying-kick/east/frame_005.png" id="saber_5"]
+[ext_resource type="Texture2D" uid="uid://83qy2m1qeamr" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_000.png" id="hurricane_0"]
+[ext_resource type="Texture2D" uid="uid://ctiqimn7kou77" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_001.png" id="hurricane_1"]
+[ext_resource type="Texture2D" uid="uid://bf7qxthqx1e3b" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_002.png" id="hurricane_2"]
+[ext_resource type="Texture2D" uid="uid://clkhenw5qpgp" path="res://Assets/characters/explorer/animations/hurricane-kick/east/frame_003.png" id="hurricane_3"]
+[ext_resource type="Texture2D" uid="uid://c58kt323y4g0q" path="res://Assets/characters/explorer/animations/surprise-uppercut/east/frame_000.png" id="sawtooth_0"]
+[ext_resource type="Texture2D" uid="uid://jewe4xkh6tc2" path="res://Assets/characters/explorer/animations/surprise-uppercut/east/frame_001.png" id="sawtooth_1"]
+[ext_resource type="Texture2D" uid="uid://ck3vy01y1glw8" path="res://Assets/characters/explorer/animations/surprise-uppercut/east/frame_002.png" id="sawtooth_2"]
+[ext_resource type="Texture2D" uid="uid://dvivmjbxpydfu" path="res://Assets/characters/explorer/animations/surprise-uppercut/east/frame_003.png" id="sawtooth_3"]
+[ext_resource type="Texture2D" uid="uid://dcd081qhb7y3d" path="res://Assets/characters/explorer/animations/surprise-uppercut/east/frame_004.png" id="sawtooth_4"]
+[ext_resource type="Texture2D" uid="uid://b5xqqv61h2ewe" path="res://Assets/characters/explorer/animations/surprise-uppercut/east/frame_005.png" id="sawtooth_5"]
+[ext_resource type="Texture2D" uid="uid://nyhl8qh5elbr" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_000.png" id="death_0"]
+[ext_resource type="Texture2D" uid="uid://baaeqipgfne7q" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_001.png" id="death_1"]
+[ext_resource type="Texture2D" uid="uid://bg1m17qcb13gd" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_002.png" id="death_2"]
+[ext_resource type="Texture2D" uid="uid://ya673l226vh0" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_003.png" id="death_3"]
+[ext_resource type="Texture2D" uid="uid://dtrx3sgo8t1s5" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_004.png" id="death_4"]
+[ext_resource type="Texture2D" uid="uid://m2gh6ko5ddpv" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_005.png" id="death_5"]
+[ext_resource type="Texture2D" uid="uid://cdo4mp6kdfc5u" path="res://Assets/characters/explorer/animations/falling-back-death/east/frame_006.png" id="death_6"]
+[ext_resource type="Texture2D" uid="uid://dkb1igu7odoo2" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_000.png" id="hurt_0"]
+[ext_resource type="Texture2D" uid="uid://c7vakv4dc1ymd" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_001.png" id="hurt_1"]
+[ext_resource type="Texture2D" uid="uid://bvr1ncmudn8ow" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_002.png" id="hurt_2"]
+[ext_resource type="Texture2D" uid="uid://jk7fxf5k43mh" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_003.png" id="hurt_3"]
+[ext_resource type="Texture2D" uid="uid://dcwgwplywyhxo" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_004.png" id="hurt_4"]
+[ext_resource type="Texture2D" uid="uid://by8huhw2ilogy" path="res://Assets/characters/explorer/animations/taking-punch/east/frame_005.png" id="hurt_5"]
+[ext_resource type="Texture2D" uid="uid://ddaup6tylc46f" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_000.png" id="idle_0"]
+[ext_resource type="Texture2D" uid="uid://c2dq7kq3oep31" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_001.png" id="idle_1"]
+[ext_resource type="Texture2D" uid="uid://dlh8gcyqvdumf" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_002.png" id="idle_2"]
+[ext_resource type="Texture2D" uid="uid://ch4bbv8ce0pss" path="res://Assets/characters/explorer/animations/breathing-idle/east/frame_003.png" id="idle_3"]
+[ext_resource type="Texture2D" uid="uid://xm6wvdba36g3" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_000.png" id="jump_0"]
+[ext_resource type="Texture2D" uid="uid://q7txjsf38x6i" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_001.png" id="jump_1"]
+[ext_resource type="Texture2D" uid="uid://cvc17rqva5gj" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_002.png" id="jump_2"]
+[ext_resource type="Texture2D" uid="uid://de1hhjq8f022g" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_003.png" id="jump_3"]
+[ext_resource type="Texture2D" uid="uid://tgb4hwssukg" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_004.png" id="jump_4"]
+[ext_resource type="Texture2D" uid="uid://b3fbx4kjccldu" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_005.png" id="jump_5"]
+[ext_resource type="Texture2D" uid="uid://daqd77rqnccr5" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_006.png" id="jump_6"]
+[ext_resource type="Texture2D" uid="uid://cel2qrjle601d" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_007.png" id="jump_7"]
+[ext_resource type="Texture2D" uid="uid://p0vsdm22g6vx" path="res://Assets/characters/explorer/animations/jumping-1/east/frame_008.png" id="jump_8"]
+[ext_resource type="Texture2D" uid="uid://ba2u5tg4gca1x" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_000.png" id="run_0"]
+[ext_resource type="Texture2D" uid="uid://dmdyw5qb3hc37" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_001.png" id="run_1"]
+[ext_resource type="Texture2D" uid="uid://bnjbim4ko5c5w" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_002.png" id="run_2"]
+[ext_resource type="Texture2D" uid="uid://bw032ptekb1d0" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_003.png" id="run_3"]
+[ext_resource type="Texture2D" uid="uid://duhfn4qkiowq2" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_004.png" id="run_4"]
+[ext_resource type="Texture2D" uid="uid://ci0s8pxp1r04y" path="res://Assets/characters/explorer/animations/running-6-frames/east/frame_005.png" id="run_5"]
+[ext_resource type="Texture2D" uid="uid://dypgkx1yido13" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_000.png" id="walk_0"]
+[ext_resource type="Texture2D" uid="uid://6524cghe4h0g" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_001.png" id="walk_1"]
+[ext_resource type="Texture2D" uid="uid://cahivhmimc5ss" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_002.png" id="walk_2"]
+[ext_resource type="Texture2D" uid="uid://cxkgn42mih706" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_003.png" id="walk_3"]
+[ext_resource type="Texture2D" uid="uid://cx0kb7lgwi0fw" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_004.png" id="walk_4"]
+[ext_resource type="Texture2D" uid="uid://b1yv0tk4xi26w" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_005.png" id="walk_5"]
+[ext_resource type="Texture2D" uid="uid://cc1hb2qwjiavv" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_006.png" id="walk_6"]
+[ext_resource type="Texture2D" uid="uid://bdfqfto1ditvv" path="res://Assets/characters/explorer/animations/walking-8-frames/east/frame_007.png" id="walk_7"]
+[ext_resource type="Texture2D" uid="uid://4wafuiiw3am1" path="res://Assets/items/weapons/weapon_alien.png" id="weapon_alien"]
+[ext_resource type="Texture2D" uid="uid://chxrny8vtcvwb" path="res://Assets/items/weapons/weapon_machete.png" id="weapon_machete"]
+[ext_resource type="Texture2D" uid="uid://dic5btrufba8r" path="res://Assets/items/weapons/weapon_saber.png" id="weapon_saber"]
+[ext_resource type="Texture2D" uid="uid://cfjjgw0o8suxe" path="res://Assets/items/weapons/weapon_sawtooth.png" id="weapon_sawtooth"]
+[ext_resource type="Texture2D" uid="uid://d2rdosj8shid0" path="res://Assets/items/weapons/weapon_sword.png" id="weapon_sword"]
+
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_player"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("attack_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("attack_5")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("machete_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_6")
+}],
+"loop": false,
+"name": &"attack_machete",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("sword_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sword_6")
+}],
+"loop": false,
+"name": &"attack_sword",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("sawtooth_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sawtooth_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sawtooth_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sawtooth_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sawtooth_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("sawtooth_5")
+}],
+"loop": false,
+"name": &"attack_sawtooth",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("saber_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("saber_5")
+}],
+"loop": false,
+"name": &"attack_saber",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("machete_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("machete_6")
+}],
+"loop": false,
+"name": &"attack_alien",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("hurricane_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurricane_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurricane_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurricane_3")
+}],
+"loop": false,
+"name": &"attack_hurricane",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("death_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("death_6")
+}],
+"loop": false,
+"name": &"death",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("hurt_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("hurt_5")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("idle_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("idle_3")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("jump_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("jump_8")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("run_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("run_5")
+}],
+"loop": true,
+"name": &"run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("walk_0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("walk_7")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_body"]
+size = Vector2(16, 96)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hitbox"]
+size = Vector2(40, 48)
+
+[node name="Player" type="CharacterBody2D" unique_id=2066639339 groups=["player"]]
+collision_mask = 5
+script = ExtResource("1_player")
+AnimatedSpritePath = NodePath("AnimatedSprite2D")
+CollisionShapePath = NodePath("CollisionShape2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=525423757]
+position = Vector2(0, -48)
+sprite_frames = SubResource("SpriteFrames_player")
+animation = &"idle"
+
+[node name="WeaponSprite" type="Sprite2D" parent="." unique_id=9876543211]
+position = Vector2(12, -52)
+z_index = 1
+texture = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1154734011]
+position = Vector2(0, -48)
+shape = SubResource("RectangleShape2D_body")
+
+[node name="PlayerStats" type="Node" parent="." unique_id=1519165181]
+script = ExtResource("2_stats")
+
+[node name="PlayerCombat" type="Node2D" parent="." unique_id=774713060]
+script = ExtResource("3_combat")
+HitboxPath = NodePath("Hitbox")
+
+[node name="Hitbox" type="Area2D" parent="PlayerCombat" unique_id=1534915021]
+position = Vector2(10, -48)
+collision_layer = 64
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCombat/Hitbox" unique_id=831375667]
+shape = SubResource("RectangleShape2D_hitbox")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=2077133519]
+position = Vector2(0, -48)
+zoom = Vector2(0.3, 0.3)
+position_smoothing_enabled = true
+
+[node name="CharacterAudioController" type="Node2D" parent="." unique_id=9876543210]
+script = ExtResource("4_audio")
+AudioDirectory = "res://Assets/audio/sfx/Player"

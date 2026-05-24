@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://c6lxbx3v2x1xx"]
+
+[ext_resource type="PackedScene" uid="uid://cod4uis51uv2r" path="res://Scenes/Prefabs/FloorTrap.tscn" id="1_trap"]
+[ext_resource type="TileSet" uid="uid://b3p7vau4bfr1s" path="res://Assets/tilesets/dungeon_tileset_16x16.tres" id="2_tileset"]
+
+[node name="DungeonFloorTrap" instance=ExtResource("1_trap")]
+
+[node name="FakeFloorTileS" parent="." index="1"]
+tile_map_data = PackedByteArray(0, 0, 254, 255, 255, 255, 0, 0, 1, 0, 0, 0, 0, 0, 255, 255, 255, 255, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 255, 255, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 255, 255, 0, 0, 1, 0, 0, 0, 0, 0)
+tile_set = ExtResource("2_tileset")
+
+[node name="RevealedTrapTilesS" parent="." index="3"]
+tile_set = ExtResource("2_tileset")
