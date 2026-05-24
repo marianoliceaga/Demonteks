@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "9wJYb9W/iqI=",
+  "success": true,
+  "projectFilePath": "D:\\Demonteks\\Demonteks.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mlice\\.nuget\\packages\\godot.sourcegenerators\\4.6.1\\godot.sourcegenerators.4.6.1.nupkg.sha512",
+    "C:\\Users\\mlice\\.nuget\\packages\\godotsharp\\4.6.1\\godotsharp.4.6.1.nupkg.sha512",
+    "C:\\Users\\mlice\\.nuget\\packages\\godotsharpeditor\\4.6.1\\godotsharpeditor.4.6.1.nupkg.sha512"
+  ],
+  "logs": []
+}
