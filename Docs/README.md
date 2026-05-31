@@ -1,157 +1,92 @@
 # Demonteks 🎮
 
-THIS IS THE ROADMAP FOR THE GAME, IT'S STILL WORK IN PROGRESS.
+> **A polished, feature-complete 2D action platformer built in Godot 4.6 using C#.** Fight alien demons, discover ancient weapons, explore hand-crafted environments, and escape back to Earth.
 
-> A 2D action platformer where an explorer must fight through alien demons to escape an alien world and return to Earth.
+---
 
 ## 📖 Table of Contents
 
-- [Overview](#overview)
-- [Story](#story)
-- [Features](#features)
-- [Technical Stack](#technical-stack)
-- [Installation](#installation)
-- [Gameplay](#gameplay)
-- [Level Design](#level-design)
-- [Character Guide](#character-guide)
-- [Weapons System](#weapons-system)
-- [Enemy Types](#enemy-types)
-- [Boss Fights](#boss-fights)
-- [Controls](#controls)
-- [Project Structure](#project-structure)
-- [Development Guide](#development-guide)
-- [Asset Generation](#asset-generation)
-- [Building & Export](#building--export)
-- [Architecture](#architecture)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [Credits](#credits)
-- [License](#license)
+- [Overview](#-overview)
+- [Story](#-story)
+- [Features](#-features)
+- [Technical Stack](#-technical-stack)
+- [Architecture](#-architecture)
+- [Project Structure](#-project-structure)
+- [Gameplay & Controls](#-gameplay--controls)
+- [Weapon Progression](#-weapon-progression)
+- [Enemy AI & Bosses](#-enemy-ai--bosses)
+- [Level Design](#-level-design)
+- [Save & Persistence](#-save--persistence)
+- [Building & Exporting](#-building--exporting)
+- [Credits](#-credits)
+- [License](#-license)
 
 ---
 
 ## 🎯 Overview
 
-**Demonteks** is a fast-paced 2D action platformer inspired by classics like Castlevania and modern indie hits like Celeste. The game combines:
+**Demonteks** is a fast-paced 2D action platformer inspired by classics like *Castlevania* and modern indie hits like *Celeste* and *Hollow Knight*. The game features:
 
-- **Intense Combat**: Melee weapons with satisfying feedback
-- **Platforming Challenges**: Jump across treetops, navigate dungeons, infiltrate castles
-- **Enemy Variety**: From basic Demonteks to mutants, guards, and epic boss fights
-- **Multiple Endings**: Mercy route (pacifist) vs Combat route
-- **Mobile-First Design**: Touch controls optimized for mobile devices
-- **Cross-Platform**: Windows, Android, and iOS support
-
-The game is built with **Godot 4.3+** using **C#** for robust, maintainable code architecture, and features pixel art assets generated with **PixelLab**.
+- **Intense Combat**: A responsive 6-weapon melee system with satisfying hitstops, screenshakes, and visual feedback.
+- **Platforming Challenges**: Precise, physics-based controls with coyote time and jump buffering.
+- **Intelligent Enemy AI**: 5 unique enemy types powered by a hierarchical state machine.
+- **Dynamic Progression**: A complete JSON-based save system with checkpoints, real-time statistics, and auto-saves.
+- **Cross-Platform Design**: Fully optimized for Desktop (keyboard) and Mobile (virtual touch joystick and custom buttons).
 
 ---
 
 ## 📚 Story
 
 ### Part 1: The Awakening (Level 1 - Jungle)
-
-*The explorer wakes up confused, stands up, and looks at the sky—it is violet. The plants are giant compared to those on Earth; everything suggests a jungle on another planet. Immediately after, the explorer encounters a new alien species.*
-
-*At first, he believes they are friendly and adorable, but they are actually an invasive species. As soon as he sees them, he starts joking about how small and silly they look. They become enraged and begin to chase him, trying to kill him, while he starts running and jumping across platforms in the treetops.*
-
-*The aliens are like small demons, reddish in color; they are called Demonteks because they repeatedly say "tek" and their physical forms resemble demons. The explorer bears a distant resemblance to Indiana Jones, but without the hat or whip; he uses a knife.*
+The explorer wakes up disoriented on an alien planet under a violet sky, surrounded by giant plants. He encounters small, reddish alien demons—the **Demonteks** (named after the "tek" sounds they make). Believing they are harmless, the explorer jokes about their appearance, provoking their rage. Armed only with a basic survival Knife, he must jump across treetop platforms and fight his way to safety.
 
 ### Part 2: The Capture (Level 2 - Dungeon/Ruins)
-
-*Once Part One is cleared, the explorer manages to take refuge in some ruins, but the Demonteks have already colonized them. Upon reaching the ruins, they capture the explorer, and he faints. He wakes up in a place resembling hell, with fire and almost everything colored red. He sees many Demonteks and a large castle made of reddish bricks. On the castle terrace, there is a giant Demontek with a beard and a crown: the King of the Demonteks.*
-
-*When they bring the explorer to the King, he looks at him and orders the Demonteks in their own language to take him to the dungeon. When the explorer arrives at the dungeon, he sees other Demonteks locked up as well. One of them speaks to him, but since he doesn't understand, the alien uses signs to indicate there is a tunnel he could use to escape, though it is very dangerous.*
-
-*In that place, there are ancient writings describing the attempted creation of portals to other dimensions and the encounter with humans. The writings also say that the Demonteks have existed since prehistory but remained hidden, which is why the exit to the real world is located in the castle. At that moment, you plan to defeat the King and then cross over to the real world.*
+Seeking refuge in ancient ruins, the explorer is ambushed and captured by the Demonteks. He wakes up locked in a reddish stone dungeon deep inside the Demontek territory. Guided by mysterious writings describing ancient portals and a friendly captive alien who signs a way out, the explorer escapes through a dangerous sewer tunnel, neutralizes the guards, and retrieves ancient weapons hidden in the ruins.
 
 ### Part 3: The Infiltration (Level 3 - Castle)
+The explorer reaches the towering Castle of the Demonteks. To bypass the heavy front defenses, he must infiltrate from the back, avoiding floor traps that trigger massive alien ambushes. Fighting floor by floor, he battles basic Demonteks, muscular mutants, and the massive mid-boss **Goliath** before ascending the spiral stairs to the terrace.
 
-*The explorer must try to enter the castle stealthily by going around it and entering from the back. He must be careful and jump over traps on the floor; if he steps on one, 6 Demonteks appear and attack until they kill him, sending him back to the dungeon.*
-
-*When the explorer enters, he faces several Demonteks using the weapons found in Part Two. As he progresses through the castle floors, he encounters increasingly powerful foes: first regular Demonteks, then muscular Mutant Demonteks, and finally the monstrous Goliath.*
-
-### Part 4: The Finale
-
-*Once our protagonist reaches the terrace and defeats the King Demontek, the portal to Earth opens. But before he crosses, they let him know that this is only the beginning of the war between humans and Demonteks.*
+### Part 4: The Finale (The Terrace)
+On the castle terrace, the explorer faces **King Demontek** in an epic final battle. Defeating the King opens the portal back to Earth. As the explorer steps through, the dimensional link is severed, but the threat looms: this is only the beginning of a larger conflict between humans and Demonteks.
 
 ---
 
 ## ✨ Features
 
-### Core Gameplay
-- ⚔️ **Dynamic Combat System** - 6 melee weapons with unique stats
-- 🏃 **Fluid Movement** - Run, jump, crouch, dodge
-- 🎭 **State Machine AI** - Intelligent enemy behavior patterns
-- 💾 **Save System** - Auto-save and manual checkpoints
-- 📱 **Mobile Controls** - Virtual joystick and touch buttons
-
-### Advanced Features
-- 🛡️ **Multiple Endings** - Mercy route (no kills) or combat route
-- 👑 **Boss Battles** - Goliath and King Demontek with unique mechanics
-- 🗡️ **Weapon Progression** - Unlock better weapons as you advance
-- 📊 **Statistics Tracking** - Deaths, kills, playtime, damage taken
-- 🎨 **Pixel Art Style** - Retro aesthetic with modern effects
-- 🌍 **Multiple Levels** - Jungle, Dungeon, Castle with unique challenges
-
-### Technical Features
-- 🏗️ **Component-Based Architecture** - Modular, maintainable code
-- 🔧 **Modern C# Patterns** - Signals, async/await, LINQ
-- 📐 **Hierarchical State Machines** - Clean state management
-- 💽 **JSON Save System** - Human-readable save files
-- 🔌 **Event-Driven Design** - Loose coupling via Godot signals
-- 📏 **Pixel-Perfect Rendering** - Crisp pixel art at any resolution
+- ⚔️ **Responsive Combat** - 6 unique melee weapons with tailored damage, speed, and ranges.
+- 🏃 **Fluid Platforming** - Custom physics loop with coyote time and jump buffering.
+- 🧠 **Hierarchical State Machines** - Custom FSM structure powering clean, predictable states for both the player and enemies.
+- 💾 **State Persistence** - JSON serialization for player health, unlocked weapons, current weapon, level progression, and stats.
+- 📊 **Statistics Tracking** - Real-time monitoring of deaths, kills, damage taken, and playtime.
+- 📱 **Mobile & Desktop Support** - Custom virtual joystick overlay with auto-detection for touch inputs.
+- 🎬 **Storyboards** - Fully integrated story intro, cinematics, level transition system, and victory scenes.
 
 ---
 
 ## 🛠 Technical Stack
 
 ### Engine & Language
-- **Godot Engine**: 4.3+ with .NET support
+- **Godot Engine**: 4.6+ with .NET support
 - **C# Version**: .NET 8.0+
-- **Target Platforms**: Windows, Android, iOS
+- **Target Platforms**: Windows (Desktop), Android, iOS (Mobile)
 
 ### Development Tools
-- **IDE / Code Editor**: Visual Studio Code, Antigravity, OpenCode
-- **LLMs**: GLM 4.7, Sonnet 4.6, Gemini Pro 3.1
+- **Asset Creation**: PixelLab MCP (character sprites, animations, and tilesets), ElevenLabs MCP (sound effects), layer.ai (parallax backgrounds)
+- **Codebase Management**: Visual Studio Code, Antigravity C# IDE
 - **Version Control**: Git
-- **Asset Creation**: PixelLab via MCP (characters sprites and animations), ElevenLabs via MCP (audio SFX), AI Music (music), layer.ai (level backgrounds)
-
-## Architecture Pattern
-- **No MVVM** - Direct component communication via signals
-- **Entity-Component System** - Modular character capabilities
-- **State Machines** - FSM for player and AI behavior
-- **Manager Pattern** - Singleton managers for game state
 
 ---
-## 🎮 Controls
 
-### Desktop (Keyboard)
+## 🏗 Architecture
 
-| Action | Key | Description |
-|--------|-----|-------------|
-| Move Left | A | Move character left |
-| Move Right | D | Move character right |
-| Jump | W / Space | Jump (hold for higher) |
-| Crouch | S / Down | Crouch/Duck | **NOT IMPLEMENTED**
-| Run | Shift | Run faster |
-| Attack | E | Attack with current weapon |
-| Interact | F | Open portals, pick up items |
-| Next Weapon | Q | Cycle to next weapon |
-| Previous Weapon | Z | Cycle to previous weapon |
-| Pause | ESC | Pause menu |
+Demonteks utilizes a modular, event-driven design avoiding the overhead of MVVM, prioritizing fast performance and clean code separation:
 
-### Mobile (Touch)
-
-| Control | Description |
-|---------|-------------|
-| Virtual Joystick | Left side of screen for movement |
-| Jump Button | Right side, bottom |
-| Attack Button | Right side, middle |
-| Crouch Button | Right side, top |
-| Weapon Swap | Swipe on weapon icon |
-
-### Controller Support (Coming Soon)
-
-Currently keyboard/touch only. Gamepad support planned for v1.5.
+- **Entity-Component Pattern**: Character properties (stats, combat, physics) are split into standalone nodes.
+- **Signal-Based Communication**: Components talk to each other and the UI using Godot's C# event signals, preventing tight coupling.
+- **Autoload Managers**: Singletons like `GameManager`, `SaveManager`, and `AudioManager` handle global game flow, persistence, and mix/audio routing.
+- **Hierarchical State Machine**:
+  - **Player States**: `Idle`, `Move`, `Jump`, `Fall`, `Attack`, `Hurt`, `Death`
+  - **Enemy AI States**: `Idle`, `Patrol`, `Chase`, `Attack`, `Return`, `Hurt`, `Death`
 
 ---
 
@@ -160,517 +95,162 @@ Currently keyboard/touch only. Gamepad support planned for v1.5.
 ```
 demonteks/
 ├── Assets/
-│   ├── characters/           # Character sprites and animations
-│   │   ├── explorer/
-│   │   ├── demontek/
-│   │   ├── guard/
-│   │   ├── mutant/
-│   │   ├── goliath/
-│   │   └── king/
-│   ├── backgrounds/          # Level backgrounds
-│   │   ├── jungle/
-│   │   ├── dungeon/
-│   │   └── castle/
-│   ├── audio/               # Music and SFX
-│   │   ├── music/
-│   │   └── sfx/
-│   └── fonts/               # UI fonts
-│
+│   ├── characters/           # Pixel-art sheets (Explorer, Demonteks, Bosses)
+│   ├── backgrounds/          # 3-layer parallax backgrounds (Jungle, Dungeon, Castle)
+│   ├── audio/               # Complete sound effects and background music
+│   ├── tilesets/            # 16x16px collision-mapped tilesets (Jungle, Dungeon, Castle)
+│   └── decorations/         # Ambient decorations (vines, alien trees, crystals)
 ├── Scenes/
 │   ├── Characters/
-│   │   ├── Player.tscn
-│   │   └── Enemies/
-│   │       ├── Demontek.tscn
-│   │       ├── Guard.tscn
-│   │       ├── Mutant.tscn
-│   │       ├── Goliath.tscn
-│   │       └── King.tscn
+│   │   ├── Player.tscn       # Explorer character with camera and combat components
+│   │   └── Enemies/          # All 5 enemy scenes
 │   ├── Levels/
 │   │   ├── Level1_Jungle.tscn
 │   │   ├── Level2_Dungeon.tscn
 │   │   └── Level3_Castle.tscn
 │   ├── UI/
 │   │   ├── MainMenu.tscn
+│   │   ├── HUD.tscn          # Health, weapon, level, and mercy tracker
 │   │   ├── PauseMenu.tscn
-│   │   ├── HUD.tscn
-│   │   └── MobileControls.tscn
+│   │   ├── GameOver.tscn     # Displays player stats on death
+│   │   └── Victory.tscn      # Displays completion time, stats, and victory ending
 │   └── Prefabs/
-│       ├── Checkpoint.tscn
-│       ├── Portal.tscn
-│       └── Trap.tscn
-│
+│       ├── Checkpoint.tscn   # Saves progress and sets respawn locations
+│       ├── WeaponPickup.tscn # Collectible weapon node
+│       └── Trap.tscn         # Ambush trap triggering spawns
 ├── Scripts/
-│   ├── Player/
-│   │   ├── PlayerController.cs     # Main player logic
-│   │   ├── PlayerStats.cs          # Health, stats
-│   │   └── PlayerCombat.cs         # Weapons, attacks
-│   ├── Enemy/
-│   │   └── DemontekAI.cs          # Enemy AI and state machine
-│   ├── Combat/
-│   │   ├── Hitbox.cs
-│   │   └── Hurtbox.cs
-│   ├── Management/
-│   │   ├── GameManager.cs         # Game state, levels
-│   │   └── SaveManager.cs         # Persistence
-│   ├── UI/
-│   │   ├── MobileControls.cs      # Touch input
-│   │   ├── HUDController.cs
-│   │   └── MenuController.cs
-│   └── Utils/
-│       ├── StateMachine.cs
-│       └── Extensions.cs
-│
-├── Docs/
-│   ├── README.md                  # This file
-│   ├── QUICK_START.md            # Setup guide
-│   ├── ASSET_GENERATION_GUIDE.md # PixelLab guide
-│   ├── API_REFERENCE.md          # Code documentation
-│   └── DESIGN_DOCUMENT.md        # Game design doc
-│
-├── project.godot                 # Godot project file
-├── Demonteks.csproj             # C# project file
-├── Demonteks.sln                # Solution file
-├── .gitignore
-└── LICENSE
+│   ├── Player/               # PlayerController.cs, PlayerCombat.cs, PlayerStats.cs
+│   ├── Enemy/                # DemontekAI.cs (AI logic and state transitions)
+│   ├── Management/           # GameManager.cs, SaveManager.cs, AudioManager.cs
+│   ├── UI/                   # HUDController.cs, Menu controllers, StoryIntroController.cs
+│   └── Utils/                # Checkpoint.cs, CameraFollow.cs, KillZone.cs
+├── project.godot             # Godot project settings
+├── Demonteks.csproj          # C# project references
+└── Demonteks.sln             # C# solution solution
 ```
 
 ---
 
-## 🔧 Development Guide
+## 🎮 Gameplay & Controls
 
-### Setting Up Development Environment
+### Desktop (Keyboard)
 
-1. **IDE Setup**
-   ```bash
-   # Visual Studio Code (recommended)
-   code --install-extension ms-dotnettools.csharp
-   code --install-extension geequlim.godot-tools
-   
-   # Or use Visual Studio 2022 / JetBrains Rider
-   ```
+| Action | Key | Description |
+|--------|-----|-------------|
+| **Move Left** | `A` | Move explorer left |
+| **Move Right**| `D` | Move explorer right |
+| **Jump**      | `W` / `Space` | Jump (hold for higher jump, coyote time active) |
+| **Run**       | `Shift` | Toggle running speed (1.5x multiplier) |
+| **Attack**    | `E` | Strike with current weapon |
+| **Interact**  | `F` | Interact with checkpoints, pickups, and portals |
+| **Next Weapon** | `Q` | Cycle to next unlocked weapon |
+| **Prev Weapon** | `Z` | Cycle to previous unlocked weapon |
+| **Pause**     | `ESC` | Open Pause Menu (freezes game state) |
 
-2. **Build Configuration**
-   ```bash
-   # Debug build
-   godot --build-solutions
-   
-   # Release build
-   dotnet build -c Release
-   ```
-
-3. **Run Tests** (Coming Soon)
-   ```bash
-   dotnet test
-   ```
-
-### Code Style
-
-Following Microsoft C# conventions:
-- PascalCase for public members
-- camelCase for private fields (with underscore)
-- Descriptive variable names
-- XML documentation for public APIs
-
-Example:
-```csharp
-/// <summary>
-/// Handles player movement and input
-/// </summary>
-public partial class PlayerController : CharacterBody2D
-{
-    private Vector2 _velocity;
-    
-    /// <summary>
-    /// Move the player in a direction
-    /// </summary>
-    public void Move(Vector2 direction)
-    {
-        _velocity = direction * MoveSpeed;
-    }
-}
-```
-
-### Architecture Patterns
-
-#### State Machine Pattern
-Used for player and enemy AI states:
-
-```csharp
-public interface IPlayerState
-{
-    void Enter(PlayerController player);
-    IPlayerState Update(PlayerController player, float delta);
-    void Exit(PlayerController player);
-}
-
-public class IdleState : IPlayerState { /* ... */ }
-public class MoveState : IPlayerState { /* ... */ }
-public class AttackState : IPlayerState { /* ... */ }
-```
-
-#### Signal-Based Events
-Loose coupling via Godot signals:
-
-```csharp
-[Signal]
-public delegate void HealthChangedEventHandler(int current, int max);
-
-// Emit
-EmitSignal(SignalName.HealthChanged, 80, 100);
-
-// Connect
-stats.HealthChanged += OnHealthChanged;
-```
-
-#### Component System
-Modular character capabilities:
-
-```
-Player (CharacterBody2D)
-├── PlayerStats (Node)
-├── PlayerCombat (Node2D)
-├── PlayerController (Script)
-├── AnimatedSprite2D
-└── CollisionShape2D
-```
-
-### Adding New Features
-
-1. **New Enemy Type**
-   ```csharp
-   // 1. Add enum value
-   public enum EnemyType { Normal, Guard, Mutant, YourNewType }
-   
-   // 2. Add stats in InitializeByType()
-   case EnemyType.YourNewType:
-       MaxHealth = 100;
-       Damage = 15;
-       // ...
-       break;
-   
-   // 3. Create sprite assets
-   // 4. Update animation dictionary
-   ```
-
-2. **New Weapon**
-   ```csharp
-   // Add to WeaponType enum
-   public enum WeaponType { /* ... */, YourNewWeapon }
-   
-   // Add weapon data in InitializeWeapons()
-   _weapons[WeaponType.YourNewWeapon] = new Weapon { /* ... */ };
-   ```
-
-3. **New Level**
-   ```csharp
-   // Create Level scene in Scenes/Levels/
-   // Add to GameManager level list
-   [Export] public string Level4Scene { get; set; } = "res://...";
-   ```
+### Mobile (Touch Controls)
+- **Virtual Joystick**: Positioned on the left side of the screen for character movement.
+- **Interactive Touch Buttons**: Custom buttons on the right side of the screen mapped for Jump, Attack, and Weapon cycling.
 
 ---
 
-## 🎨 Asset Generation
+## ⚔️ Weapon Progression
 
-See [ASSET_GENERATION_GUIDE.md](ASSET_GENERATION_GUIDE.md) for complete details.
+The game features six distinct melee weapons that unlock sequentially. Unlocks are saved automatically at checkpoints:
 
-### Quick Start
+| Weapon | Damage | Attack Delay | Story Location |
+|--------|--------|--------------|----------------|
+| **Survival Knife** | 10 | 1.2s | Spawn weapon (Level 1 starting area) |
+| **Machete** | 20 | 0.9s | Found at the end of Level 1 (Jungle) |
+| **Sword** | 30 | 1.0s | Hidden in ruins (Level 2 Dungeon) |
+| **Demontek Saber** | 35 | 1.1s | Guard tower chamber (Level 2 Courtyard) |
+| **Sawtooth Blade** | 40 | 0.8s | Looted on Floor 2 of Level 3 (Castle) |
+| **Alien Sword** | 50 | 1.0s | Left chamber on Floor 3 (before Goliath) |
 
-1. **Character Sprites** (128x128 tiles)
-   - Explorer (normal size)
-   - Demontek (normal size)
-   - Guard (normal size)
-   - Mutant (normal size)
-   - Goliath (fills tile)
-   - King (fills tile)
+---
 
-2. **Animations Required**
-   - idle (4 frames)
-   - walk (8 frames)
-   - run (6 frames)
-   - jump (4 frames)
-   - attack (6 frames)
-   - hurt (3 frames)
-   - death (5 frames)
+## 👹 Enemy AI & Bosses
 
-3. **Background Layers**
-   - Jungle (3 parallax layers)
-   - Dungeon (2 layers)
-   - Castle (3 layers)
+All enemies use a custom **Hierarchical State Machine** matching their specific archetypes:
 
-### Using PixelLab (MCP)
+1. **Normal Demontek**: Basic patrolling unit. Alert range of 150px. Attacks with short punches. (20 HP, 5 Damage)
+2. **Guard Demontek**: Elite patrol sentinel. Alerts at 200px. High alert speed. (25 HP, 5 Damage)
+3. **Mutant Demontek**: Fast, heavily armored muscular variant. Chases aggressively. (50 HP, 10 Damage)
+4. **Goliath (Mid-Boss)**: Giant mutated beast. Locks the player in the arena on Floor 3 of the Castle. (200 HP, 20 Damage)
+5. **King Demontek (Final Boss)**: Leader of the colony on the Castle Terrace. Features multiple combat phases, heavy screenshake, and custom animations. (500 HP, 30 Damage)
 
+---
+
+## 🗺️ Level Design
+
+### Level 1: Jungle Canopy
+A vibrant alien jungle with hand-painted treetops and 6 platforms of varying heights. Players must navigate gaps, fight/dodge 10 patrolling Demonteks, pick up the Machete, and reach the exit portal.
+
+### Level 2: Dungeon Escape
+A dark, atmospheric stone fortress. The player starts locked in a prison cell (active respawn checkpoint). Players must escape through sewer tunnels containing 3 Guard Demonteks and find the hidden chamber with the Sword and Demontek Saber.
+
+### Level 3: Castle Infiltration
+An epic 4-floor siege:
+- **Exterior**: Back entrance filled with floor traps triggering 6-enemy ambushes.
+- **Floor 1**: Ground floor filled with stone columns and basic Demonteks.
+- **Floor 2**: Intermediate barracks holding Mutant Demonteks and advanced weapon pickups.
+- **Floor 3**: Large open hall hosting the massive Goliath boss fight.
+- **Terrace**: Castle rooftop hosting the final battle with King Demontek and the portal back to Earth.
+
+---
+
+## 💾 Save & Persistence
+
+The game features a robust serialization system handled by `SaveManager.cs`:
+- **File Format**: Clean JSON saved locally in the user's application data (`user://demonteks_save.json`).
+- **Autosave**: Triggers automatically every 60 seconds of active playtime.
+- **Checkpoints**: Activating a green checkpoint flag saves the player's health, unlocked weapons, current weapon, level progression, and stats.
+- **Respawn System**: Dying in combat or falling into the void instantly loads the last active checkpoint.
+
+---
+
+## 📦 Building & Exporting
+
+Ensure you have **Godot 4.6+ (.NET)** and **.NET SDK 8.0** installed.
+
+### Compiling the Solution
+To compile the C# project assemblies:
 ```bash
-# Generate Explorer character
-pixellab generate character \
-  --prompt "Rambo-style warrior, pixel art, 128x128" \
-  --output assets/characters/explorer/
+# Debug Build
+godot --build-solutions
 
-# Generate animation sheet
-pixellab animate \
-  --input explorer_base.png \
-  --animations idle,walk,run,jump,attack,hurt,death \
-  --output explorer_animations.png
+# Production Build
+dotnet build -c Release
 ```
 
----
-
-## 📦 Building & Export
-
-### Windows Build
-
+### Exporting for Desktop (Windows)
 ```bash
-# Export from Godot Editor
-Project > Export > Windows Desktop
-
-# Or command line
+# From command line
 godot --export-release "Windows Desktop" demonteks.exe
 ```
 
-### Android Build
-
-1. **Install Android Build Template**
-   ```
-   Project > Install Android Build Template
-   ```
-
-2. **Configure Export Preset**
-   ```
-   Project > Export > Android
-   
-   Settings:
-   - Min SDK: 26
-   - Target SDK: 34
-   - Architectures: arm64-v8a, armeabi-v7a
-   ```
-
-3. **Generate Keystore**
+### Exporting for Mobile (Android)
+1. Install Godot's Android Build Templates inside the editor: `Project > Install Android Build Template`.
+2. Generate a custom release keystore:
    ```bash
-   keytool -genkey -v -keystore demonteks.keystore \
-     -alias demonteks -keyalg RSA -keysize 2048 -validity 10000
+   keytool -genkey -v -keystore demonteks.keystore -alias demonteks -keyalg RSA -keysize 2048 -validity 10000
    ```
-
-4. **Export APK**
+3. Enter your keystore credentials in the Android Export settings.
+4. Export the project:
    ```bash
    godot --export-release Android demonteks.apk
    ```
 
-### iOS Build (macOS only)
+---
 
-1. **Configure Export Preset**
-   ```
-   Project > Export > iOS
-   
-   Settings:
-   - Bundle ID: com.yourstudio.demonteks
-   - Min iOS: 12.0
-   ```
+## 👥 Credits
 
-2. **Export Xcode Project**
-   ```bash
-   godot --export-release iOS demonteks_ios/
-   ```
-
-3. **Build in Xcode**
-   - Open .xcodeproj
-   - Configure signing
-   - Build for device/App Store
+- **Game Design & Programming**: Mariano Liceaga
+- **Visuals**: PixelLab MCP & layer.ai
+- **Audio & SFX**: ElevenLabs C# Sound Synthesizer
+- **Physics Models**: Inspired by Celeste and Hollow Knight character models
 
 ---
 
-## 🏗 Architecture
+## 📜 License
 
-### System Overview
-
-```
-┌─────────────────────────────────────────────┐
-│           Game Entry Point                  │
-│         (MainMenu / GameManager)            │
-└─────────────────┬───────────────────────────┘
-                  │
-        ┌─────────▼─────────┐
-        │   Level Loaded    │
-        │  (Scene Manager)  │
-        └─────────┬─────────┘
-                  │
-    ┌─────────────┼─────────────┐
-    │             │             │
-┌───▼───┐   ┌────▼────┐   ┌───▼───┐
-│Player │   │ Enemies │   │  UI   │
-└───┬───┘   └────┬────┘   └───┬───┘
-    │            │            │
-    │   ┌────────▼────────┐   │
-    └───►  GameManager    ◄───┘
-        │  (Autoload)     │
-        └────────┬────────┘
-                 │
-        ┌────────▼────────┐
-        │  SaveManager    │
-        │  (Autoload)     │
-        └─────────────────┘
-```
-
-### Component Communication
-
-```
-Player                  Enemy
-  │                      │
-  ├─ PlayerStats        ├─ DemontekAI
-  │    │                │    │
-  │    └─[signal]→      │    └─[signal]→
-  │    HealthChanged    │    PlayerDetected
-  │                     │
-  ├─ PlayerCombat      StateManager
-  │    │                │
-  │    └─[signal]→     └─[processes]→
-  │    AttackExecuted   State Transitions
-  │
-  └─ PlayerController
-       │
-       └─[input]→ Movement & Actions
-```
-
-### State Machine Flow
-
-```
-Player States:
-Idle ⇄ Move ⇄ Jump → Fall → Idle
-  ↓      ↓      ↓
-Attack Attack Attack
-  ↓      ↓      ↓
-Idle   Idle   Idle
-
-Enemy States:
-Idle ⇄ Patrol → Detect → Chase → Attack
-  ↑               ↓          ↓        ↓
-  └───────────────┴──────────┴────────┘
-                  Lost Player
-```
-
----
-
-## 🗓 Roadmap
-
-### Phase 1: Core Mechanics (✅ Complete)
-- [x] Player movement system
-- [x] Combat system with weapons
-- [x] Enemy AI with state machine
-- [x] Basic level structure
-- [x] Save/load system
-- [x] Mobile controls
-
-### Phase 2: Content Creation (🚧 In Progress)
-- [ ] Generate all character sprites (0/6)
-- [ ] Create all background layers (0/8)
-- [ ] Build Level 1 - Jungle (0%)
-- [ ] Build Level 2 - Dungeon (0%)
-- [ ] Build Level 3 - Castle (0%)
-- [ ] Implement Goliath boss fight (0%)
-- [ ] Implement King boss fight (0%)
-
-### Phase 3: Polish & Features (📅 Planned)
-- [ ] Sound effects and music
-- [ ] Particle effects
-- [ ] Screen shake and juicy feedback
-- [ ] Mercy route implementation
-- [ ] Multiple endings
-- [ ] Achievements system
-- [ ] Localization (EN/ES)
-
-### Phase 4: Testing & Balance (📅 Planned)
-- [ ] Playtesting sessions
-- [ ] Difficulty balancing
-- [ ] Bug fixing
-- [ ] Performance optimization
-- [ ] Mobile device testing
-
-### Phase 5: Launch (📅 Q2 2026)
-- [ ] App store assets
-- [ ] Marketing materials
-- [ ] Google Play submission
-- [ ] iOS App Store submission
-- [ ] Steam release (Windows)
-- [ ] Launch!
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Here's how:
-
-1. **Fork the Repository**
-2. **Create Feature Branch**
-   ```bash
-   git checkout -b feature/AmazingFeature
-   ```
-3. **Commit Changes**
-   ```bash
-   git commit -m 'Add AmazingFeature'
-   ```
-4. **Push to Branch**
-   ```bash
-   git push origin feature/AmazingFeature
-   ```
-5. **Open Pull Request**
-
-### Contribution Guidelines
-
-- Follow existing code style
-- Add XML documentation for public APIs
-- Write clear commit messages
-- Test on desktop AND mobile before PR
-- Update README if adding features
-
----
-
-## 📜 Credits
-
-### Development
-- **Game Design**: Your Name
-- **Programming**: Your Name
-- **Level Design**: Your Name
-
-### Art & Assets
-- **Pixel Art**: Generated with PixelLab MCP
-- **Inspiration**: Castlevania, Celeste, Hollow Knight
-
-### Engines & Tools
-- **Godot Engine**: [godotengine.org](https://godotengine.org)
-- **PixelLab**: Asset generation
-- **Aseprite**: Sprite editing (recommended)
-
-### Special Thanks
-- Levrault for 2D platformer demo inspiration
-- DCodius for modern C# patterns
-- GDQuest for educational content
-- Godot community for support
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-**Note**: Asset licenses may vary. Please check individual asset sources.
-
----
-
-## 📞 Contact & Support
-
-- **Issues**: [GitHub Issues](https://github.com/yourusername/demonteks/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/demonteks/discussions)
-- **Email**: mliceaga@gmail.com
-- **Discord**: https://discord.gg/Ey5j8hDBMN
-
----
-
-## 🎯 Quick Links
-
-- [Download Latest Release](https://github.com/yourusername/demonteks/releases)
-- [Play in Browser](https://yourusername.itch.io/demonteks) (Coming Soon)
-- [Watch Gameplay Trailer](https://youtube.com/...) (Coming Soon)
-- [Read Dev Blog](https://yourblog.com) (Coming Soon)
-
----
-
-*Last updated: 2026-03-08*
+This project is licensed under the GNU Affero General Public License v3.0 - see the `LICENSE` file in the root directory for details.
