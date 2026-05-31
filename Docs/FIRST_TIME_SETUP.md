@@ -1,217 +1,113 @@
-# 🚀 First Time Setup - Demonteks
+# 🚀 Developer Setup Guide - Demonteks
 
-## You successfully opened the project! Here's what to do next:
+Welcome to the **Demonteks** development workspace! The game is **100% complete and fully playable (v1.0.0)**. This document guides you through setting up your environment, compiling the C# solution, running the game, and configuring your local editor.
 
-### Step 1: Build the C# Solution ✅
+---
 
-Godot will prompt you to build the C# solution. Click **"Build"**.
+## 📋 Prerequisites
 
-Alternatively, you can build manually:
-```bash
-# In Godot Editor: Project > Tools > C# > Build Solution
-# Or from command line:
-godot --build-solutions
-```
+Before opening the project, ensure your machine has the following tools installed:
 
-### Step 2: Create Your First Scene
+1. **Godot Engine 4.6 (with .NET Support)**:
+   - Make sure you download the **.NET version** (Mono-enabled) of Godot 4.6. The standard C++ version will not compile C# scripts.
+   - [Download Godot 4.6 .NET](https://godotengine.org/download)
 
-The project is currently set up with just the scripts and configuration. You need to create the game scenes.
+2. **.NET SDK 8.0+**:
+   - The game relies on .NET 8.0 features. Ensure you have the SDK installed, not just the Runtime.
+   - Run `dotnet --version` in your terminal to verify.
+   - [Download .NET SDK 8.0](https://dotnet.microsoft.com/download/dotnet/8.0)
 
-#### Quick Test Scene (Already Created!)
+3. **C# IDE / Code Editor**:
+   - **VS Code**: Highly recommended with the `C# Dev Kit` and `Godot Tools` extensions.
+   - **Visual Studio 2022** or **JetBrains Rider**: Fully supported out of the box.
 
-Run `Scenes/Test/TestScene.tscn` to verify everything works:
-1. Open `Scenes/Test/TestScene.tscn` in Godot
-2. Press **F5** to run
-3. You should see a label with instructions
+---
 
-#### Create the Player Scene
+## 🛠️ Step 1: Open the Project in Godot
 
-1. **Create new scene:**
-   ```
-   Scene > New Scene > 2D Scene
-   Save as: Scenes/Characters/Player.tscn
-   ```
+1. Launch the **Godot Engine** launcher.
+2. Click **Import** on the right.
+3. Navigate to your local `Demonteks` directory and select `project.godot`.
+4. Click **Import & Edit** to open the project in the editor.
 
-2. **Add nodes:**
-   ```
-   Player (CharacterBody2D)
-   ├── AnimatedSprite2D (for character sprite)
-   ├── CollisionShape2D (for physics)
-   ├── PlayerStats (Node)
-   ├── PlayerCombat (Node2D)
-   │   └── Hitbox (Area2D)
-   │       └── CollisionShape2D
-   └── Camera2D
-   ```
+---
 
-3. **Attach the PlayerController script:**
-   - Select the root "Player" node
-   - Click the script icon (or press Ctrl+A)
-   - Navigate to `Scripts/Player/PlayerController.cs`
-   - Click "Open"
+## 🏗️ Step 2: Compile the C# Solution
 
-4. **Attach other scripts:**
-   - Select "PlayerStats" node → Attach `Scripts/Player/PlayerStats.cs`
-   - Select "PlayerCombat" node → Attach `Scripts/Player/PlayerCombat.cs`
+Since all scripts are written in C#, you **must compile the project assemblies** before running it.
 
-5. **Configure NodePaths in Inspector:**
-   - Select "Player" node
-   - In Inspector, set:
-     - `AnimatedSpritePath` = `AnimatedSprite2D`
-     - `CollisionShapePath` = `CollisionShape2D`
-   
-   - Select "PlayerCombat" node
-   - Set:
-     - `HitboxPath` = `Hitbox`
-
-6. **Add to group:**
-   - Select "Player" node
-   - Node tab > Groups > Add "player"
-
-### Step 3: Generate Assets with PixelLab
-
-Follow the **ASSET_GENERATION_GUIDE.md** to create all character sprites and backgrounds.
-
-**Priority order:**
-1. Explorer character (player sprite)
-2. Normal Demontek (basic enemy)
-3. Jungle backgrounds (Level 1)
-
-### Step 4: Import Assets into Godot
-
-1. **Copy generated assets to project:**
+1. Once Godot opens, locate the **"Build"** button in the top-right corner of the editor interface (next to the Play buttons).
+2. Click **Build**.
+3. Alternatively, you can build from your terminal:
    ```bash
-   cp -r generated_assets/characters/ Assets/characters/
-   cp -r generated_assets/backgrounds/ Assets/backgrounds/
+   # Build debug assemblies
+   godot --build-solutions
+
+   # Or compile via dotnet directly
+   dotnet build
    ```
 
-2. **Configure import settings:**
-   - Select all sprite assets in FileSystem
-   - Import tab:
-     - Filter: **Nearest** (CRITICAL for pixel art!)
-     - Mipmaps: Off
-     - Repeat: Disabled (for characters)
-   - Click **Reimport**
+---
 
-3. **Set up AnimatedSprite2D:**
-   - Select AnimatedSprite2D in Player scene
-   - In Inspector > Animation > Frames
-   - Click "New SpriteFrames"
-   - Add animations (idle, walk, run, jump, attack, hurt, death)
-   - Load sprite sheets for each animation
+## 🎮 Step 3: Run the Game
 
-### Step 5: Create a Test Level
+1. In the Godot editor, press **`F5`** or click the **Play** button in the top-right corner.
+2. The game starts on the **Main Menu** (`res://Scenes/UI/MainMenu.tscn`).
+3. Click **New Game** to start Level 1 (Jungle), or **Continue** to load your latest checkpoint!
 
-1. **Create new scene:**
-   ```
-   Scene > New Scene > 2D Scene
-   Save as: Scenes/Levels/TestLevel.tscn
-   ```
+---
 
-2. **Add nodes:**
-   ```
-   TestLevel (Node2D)
-   ├── ParallaxBackground (for backgrounds)
-   │   ├── ParallaxLayer (sky)
-   │   │   └── Sprite2D
-   │   └── ParallaxLayer (foreground)
-   │       └── Sprite2D
-   ├── TileMap (for platforms)
-   └── Player (instance of Player.tscn)
-   ```
+## 🔧 Step 4: Configure Your Code Editor
 
-3. **Add platforms:**
-   - Create TileMap or use StaticBody2D with CollisionShape2D
-   - Place platforms for player to walk on
+### Visual Studio Code Setup
+To get autocomplete and C# debugging running in VS Code, create a `.vscode/launch.json` in the root folder:
 
-4. **Test:**
-   - Set as main scene: Project > Project Settings > Run > Main Scene
-   - Press **F5** to run
-
-### Step 6: Create Enemies
-
-Follow the same process as Player scene, but using `DemontekAI.cs`:
-
-1. Create `Scenes/Characters/Enemies/Demontek.tscn`
-2. Structure:
-   ```
-   Demontek (CharacterBody2D)
-   ├── AnimatedSprite2D
-   ├── CollisionShape2D
-   ├── DetectionArea (Area2D)
-   │   └── CollisionShape2D
-   └── AttackArea (Area2D)
-       └── CollisionShape2D
-   ```
-3. Attach `Scripts/Enemy/DemontekAI.cs` to root node
-4. Set NodePaths in Inspector
-5. Add to "enemies" group
-
-### Common Issues & Fixes
-
-#### "Cannot find type or namespace"
-**Solution:** Build the C# solution first:
+```json
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Play Demonteks (Debug)",
+      "type": "coreclr",
+      "request": "launch",
+      "program": "C:/Path/To/Your/Godot_v4.6-stable_mono_win64/Godot_v4.6-stable_mono_win64.exe",
+      "args": ["--path", "${workspaceRoot}"],
+      "cwd": "${workspaceRoot}",
+      "stopAtEntry": false
+    }
+  ]
+}
 ```
-Project > Tools > C# > Build Solution
-```
-
-#### "Blurry sprites"
-**Solution:** 
-1. Select sprites in FileSystem
-2. Import tab > Filter: **Nearest**
-3. Reimport
-4. Also check: Project Settings > Rendering > Textures > Default Texture Filter: Nearest
-
-#### "GameManager not found"
-**Solution:** GameManager and SaveManager are autoloads. If you see errors:
-1. Check they're in Project Settings > Autoload
-2. They load as singletons automatically
-3. Access via `GameManager.Instance` in code
-
-#### "MobileControls errors"
-**Solution:** MobileControls.tscn doesn't exist yet. It's commented out in autoload. Create it when you need mobile controls, or keep it commented out for desktop-only testing.
-
-### Recommended Development Order
-
-1. ✅ Build C# solution
-2. ✅ Create Player scene
-3. ✅ Generate Explorer sprite with PixelLab
-4. ✅ Import and set up animations
-5. ✅ Create test level with platforms
-6. ✅ Test player movement (WASD + jump)
-7. ✅ Create Demontek enemy
-8. ✅ Test combat
-9. ✅ Build Level 1 (Jungle)
-10. ✅ Continue following QUICK_START.md
-
-### Next Steps
-
-Once you have:
-- Player scene with working movement
-- At least one enemy
-- A test level with platforms
-
-Then you can start building the full game following the **README.md** roadmap!
+*(Replace `C:/Path/To/Your/Godot...` with the actual absolute path to your Godot Mono executable).*
 
 ---
 
-## 📚 Documentation Guide
+## 🧪 Step 5: Playtesting & Scene Running
 
-- **README.md** - Complete game overview, story, features
-- **QUICK_START.md** - Full development workflow
-- **ASSET_GENERATION_GUIDE.md** - PixelLab prompts for all assets
-- **This file** - Just getting started
+### Testing Individual Levels
+If you want to playtest a specific level directly without progressing through the whole game:
+1. Open the level scene in the editor:
+   - `res://Scenes/Levels/Level1_Jungle.tscn`
+   - `res://Scenes/Levels/Level2_Dungeon.tscn`
+   - `res://Scenes/Levels/Level3_Castle.tscn`
+2. Press **`F6`** (or click the "Play Current Scene" button in the top-right).
+3. The game will run just that level, spawning you at the default start location.
+
+### Testing specific components
+To test the player or enemies in a sandbox environment:
+1. Create a blank 2D scene (`Scene > New Scene > 2D Scene`).
+2. Drag and drop `res://Scenes/Characters/Player.tscn` into the viewport.
+3. Drag in any enemy variant from `res://Scenes/Characters/Enemies/`.
+4. Run the scene with **`F6`** to verify behaviors in isolation.
 
 ---
 
-## 🆘 Need Help?
+## ⚠️ Troubleshooting Common Setup Issues
 
-If you encounter issues:
-1. Check the **Troubleshooting** section in QUICK_START.md
-2. Verify all NodePaths are set correctly in Inspector
-3. Ensure C# solution is built
-4. Check Godot console for specific error messages
+### 🔴 Error: "Cannot find type or namespace"
+*   **Cause**: The C# assembly has not been built, or the editor cache is stale.
+*   **Solution**: Click the **Build** button in the top-right of Godot. If issues persist, close Godot, delete the `.godot/mono/` folder, reopen the project, and click **Build** again.
 
----
-
-**Good luck! The codebase is solid and ready for you to build upon! 🎮**
+### 🔴 Error: "Out of Bounds / Infinite Loop in AI"
+*   **Cause**: The project's physics snap constraints are out of alignment.
+*   **Solution**: Ensure `Default Texture Filter` under Project Settings is set to **Nearest** and `Snap 2D Transforms to Pixel` is enabled.
